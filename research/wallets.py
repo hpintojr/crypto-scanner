@@ -75,7 +75,11 @@ def cycle(state, errors):
         return
     seen = state.setdefault("wallets_seen", {})
     watched = added = 0
-    for row in enabled[:MAX_PER_CYCLE]:
+    # Rotate through the list so it can grow without making each cycle longer.
+    start = state.get("wallets_offset", 0) % max(1, len(enabled))
+    batch = (enabled[start:] + enabled[:start])[:MAX_PER_CYCLE]
+    state["wallets_offset"] = start + len(batch)
+    for row in batch:
         why = admitted(row)
         if why:
             errors.append(f"wallet {row['owner']}: {why}")
@@ -96,4 +100,4 @@ def cycle(state, errors):
             "source": row["attribution_source"]} for t in new])
         added += len(new)
         seen[addr] = ([t[0] for t in txs] + [k for k in seen.get(addr, []) if k not in {t[0] for t in txs}])[:KEEP_SEEN]
-    state["last_wallets"] = f"{watched} of {len(enabled)} enabled wallets checked, {added} new moves"
+    state["last_wallets"] = f"{watched} checked this cycle, {len(enabled)} enabled in rotation, {added} new moves"

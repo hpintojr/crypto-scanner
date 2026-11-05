@@ -481,6 +481,21 @@ def main():
     wallets.cycle(st, [])
     moves = rows(os.path.join(core.DATA, "wallet-moves.csv"))
     assert [m["tx"] for m in moves] == ["t2"] and moves[0]["owner"] == "Good Co", moves
+    # a longer list rotates, so every wallet gets checked and each cycle stays the same size
+    many = [f"bc1q{i:02d}" + "a" * 36 for i in range(5)]
+    with open(wallets.LIST, "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fields, restval="")
+        w.writeheader()
+        for a in many:
+            w.writerow({"owner": a, "enabled": "yes", "chain": "bitcoin", "address": a, "attribution_source": "x", "last_verified": "y"})
+    seen = []
+    wallets.READERS["bitcoin"] = lambda a: seen.append(a) or []
+    keep, wallets.MAX_PER_CYCLE = wallets.MAX_PER_CYCLE, 2
+    st2 = {}
+    for _ in range(3):
+        wallets.cycle(st2, [])
+    wallets.MAX_PER_CYCLE = keep
+    assert set(seen) == set(many) and len(seen) == 6, seen
     assert wallets.admitted({"chain": "ethereum", "address": "0xabc", "attribution_source": "x", "last_verified": "y"})
 
     # hold test: private list stays outside the repo, buys at first price, and shows a percentage only
