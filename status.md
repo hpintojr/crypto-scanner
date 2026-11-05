@@ -1,22 +1,22 @@
 # Scanner status
 
-- Last run: 2026-11-05T17:21:30Z
+- Last run: 2026-11-05T17:26:19Z
 - Host: otto-16usdmc576-067297
-- Step seconds: simulation 8, crypto scan 0, buzz 0, watchlist 0, stocks 31, score crypto 0, score stocks 0, form 4 1, wallets 43, holdings 0, backtest 0, movers 0, allocation 0
+- Step seconds: simulation 8, crypto scan 1, buzz 0, watchlist 0, stocks 29, score crypto 0, score stocks 0, form 4 1, wallets 33, holdings 0, backtest 0, movers 0, allocation 0
 - Skipped for time: none
-- Last scan: 2026-11-05T17:20:14Z: 2 movers >3% 1h, 0 kept after 2x volume check
+- Last scan: 2026-11-05T17:25:15Z: 2 movers >3% 1h, 0 kept after 2x volume check
 - Last flag: 2026-11-05T13:00:21Z WLFI
-- Last stock scan: 2026-11-05T17:20:14Z: 100 stocks, 1 movers over 2.0% 1h, 0 kept after 2x volume check, 1 without enough data
+- Last stock scan: 2026-11-05T17:25:16Z: 100 stocks, 5 movers over 2.0% 1h, 3 kept after 2x volume check, 1 without enough data
 - Last watchlist snapshot: 2026-11-05T17:05:25Z
 - Last pre-market gap check: 2026-11-05T14:25:10Z: 3 of 100 stocks gapped 3%+ pre-market
-- Last Form 4 run: 2026-11-05T17:20:45Z: 0 filings read, 0 code P buys added, working on 2026-11-05, 134 logged, 2 qualifying
+- Last Form 4 run: 2026-11-05T17:25:44Z: 0 filings read, 0 code P buys added, working on 2026-11-05, 134 logged, 2 qualifying
 - $1,000 paper simulation: value $1,933.98 of $2,000, 14 open, crypto cash $0.00, stock cash $225.05
 - Simulation flags: none
 - Strategy test: 2026-11-05: 501 trading days tested, see data/backtest.md
 - Hold test: -6.05% since 2026-11-05, BTC -5.19%
-- Wallet watch: 25 checked this cycle, 59 enabled in rotation, 3 new moves
+- Wallet watch: 25 checked this cycle, 59 enabled in rotation, 1 new moves
 - Measured time between runs: 5 min
-- Next run: ~2026-11-05T17:26:30Z
+- Next run: ~2026-11-05T17:31:19Z
 - Inbox: no pending requests
 - Errors this cycle: 1
   - simulation: HTTP 403 https://paper-api.alpaca.markets/v2/orders
