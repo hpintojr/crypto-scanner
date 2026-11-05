@@ -137,10 +137,26 @@
    "source": "long:GLD",
    "plan": "long:GLD",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-GLD-202611051431",
    "notional": 300,
    "thesis": "Approved allocation, long:GLD",
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
+   "qty": "0.792504768",
+   "entry": 378.534,
+   "cost": 299.99,
+   "opened": "2026-11-05T14:36:31Z"
+  },
+  {
+   "symbol": "DBC",
+   "market": "stock",
+   "source": "long:DBC",
+   "plan": "long:DBC",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-DBC-202611051436",
+   "notional": 250,
+   "thesis": "Approved allocation, long:DBC",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
   }
  ],
@@ -159,12 +175,13 @@
   "HYPE/USD",
   "DOGE/USD"
  ],
- "stock_cash": 700.0,
+ "stock_cash": 450.010000149888,
  "btc_start": 80189.9,
  "flags": [],
  "plan_spent": {
   "long:BTC/USD": 302.35,
-  "long:GLD": 300
+  "long:GLD": 300,
+  "long:DBC": 250
  },
  "trends": {
   "CPER": false,
