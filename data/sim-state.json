@@ -1,23 +1,7 @@
 {
  "start": "2026-11-05",
- "cash": -0.0011734692192959528,
+ "cash": 0.0001640158807276748,
  "positions": [
-  {
-   "symbol": "BCH/USD",
-   "market": "crypto",
-   "source": "crypto-momentum",
-   "status": "selling",
-   "buy_id": "sim-buy-BCHUSD-202611050955",
-   "notional": 100.03,
-   "thesis": "Up 4.3% over about a month (+5.7% vs BTC/USD), +1.3% this week, 21 headlines in the last day, news tone +2",
-   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days.",
-   "qty": "0.337788176",
-   "entry": 289.036,
-   "cost": 97.8776,
-   "opened": "2026-11-05T10:00:54Z",
-   "exit_reason": "stop",
-   "sell_id": "sim-sell-BCHUSD-202611051745"
-  },
   {
    "symbol": "BONK/USD",
    "market": "crypto",
@@ -155,7 +139,7 @@
    "notional": 188.39,
    "thesis": "Approved allocation, long:ETH/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.080502037",
+   "qty": "0.080447483",
    "entry": 2288.58,
    "cost": 184.7241,
    "opened": "2026-11-05T15:27:38Z"
@@ -171,7 +155,7 @@
    "notional": 11.61,
    "thesis": "Approved allocation, long:ETH/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.004996790",
+   "qty": "0.004993403",
    "entry": 2278.814,
    "cost": 11.3884,
    "opened": "2026-11-05T15:37:23Z"
@@ -230,9 +214,25 @@
    "source": "mid:ETH/USD",
    "plan": "mid:ETH/USD",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-ETHUSD-202611051745",
    "notional": 72.9,
+   "thesis": "Approved allocation, mid:ETH/USD",
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
+   "qty": "0.031772369",
+   "entry": 2248.5,
+   "cost": 71.4886,
+   "opened": "2026-11-05T17:50:04Z"
+  },
+  {
+   "symbol": "ETH/USD",
+   "market": "crypto",
+   "source": "mid:ETH/USD",
+   "plan": "mid:ETH/USD",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-ETHUSD-202611051750",
+   "notional": 93.66,
    "thesis": "Approved allocation, mid:ETH/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
   }
@@ -264,7 +264,7 @@
   "mid:DBC": 75,
   "long:ETH/USD": 200.0,
   "mid:BTC/USD": 200.0,
-  "mid:ETH/USD": 72.9
+  "mid:ETH/USD": 166.56
  },
  "trends": {
   "CPER": false,
