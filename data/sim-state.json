@@ -63,7 +63,7 @@
    "symbol": "UNI/USD",
    "market": "crypto",
    "source": "crypto-momentum",
-   "status": "open",
+   "status": "selling",
    "buy_id": "sim-buy-UNIUSD-202611051001",
    "notional": 99.97,
    "thesis": "Up 3.5% over about a month (+4.8% vs BTC/USD), +7.2% this week, 29 headlines in the last day, news tone -1",
@@ -71,7 +71,9 @@
    "qty": "12.884130128",
    "entry": 7.5929,
    "cost": 98.0731,
-   "opened": "2026-11-05T10:09:15Z"
+   "opened": "2026-11-05T10:09:15Z",
+   "sell_id": "sim-sell-UNIUSD-202611051441",
+   "exit_reason": "stop"
   },
   {
    "symbol": "BTC/USD",
@@ -153,10 +155,26 @@
    "source": "long:DBC",
    "plan": "long:DBC",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-DBC-202611051436",
    "notional": 250,
    "thesis": "Approved allocation, long:DBC",
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
+   "qty": "7.931450333",
+   "entry": 31.518826,
+   "cost": 249.99,
+   "opened": "2026-11-05T14:41:15Z"
+  },
+  {
+   "symbol": "DBA",
+   "market": "stock",
+   "source": "long:DBA",
+   "plan": "long:DBA",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-DBA-202611051441",
+   "notional": 75,
+   "thesis": "Approved allocation, long:DBA",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
   }
  ],
@@ -175,13 +193,14 @@
   "HYPE/USD",
   "DOGE/USD"
  ],
- "stock_cash": 450.010000149888,
+ "stock_cash": 375.019997176419,
  "btc_start": 80189.9,
  "flags": [],
  "plan_spent": {
   "long:BTC/USD": 302.35,
   "long:GLD": 300,
-  "long:DBC": 250
+  "long:DBC": 250,
+  "long:DBA": 75
  },
  "trends": {
   "CPER": false,
