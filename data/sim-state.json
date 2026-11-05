@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 0.50459011421691,
+ "cash": 2.3817519245169194,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -171,11 +171,15 @@
    "source": "long:BTC/USD",
    "plan": "long:BTC/USD",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-BTCUSD-202611051446",
    "notional": 97.65,
    "thesis": "Approved allocation, long:BTC/USD",
-   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
+   "qty": "0.00121499",
+   "entry": 78826.03,
+   "cost": 95.7728,
+   "opened": "2026-11-05T14:51:10Z"
   },
   {
    "symbol": "CPER",
@@ -183,10 +187,26 @@
    "source": "long:CPER",
    "plan": "long:CPER",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-CPER-202611051446",
    "notional": 75,
    "thesis": "Approved allocation, long:CPER",
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
+   "qty": "1.953475044",
+   "entry": 38.388,
+   "cost": 74.99,
+   "opened": "2026-11-05T14:51:11Z"
+  },
+  {
+   "symbol": "DBC",
+   "market": "stock",
+   "source": "mid:DBC",
+   "plan": "mid:DBC",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-DBC-202611051451",
+   "notional": 75,
+   "thesis": "Approved allocation, mid:DBC",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
   }
  ],
@@ -205,7 +225,7 @@
   "HYPE/USD",
   "DOGE/USD"
  ],
- "stock_cash": 300.02999719236897,
+ "stock_cash": 225.039997203297,
  "btc_start": 80189.9,
  "flags": [],
  "plan_spent": {
@@ -213,7 +233,8 @@
   "long:GLD": 300,
   "long:DBC": 250,
   "long:DBA": 75,
-  "long:CPER": 75
+  "long:CPER": 75,
+  "mid:DBC": 75
  },
  "trends": {
   "CPER": false,
