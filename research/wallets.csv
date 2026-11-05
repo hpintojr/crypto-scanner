@@ -71,7 +71,7 @@ number,owner,category,enabled,chain,address,attribution_source,last_verified,pro
 62,Spark Protocol,institution or protocol,no,,,,,https://arkm.com/explorer/entity/spark-protocol,Exchange and protocol flows are often customer or internal transfers
 63,ether.fi,institution or protocol,no,,,,,https://arkm.com/explorer/entity/ether-fi,Exchange and protocol flows are often customer or internal transfers
 64,Gemini,institution or protocol,no,,,,,https://arkm.com/explorer/entity/gemini,Exchange and protocol flows are often customer or internal transfers
-65,Uniswap,institution or protocol,no,,,,,https://arkm.com/explorer/entity/uniswap,Exchange and protocol flows are often customer or internal transfers
+65,Uniswap,"protocol, self-published",yes,ethereum,0x1a9C8182C09F50C8318d769245beA52c32BE35BC,https://developers.uniswap.org/docs/ecosystem/governance/technical-reference,2026-11-05,https://arkm.com/explorer/entity/uniswap,"Listed in Uniswap's docs as the governance Timelock. Native ETH moves only, tokens aren't read yet"
 66,Bitget,institution or protocol,no,,,,,https://arkm.com/explorer/entity/bitget,Exchange and protocol flows are often customer or internal transfers
 67,Gate.io,institution or protocol,no,,,,,https://arkm.com/explorer/entity/gate-io,Exchange and protocol flows are often customer or internal transfers
 68,Bithumb,institution or protocol,no,,,,,https://arkm.com/explorer/entity/bithumb,Exchange and protocol flows are often customer or internal transfers
@@ -101,7 +101,8 @@ number,owner,category,enabled,chain,address,attribution_source,last_verified,pro
 83,Polygon,institution or protocol,no,,,,,https://arkm.com/explorer/entity/polygon,Exchange and protocol flows are often customer or internal transfers
 84,Metaplanet,institution or protocol,no,,,,,https://arkm.com/explorer/entity/metaplanet-2,Exchange and protocol flows are often customer or internal transfers
 85,Mt. Gox,institution or protocol,no,,,,,https://arkm.com/explorer/entity/mt-gox,Exchange and protocol flows are often customer or internal transfers
-86,Curve Finance,institution or protocol,no,,,,,https://arkm.com/explorer/entity/curve-fi,Exchange and protocol flows are often customer or internal transfers
+86,Curve Finance,"protocol, self-published",yes,ethereum,0x40907540d8a6C65c637785e8f8B742ae6b0b9968,https://docs.curve.finance/references/deployed-contracts/,2026-11-05,https://arkm.com/explorer/entity/curve-fi,Listed in Curve's docs as Ownership agent
+86,Curve Finance,"protocol, self-published",yes,ethereum,0xa2Bcd1a4Efbd04B63cd03f5aFf2561106ebCCE00,https://docs.curve.finance/references/deployed-contracts/,2026-11-05,https://arkm.com/explorer/entity/curve-fi,Listed in Curve's docs as FeeCollector
 87,KuCoin,"exchange, self-published",yes,bitcoin,bc1q080rkmk3kj86pxvf5nkxecdrw6nrx3zzy9xl7q,https://www.kucoin.com/blog/9152-34,2026-11-05,https://arkm.com/explorer/entity/kucoin,"Published by KuCoin, Nov 2022, about 17,705 BTC then. Recheck"
 87,KuCoin,"exchange, self-published",yes,bitcoin,38fJPq4dYGPoJizEUGCL9yWkqg73cJmC2n,https://www.kucoin.com/blog/9152-34,2026-11-05,https://arkm.com/explorer/entity/kucoin,"Published by KuCoin, Nov 2022, about 1,102 BTC then. Recheck"
 87,KuCoin,"exchange, self-published",yes,ethereum,0xd6216fc19db775df9774a6e33526131da7d19a2c,https://www.kucoin.com/blog/9152-34,2026-11-05,https://arkm.com/explorer/entity/kucoin,"Published by KuCoin, Nov 2022, about 149,305 ETH then. Recheck"
