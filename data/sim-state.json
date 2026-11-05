@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 0.002354828174446766,
+ "cash": 1.638626594684439,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -209,11 +209,15 @@
    "source": "mid:BTC/USD",
    "plan": "mid:BTC/USD",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-BTCUSD-202611051537",
    "notional": 84.81,
    "thesis": "Approved allocation, mid:BTC/USD",
-   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
+   "qty": "0.001088337",
+   "entry": 76422.77,
+   "cost": 83.1737,
+   "opened": "2026-11-05T15:42:26Z"
   }
  ],
  "spy_start": 766.9,
