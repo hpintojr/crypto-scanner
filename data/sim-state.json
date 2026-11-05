@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 84.59077336945445,
+ "cash": 0.002354828174446766,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -193,10 +193,26 @@
    "source": "long:ETH/USD",
    "plan": "long:ETH/USD",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-ETHUSD-202611051533",
    "notional": 11.61,
    "thesis": "Approved allocation, long:ETH/USD",
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
+   "qty": "0.00499752",
+   "entry": 2278.814,
+   "cost": 11.3884,
+   "opened": "2026-11-05T15:37:23Z"
+  },
+  {
+   "symbol": "BTC/USD",
+   "market": "crypto",
+   "source": "mid:BTC/USD",
+   "plan": "mid:BTC/USD",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-BTCUSD-202611051537",
+   "notional": 84.81,
+   "thesis": "Approved allocation, mid:BTC/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
   }
  ],
@@ -225,7 +241,8 @@
   "long:DBA": 75,
   "long:CPER": 75,
   "mid:DBC": 75,
-  "long:ETH/USD": 200.0
+  "long:ETH/USD": 200.0,
+  "mid:BTC/USD": 84.81
  },
  "trends": {
   "CPER": false,
