@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 5.878450137480911,
+ "cash": 0.50459011421691,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -58,22 +58,6 @@
    "entry": 289.036,
    "cost": 97.8776,
    "opened": "2026-11-05T10:00:54Z"
-  },
-  {
-   "symbol": "UNI/USD",
-   "market": "crypto",
-   "source": "crypto-momentum",
-   "status": "selling",
-   "buy_id": "sim-buy-UNIUSD-202611051001",
-   "notional": 99.97,
-   "thesis": "Up 3.5% over about a month (+4.8% vs BTC/USD), +7.2% this week, 29 headlines in the last day, news tone -1",
-   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days.",
-   "qty": "12.884130128",
-   "entry": 7.5929,
-   "cost": 98.0731,
-   "opened": "2026-11-05T10:09:15Z",
-   "sell_id": "sim-sell-UNIUSD-202611051441",
-   "exit_reason": "stop"
   },
   {
    "symbol": "BTC/USD",
@@ -171,10 +155,38 @@
    "source": "long:DBA",
    "plan": "long:DBA",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-DBA-202611051441",
    "notional": 75,
    "thesis": "Approved allocation, long:DBA",
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
+   "qty": "2.845920303",
+   "entry": 26.35,
+   "cost": 74.99,
+   "opened": "2026-11-05T14:46:09Z"
+  },
+  {
+   "symbol": "BTC/USD",
+   "market": "crypto",
+   "source": "long:BTC/USD",
+   "plan": "long:BTC/USD",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-BTCUSD-202611051446",
+   "notional": 97.65,
+   "thesis": "Approved allocation, long:BTC/USD",
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
+  },
+  {
+   "symbol": "CPER",
+   "market": "stock",
+   "source": "long:CPER",
+   "plan": "long:CPER",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-CPER-202611051446",
+   "notional": 75,
+   "thesis": "Approved allocation, long:CPER",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
   }
  ],
@@ -193,14 +205,15 @@
   "HYPE/USD",
   "DOGE/USD"
  ],
- "stock_cash": 375.019997176419,
+ "stock_cash": 300.02999719236897,
  "btc_start": 80189.9,
  "flags": [],
  "plan_spent": {
-  "long:BTC/USD": 302.35,
+  "long:BTC/USD": 400.0,
   "long:GLD": 300,
   "long:DBC": 250,
-  "long:DBA": 75
+  "long:DBA": 75,
+  "long:CPER": 75
  },
  "trends": {
   "CPER": false,
