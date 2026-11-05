@@ -376,6 +376,14 @@ def main():
     sim.cycle(state, errs, creds)
     assert errs == [] and not sim._load()["positions"], errs
 
+    # a rounded fill price must not create a fake gain, and an already-recorded one gets repaired
+    fixed = {"cash": 901.95, "positions": [{"symbol": "PEPE/USD", "status": "open", "notional": 100.0, "cost": 98.05, "qty": "19650225.98", "entry": 4.99e-06}]}
+    sim._sync(fixed, creds)
+    assert abs(fixed["cash"] - 900) < 1e-6 and fixed["positions"][0]["cost"] == 100.0, fixed
+    assert abs(fixed["positions"][0]["entry"] - 5.089e-06) < 1e-08, fixed
+    sim._sync(fixed, creds)
+    assert abs(fixed["cash"] - 900) < 1e-6, "repair must only run once"
+
     # a stock with no signal today falls back to the month's numbers, and only after 10:30 ET
     CRYPTO[0] = []
     MARKET_OPEN[0] = True
