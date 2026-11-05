@@ -407,6 +407,17 @@ def main():
     picked = list(ORDERS.values())
     assert len(picked) == 1 and picked[0]["symbol"] == "MSFT", ORDERS
 
+    # crypto can't touch the stock reserve, but stocks can spend it
+    res = {"cash": 305.0, "positions": [], "last_crypto_day": None}
+    CRYPTO[0] = [{"symbol": "SOL/USD", "tradable": True}, {"symbol": "BTC/USD", "tradable": True}]
+    assert sim._buy(res, creds, {}, later.date(), "crypto", True) is False and res["cash"] == 305.0, res
+    res["cash"] = 320.0
+    n_orders = len(ORDERS)
+    assert sim._buy(res, creds, {}, later.date(), "crypto", True) is True and abs(res["cash"] - 300) < 1e-6, res
+    for k in list(ORDERS)[n_orders:]:
+        del ORDERS[k]
+    CRYPTO[0] = []
+
     # the budget keeps going into momentum picks: another coin next cycle, never the same one twice in a day
     sim.REPEAT_MOMENTUM = True
     sv, svc = sim._load(), dict(ORDERS)

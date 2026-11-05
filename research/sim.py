@@ -17,6 +17,7 @@ START_CASH = 1000.0
 TRADE_FRACTION = 0.10
 STOP_PCT, TARGET_PCT, MAX_HOLD_DAYS = -5.0, 10.0, 7
 REPEAT_MOMENTUM = True  # keep buying momentum picks until the cash is used
+STOCK_RESERVE = 300.0  # crypto buys can never take cash below this, so stocks always have money
 MIN_ORDER = 10.0  # smaller orders can be refused, and cash that low is effectively used up
 PEPE_ACTUAL_COST, PEPE_ACTUAL_ENTRY = 98.0546, 4.99e-06  # Alpaca cash fell from $100,000 to $99,901.95
 ENTRY_MINUTE = 10 * 60 + 30
@@ -275,7 +276,8 @@ def _buy(s, creds, prices, today, market, may_use_momentum):
         s["bought_date"], s["bought_today"] = day, []
     held = {p["symbol"] for p in s["positions"]} | set(s["bought_today"])
     equity = _equity(s, prices)
-    notional = round(min(equity * TRADE_FRACTION, s["cash"]), 2)
+    spendable = s["cash"] - (STOCK_RESERVE if market == "crypto" else 0)
+    notional = round(min(equity * TRADE_FRACTION, spendable), 2)
     if notional < MIN_ORDER:
         return False
     _check_paper(creds)
