@@ -302,6 +302,7 @@ def main():
     after = rows(os.path.join(core.DATA, "signals.csv"))
     assert len(after) == before + 1 and after[-1]["symbol"] == "AAPL" and after[-1]["signal_type"] == "premarket_gap", after[-1]
 
+    sim.REPEAT_MOMENTUM = False
     # paper simulation: buy at 3:30 ET, fill, reinvest, stop out, refuse a non-paper account, kill switch
     ORDERS.clear()
     state = {}
@@ -405,6 +406,27 @@ def main():
     assert errs == [], errs
     picked = list(ORDERS.values())
     assert len(picked) == 1 and picked[0]["symbol"] == "MSFT", ORDERS
+
+    # the budget keeps going into momentum picks: another coin next cycle, never the same one twice in a day
+    sim.REPEAT_MOMENTUM = True
+    sv, svc = sim._load(), dict(ORDERS)
+    CRYPTO[0] = [{"symbol": "SOL/USD", "tradable": True}, {"symbol": "BTC/USD", "tradable": True}]
+    ORDERS.clear()
+    os.remove(os.path.join(core.DATA, "sim-state.json"))
+    MARKET_OPEN[0] = False
+    core.now = lambda: later
+    errs.clear()
+    for _ in range(3):
+        sim.cycle(state, errs, creds)
+    assert errs == [], errs
+    coins = [o["symbol"] for o in ORDERS.values()]
+    assert coins[0] == "SOL/USD" and len(coins) == len(set(coins)), coins
+    sim._save(sv)
+    ORDERS.clear()
+    ORDERS.update(svc)
+    CRYPTO[0] = []
+    MARKET_OPEN[0] = True
+    sim.REPEAT_MOMENTUM = False
 
     # no daily limit: every new signal trades, the same stock isn't bought twice in a day, cash is the only cap
     s0 = sim._load()

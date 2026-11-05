@@ -1,9 +1,9 @@
 """$1,000 paper simulation. Places orders on Alpaca's PAPER endpoint only, never live.
 
 No limit on the number of trades, only on money: $1,000 to start, no margin, cash can't go below zero.
-Every signal can trade while there's cash, at most one buy per market per cycle, and a coin or stock
-isn't bought twice in a day. If a day has no trade, one pick from the past month's numbers plus news
-(crypto any time, stocks from 10:30 AM ET). 10% of equity per trade
+Keeps buying until the budget is used: signals first, then the best remaining pick from the past month's
+numbers plus news (crypto 24/7, stocks from 10:30 AM ET). At most one buy per market per cycle, and a coin
+or stock isn't bought twice in a day. 10% of equity per trade
 ($100 at the start, so gains are reinvested). Exit at -5%, +10%, or after 7 calendar days.
 Create a file named SIM_STOP in the repo to stop all new orders.
 """
@@ -16,6 +16,7 @@ PAPER_URL = "https://paper-api.alpaca.markets"  # the only place orders can go
 START_CASH = 1000.0
 TRADE_FRACTION = 0.10
 STOP_PCT, TARGET_PCT, MAX_HOLD_DAYS = -5.0, 10.0, 7
+REPEAT_MOMENTUM = True  # keep buying momentum picks until the cash is used
 MIN_ORDER = 10.0  # smaller orders can be refused, and cash that low is effectively used up
 PEPE_ACTUAL_COST, PEPE_ACTUAL_ENTRY = 98.0546, 4.99e-06  # Alpaca cash fell from $100,000 to $99,901.95
 ENTRY_MINUTE = 10 * 60 + 30
@@ -280,7 +281,7 @@ def _buy(s, creds, prices, today, market, may_use_momentum):
     _check_paper(creds)
     crypto = market == "crypto"
     day_key = "last_crypto_day" if crypto else "last_trade_day"
-    momentum_ok = may_use_momentum and s.get(day_key) != day
+    momentum_ok = may_use_momentum and (REPEAT_MOMENTUM or s.get(day_key) != day)
     if crypto:
         picks = _crypto_candidates(creds, today, held, momentum_ok)
     else:
@@ -337,8 +338,9 @@ def _report(s, prices):
         due = (start + timedelta(days=days)).isoformat()
         hit = next((r for r in rows if r["date"] >= due), None)
         lines.append(f"- {days}-day checkpoint ({due}): " + (f"${float(hit['equity']):,.2f}, SPY ${hit['spy_equivalent']}" if hit else "not reached"))
-    lines += ["", "Rules: $1,000 starting budget with no margin and no limit on trades. Every signal can trade while there's cash, "
-              "10% of equity each, -5% stop, +10% target, 7-day limit. Trade data is in sim-trades.csv."]
+    lines += ["", "Rules: $1,000 starting budget with no margin and no limit on trades. Buys until the cash is used, crypto 24/7 and "
+              "stocks in market hours, 10% of equity each, -5% stop, +10% target, 7-day limit. Picks must score above zero. "
+              "Trade data is in sim-trades.csv."]
     with open(os.path.join(core.DATA, "sim.md"), "w") as f:
         f.write("\n".join(lines) + "\n")
     return equity
