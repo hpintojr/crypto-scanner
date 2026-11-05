@@ -12,6 +12,14 @@ WATCH = [("ripple", "XRP"), ("stellar", "XLM"), ("hedera-hashgraph", "HBAR"),
          ("xdce-crowd-sale", "XDC"), ("bitcoin", "BTC"), ("ethereum", "ETH"), ("solana", "SOL")]
 CRYPTO_WORDS = ("crypto", "coin", "token", "price", "market", "trading")
 errors = []
+CYCLE_BUDGET_SECONDS = 180  # the runner kills a cycle at about 5 minutes, so slow research stops well before that
+MAX_CHART_LOOKUPS = 6  # free CoinGecko rate limit; remaining movers get checked next cycle
+started = time.monotonic()
+rate_limited = False
+
+
+def over_budget():
+    return time.monotonic() - started > CYCLE_BUDGET_SECONDS
 
 
 def now():
@@ -23,6 +31,7 @@ def iso(t=None):
 
 
 def get(url, kind="json", retries=2):
+    global rate_limited
     last = None
     for i in range(retries + 1):
         try:
@@ -32,7 +41,10 @@ def get(url, kind="json", retries=2):
             return json.loads(body) if kind == "json" else body
         except Exception as e:
             last = e
-            time.sleep(8 * (i + 1))  # CoinGecko free tier rate limits
+            if getattr(e, "code", None) == 429:  # retrying only burns the cycle's time
+                rate_limited = True
+                break
+            time.sleep(8 * (i + 1))
     errors.append(f"fetch failed {url.split('?')[0]}: {last}")
     return None
 
@@ -80,9 +92,13 @@ def scan(state):
               and abs(c["price_change_percentage_1h_in_currency"]) > 3]
     kept = []
     btc = next((c["current_price"] for c in data if c["id"] == "bitcoin"), None)
+    lookups = 0
     for c in movers:
         if research_core.recently_logged(state, "crypto", c["symbol"].upper()):
             continue  # already logged during its cooldown, so save the CoinGecko call
+        if rate_limited or lookups >= MAX_CHART_LOOKUPS or over_budget():
+            break  # stay within limits; the rest are checked next cycle
+        lookups += 1
         time.sleep(3)
         ch = get(f"{CG}/coins/{c['id']}/market_chart?vs_currency=usd&days=7")
         if not ch or not ch.get("total_volumes"):
@@ -195,19 +211,45 @@ def score_crypto():
             research_core.record_outcome(sig, horizon, when, prices[sig["asset_id"]]["usd"], prices["bitcoin"]["usd"])
 
 
-def research(state):
-    """Stock scan, outcome scoring and report. A failure here must not stop the crypto cycle."""
+def save_state(state):
+    """Written after each step, so a killed cycle keeps its cooldowns. Replaced whole so it can't be left half-written."""
+    tmp = path(".state.json.tmp")
+    with open(tmp, "w") as f:
+        json.dump(state, f, indent=1)
+    os.replace(tmp, path(".state.json"))
+
+
+def timed(state, name, fn):
+    """Run one step, record its seconds, and keep one failure from stopping the rest."""
+    t = time.monotonic()
     try:
-        creds = research_stocks.scan(state, errors)
-        score_crypto()
-        research_stocks.score(creds, errors)
-        research_form4.cycle(state, errors, creds)
-        research_sim.cycle(state, errors, creds)
-        research_wallets.cycle(state, errors)
-        research_holdings.cycle(state, errors)
-        research_backtest.cycle(state, errors, creds)
-        research_movers.cycle(state, errors, creds)
-        research_allocation.cycle(state, errors, creds)
+        return fn()
+    except Exception as e:
+        errors.append(f"{name}: {type(e).__name__}: {e}")
+    finally:
+        state.setdefault("step_seconds", {})[name] = round(time.monotonic() - t)
+        save_state(state)
+
+
+def research(state, creds):
+    """Research steps, skipped once the cycle runs long. The next cycle picks them up."""
+    steps = [("stocks", lambda: research_stocks.scan(state, errors)),
+             ("score crypto", score_crypto),
+             ("score stocks", lambda: research_stocks.score(creds, errors)),
+             ("form 4", lambda: research_form4.cycle(state, errors, creds)),
+             ("wallets", lambda: research_wallets.cycle(state, errors)),
+             ("holdings", lambda: research_holdings.cycle(state, errors)),
+             ("backtest", lambda: research_backtest.cycle(state, errors, creds)),
+             ("movers", lambda: research_movers.cycle(state, errors, creds)),
+             ("allocation", lambda: research_allocation.cycle(state, errors, creds))]
+    skipped = []
+    for name, fn in steps:
+        if over_budget():
+            skipped.append(name)
+        else:
+            timed(state, name, fn)
+    state["skipped_steps"] = skipped
+    try:
         research_core.write_report()
         research_form4.append_report()
     except Exception as e:
@@ -242,6 +284,8 @@ def cycle_minutes(state):
 def write_status(state, host, push_error=None):
     minutes = cycle_minutes(state)
     status = ["# Scanner status", "", f"- Last run: {iso()}", f"- Host: {host}",
+              f"- Step seconds: {', '.join(f'{k} {v}' for k, v in (state.get('step_seconds') or {}).items()) or 'none yet'}",
+              f"- Skipped for time: {', '.join(state.get('skipped_steps') or []) or 'none'}",
               f"- Last scan: {state.get('last_scan') or 'none yet'}",
               f"- Last flag: {state.get('last_flag') or 'none yet'}",
               f"- Last stock scan: {state.get('last_stock_scan') or 'none yet'}",
@@ -262,7 +306,7 @@ def write_status(state, host, push_error=None):
         status.append(f"- Previous push failed: {state['last_push_error']}")
     status += ["", "Paper only, approved by Hamilton. No real money. No keys in this repo. Create SIM_STOP to stop new orders."]
     open(path("status.md"), "w").write("\n".join(status) + "\n")
-    json.dump(state, open(path(".state.json"), "w"), indent=1)
+    save_state(state)
 
 
 def publish(state):
@@ -274,7 +318,7 @@ def publish(state):
     git("pull", "--rebase", "-X", "theirs")
     p = git("push")
     state["last_push_error"] = p.stderr.strip().splitlines()[-1] if p.returncode != 0 else None
-    json.dump(state, open(path(".state.json"), "w"), indent=1)
+    save_state(state)
     if p.returncode != 0:
         print("push failed:", p.stderr)
 
@@ -286,10 +330,13 @@ def main():
     state = load_state()
     host = os.uname().nodename
     inbox(state)
-    flagged = scan(state)
-    buzz(flagged, state)
-    watchlist(state)
-    research(state)
+    # trading goes first: stops and buys must never wait on research
+    creds = research_stocks.credentials()
+    timed(state, "simulation", lambda: research_sim.cycle(state, errors, creds))
+    flagged = timed(state, "crypto scan", lambda: scan(state)) or []
+    timed(state, "buzz", lambda: buzz(flagged, state))
+    timed(state, "watchlist", lambda: watchlist(state))
+    research(state, creds)
     write_status(state, host)
     publish(state)
     print("cycle done", iso(), "flagged:", [c["symbol"] for c in flagged], "errors:", errors)

@@ -9,6 +9,7 @@ PAPER_URL = "https://paper-api.alpaca.markets"
 ET = ZoneInfo("America/New_York")
 BENCH = "SPY"
 MOVE_PCT = 2.0
+MAX_LABELS = 8
 VOLUME_RATIO = 2.0
 GAP_PCT = 3.0
 MAX_SCORES = 30  # outcome lookups per cycle
@@ -174,7 +175,7 @@ def scan(state, errors):
         spy = data.get(BENCH) or []
         if not spy:
             raise ValueError("no SPY bars")
-        movers = kept = thin = 0
+        movers = kept = thin = labeled = 0
         for sym in symbols:
             m = _measure(data.get(sym), t)
             if not m:
@@ -187,6 +188,9 @@ def scan(state, errors):
             kept += passed
             if core.recently_logged(state, "stocks", sym):
                 continue  # already logged during its cooldown, so skip the news and filing lookups
+            if labeled >= MAX_LABELS:
+                continue  # stay within the cycle's time; the rest get logged next cycle
+            labeled += 1
             news, earnings = _labels(creds, sym, t)
             core.log_signal(state, market="stocks", symbol=sym, asset_id=sym, name=sym, price=m["price"],
                             benchmark=BENCH, benchmark_price=spy[-1]["c"], move=m["move"],

@@ -521,6 +521,7 @@ def cycle(state, errors, creds):
     if not creds:
         return
     try:
+        os.makedirs(core.DATA, exist_ok=True)  # the simulation now runs before any step that makes it
         s = _load()
         clock = stocks._get(PAPER_URL, "/v2/clock", creds)
         is_open = clock.get("is_open")

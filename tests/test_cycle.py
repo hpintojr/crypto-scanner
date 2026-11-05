@@ -739,6 +739,40 @@ def main():
     pm = al.plan_mix({"X": {f"2026-{i:03d}": 100.0 + i for i in range(300)}}, {"X": (.5, .5)}, 0)
     assert pm[0]["total"] > 0 and al._plan_row({"X": {f"2026-{i:03d}": 100.0 + i for i in range(300)}}, {"X": (.5, .5)}, 0)
 
+    # a 429 stops the chart lookups at once, and the lookup cap and time budget hold
+    orig_get, orig_budget = scanner.get, scanner.over_budget
+    coins = [{"id": f"c{i}", "symbol": f"c{i}", "name": f"c{i}", "current_price": 1, "total_volume": 1, "price_change_percentage_1h_in_currency": 5} for i in range(20)]
+    chart_calls = []
+    def fake_get(url, **k):
+        if "markets" in url:
+            return coins
+        chart_calls.append(url)
+        if limit_hit[0]:
+            scanner.rate_limited = True
+        return None
+    scanner.get = fake_get
+    limit_hit = [True]
+    scanner.scan({})
+    assert len(chart_calls) == 1, chart_calls
+    scanner.rate_limited = False
+    chart_calls.clear()
+    limit_hit[0] = False
+    scanner.scan({})
+    assert len(chart_calls) == scanner.MAX_CHART_LOOKUPS, chart_calls
+    chart_calls.clear()
+    scanner.over_budget = lambda: True
+    scanner.scan({})
+    assert not chart_calls
+    # past the budget, research steps are skipped and listed, and a failed step doesn't stop the rest
+    st7 = {}
+    scanner.research(st7, None)
+    assert "stocks" in st7["skipped_steps"] and "allocation" in st7["skipped_steps"], st7
+    scanner.get, scanner.over_budget = orig_get, orig_budget
+    st8 = {}
+    assert scanner.timed(st8, "boom", lambda: 1 / 0) is None and "boom" in st8["step_seconds"]
+    assert any("boom" in e for e in scanner.errors)
+    scanner.errors.clear()
+    assert scanner.load_state().get("step_seconds", {}).get("boom") is not None
     # fee shrinkage matches Alpaca, a big gap is left for the alert, and lots still filling wait
     r1 = {"positions": [{"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.95"}, {"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.955"}]}
     orig7 = stocks._get
