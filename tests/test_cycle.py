@@ -181,6 +181,7 @@ def main():
     os.environ["ALPACA_CONFIG_DIR"] = os.path.dirname(cfg)
     scanner.REPO, core.DATA = tmp, os.path.join(tmp, "data")
     form4.LOG = os.path.join(tmp, "form4-log.csv")
+    wallets.LIST = os.path.join(tmp, "no-wallets.csv")  # keep real wallets out of the simulated cycles
     form4.edgar.CACHE = os.path.join(tmp, "cache")
     form4.edgar.time.sleep = lambda s: None
     state0 = {"buzz": {}, "form4": {"next_day": "2026-11-03", "offset": 0}}
