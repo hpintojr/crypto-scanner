@@ -197,6 +197,7 @@ def main():
     json.dump(state0, open(os.path.join(tmp, ".state.json"), "w"))
     scanner.time.sleep = lambda s: None
     scanner.research_backtest.cycle = lambda *a: None  # tested on known prices further down
+    scanner.research_allocation.cycle = lambda *a: None  # tested on known prices further down
     scanner.research_movers.cycle = lambda *a: None  # tested on known prices further down
     scanner.git = lambda *a: type("R", (), {"returncode": 0, "stderr": "", "stdout": ""})()
     urllib.request.urlopen = fake_urlopen
@@ -685,7 +686,7 @@ def main():
     MARKET_OPEN[0] = True
     sim.cycle({}, er5, creds)
     syms = sorted(o["symbol"] for o in ORDERS.values())
-    assert er5 == [] and syms == ["BTC/USD", "SPY"], (er5, ORDERS)
+    assert er5 == [] and syms == ["BTC/USD"], "the second budget stays in cash for now"
     n = len(ORDERS)
     LAST[0] = 1.0  # a huge fall must not sell a hold
     sim.cycle({}, er5, creds)
@@ -693,6 +694,20 @@ def main():
     assert er5 == [] and len(ORDERS) == n and not any(o["side"] == "sell" for o in ORDERS.values()), (er5, ORDERS)
     # a filled buy records its own coins, not the whole merged Alpaca position
     assert sim._held_qty(creds, {"market": "crypto", "symbol": "BTC/USD"}, "0.5") == "0.5"
+
+    # allocation rules: known prices give known results, and a signal only earns the next day's move
+    from research import allocation as al
+    assert al.returns([100, 110, 121], [1, 1, 1], 0) == [10.000000000000009, 10.000000000000009] or round(al.returns([100, 110, 121], [1, 1, 1], 0)[1]) == 10
+    assert al.returns([100, 110], [0, 1], 0.5) == [0.0]
+    assert round(al.returns([100, 110], [1, 0], 0.5)[0], 2) == 9.75
+    up = [100.0 + i for i in range(300)]
+    assert al.trend(up)[-1] == 1 and al.trend(up)[50] == 0 and al.trend(list(reversed(up)))[-1] == 0
+    dip = [100.0 + i for i in range(250)] + [340.0, 330.0, 320.0, 320.0, 320.0, 320.0, 320.0, 320.0, 320.0]
+    assert sum(al.pullback(dip)) >= 5 and al.pullback(up) == [0] * 300
+    assert round(al.summary([10, -50])["drop"]) == -50 and round(al.summary([10, 10])["total"]) == 21
+    res7, a7, b7 = al.basket({"X": {f"2026-{i:03d}": 100.0 + i for i in range(300)}}, ["X"], al.long_hold, 0)
+    assert res7["total"] > 0 and a7 < b7
+    assert any("held alone" in l for l in al._lines("T", {"X": {f"2026-{i:03d}": 100.0 + i for i in range(300)}}, ["X"], 0))
 
     # measured schedule: runs five minutes apart report five
     s = {"last_run": (NOW - timedelta(minutes=5)).strftime(core.FMT)}

@@ -4,7 +4,7 @@ One invocation = one cycle. Run from the Otto schedule, or via run.sh or cron, n
 import csv, hashlib, json, os, re, subprocess, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
-from research import backtest as research_backtest, core as research_core, form4 as research_form4, holdings as research_holdings, movers as research_movers, sim as research_sim, stocks as research_stocks, wallets as research_wallets
+from research import allocation as research_allocation, backtest as research_backtest, core as research_core, form4 as research_form4, holdings as research_holdings, movers as research_movers, sim as research_sim, stocks as research_stocks, wallets as research_wallets
 
 REPO = os.path.dirname(os.path.abspath(__file__))
 CG = "https://api.coingecko.com/api/v3"
@@ -205,6 +205,7 @@ def research(state):
         research_holdings.cycle(state, errors)
         research_backtest.cycle(state, errors, creds)
         research_movers.cycle(state, errors, creds)
+        research_allocation.cycle(state, errors, creds)
         research_core.write_report()
         research_form4.append_report()
     except Exception as e:

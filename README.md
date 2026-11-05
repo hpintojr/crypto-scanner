@@ -13,7 +13,7 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 
 ## Simulation rules
 
-**Current rule: hold mode.** On Nov 5, 2026, Hamilton chose to stick to proven approaches. Stock cash buys and holds SPY, and crypto cash buys and holds BTC, with no exits. Older crypto positions keep their exits, and that cash moves into BTC. The rules below apply only if `HOLD_MODE` is turned off. Research and the strategy tests keep running.
+**Current rule: hold mode.** On Nov 5, 2026, Hamilton chose to stick to proven approaches. The second $1,000 waits in cash for a tested commodities plan, and crypto cash buys and holds BTC, with no exits. Older crypto positions keep their exits, and that cash moves into BTC. The rules below apply only if `HOLD_MODE` is turned off. Research and the strategy tests keep running.
 
 - Budget: $1,000 for crypto and $1,000 for stocks, kept separate. No limit on the number of trades. Cash can't go below zero, and there's no margin.
 - Every signal can trade while there's cash: qualifying Form 4 buys and up movers on at least 2x volume. At most one buy per market per cycle, and nothing is bought twice in a day.
@@ -34,6 +34,7 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 | `data/sim.md` | Simulation value, comparison with SPY, checkpoints |
 | `data/movers.md` | Hourly list of biggest gainers and losers over 1 to 24 hours, with streaks. No orders |
 | `data/metrics.md` | Win rate, profit per trade, profit factor, open positions, and drawdown, with flags |
+| `data/allocation-test.md` | Long, mid and short-term rules tested on commodity funds and crypto. No orders |
 | `data/backtest.md` | SPY strategies tested on past prices. No orders |
 | `data/sim-next.md` | Hourly preview of what the rules would buy next. No orders |
 | `data/sim-trades.csv` | Each closed trade with its thesis and argument against |
