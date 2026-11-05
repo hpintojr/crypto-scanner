@@ -9,7 +9,7 @@ from . import core
 
 LIST = os.path.join(os.path.dirname(os.path.abspath(__file__)), "wallets.csv")
 FIELDS = ["seen_at", "owner", "category", "chain", "address", "tx", "direction", "amount", "asset", "tx_time", "source"]
-MAX_PER_CYCLE = 25
+MAX_PER_CYCLE = 15
 # Smallest move worth logging, so tiny dust transfers don't bury real ones. Anything else logs at any size.
 MIN_MOVE = {"BTC": 0.1, "ETH": 1, "WETH": 1, "WBTC": 0.1, "XRP": 5000, "USDT": 10000, "USDC": 10000, "DAI": 10000,
             "RLUSD": 10000, "AAVE": 50, "UNI": 1000, "LDO": 5000, "CRV": 10000, "ARB": 10000}

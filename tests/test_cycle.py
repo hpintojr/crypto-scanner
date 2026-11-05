@@ -798,6 +798,13 @@ def main():
     assert "insufficient balance" in sim.order_errors[0]
     sim.order_errors.clear()
     stocks._get, sim._post_order, sim._save = orig8, orig9, orig10
+    # requests are counted per service, by host only
+    scanner.request_counts.clear()
+    seen = scanner.counted(lambda req, *x, **k: "ok")
+    assert seen("https://api.example.com/a?key=1") == "ok"
+    seen(urllib.request.Request("https://api.example.com/b"))
+    assert scanner.request_counts == {"api.example.com": 2}, scanner.request_counts
+    scanner.request_counts.clear()
     # fee shrinkage matches Alpaca, a big gap is left for the alert, and lots still filling wait
     r1 = {"positions": [{"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.95"}, {"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.955"}]}
     orig7 = stocks._get

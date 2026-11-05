@@ -12,10 +12,21 @@ WATCH = [("ripple", "XRP"), ("stellar", "XLM"), ("hedera-hashgraph", "HBAR"),
          ("xdce-crowd-sale", "XDC"), ("bitcoin", "BTC"), ("ethereum", "ETH"), ("solana", "SOL")]
 CRYPTO_WORDS = ("crypto", "coin", "token", "price", "market", "trading")
 errors = []
-CYCLE_BUDGET_SECONDS = 180  # the runner kills a cycle at about 5 minutes, so slow research stops well before that
+CYCLE_BUDGET_SECONDS = 150  # one run was stopped at 230 seconds, and a step already running can take about 60 more
 MAX_CHART_LOOKUPS = 6  # free CoinGecko rate limit; remaining movers get checked next cycle
 started = time.monotonic()
 rate_limited = False
+request_counts = {}
+
+
+def counted(urlopen):
+    """Counts this cycle's web requests per service, for status.md. Records hosts only."""
+    def wrapper(req, *a, **k):
+        url = getattr(req, "full_url", req)
+        host = urllib.parse.urlsplit(url).hostname or "other"
+        request_counts[host] = request_counts.get(host, 0) + 1
+        return urlopen(req, *a, **k)
+    return wrapper
 
 
 def over_budget():
@@ -285,6 +296,7 @@ def write_status(state, host, push_error=None):
     minutes = cycle_minutes(state)
     status = ["# Scanner status", "", f"- Last run: {iso()}", f"- Host: {host}",
               f"- Step seconds: {', '.join(f'{k} {v}' for k, v in (state.get('step_seconds') or {}).items()) or 'none yet'}",
+              f"- Requests this cycle: {', '.join(f'{k} {v}' for k, v in sorted(request_counts.items())) or 'none'}",
               f"- Skipped for time: {', '.join(state.get('skipped_steps') or []) or 'none'}",
               f"- Last scan: {state.get('last_scan') or 'none yet'}",
               f"- Last flag: {state.get('last_flag') or 'none yet'}",
@@ -324,6 +336,16 @@ def publish(state):
 
 
 def main():
+    request_counts.clear()
+    original = urllib.request.urlopen
+    urllib.request.urlopen = counted(original)
+    try:
+        run_cycle()
+    finally:
+        urllib.request.urlopen = original
+
+
+def run_cycle():
     pull = git("pull", "--rebase", "--autostash")
     if pull.returncode != 0:
         errors.append(f"git pull failed: {pull.stderr.strip()[-200:]}")
