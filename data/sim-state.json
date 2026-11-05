@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 507.9186115653541,
+ "cash": 409.86551718013925,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -63,10 +63,24 @@
    "symbol": "UNI/USD",
    "market": "crypto",
    "source": "crypto-momentum",
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-buy-UNIUSD-202611051001",
    "notional": 99.97,
    "thesis": "Up 3.5% over about a month (+4.8% vs BTC/USD), +7.2% this week, 29 headlines in the last day, news tone -1",
+   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days.",
+   "qty": "12.884130128",
+   "entry": 7.5929,
+   "cost": 98.0731,
+   "opened": "2026-11-05T10:09:15Z"
+  },
+  {
+   "symbol": "POL/USD",
+   "market": "crypto",
+   "source": "crypto-momentum",
+   "status": "buying",
+   "buy_id": "sim-buy-POLUSD-202611051009",
+   "notional": 99.95,
+   "thesis": "Up 5.5% over about a month (+7.0% vs BTC/USD), +8.3% this week, 28 headlines in the last day, news tone -4",
    "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days."
   }
  ],
@@ -78,6 +92,7 @@
   "XRP/USD",
   "ETH/USD",
   "BCH/USD",
-  "UNI/USD"
+  "UNI/USD",
+  "POL/USD"
  ]
 }

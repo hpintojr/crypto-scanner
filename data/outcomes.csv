@@ -1,0 +1,2 @@
+signal_id,horizon,due,scored_at,late_min,price,benchmark_price,return_pct,benchmark_return_pct,excess_pct
+1217a6a5f03e,1h,2026-11-05T10:00:51Z,2026-11-05T10:08:33Z,7.7,0.00616666,80364,0.2209,-0.1007,0.3216
