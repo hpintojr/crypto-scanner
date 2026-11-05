@@ -3,10 +3,10 @@
 Paper money with simulated fills. No real money, no real fills.
 
 - Started: 2026-11-05
-- Total value: $1,932.11 of $2,000 (-3.39%)
-- Crypto budget: $936.16 (-6.38%), cash $1.82
-- Stock budget: $995.95 (-0.40%), cash $225.05
-- Same $1,000 in SPY: $961.46
+- Total value: $1,935.89 of $2,000 (-3.21%)
+- Crypto budget: $938.94 (-6.11%), cash $1.82
+- Stock budget: $996.94 (-0.31%), cash $225.05
+- Same $1,000 in SPY: $963.75
 - Open positions: 15
 - Closed trades: 7, 0 winners
 
