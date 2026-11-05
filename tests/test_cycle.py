@@ -4,7 +4,7 @@ from datetime import datetime, timezone, timedelta
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 import scanner
-from research import core, form4, sim, stocks, wallets
+from research import core, form4, holdings, sim, stocks, wallets
 
 NOW = datetime.now(timezone.utc)
 calls = []
@@ -482,6 +482,22 @@ def main():
     moves = rows(os.path.join(core.DATA, "wallet-moves.csv"))
     assert [m["tx"] for m in moves] == ["t2"] and moves[0]["owner"] == "Good Co", moves
     assert wallets.admitted({"chain": "ethereum", "address": "0xabc", "attribution_source": "x", "last_verified": "y"})
+
+    # hold test: private list stays outside the repo, buys at first price, and shows a percentage only
+    holdings.DIR = tmp
+    with open(os.path.join(tmp, ".holdings.csv"), "w") as f:
+        f.write("coin_id,symbol,quantity\npumpcoin,PUMP,100\ndullcoin,DULL,100\n")
+    st, er = {}, []
+    holdings.cycle(st, er)
+    assert er == [] and "+0.00%" in st["last_holdings"] and "$" not in st["last_holdings"], (er, st)
+    base = json.load(open(os.path.join(tmp, ".holdings-baseline.json")))
+    base["prices"]["pumpcoin"] = 1.2
+    json.dump(base, open(os.path.join(tmp, ".holdings-baseline.json"), "w"))
+    holdings.cycle(st, er)
+    assert "+0.00%" in st["last_holdings"], "checks once an hour"
+    st.pop("holdings_checked")
+    holdings.cycle(st, er)
+    assert "+52.17%" in st["last_holdings"], st
 
     # measured schedule: runs five minutes apart report five
     s = {"last_run": (NOW - timedelta(minutes=5)).strftime(core.FMT)}

@@ -4,7 +4,7 @@ One invocation = one cycle. Run from the Otto schedule, or via run.sh or cron, n
 import csv, hashlib, json, os, re, subprocess, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
-from research import core as research_core, form4 as research_form4, sim as research_sim, stocks as research_stocks, wallets as research_wallets
+from research import core as research_core, form4 as research_form4, holdings as research_holdings, sim as research_sim, stocks as research_stocks, wallets as research_wallets
 
 REPO = os.path.dirname(os.path.abspath(__file__))
 CG = "https://api.coingecko.com/api/v3"
@@ -202,6 +202,7 @@ def research(state):
         research_form4.cycle(state, errors, creds)
         research_sim.cycle(state, errors, creds)
         research_wallets.cycle(state, errors)
+        research_holdings.cycle(state, errors)
         research_core.write_report()
         research_form4.append_report()
     except Exception as e:
@@ -243,6 +244,7 @@ def write_status(state, host, push_error=None):
               f"- Last pre-market gap check: {state.get('last_gap_check') or 'none yet'}",
               f"- Last Form 4 run: {state.get('last_form4') or 'none yet'}",
               f"- $1,000 paper simulation: {state.get('last_sim') or 'not started'}",
+              f"- Hold test: {state.get('last_holdings') or 'not started'}",
               f"- Wallet watch: {state.get('last_wallets') or 'not started'}",
               f"- Measured time between runs: {minutes} min",
               f"- Next run: ~{iso(now() + timedelta(minutes=minutes))}",

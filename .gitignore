@@ -4,3 +4,4 @@ __pycache__/
 *.yaml
 .edgar-cache/
 .sec-user-agent
+.holdings*

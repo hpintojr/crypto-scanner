@@ -8,6 +8,7 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 - **Stocks:** during market hours, logs moves of 2% or more in an hour across `research/stock_universe.txt`. Checks pre-market gaps of 3% or more from 8:00 to 9:30 AM ET.
 - **Form 4:** logs code P open-market buys from SEC EDGAR to `research/form4-log.csv`. Reviews against SPY at 30, 90 and 180 days.
 - **Simulation:** runs the $1,000 paper simulation in `research/sim.py`.
+- **Hold test:** tracks a separate buy-and-hold of a private coin list at simulated cost, with no orders. The list and dollar values stay beside the repo on Otto, and `status.md` shows only a percentage.
 - **Wallet watch:** logs moves by enabled wallets in `research/wallets.csv` to `data/wallet-moves.csv`. Log only, nothing trades on it. A wallet needs a full address, chain, attribution source and verification date before it can be enabled.
 
 ## Simulation rules
