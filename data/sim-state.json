@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 1.638626594684439,
+ "cash": 0.00024765778475455136,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -16,22 +16,6 @@
    "cost": 98.0546,
    "opened": "2026-11-05T09:08:15Z",
    "reconciled": true
-  },
-  {
-   "symbol": "XRP/USD",
-   "market": "crypto",
-   "source": "crypto-momentum",
-   "status": "selling",
-   "buy_id": "sim-buy-XRPUSD-202611050939",
-   "notional": 100.09,
-   "thesis": "Up 0.7% over about a month (+2.2% vs BTC/USD), +5.5% this week, 106 headlines in the last day, news tone +12",
-   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days.",
-   "qty": "74.140212199",
-   "entry": 1.319,
-   "cost": 98.036,
-   "opened": "2026-11-05T09:46:18Z",
-   "sell_id": "sim-sell-XRPUSD-202611051555",
-   "exit_reason": "stop"
   },
   {
    "symbol": "BCH/USD",
@@ -220,6 +204,18 @@
    "entry": 76422.77,
    "cost": 83.1737,
    "opened": "2026-11-05T15:42:26Z"
+  },
+  {
+   "symbol": "BTC/USD",
+   "market": "crypto",
+   "source": "mid:BTC/USD",
+   "plan": "mid:BTC/USD",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-BTCUSD-202611051601",
+   "notional": 93.55,
+   "thesis": "Approved allocation, mid:BTC/USD",
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
   }
  ],
  "spy_start": 766.9,
@@ -248,7 +244,7 @@
   "long:CPER": 75,
   "mid:DBC": 75,
   "long:ETH/USD": 200.0,
-  "mid:BTC/USD": 84.81
+  "mid:BTC/USD": 178.36
  },
  "trends": {
   "CPER": false,
