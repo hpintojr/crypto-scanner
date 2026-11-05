@@ -70,7 +70,7 @@
    "notional": 302.35,
    "thesis": "Approved allocation, long:BTC/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.00369258",
+   "qty": "0.003683348",
    "entry": 80289.662338988,
    "cost": 296.476,
    "opened": "2026-11-05T11:40:09Z"
@@ -134,7 +134,7 @@
    "notional": 97.65,
    "thesis": "Approved allocation, long:BTC/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.00121499",
+   "qty": "0.001211952",
    "entry": 78826.03,
    "cost": 95.7728,
    "opened": "2026-11-05T14:51:10Z"
@@ -182,7 +182,7 @@
    "notional": 188.39,
    "thesis": "Approved allocation, long:ETH/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.080513801",
+   "qty": "0.080502037",
    "entry": 2288.58,
    "cost": 184.7241,
    "opened": "2026-11-05T15:27:38Z"
@@ -198,7 +198,7 @@
    "notional": 11.61,
    "thesis": "Approved allocation, long:ETH/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.00499752",
+   "qty": "0.004996790",
    "entry": 2278.814,
    "cost": 11.3884,
    "opened": "2026-11-05T15:37:23Z"
@@ -214,7 +214,7 @@
    "notional": 84.81,
    "thesis": "Approved allocation, mid:BTC/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.001088337",
+   "qty": "0.001085616",
    "entry": 76422.77,
    "cost": 83.1737,
    "opened": "2026-11-05T15:42:26Z"
