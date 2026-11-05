@@ -5,17 +5,17 @@
  "inbox_hash": "7f9d95d9402f57d8ca4e2efcc4825389ad5a7c320a8cdcf4c91a9942e2ae11dc",
  "answers_hash": "4433d13ee12e546443e456514dc71497b1ddda7690e898314eb6abfc6d4d4bba",
  "pending_request": false,
- "last_scan": "2026-11-05T10:08:33Z: 0 movers >3% 1h, 0 kept after 2x volume check",
+ "last_scan": "2026-11-05T10:15:07Z: 0 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-05T10:08:33Z: market closed",
+ "last_stock_scan": "2026-11-05T10:15:07Z: market closed",
  "form4": {
   "next_day": "2026-11-04",
-  "offset": 409
+  "offset": 529
  },
- "last_form4": "2026-11-05T10:09:06Z: 120 filings read, 8 code P buys added, working on 2026-11-04, 115 logged, 1 qualifying",
- "last_run": "2026-11-05T10:09:28Z",
- "cycle_minutes": 8,
- "last_sim": "value $999.49, 6 open, cash $409.87",
+ "last_form4": "2026-11-05T10:16:00Z: 120 filings read, 13 code P buys added, working on 2026-11-04, 128 logged, 2 qualifying",
+ "last_run": "2026-11-05T10:16:27Z",
+ "cycle_minutes": 7,
+ "last_sim": "value $998.92, 7 open, cash $309.98",
  "signal_seen": {
   "crypto:RAIN:move_1h:0": "2026-11-05T09:00:51Z"
  },

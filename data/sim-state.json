@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 409.86551718013925,
+ "cash": 309.97551718013926,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -82,6 +82,16 @@
    "notional": 99.95,
    "thesis": "Up 5.5% over about a month (+7.0% vs BTC/USD), +8.3% this week, 28 headlines in the last day, news tone -4",
    "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days."
+  },
+  {
+   "symbol": "BTC/USD",
+   "market": "crypto",
+   "source": "crypto-momentum",
+   "status": "buying",
+   "buy_id": "sim-buy-BTCUSD-202611051016",
+   "notional": 99.89,
+   "thesis": "Up -1.4% over about a month (+0.0% vs BTC/USD), +3.7% this week, 118 headlines in the last day, news tone +12",
+   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days."
   }
  ],
  "spy_start": 766.9,
@@ -93,6 +103,7 @@
   "ETH/USD",
   "BCH/USD",
   "UNI/USD",
-  "POL/USD"
+  "POL/USD",
+  "BTC/USD"
  ]
 }
