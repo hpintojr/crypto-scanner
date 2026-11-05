@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 801.8553723717822,
+ "cash": 703.8493424052901,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -21,10 +21,24 @@
    "symbol": "XRP/USD",
    "market": "crypto",
    "source": "crypto-momentum",
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-buy-XRPUSD-202611050939",
    "notional": 100.09,
    "thesis": "Up 0.7% over about a month (+2.2% vs BTC/USD), +5.5% this week, 106 headlines in the last day, news tone +12",
+   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days.",
+   "qty": "74.140212199",
+   "entry": 1.319,
+   "cost": 98.036,
+   "opened": "2026-11-05T09:46:18Z"
+  },
+  {
+   "symbol": "ETH/USD",
+   "market": "crypto",
+   "source": "crypto-momentum",
+   "status": "buying",
+   "buy_id": "sim-buy-ETHUSD-202611050946",
+   "notional": 100.06,
+   "thesis": "Up -0.3% over about a month (+1.2% vs BTC/USD), +7.1% this week, 106 headlines in the last day, news tone +7",
    "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days."
   }
  ],
@@ -33,6 +47,7 @@
  "last_crypto_day": "2026-11-05",
  "bought_date": "2026-11-05",
  "bought_today": [
-  "XRP/USD"
+  "XRP/USD",
+  "ETH/USD"
  ]
 }
