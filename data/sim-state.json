@@ -1,24 +1,7 @@
 {
  "start": "2026-11-05",
- "cash": 1.7935663616167403,
+ "cash": 72.47474930522058,
  "positions": [
-  {
-   "symbol": "PEPE/USD",
-   "market": "crypto",
-   "source": "crypto-momentum",
-   "status": "selling",
-   "buy_id": "sim-buy-PEPEUSD-20261105",
-   "notional": 100.0,
-   "thesis": "Up 24.4% over about a month (+25.7% vs BTC/USD), +1.0% this week, 54 headlines in the last day, news tone -4",
-   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days.",
-   "qty": "19601100.412654745",
-   "entry": 4.99e-06,
-   "cost": 98.0546,
-   "opened": "2026-11-05T09:08:15Z",
-   "reconciled": true,
-   "exit_reason": "stop",
-   "sell_id": "sim-sell-PEPEUSD-202611051735"
-  },
   {
    "symbol": "BCH/USD",
    "market": "crypto",
@@ -222,6 +205,18 @@
    "entry": 75993.816,
    "cost": 91.7567,
    "opened": "2026-11-05T17:35:07Z"
+  },
+  {
+   "symbol": "BTC/USD",
+   "market": "crypto",
+   "source": "mid:BTC/USD",
+   "plan": "mid:BTC/USD",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-BTCUSD-202611051740",
+   "notional": 21.64,
+   "thesis": "Approved allocation, mid:BTC/USD",
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
   }
  ],
  "spy_start": 766.9,
@@ -250,7 +245,7 @@
   "long:CPER": 75,
   "mid:DBC": 75,
   "long:ETH/USD": 200.0,
-  "mid:BTC/USD": 178.36
+  "mid:BTC/USD": 200.0
  },
  "trends": {
   "CPER": false,
