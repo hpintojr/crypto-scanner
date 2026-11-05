@@ -11,11 +11,13 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 
 ## Simulation rules
 
-- One buy a trading day at 3:30 PM ET: a qualifying Form 4 buy first, then the strongest up mover on at least 2x volume. No trade if nothing qualifies.
+- One stock buy a trading day at 10:30 AM ET (7:30 AM PT): a qualifying Form 4 buy first, then the strongest up mover on at least 2x volume, then the best score from the past month's returns against SPY plus news.
+- One crypto buy a day, any time: a coin that passed today's mover check first, then the best score from the past month's returns against BTC plus news. Both markets share the $1,000.
+- News comes from Alpaca's news feed and Google News. X.com is not included. No buy if nothing scores above zero.
 - Each trade is 10% of current value, $100 at the start, so gains are reinvested.
 - Sell at -5%, +10%, or after 7 days.
 - Cash only: no margin, shorting or options.
-- Crypto paper trading is paused until Nov 18 unless Hamilton lifts it.
+- Hamilton lifted the crypto pause on Nov 5.
 
 ## Where to look
 

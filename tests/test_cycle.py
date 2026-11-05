@@ -11,6 +11,7 @@ calls = []
 MARKET_OPEN = [True]
 FAIL = set()
 ORDERS, ACCOUNT, FILL, LAST = {}, ["PA123"], [50.0], [50.0]
+CRYPTO = [[]]
 
 
 def bars(sym):
@@ -71,6 +72,14 @@ def fake_urlopen(req, timeout=None):
     assert "paper-api" in u.hostname or "data.alpaca" in u.hostname, url
     if u.path == "/v2/account":
         return Resp(json.dumps({"account_number": ACCOUNT[0]}).encode())
+    if u.path == "/v2/assets":
+        return Resp(json.dumps(CRYPTO[0]).encode())
+    if u.path == "/v1beta3/crypto/us/bars":
+        return Resp(json.dumps({"bars": {"BTC/USD": [{"c": 100}] * 12 + [{"c": 102}], "SOL/USD": [{"c": 100}] * 12 + [{"c": 120}]}}).encode())
+    if u.path == "/v1beta3/crypto/us/latest/trades":
+        return Resp(json.dumps({"trades": {q["symbols"][0]: {"p": LAST[0]}}}).encode())
+    if u.path.startswith("/v2/positions/"):
+        return Resp(json.dumps({"qty": "1.9"}).encode())
     if u.path.startswith("/v2/assets/"):
         return Resp(json.dumps({"tradable": True, "fractionable": True}).encode())
     if u.path == "/v2/orders:by_client_order_id":
@@ -341,6 +350,53 @@ def main():
     n = len(ORDERS)
     sim.cycle(state, errs, creds)
     assert len(ORDERS) == n and "STOPPED" in state["last_sim"], state
+    core.now = orig_now
+
+    # crypto buys with the stock market closed, then sells what the account really holds
+    os.remove(os.path.join(tmp, "SIM_STOP"))
+    os.remove(os.path.join(core.DATA, "sim-state.json"))
+    ORDERS.clear()
+    CRYPTO[0] = [{"symbol": "SOL/USD", "tradable": True}, {"symbol": "BTC/USD", "tradable": True}, {"symbol": "USDC/USD", "tradable": True}]
+    MARKET_OPEN[0] = False
+    FILL[0], LAST[0] = 50.0, 50.0
+    night = NOW.astimezone(stocks.ET).replace(hour=1, minute=0)
+    core.now = lambda: night
+    errs.clear()
+    sim.cycle(state, errs, creds)
+    assert errs == [], errs
+    buy = [o for o in ORDERS.values() if o["side"] == "buy"]
+    assert len(buy) == 1 and buy[0]["symbol"] == "SOL/USD" and buy[0]["time_in_force"] == "gtc", ORDERS
+    sim.cycle(state, errs, creds)
+    assert len(ORDERS) == 1, "one crypto buy a day"
+    LAST[0] = 56.0
+    sim.cycle(state, errs, creds)
+    sell = [o for o in ORDERS.values() if o["side"] == "sell"]
+    assert len(sell) == 1 and sell[0]["qty"] == "1.9" and sell[0]["time_in_force"] == "gtc", ORDERS
+    FILL[0] = 56.0
+    sim.cycle(state, errs, creds)
+    assert errs == [] and not sim._load()["positions"], errs
+
+    # a stock with no signal today falls back to the month's numbers, and only after 10:30 ET
+    CRYPTO[0] = []
+    MARKET_OPEN[0] = True
+    os.remove(os.path.join(core.DATA, "sim-state.json"))
+    with open(os.path.join(core.DATA, "signals.csv"), "w", newline="") as f:
+        csv.DictWriter(f, fieldnames=core.SIGNAL_FIELDS).writeheader()
+    ORDERS.clear()
+    orig_daily = sim._daily_stock_closes
+    sim._daily_stock_closes = lambda c, s, t: {"SPY": [100] * 19 + [101], "AAPL": [100] * 19 + [99], "MSFT": [100] * 19 + [115]}
+    early = NOW.astimezone(stocks.ET).replace(hour=10, minute=0)
+    core.now = lambda: early
+    sim.cycle(state, errs, creds)
+    assert not ORDERS, "too early"
+    later = NOW.astimezone(stocks.ET).replace(hour=10, minute=35)
+    core.now = lambda: later
+    sim.cycle(state, errs, creds)
+    assert errs == [], errs
+    picked = list(ORDERS.values())
+    assert len(picked) == 1 and picked[0]["symbol"] == "MSFT", ORDERS
+    assert "month" in sim._load()["positions"][0]["thesis"]
+    sim._daily_stock_closes = orig_daily
     core.now = orig_now
 
     # measured schedule: runs five minutes apart report five
