@@ -18,17 +18,17 @@ Paper money. Expectancy is average profit per closed trade. Profit factor is tot
 | ETH/USD | $98.14 | $97.97 | $-0.17 | -0.17 |
 | BCH/USD | $97.88 | $97.72 | $-0.16 | -0.16 |
 | UNI/USD | $98.07 | $95.50 | $-2.58 | -2.63 |
-| BTC/USD | $97.93 | $97.35 | $-0.58 | -0.59 |
+| BTC/USD | $97.93 | $97.27 | $-0.66 | -0.67 |
 | BONK/USD | $11.71 | $11.56 | $-0.14 | -1.23 |
-| DOGE/USD | $97.83 | $97.03 | $-0.80 | -0.82 |
-| BTC/USD | $296.48 | $295.62 | $-0.85 | -0.29 |
+| DOGE/USD | $97.83 | $96.60 | $-1.22 | -1.25 |
+| BTC/USD | $296.48 | $295.38 | $-1.10 | -0.37 |
 
 ## Risk
 
 - Largest fall from peak: 0.00%
 - Currently below peak: 0.00%
-- Money in open positions: $987.40 of $1,993.27
-- BTC since start: -0.16%
+- Money in open positions: $986.65 of $1,992.53
+- BTC since start: -0.25%
 - SPY since start: +0.00%
 
 ## Flags
