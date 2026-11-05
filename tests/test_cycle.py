@@ -196,6 +196,7 @@ def main():
     state0 = {"buzz": {}, "form4": {"next_day": "2026-11-03", "offset": 0}}
     json.dump(state0, open(os.path.join(tmp, ".state.json"), "w"))
     scanner.time.sleep = lambda s: None
+    scanner.research_backtest.cycle = lambda *a: None  # tested on known prices further down
     scanner.git = lambda *a: type("R", (), {"returncode": 0, "stderr": "", "stdout": ""})()
     urllib.request.urlopen = fake_urlopen
 
@@ -342,14 +343,14 @@ def main():
     sim.cycle(state, errs, creds)  # fill arrives, and no second buy the same day
     assert len(ORDERS) == 1, ORDERS
     s = sim._load()
-    assert s["positions"][0]["status"] == "open" and abs(s["cash"] - 900) < 1e-6, s
+    assert s["positions"][0]["status"] == "open" and abs(s["stock_cash"] - 900) < 1e-6, s
     LAST[0] = 56.0
     sim.cycle(state, errs, creds)  # +12% hits the target
     assert sum(o["side"] == "sell" for o in ORDERS.values()) == 1, ORDERS
     FILL[0] = 56.0
     sim.cycle(state, errs, creds)
     s = sim._load()
-    assert not s["positions"] and abs(s["cash"] - 1012) < 1e-6, s
+    assert not s["positions"] and abs(s["stock_cash"] - 1012) < 1e-6, s
     t = rows(os.path.join(core.DATA, "sim-trades.csv"))[0]
     assert abs(float(t["pnl"]) - 12) < 1e-3 and t["exit_reason"] == "target" and t["thesis"] and t["against"], t
     assert errs == [], errs
@@ -416,13 +417,13 @@ def main():
     picked = list(ORDERS.values())
     assert len(picked) == 1 and picked[0]["symbol"] == "MSFT", ORDERS
 
-    # crypto can't touch the stock reserve, but stocks can spend it
-    res = {"cash": 305.0, "positions": [], "last_crypto_day": None}
+    # crypto spends only its own budget, and stops once it's used
+    res = {"cash": 5.0, "stock_cash": 1000.0, "positions": [], "last_crypto_day": None}
     CRYPTO[0] = [{"symbol": "SOL/USD", "tradable": True}, {"symbol": "BTC/USD", "tradable": True}]
-    assert sim._buy(res, creds, {}, later.date(), "crypto", True) is False and res["cash"] == 305.0, res
-    res["cash"] = 320.0
+    assert sim._buy(res, creds, {}, later.date(), "crypto", True) is False and res["stock_cash"] == 1000.0, res
+    res["cash"] = 200.0
     n_orders = len(ORDERS)
-    assert sim._buy(res, creds, {}, later.date(), "crypto", True) is True and abs(res["cash"] - 300) < 1e-6, res
+    assert sim._buy(res, creds, {}, later.date(), "crypto", True) is True and res["cash"] < 200 and res["stock_cash"] == 1000.0, res
     for k in list(ORDERS)[n_orders:]:
         del ORDERS[k]
     CRYPTO[0] = []
@@ -450,7 +451,7 @@ def main():
 
     # no daily limit: every new signal trades, the same stock isn't bought twice in a day, cash is the only cap
     s0 = sim._load()
-    s0["cash"] = 110.0
+    s0["stock_cash"] = 110.0
     sim._save(s0)
     for sym in ("AAA", "BBB", "CCC"):
         with open(os.path.join(core.DATA, "signals.csv"), "a", newline="") as f:
@@ -465,7 +466,7 @@ def main():
     bought = [o["symbol"] for o in ORDERS.values() if o["side"] == "buy"]
     assert len(bought) == len(set(bought)), bought
     assert {"AAA", "BBB"} <= set(bought) or "CCC" in bought, bought
-    assert sim._load()["cash"] >= 0 and len(bought) < 5, (bought, sim._load()["cash"])
+    assert sim._load()["stock_cash"] >= 0 and len(bought) < 5, (bought, sim._load())
     assert "month" in sim._load()["positions"][0]["thesis"]
     sim._daily_stock_closes = orig_daily
     core.now = orig_now
@@ -587,6 +588,29 @@ def main():
     assert CANCELLED and s9["cash"] == 200.0 and s9["positions"], s9
     sim._sync(s9, creds)
     assert s9["cash"] == 300.0 and not s9["positions"], s9
+
+    # strategy test: known prices give known returns, including each half of the period
+    from research import backtest
+    from datetime import date as _date
+    def bar(o, h=None, l=None, c=None):
+        return {"o": o, "h": h or o, "l": l or o, "c": c or o}
+    om = 570
+    def session(open_px, m15, m35, close, late):
+        d = {m: bar(open_px) for m in range(om, 960, 5)}
+        d[om + 15] = bar(m15); d[om + 20] = bar(m15); d[om + 35] = bar(m35)
+        d[930] = bar(late); d[955] = bar(close, c=close)
+        return d
+    days = {_date(2026, 1, 5): session(100, 101, 102, 104, 103), _date(2026, 1, 6): session(105, 104, 103, 100, 101)}
+    res2 = backtest.run_all(days)
+    assert abs(res2["Buy the open, sell 20 min later"][0][1] - 1.0) < 1e-9, res2
+    assert [round(r, 3) for _, r in res2["After 15 min, if up, buy and hold 20 min"]] == [0.99], res2
+    assert [round(r, 3) for _, r in res2["After 15 min, if down, buy and hold 20 min"]] == [-0.962], res2
+    assert round(res2["Hold overnight, close to next open"][0][1], 3) == 0.962, res2
+    assert len(res2["Last 30 min, if up on the day"]) == 1, res2
+    st9 = backtest.stats([(0, 1.0), (1, -1.0), (2, 2.0), (3, 2.0)])
+    assert st9["n"] == 4 and st9["win"] == 75 and st9["drawdown"] < 0 and st9["second"] > st9["first"], st9
+    backtest.write_report(res2, min(days), max(days), 2)
+    assert "Strategy test on SPY" in open(os.path.join(core.DATA, "backtest.md")).read()
 
     # measured schedule: runs five minutes apart report five
     s = {"last_run": (NOW - timedelta(minutes=5)).strftime(core.FMT)}

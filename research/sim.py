@@ -1,6 +1,7 @@
 """$1,000 paper simulation. Places orders on Alpaca's PAPER endpoint only, never live.
 
-No limit on the number of trades, only on money: $1,000 to start, no margin, cash can't go below zero.
+Two separate budgets, $1,000 for crypto and $1,000 for stocks. No limit on the number of trades, only on
+money: no margin, and neither budget can spend the other's cash.
 Keeps buying until the budget is used: signals first, then the best remaining pick from the past month's
 numbers plus news (crypto 24/7, stocks from 10:30 AM ET). At most one buy per market per cycle, and a coin
 or stock isn't bought twice in a day. 10% of equity per trade
@@ -17,7 +18,6 @@ START_CASH = 1000.0
 TRADE_FRACTION = 0.10
 STOP_PCT, TARGET_PCT, MAX_HOLD_DAYS = -5.0, 10.0, 7
 REPEAT_MOMENTUM = True  # keep buying momentum picks until the cash is used
-STOCK_RESERVE = 300.0  # crypto buys can never take cash below this, so stocks always have money
 STALE_BUY_MINUTES = 15  # an unfilled buy older than this is canceled, and its cash returns
 MIN_ORDER = 10.0  # smaller orders can be refused, and cash that low is effectively used up
 PEPE_ACTUAL_COST, PEPE_ACTUAL_ENTRY = 98.0546, 4.99e-06  # Alpaca cash fell from $100,000 to $99,901.95
@@ -33,6 +33,10 @@ CHECKPOINTS = (14, 30)
 TRADE_FIELDS = ["symbol", "source", "opened", "entry", "closed", "exit", "qty", "cost", "proceeds", "pnl",
                 "return_pct", "exit_reason", "thesis", "against"]
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def _bucket(p):
+    return "cash" if p.get("market") == "crypto" else "stock_cash"
 
 
 def _state_path():
@@ -114,11 +118,11 @@ def _sync(s, creds):
                 # Alpaca's account charge is the truth: filled quantity times fill price.
                 # A crypto fee comes out of the coins, so record what the account really holds.
                 cost = qty * px
-                s["cash"] += p["notional"] - cost
+                s[_bucket(p)] += p["notional"] - cost
                 p.update(status="open", qty=_held_qty(creds, p, o["filled_qty"]), entry=px, cost=round(cost, 4),
                          opened=core.now().strftime(core.FMT))
             else:
-                s["cash"] += qty * px
+                s[_bucket(p)] += qty * px
                 _close(p, px, qty)
                 s["positions"].remove(p)
         elif p["status"] == "buying" and state in ("new", "accepted", "pending_new") \
@@ -126,7 +130,7 @@ def _sync(s, creds):
             _cancel_order(creds, o["id"])  # the cash comes back once Alpaca reports it canceled
         elif state in ("canceled", "expired", "rejected"):
             if p["status"] == "buying":
-                s["cash"] += p["notional"]
+                s[_bucket(p)] += p["notional"]
                 s["positions"].remove(p)
             else:
                 p["status"] = "open"  # a sell that didn't fill: try again next cycle
@@ -294,9 +298,9 @@ def _buy(s, creds, prices, today, market, may_use_momentum):
     if s.get("bought_date") != day:
         s["bought_date"], s["bought_today"] = day, []
     held = {p["symbol"] for p in s["positions"]} | set(s["bought_today"])
-    equity = _equity(s, prices)
-    spendable = s["cash"] - (STOCK_RESERVE if market == "crypto" else 0)
-    notional = round(min(equity * TRADE_FRACTION, spendable), 2)
+    bucket = "cash" if market == "crypto" else "stock_cash"
+    equity = _equity(s, prices, market)
+    notional = round(min(equity * TRADE_FRACTION, s[bucket]), 2)
     if notional < MIN_ORDER:
         return False
     _check_paper(creds)
@@ -315,7 +319,7 @@ def _buy(s, creds, prices, today, market, may_use_momentum):
         cid = f"sim-buy-{sym.replace('/', '')}-{core.now():%Y%m%d%H%M}"
         _post_order(creds, {"symbol": sym, "notional": str(notional), "side": "buy", "type": "market",
                             "time_in_force": "gtc" if crypto else "day", "client_order_id": cid})
-        s["cash"] -= notional
+        s[bucket] -= notional
         s["positions"].append({"symbol": sym, "market": market, "source": source, "status": "buying", "buy_id": cid, "notional": notional,
                                "thesis": thesis, "against": against + f" Exit: {STOP_PCT:g}%, +{TARGET_PCT:g}%, or {MAX_HOLD_DAYS} days."})
         s[day_key] = day
@@ -335,7 +339,7 @@ def _preview(s, creds, state, today, is_open):
     signals = candidates(today, held)
     lines = ["# Next picks", "", f"As of {core.now().strftime(core.FMT)}. A preview, not a promise: prices and signals change, "
              "and a stock that can't be traded in fractions is skipped.", "",
-             f"- Cash ${s['cash']:,.2f}, of which ${max(0, s['cash'] - STOCK_RESERVE):,.2f} can go to crypto", "",
+             f"- Crypto cash ${s['cash']:,.2f}, stock cash ${s.get('stock_cash', 0):,.2f}", "",
              "## Stocks", "", "Form 4 and mover signals can buy from the open. Other picks start at 10:30 AM ET.", ""]
     picks = signals + _stock_momentum(creds, today, held)
     lines += [f"{i}. {c[2]} ({c[3]}): {c[4]}" for i, c in enumerate(picks[:6], 1)] or ["No stock scores above zero."]
@@ -346,9 +350,16 @@ def _preview(s, creds, state, today, is_open):
         f.write("\n".join(lines) + "\n")
 
 
-def _equity(s, prices):
-    total = s["cash"]
+def _equity(s, prices, market=None):
+    """Value of one budget, or of both when no market is named."""
+    total = 0.0
+    if market in (None, "crypto"):
+        total += s["cash"]
+    if market in (None, "stock"):
+        total += s.get("stock_cash", 0.0)
     for p in s["positions"]:
+        if market and p.get("market", "stock") != market:
+            continue
         if p["status"] == "buying":
             total += p["notional"]
         else:
@@ -361,6 +372,8 @@ def _report(s, prices):
     equity = _equity(s, prices)
     spy_now = prices.get(stocks.BENCH)
     spy_value = START_CASH * spy_now / s["spy_start"] if spy_now and s.get("spy_start") else None
+    crypto_value, stock_value = _equity(s, prices, "crypto"), _equity(s, prices, "stock")
+    start_total = START_CASH * 2
     rows = core.read("sim-equity.csv")
     row = {"date": today.isoformat(), "equity": round(equity, 2), "cash": round(s["cash"], 2),
            "spy_equivalent": round(spy_value, 2) if spy_value else ""}
@@ -373,16 +386,18 @@ def _report(s, prices):
     wins = sum(float(t["pnl"]) > 0 for t in trades)
     start = date.fromisoformat(s["start"])
     lines = ["# $1,000 paper simulation", "", "Paper money with simulated fills. No real money, no real fills.", "",
-             f"- Started: {s['start']}", f"- Value now: ${equity:,.2f} ({(equity / START_CASH - 1) * 100:+.2f}%)",
+             f"- Started: {s['start']}", f"- Total value: ${equity:,.2f} of ${start_total:,.0f} ({(equity / start_total - 1) * 100:+.2f}%)",
+             f"- Crypto budget: ${crypto_value:,.2f} ({(crypto_value / START_CASH - 1) * 100:+.2f}%), cash ${s['cash']:,.2f}",
+             f"- Stock budget: ${stock_value:,.2f} ({(stock_value / START_CASH - 1) * 100:+.2f}%), cash ${s.get('stock_cash', 0):,.2f}",
              f"- Same $1,000 in SPY: " + (f"${spy_value:,.2f}" if spy_value else "not available yet"),
-             f"- Cash: ${s['cash']:,.2f}", f"- Open positions: {len(s['positions'])}",
+             f"- Open positions: {len(s['positions'])}",
              f"- Closed trades: {len(trades)}, {wins} winners", ""]
     for days in CHECKPOINTS:
         due = (start + timedelta(days=days)).isoformat()
         hit = next((r for r in rows if r["date"] >= due), None)
         lines.append(f"- {days}-day checkpoint ({due}): " + (f"${float(hit['equity']):,.2f}, SPY ${hit['spy_equivalent']}" if hit else "not reached"))
-    lines += ["", "Rules: $1,000 starting budget with no margin and no limit on trades. Buys until the cash is used, crypto 24/7 and "
-              "stocks in market hours, 10% of equity each, -5% stop, +10% target, 7-day limit. Picks must score above zero. "
+    lines += ["", "Rules: $1,000 each for crypto and stocks, with no margin and no limit on trades. Buys until each budget's cash is used, "
+              "crypto 24/7 and stocks in market hours, 10% of that budget's value each, -5% stop, +10% target, 7-day limit. Picks must score above zero. "
               "Trade data is in sim-trades.csv."]
     with open(os.path.join(core.DATA, "sim.md"), "w") as f:
         f.write("\n".join(lines) + "\n")
@@ -397,8 +412,9 @@ def cycle(state, errors, creds):
         clock = stocks._get(PAPER_URL, "/v2/clock", creds)
         is_open = clock.get("is_open")
         if s is None:
-            s = {"start": core.now().astimezone(stocks.ET).date().isoformat(), "cash": START_CASH, "positions": [],
+            s = {"start": core.now().astimezone(stocks.ET).date().isoformat(), "cash": START_CASH, "stock_cash": START_CASH, "positions": [],
                  "spy_start": _price(creds, stocks.BENCH), "last_trade_day": None}
+        s.setdefault("stock_cash", START_CASH)  # the crypto budget keeps its history, stocks start fresh
         _sync(s, creds)
         prices = {stocks.BENCH: _price(creds, stocks.BENCH)}
         for p in s["positions"]:
@@ -415,7 +431,8 @@ def cycle(state, errors, creds):
         _save(s)
         equity = _report(s, prices)
         _preview(s, creds, state, today, is_open)
-        state["last_sim"] = (f"value ${equity:,.2f}, {len(s['positions'])} open, cash ${s['cash']:,.2f}"
+        state["last_sim"] = (f"value ${equity:,.2f} of $2,000, {len(s['positions'])} open, crypto cash ${s['cash']:,.2f}, "
+                             f"stock cash ${s['stock_cash']:,.2f}"
                              + (", STOPPED by SIM_STOP" if stopped else ""))
     except urllib.error.HTTPError as e:
         errors.append(f"simulation: HTTP {e.code} {e.url.split('?')[0]}")

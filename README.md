@@ -13,7 +13,7 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 
 ## Simulation rules
 
-- Budget: $1,000 to start, shared across stocks and crypto, with at least $300 of cash held back for stocks that crypto can't spend. No limit on the number of trades. Cash can't go below zero, and there's no margin.
+- Budget: $1,000 for crypto and $1,000 for stocks, kept separate. No limit on the number of trades. Cash can't go below zero, and there's no margin.
 - Every signal can trade while there's cash: qualifying Form 4 buys and up movers on at least 2x volume. At most one buy per market per cycle, and nothing is bought twice in a day.
 - Keeps buying until the cash is used: when there's no signal, the best remaining pick from the past month's returns against SPY or BTC plus news. Crypto runs 24/7. Stocks run in market hours, with these picks from 10:30 AM ET (7:30 AM PT).
 - A buy with nothing filled after 15 minutes is canceled, and its cash returns. It isn't bought again that day.
@@ -30,6 +30,7 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 |---|---|
 | `status.md` | Latest cycle, errors, measured time between runs |
 | `data/sim.md` | Simulation value, comparison with SPY, checkpoints |
+| `data/backtest.md` | SPY strategies tested on past prices. No orders |
 | `data/sim-next.md` | Hourly preview of what the rules would buy next. No orders |
 | `data/sim-trades.csv` | Each closed trade with its thesis and argument against |
 | `research/wallets.csv` | The wallet collection: who, chain, address, source, and date last confirmed |
