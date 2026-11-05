@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 299.99704145551874,
+ "cash": 300.2311591025776,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -101,11 +101,15 @@
    "symbol": "BONK/USD",
    "market": "crypto",
    "source": "crypto-momentum",
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-buy-BONKUSD-202611051020",
    "notional": 11.94,
    "thesis": "Up -0.7% over about a month (+0.8% vs BTC/USD), +4.5% this week, 14 headlines in the last day, news tone +2",
-   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days."
+   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days.",
+   "qty": "3828399.228543876",
+   "entry": 3.05e-06,
+   "cost": 11.7059,
+   "opened": "2026-11-05T10:32:49Z"
   }
  ],
  "spy_start": 766.9,

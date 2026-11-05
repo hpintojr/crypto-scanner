@@ -3,9 +3,9 @@
 Paper money with simulated fills. No real money, no real fills.
 
 - Started: 2026-11-05
-- Value now: $998.75 (-0.12%)
+- Value now: $997.87 (-0.21%)
 - Same $1,000 in SPY: $1,000.00
-- Cash: $300.00
+- Cash: $300.23
 - Open positions: 8
 - Closed trades: 0, 0 winners
 
