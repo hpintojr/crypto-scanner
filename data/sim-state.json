@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 300.2311591025776,
+ "cash": 300.3611591025776,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -74,16 +74,6 @@
    "opened": "2026-11-05T10:09:15Z"
   },
   {
-   "symbol": "POL/USD",
-   "market": "crypto",
-   "source": "crypto-momentum",
-   "status": "buying",
-   "buy_id": "sim-buy-POLUSD-202611051009",
-   "notional": 99.95,
-   "thesis": "Up 5.5% over about a month (+7.0% vs BTC/USD), +8.3% this week, 28 headlines in the last day, news tone -4",
-   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days."
-  },
-  {
    "symbol": "BTC/USD",
    "market": "crypto",
    "source": "crypto-momentum",
@@ -110,6 +100,16 @@
    "entry": 3.05e-06,
    "cost": 11.7059,
    "opened": "2026-11-05T10:32:49Z"
+  },
+  {
+   "symbol": "HYPE/USD",
+   "market": "crypto",
+   "source": "crypto-momentum",
+   "status": "buying",
+   "buy_id": "sim-buy-HYPEUSD-202611051050",
+   "notional": 99.82,
+   "thesis": "Up 2.7% over about a month (+4.3% vs BTC/USD), -6.2% this week, 18 headlines in the last day, news tone +2",
+   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days."
   }
  ],
  "spy_start": 766.9,
@@ -123,6 +123,8 @@
   "UNI/USD",
   "POL/USD",
   "BTC/USD",
-  "BONK/USD"
- ]
+  "BONK/USD",
+  "HYPE/USD"
+ ],
+ "stock_cash": 1000.0
 }
