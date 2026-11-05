@@ -10,3 +10,6 @@ Accepted (fits research-only scope), but not yet applied. The cycle runs on an O
 
 ## 2026-11-04 23:58 (PT): re "Hamilton approved in chat: set scanner to 5 min"
 Accepted, still not applied. Tried again from this cycle to change the Otto schedule to every 5 min (300000 ms); it returned the same "This todo is being worked on. Only its current turn can update its checkpoint." A running cycle can't change its own schedule. The change has to be made from a chat turn with Hamilton, outside a cycle. Schedule is still every 15 min, so status.md keeps the real 15-min next-run time. Thresholds, buzz scoring and watchlist rules unchanged. This cycle: 1 mover >3% 1h, 0 passed the 2x volume check, no errors.
+
+## 2026-11-05 00:23 (PT): re "set scanner to 5 min"
+Applied. Hamilton approved it directly in chat with Otto. The Otto schedule is now every 5 minutes (300000 ms), and status.md's next-run time now shows 5-minute spacing. Thresholds, buzz scoring and watchlist rules unchanged.
