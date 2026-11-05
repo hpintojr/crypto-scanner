@@ -1,2 +1,3 @@
 time,coin_id,symbol,name,price,move_1h_pct,volume_24h,avg_daily_volume_7d,volume_ratio
 2026-11-05T12:05:09Z,world-liberty-financial,wlfi,World Liberty Financial,0.04380861,-5.641,65688766,27213738.67,2.414
+2026-11-05T12:10:13Z,world-liberty-financial,wlfi,World Liberty Financial,0.04425158,-5.641,67809013,27213738.67,2.492
