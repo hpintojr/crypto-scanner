@@ -1,20 +1,20 @@
 # Scanner status
 
-- Last run: 2026-11-05T13:46:00Z
+- Last run: 2026-11-05T13:51:02Z
 - Host: otto-16usdmc576-067297
-- Last scan: 2026-11-05T13:45:06Z: 0 movers >3% 1h, 0 kept after 2x volume check
+- Last scan: 2026-11-05T13:50:06Z: 0 movers >3% 1h, 0 kept after 2x volume check
 - Last flag: 2026-11-05T13:00:21Z WLFI
-- Last stock scan: 2026-11-05T13:45:07Z: market closed
+- Last stock scan: 2026-11-05T13:50:07Z: market closed
 - Last watchlist snapshot: 2026-11-05T13:25:07Z
-- Last pre-market gap check: 2026-11-05T13:45:07Z: 4 of 100 stocks gapped 3%+ pre-market
-- Last Form 4 run: 2026-11-05T13:45:10Z: 0 filings read, 0 code P buys added, working on 2026-11-05, 134 logged, 2 qualifying
-- $1,000 paper simulation: value $1,986.51 of $2,000, 9 open, crypto cash $5.88, stock cash $1,000.00
+- Last pre-market gap check: 2026-11-05T13:50:07Z: 3 of 100 stocks gapped 3%+ pre-market
+- Last Form 4 run: 2026-11-05T13:50:09Z: 0 filings read, 0 code P buys added, working on 2026-11-05, 134 logged, 2 qualifying
+- $1,000 paper simulation: value $1,987.11 of $2,000, 9 open, crypto cash $5.88, stock cash $1,000.00
 - Simulation flags: none
 - Strategy test: 2026-11-05: 501 trading days tested, see data/backtest.md
-- Hold test: -1.51% since 2026-11-05, BTC -1.02%
-- Wallet watch: 25 checked this cycle, 59 enabled in rotation, 1 new moves
+- Hold test: -0.75% since 2026-11-05, BTC -0.71%
+- Wallet watch: 25 checked this cycle, 59 enabled in rotation, 0 new moves
 - Measured time between runs: 5 min
-- Next run: ~2026-11-05T13:51:00Z
+- Next run: ~2026-11-05T13:56:02Z
 - Inbox: no pending requests
 - Errors this cycle: 0
 
