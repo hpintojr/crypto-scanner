@@ -37,7 +37,7 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 
 ## Adding wallets
 
-Add one row per address in `research/wallets.csv`, reusing the owner's name for extra addresses. Fill in the chain, full address, source link and date confirmed, then set `enabled` to yes. Arkham's labels are attributions, so recheck them over time. Blurred sample rows on Arkham's logged-out pages use placeholder data, so don't collect from them.
+Add one row per address in `research/wallets.csv`, reusing the owner's name for extra addresses. Fill in the chain, full address, source link and date confirmed, then set `enabled` to yes. Recheck labels and old lists over time. Use free sources the owner published themselves, such as an exchange's own wallet list or an official filing. Don't scrape Arkham: its terms prohibit it, so new Arkham data only comes through its official API.
 
 ## Safety
 
