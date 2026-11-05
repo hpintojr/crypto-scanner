@@ -7,17 +7,17 @@
  "inbox_hash": "7f9d95d9402f57d8ca4e2efcc4825389ad5a7c320a8cdcf4c91a9942e2ae11dc",
  "answers_hash": "4433d13ee12e546443e456514dc71497b1ddda7690e898314eb6abfc6d4d4bba",
  "pending_request": false,
- "last_scan": "2026-11-05T18:05:14Z: 1 movers >3% 1h, 0 kept after 2x volume check",
+ "last_scan": "2026-11-05T18:10:14Z: 1 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-05T18:05:14Z: 100 stocks, 0 movers over 2.0% 1h, 0 kept after 2x volume check, 1 without enough data",
+ "last_stock_scan": "2026-11-05T18:10:14Z: 100 stocks, 0 movers over 2.0% 1h, 0 kept after 2x volume check, 1 without enough data",
  "form4": {
   "next_day": "2026-11-05",
   "offset": 0
  },
- "last_form4": "2026-11-05T18:05:49Z: 0 filings read, 0 code P buys added, working on 2026-11-05, 134 logged, 2 qualifying",
- "last_run": "2026-11-05T18:06:37Z",
+ "last_form4": "2026-11-05T18:10:50Z: 0 filings read, 0 code P buys added, working on 2026-11-05, 134 logged, 2 qualifying",
+ "last_run": "2026-11-05T18:11:35Z",
  "cycle_minutes": 5,
- "last_sim": "value $1,927.51 of $2,000, 15 open, crypto cash $1.82, stock cash $225.05",
+ "last_sim": "value $1,926.82 of $2,000, 15 open, crypto cash $1.82, stock cash $225.05",
  "signal_seen": {
   "stocks:AMD:move_1h:0": "2026-11-05T14:31:06Z",
   "stocks:TSLA:move_1h:0": "2026-11-05T14:36:28Z",
@@ -2252,6 +2252,12 @@
    "0x48b6cc13b34b7044603735a80e90f2f610c7556ff2d72e0683a8aba490e2e311:744"
   ],
   "0xcffad3200574698b78f32232aa9d63eabd290703#tokens": [
+   "0x7459eed25e1481c6a7e95c1a68517f695d0d5d2076914d8530e0e7d2295c2615:591",
+   "0x8f930844d3257f0247070e7710e7b9729877edcbcfe4c07dd853bd7a22c8825a:588",
+   "0x1c7afd8cb7c570ac97b6631c42e5cb5f9269a77a3d32f21f5990db1c3da12318:62",
+   "0xd637182f5da58cd35209ace0e452d283812ea9f4ab4f285c966b351ea2414d86:1260",
+   "0x1cf8b79331e1b32cf7d43a4993ee12a108a3856cfa6c86a6bdc88bec75291ee1:1250",
+   "0xe8478848563c656b3e3c4eb2ab7139f5b54f63b18802000d2a9ca6fbc3b1ae04:1249",
    "0x471ee37f093f19b76b912bad238789d1653d027ed047c384fa094adee4fcdc0b:533",
    "0xfab66c9ab6ac73f7857253d0ed50b5d391cdd34f775466348f4f1e4e1fd008b2:532",
    "0xf515eed7b8058be605e0f9849e4da858c09142267323f05b2c3162360baa8fd0:20",
@@ -2295,13 +2301,7 @@
    "0x4e017a8e4aac67b2c231027c13f4f76f277d39261c659d55eefe4833b06e67ce:633",
    "0x7e8d5008b2ee1c4d53de2209d65e2837227ad10099efd50c2c8a32891962797e:632",
    "0x4b89deb21e828cf6966178f6de8d4f197fd561273366086ab5cbcba7da728c2a:293",
-   "0x54d3fba958b4de3397183309c7471d6976c6f72bf3d71265ac11acb875e758f6:292",
-   "0x8cfe4008f01c0a391d0eeff8a842e8d95b8463a5874a3efbc6d362779b719458:290",
-   "0x9db5ac5d5df36de6f38c6e569c7e811b100dcac78d72d13445d032586eae7b76:289",
-   "0xe88a7ad355f5490528e604a3fd867defd66d603a74bbf10a07cee12504847eff:283",
-   "0x27801962cb02a5e528f51b16637125f1da70af94eb098f93f69a3645bd30568e:316",
-   "0x307e5427fe78f647d2fa849129f49dc149d31ae5439a3ea8ec5e828f14654c4e:315",
-   "0xfd5ca7b397a31239f32aa645f848a98fc037170c16208c079cb1a2bf58e9f339:314"
+   "0x54d3fba958b4de3397183309c7471d6976c6f72bf3d71265ac11acb875e758f6:292"
   ],
   "0x6262998Ced04146fA42253a5C0AF90CA02dfd2A3#tokens": [
    "0xa3cbfc0315e26105e521c371c8903eacc533e822820f6fd1961c01f72dbcc41c:331",
@@ -2979,11 +2979,11 @@
    "0x468f8434d2fc3e62509c495569610dbb82516824ceef2e2bc243907e4def9946:336"
   ]
  },
- "last_wallets": "25 checked this cycle, 59 enabled in rotation, 0 new moves",
+ "last_wallets": "25 checked this cycle, 59 enabled in rotation, 1 new moves",
  "holdings_checked": "2026-11-05T18:01:48Z",
  "last_holdings": "-6.80% since 2026-11-05, BTC -5.70%",
  "preview_checked": "2026-11-05T11:00:28Z",
- "wallets_offset": 28,
+ "wallets_offset": 53,
  "backtest_date": "2026-11-05",
  "last_backtest": "2026-11-05: 501 trading days tested, see data/backtest.md",
  "movers_checked": "2026-11-05T18:02:04Z",
@@ -2993,14 +2993,14 @@
  "last_gap_check": "2026-11-05T14:25:10Z: 3 of 100 stocks gapped 3%+ pre-market",
  "step_seconds": {
   "simulation": 6,
-  "crypto scan": 3,
+  "crypto scan": 1,
   "buzz": 0,
   "watchlist": 0,
-  "stocks": 33,
+  "stocks": 35,
   "score crypto": 0,
   "score stocks": 1,
-  "form 4": 1,
-  "wallets": 46,
+  "form 4": 2,
+  "wallets": 43,
   "holdings": 0,
   "backtest": 0,
   "movers": 0,
