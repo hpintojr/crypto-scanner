@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 899.9999723717822,
+ "cash": 901.9453723717822,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -11,10 +11,11 @@
    "notional": 100.0,
    "thesis": "Up 24.4% over about a month (+25.7% vs BTC/USD), +1.0% this week, 54 headlines in the last day, news tone -4",
    "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days.",
-   "qty": "19650225.977598742",
-   "entry": 5.089e-06,
-   "cost": 100.0,
-   "opened": "2026-11-05T09:08:15Z"
+   "qty": "19601100.412654745",
+   "entry": 4.99e-06,
+   "cost": 98.0546,
+   "opened": "2026-11-05T09:08:15Z",
+   "reconciled": true
   }
  ],
  "spy_start": 766.9,
