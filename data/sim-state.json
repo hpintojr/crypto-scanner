@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 3.6688128836784415,
+ "cash": 84.59077336945445,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -44,22 +44,6 @@
    "entry": 289.036,
    "cost": 97.8776,
    "opened": "2026-11-05T10:00:54Z"
-  },
-  {
-   "symbol": "BTC/USD",
-   "market": "crypto",
-   "source": "crypto-momentum",
-   "status": "selling",
-   "buy_id": "sim-buy-BTCUSD-202611051016",
-   "notional": 99.89,
-   "thesis": "Up -1.4% over about a month (+0.0% vs BTC/USD), +3.7% this week, 118 headlines in the last day, news tone +12",
-   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days.",
-   "qty": "0.001216016",
-   "entry": 80330.741505891,
-   "cost": 97.9285,
-   "opened": "2026-11-05T10:20:36Z",
-   "sell_id": "sim-sell-BTCUSD-202611051527",
-   "exit_reason": "stop"
   },
   {
    "symbol": "BONK/USD",
@@ -202,6 +186,18 @@
    "entry": 2288.58,
    "cost": 184.7241,
    "opened": "2026-11-05T15:27:38Z"
+  },
+  {
+   "symbol": "ETH/USD",
+   "market": "crypto",
+   "source": "long:ETH/USD",
+   "plan": "long:ETH/USD",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-ETHUSD-202611051533",
+   "notional": 11.61,
+   "thesis": "Approved allocation, long:ETH/USD",
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
   }
  ],
  "spy_start": 766.9,
@@ -229,7 +225,7 @@
   "long:DBA": 75,
   "long:CPER": 75,
   "mid:DBC": 75,
-  "long:ETH/USD": 188.39
+  "long:ETH/USD": 200.0
  },
  "trends": {
   "CPER": false,
