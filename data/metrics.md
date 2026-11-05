@@ -15,20 +15,20 @@ Paper money. Expectancy is average profit per closed trade. Profit factor is tot
 |---|---:|---:|---:|---:|
 | PEPE/USD | $98.05 | $95.85 | $-2.21 | -2.25 |
 | XRP/USD | $98.04 | $96.75 | $-1.28 | -1.31 |
-| ETH/USD | $98.14 | $96.56 | $-1.58 | -1.61 |
-| BCH/USD | $97.88 | $97.99 | $0.11 | +0.12 |
+| ETH/USD | $98.14 | $96.58 | $-1.56 | -1.59 |
+| BCH/USD | $97.88 | $97.54 | $-0.34 | -0.35 |
 | UNI/USD | $98.07 | $93.83 | $-4.24 | -4.32 |
-| BTC/USD | $97.93 | $96.46 | $-1.47 | -1.50 |
+| BTC/USD | $97.93 | $96.55 | $-1.38 | -1.41 |
 | BONK/USD | $11.71 | $11.56 | $-0.14 | -1.23 |
 | DOGE/USD | $97.83 | $96.60 | $-1.22 | -1.25 |
-| BTC/USD | $296.48 | $292.92 | $-3.56 | -1.20 |
+| BTC/USD | $296.48 | $293.19 | $-3.29 | -1.11 |
 
 ## Risk
 
 - Largest fall from peak: 0.00%
 - Currently below peak: 0.00%
-- Money in open positions: $978.54 of $1,984.42
-- BTC since start: -1.08%
+- Money in open positions: $978.46 of $1,984.34
+- BTC since start: -0.99%
 - SPY since start: +0.05%
 
 ## Flags
