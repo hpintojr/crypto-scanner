@@ -481,6 +481,33 @@ def main():
     wallets.cycle(st, [])
     moves = rows(os.path.join(core.DATA, "wallet-moves.csv"))
     assert [m["tx"] for m in moves] == ["t2"] and moves[0]["owner"] == "Good Co", moves
+    # token moves: major tokens only, spam with a copied name is ignored, and turning tokens on logs no old history
+    usdc = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+    me = "0x" + "b" * 40
+    def tt(txh, addr_key, contract, sym, value, sender):
+        return {"transaction_hash": txh, "log_index": 1, "timestamp": "t", "from": {"hash": sender},
+                "token": {addr_key: contract, "symbol": sym, "decimals": "6"}, "total": {"value": value, "decimals": "6"}}
+    real_json = wallets._json
+    wallets._json = lambda u, body=None: {"items": [tt("0x1", "address_hash", usdc, "USDC", "2500000", me),
+                                                    tt("0x2", "address", "0x" + "c" * 40, "USDC", "9", "0xother")]}
+    got = wallets._ethereum_tokens(me)
+    assert len(got) == 1 and got[0][1:4] == ("out", 2.5, "USDC"), got
+    wallets._json = real_json
+    wallets.READERS["ethereum"] = lambda a: []
+    feed2 = [[("old", "in", 1.0, "USDC", 1)]]
+    wallets.READERS["ethereum-tokens"] = lambda a: feed2[0]
+    with open(wallets.LIST, "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fields, restval="")
+        w.writeheader()
+        w.writerow({"owner": "Token Co", "enabled": "yes", "chain": "ethereum", "address": me, "attribution_source": "x", "last_verified": "y"})
+    st3 = {"wallets_seen": {me: []}}
+    wallets.cycle(st3, [])
+    before = len(rows(os.path.join(core.DATA, "wallet-moves.csv")))
+    feed2[0] = [("new", "out", 2.0, "USDC", 2), ("old", "in", 1.0, "USDC", 1)]
+    wallets.cycle(st3, [])
+    after = rows(os.path.join(core.DATA, "wallet-moves.csv"))
+    assert len(after) == before + 1 and after[-1]["tx"] == "new" and after[-1]["asset"] == "USDC", after[-1]
+
     # a longer list rotates, so every wallet gets checked and each cycle stays the same size
     many = [f"bc1q{i:02d}" + "a" * 36 for i in range(5)]
     with open(wallets.LIST, "w", newline="") as f:

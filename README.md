@@ -9,7 +9,7 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 - **Form 4:** logs code P open-market buys from SEC EDGAR to `research/form4-log.csv`. Reviews against SPY at 30, 90 and 180 days.
 - **Simulation:** runs the $1,000 paper simulation in `research/sim.py`.
 - **Hold test:** tracks a separate buy-and-hold of a private coin list at simulated cost, with no orders. The list and dollar values stay beside the repo on Otto, and `status.md` shows only a percentage.
-- **Wallet watch:** logs moves by enabled wallets in `research/wallets.csv` to `data/wallet-moves.csv`. Log only, nothing trades on it. A wallet needs a full address, chain, attribution source and verification date before it can be enabled.
+- **Wallet watch:** logs moves by enabled wallets in `research/wallets.csv` to `data/wallet-moves.csv`. Reads native BTC, ETH and XRP, plus major Ethereum tokens by contract address (USDT, USDC, DAI, WETH, WBTC, RLUSD, AAVE, UNI, LDO, CRV, ARB). Log only, nothing trades on it. A wallet needs a full address, chain, attribution source and verification date before it can be enabled.
 
 ## Simulation rules
 
