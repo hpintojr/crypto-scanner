@@ -1,16 +1,20 @@
 {
  "start": "2026-11-05",
- "cash": 900.0,
+ "cash": 901.9453723717822,
  "positions": [
   {
    "symbol": "PEPE/USD",
    "market": "crypto",
    "source": "crypto-momentum",
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-buy-PEPEUSD-20261105",
    "notional": 100.0,
    "thesis": "Up 24.4% over about a month (+25.7% vs BTC/USD), +1.0% this week, 54 headlines in the last day, news tone -4",
-   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days."
+   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days.",
+   "qty": "19650225.977598742",
+   "entry": 4.99e-06,
+   "cost": 98.0546,
+   "opened": "2026-11-05T09:08:15Z"
   }
  ],
  "spy_start": 766.9,
