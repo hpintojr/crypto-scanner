@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 2.3817519245169194,
+ "cash": 0.0028978458784649774,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -30,22 +30,6 @@
    "entry": 1.319,
    "cost": 98.036,
    "opened": "2026-11-05T09:46:18Z"
-  },
-  {
-   "symbol": "ETH/USD",
-   "market": "crypto",
-   "source": "crypto-momentum",
-   "status": "selling",
-   "buy_id": "sim-buy-ETHUSD-202611050946",
-   "notional": 100.06,
-   "thesis": "Up -0.3% over about a month (+1.2% vs BTC/USD), +7.1% this week, 106 headlines in the last day, news tone +7",
-   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days.",
-   "qty": "0.040563046",
-   "entry": 2413.471,
-   "cost": 98.1431,
-   "opened": "2026-11-05T09:55:51Z",
-   "sell_id": "sim-sell-ETHUSD-202611051517",
-   "exit_reason": "stop"
   },
   {
    "symbol": "BCH/USD",
@@ -88,22 +72,6 @@
    "entry": 3.05e-06,
    "cost": 11.7059,
    "opened": "2026-11-05T10:32:49Z"
-  },
-  {
-   "symbol": "DOGE/USD",
-   "market": "crypto",
-   "source": "crypto-momentum",
-   "status": "selling",
-   "buy_id": "sim-buy-DOGEUSD-202611051105",
-   "notional": 99.78,
-   "thesis": "Up -4.9% over about a month (-3.3% vs BTC/USD), +1.7% this week, 51 headlines in the last day, news tone +3",
-   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days.",
-   "qty": "1268.099268193",
-   "entry": 0.0769515,
-   "cost": 97.8267,
-   "opened": "2026-11-05T11:11:08Z",
-   "sell_id": "sim-sell-DOGEUSD-202611051517",
-   "exit_reason": "stop"
   },
   {
    "symbol": "BTC/USD",
@@ -216,6 +184,18 @@
    "entry": 31.51,
    "cost": 74.99,
    "opened": "2026-11-05T14:56:15Z"
+  },
+  {
+   "symbol": "ETH/USD",
+   "market": "crypto",
+   "source": "long:ETH/USD",
+   "plan": "long:ETH/USD",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-ETHUSD-202611051522",
+   "notional": 188.39,
+   "thesis": "Approved allocation, long:ETH/USD",
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
   }
  ],
  "spy_start": 766.9,
@@ -242,7 +222,8 @@
   "long:DBC": 250,
   "long:DBA": 75,
   "long:CPER": 75,
-  "mid:DBC": 75
+  "mid:DBC": 75,
+  "long:ETH/USD": 188.39
  },
  "trends": {
   "CPER": false,

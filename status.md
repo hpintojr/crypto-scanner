@@ -1,20 +1,20 @@
 # Scanner status
 
-- Last run: 2026-11-05T15:18:38Z
+- Last run: 2026-11-05T15:23:10Z
 - Host: otto-16usdmc576-067297
-- Last scan: 2026-11-05T15:16:40Z: 6 movers >3% 1h, 0 kept after 2x volume check
+- Last scan: 2026-11-05T15:21:22Z: 6 movers >3% 1h, 0 kept after 2x volume check
 - Last flag: 2026-11-05T13:00:21Z WLFI
-- Last stock scan: 2026-11-05T15:16:40Z: 100 stocks, 39 movers over 2.0% 1h, 12 kept after 2x volume check, 1 without enough data
+- Last stock scan: 2026-11-05T15:21:22Z: 100 stocks, 43 movers over 2.0% 1h, 13 kept after 2x volume check, 1 without enough data
 - Last watchlist snapshot: 2026-11-05T15:16:40Z
 - Last pre-market gap check: 2026-11-05T14:25:10Z: 3 of 100 stocks gapped 3%+ pre-market
-- Last Form 4 run: 2026-11-05T15:17:43Z: 0 filings read, 0 code P buys added, working on 2026-11-05, 134 logged, 2 qualifying
-- $1,000 paper simulation: value $1,954.07 of $2,000, 14 open, crypto cash $2.38, stock cash $225.05
+- Last Form 4 run: 2026-11-05T15:22:34Z: 0 filings read, 0 code P buys added, working on 2026-11-05, 134 logged, 2 qualifying
+- $1,000 paper simulation: value $1,951.54 of $2,000, 13 open, crypto cash $0.00, stock cash $225.05
 - Simulation flags: none
 - Strategy test: 2026-11-05: 501 trading days tested, see data/backtest.md
 - Hold test: -2.26% since 2026-11-05, BTC -1.88%
-- Wallet watch: 25 checked this cycle, 59 enabled in rotation, 2 new moves
-- Measured time between runs: 10 min
-- Next run: ~2026-11-05T15:28:38Z
+- Wallet watch: 25 checked this cycle, 59 enabled in rotation, 0 new moves
+- Measured time between runs: 5 min
+- Next run: ~2026-11-05T15:28:10Z
 - Inbox: no pending requests
 - Errors this cycle: 1
   - fetch failed https://api.coingecko.com/api/v3/coins/blockstack/market_chart: HTTP Error 429: Too Many Requests
