@@ -4,7 +4,7 @@ from datetime import datetime, timezone, timedelta
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 import scanner
-from research import core, form4, holdings, sim, stocks, wallets
+from research import core, form4, holdings, movers, sim, stocks, wallets
 
 NOW = datetime.now(timezone.utc)
 calls = []
@@ -197,6 +197,7 @@ def main():
     json.dump(state0, open(os.path.join(tmp, ".state.json"), "w"))
     scanner.time.sleep = lambda s: None
     scanner.research_backtest.cycle = lambda *a: None  # tested on known prices further down
+    scanner.research_movers.cycle = lambda *a: None  # tested on known prices further down
     scanner.git = lambda *a: type("R", (), {"returncode": 0, "stderr": "", "stdout": ""})()
     urllib.request.urlopen = fake_urlopen
 
@@ -611,6 +612,23 @@ def main():
     assert st9["n"] == 4 and st9["win"] == 75 and st9["drawdown"] < 0 and st9["second"] > st9["first"], st9
     backtest.write_report(res2, min(days), max(days), 2)
     assert "Strategy test on SPY" in open(os.path.join(core.DATA, "backtest.md")).read()
+
+    # movers: known prices give known moves and streaks, and a thin history isn't ranked for long windows
+    assert movers.streak([1, 2, 3, 4]) == 3 and movers.streak([4, 3, 2, 3]) == 1 and movers.streak([5, 4, 3]) == -2 and movers.streak([2, 2]) == 0
+    hist = lambda v: [(len(v) - 1 - i, p) for i, p in enumerate(v)]
+    ranked = movers.rank({"UP": hist([100] * 24 + [110, 120]), "DOWN": hist([100] * 24 + [90, 80]), "NEW": hist([100, 200])})
+    assert ranked[1][0][0][0] == "NEW" and abs(ranked[1][0][0][1] - 100) < 1e-9, ranked[1]
+    assert abs(ranked[2][0][0][1] - 100) < 1e-9 or ranked[2][0][0][0] == "UP", ranked[2]
+    assert ranked[24][0][0][0] == "UP" and ranked[24][0][0][2] == 2, ranked[24]
+    assert ranked[24][1][0][0] == "DOWN" and ranked[24][1][0][2] == -2 and all(r[0] != "NEW" for r in ranked[24][0]), ranked[24]
+    assert "| 16h |" in "\n".join(movers._table("X", ranked))
+    real_open = urllib.request.urlopen
+    coins = [{"symbol": "abc", "sparkline_in_7d": {"price": [100.0] * 168 + [110.0]}}, {"symbol": "usdt", "sparkline_in_7d": {"price": [1.0] * 169}}]
+    urllib.request.urlopen = lambda req, timeout=None: Resp(json.dumps(coins).encode())
+    cs = movers._crypto()
+    urllib.request.urlopen = real_open
+    assert "USDT" not in cs and abs(cs["ABC"][-1][0]) < 1e-9 and cs["ABC"][-1][1] == 110.0, list(cs)
+    assert movers.rank(cs)[1][0][0][0] == "ABC", movers.rank(cs)[1]
 
     # measured schedule: runs five minutes apart report five
     s = {"last_run": (NOW - timedelta(minutes=5)).strftime(core.FMT)}
