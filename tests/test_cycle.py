@@ -4,12 +4,13 @@ from datetime import datetime, timezone, timedelta
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 import scanner
-from research import core, form4, stocks
+from research import core, form4, sim, stocks
 
 NOW = datetime.now(timezone.utc)
 calls = []
 MARKET_OPEN = [True]
 FAIL = set()
+ORDERS, ACCOUNT, FILL, LAST = {}, ["PA123"], [50.0], [50.0]
 
 
 def bars(sym):
@@ -61,8 +62,24 @@ def fake_urlopen(req, timeout=None):
         return Resp(sec(u).encode())
     if "news.google" in u.hostname:
         return Resp(b"<rss><channel><item><title>Pump crypto price</title></item></channel></rss>")
-    assert req.get_method() == "GET", "only GET is allowed against Alpaca"
+    if req.get_method() == "POST":
+        assert url == "https://paper-api.alpaca.markets/v2/orders", url
+        order = json.loads(req.data)
+        ORDERS[order["client_order_id"]] = order
+        return Resp(json.dumps({"id": "1", "status": "accepted"}).encode())
+    assert req.get_method() == "GET", "only GET and paper orders are allowed against Alpaca"
     assert "paper-api" in u.hostname or "data.alpaca" in u.hostname, url
+    if u.path == "/v2/account":
+        return Resp(json.dumps({"account_number": ACCOUNT[0]}).encode())
+    if u.path.startswith("/v2/assets/"):
+        return Resp(json.dumps({"tradable": True, "fractionable": True}).encode())
+    if u.path == "/v2/orders:by_client_order_id":
+        o = ORDERS[q["client_order_id"][0]]
+        px = FILL[0]
+        qty = o.get("qty") or str(float(o["notional"]) / px)
+        return Resp(json.dumps({"status": "filled", "filled_qty": qty, "filled_avg_price": str(px)}).encode())
+    if u.path.endswith("/trades/latest"):
+        return Resp(json.dumps({"trade": {"p": LAST[0] if "SPY" not in u.path else 500}}).encode())
     if u.path == "/v2/clock":
         b = {"is_open": MARKET_OPEN[0]}
     elif u.path == "/v2/stocks/bars":
@@ -274,6 +291,57 @@ def main():
     core.now, stocks._get = orig_now, orig_get
     after = rows(os.path.join(core.DATA, "signals.csv"))
     assert len(after) == before + 1 and after[-1]["symbol"] == "AAPL" and after[-1]["signal_type"] == "premarket_gap", after[-1]
+
+    # paper simulation: buy at 3:30 ET, fill, reinvest, stop out, refuse a non-paper account, kill switch
+    ORDERS.clear()
+    state = {}
+    for fn in ("sim-state.json", "sim-trades.csv"):
+        if os.path.exists(os.path.join(core.DATA, fn)):
+            os.remove(os.path.join(core.DATA, fn))
+    et_clock = NOW.astimezone(stocks.ET).replace(hour=15, minute=35)
+    day = et_clock.date()
+    core.now = lambda: et_clock
+    with open(os.path.join(core.DATA, "signals.csv"), "a", newline="") as f:
+        csv.DictWriter(f, fieldnames=core.SIGNAL_FIELDS, restval="").writerow(
+            {"market": "stocks", "symbol": "WIN", "time": day.isoformat() + "T15:00:00Z", "passed": 1,
+             "signal_type": "move_1h", "move_1h_pct": 4, "volume_ratio": 3})
+    open(form4.LOG, "w").write(",".join(form4.FIELDS) + "\n")
+    MARKET_OPEN[0] = True
+    creds = stocks.credentials()
+    errs = []
+    ACCOUNT[0] = "LIVE999"
+    sim.cycle(state, errs, creds)
+    assert not ORDERS and any("not a paper account" in e for e in errs), (ORDERS, errs)
+    ACCOUNT[0] = "PA123"
+    errs.clear()
+    os.remove(os.path.join(core.DATA, "sim-state.json")) if os.path.exists(os.path.join(core.DATA, "sim-state.json")) else None
+    sim.cycle(state, errs, creds)
+    assert errs == [], errs
+    buy = ORDERS[f"sim-buy-WIN-{day:%Y%m%d}"]
+    assert buy["notional"] == "100.0" and buy["side"] == "buy", buy
+    sim.cycle(state, errs, creds)  # fill arrives, and no second buy the same day
+    assert len(ORDERS) == 1, ORDERS
+    s = sim._load()
+    assert s["positions"][0]["status"] == "open" and abs(s["cash"] - 900) < 1e-6, s
+    LAST[0] = 56.0
+    sim.cycle(state, errs, creds)  # +12% hits the target
+    assert sum(o["side"] == "sell" for o in ORDERS.values()) == 1, ORDERS
+    FILL[0] = 56.0
+    sim.cycle(state, errs, creds)
+    s = sim._load()
+    assert not s["positions"] and abs(s["cash"] - 1012) < 1e-6, s
+    t = rows(os.path.join(core.DATA, "sim-trades.csv"))[0]
+    assert abs(float(t["pnl"]) - 12) < 1e-3 and t["exit_reason"] == "target" and t["thesis"] and t["against"], t
+    assert errs == [], errs
+    assert "$1,012.00" in open(os.path.join(core.DATA, "sim.md")).read()
+    next_day = et_clock + timedelta(days=1)
+    core.now = lambda: next_day
+    open(os.path.join(tmp, "SIM_STOP"), "w").close()
+    sim.ROOT = tmp
+    n = len(ORDERS)
+    sim.cycle(state, errs, creds)
+    assert len(ORDERS) == n and "STOPPED" in state["last_sim"], state
+    core.now = orig_now
 
     # measured schedule: runs five minutes apart report five
     s = {"last_run": (NOW - timedelta(minutes=5)).strftime(core.FMT)}

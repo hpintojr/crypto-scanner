@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Market research agent: crypto and stock movers, Form 4 buys. Research only: no trading, no money.
+"""Market research agent: crypto and stock movers, Form 4 buys, $1,000 paper simulation. Paper only, no real money.
 One invocation = one cycle. Run from the Otto schedule, or via run.sh or cron, never more than one."""
 import csv, hashlib, json, os, re, subprocess, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
-from research import core as research_core, form4 as research_form4, stocks as research_stocks
+from research import core as research_core, form4 as research_form4, sim as research_sim, stocks as research_stocks
 
 REPO = os.path.dirname(os.path.abspath(__file__))
 CG = "https://api.coingecko.com/api/v3"
@@ -200,6 +200,7 @@ def research(state):
         score_crypto()
         research_stocks.score(creds, errors)
         research_form4.cycle(state, errors, creds)
+        research_sim.cycle(state, errors, creds)
         research_core.write_report()
         research_form4.append_report()
     except Exception as e:
@@ -240,6 +241,7 @@ def write_status(state, host, push_error=None):
               f"- Last watchlist snapshot: {state.get('last_watch') or 'none yet'}",
               f"- Last pre-market gap check: {state.get('last_gap_check') or 'none yet'}",
               f"- Last Form 4 run: {state.get('last_form4') or 'none yet'}",
+              f"- $1,000 paper simulation: {state.get('last_sim') or 'not started'}",
               f"- Measured time between runs: {minutes} min",
               f"- Next run: ~{iso(now() + timedelta(minutes=minutes))}",
               f"- Inbox: {'NEW request in requests-from-chip.md awaiting reply' if state.get('pending_request') else 'no pending requests'}",
@@ -247,7 +249,7 @@ def write_status(state, host, push_error=None):
     status += [f"  - {e}" for e in errors]
     if state.get("last_push_error"):
         status.append(f"- Previous push failed: {state['last_push_error']}")
-    status += ["", "Research only. No trading, no positions, no keys."]
+    status += ["", "Paper only, approved by Hamilton. No real money. No keys in this repo. Create SIM_STOP to stop new orders."]
     open(path("status.md"), "w").write("\n".join(status) + "\n")
     json.dump(state, open(path(".state.json"), "w"), indent=1)
 

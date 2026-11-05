@@ -105,12 +105,17 @@ def _pattern(buy, filing_date):
     return len(values), median, "yes" if large else "no"
 
 
+def _is_insider(r):
+    return r["role"].strip().lower() not in ("10% owner", "")
+
+
 def _enrich(buy, filing_date, rows):
     buy["filing_date"] = filing_date
     start = (date.fromisoformat(filing_date) - timedelta(days=CLUSTER_DAYS)).isoformat()
-    others = {r["insider_cik"] for r in rows if r["issuer_cik"] == buy["issuer_cik"]
+    # Funds and affiliates file as 10% owners, so they don't count as separate insiders.
+    others = {r["insider_cik"] for r in rows if r["issuer_cik"] == buy["issuer_cik"] and _is_insider(r)
               and start <= r["filing_date"] <= filing_date and r["insider_cik"] != buy["insider_cik"]}
-    buy["cluster"] = "yes" if others else "no"
+    buy["cluster"] = "yes" if others and _is_insider(buy) else "no"
     buy.update(prior_buys="", median_prior_value="", large_vs_pattern="", public_float="", small_company="")
     if buy["ceo_cfo"] == "yes":  # history and float lookups only where the filter can matter
         buy["prior_buys"], buy["median_prior_value"], buy["large_vs_pattern"] = _pattern(buy, filing_date)

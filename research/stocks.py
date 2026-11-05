@@ -1,4 +1,4 @@
-"""US stock mover scan from Alpaca's free IEX feed. Read-only: this module only ever sends GET."""
+"""US stock mover scan from Alpaca's free IEX feed. This module only ever sends GET; orders live in sim.py."""
 import json, os, urllib.parse, urllib.request
 from datetime import timedelta
 from zoneinfo import ZoneInfo
