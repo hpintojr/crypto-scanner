@@ -1,0 +1,2 @@
+signal_id,time,market,symbol,asset_id,name,price,benchmark,benchmark_price,move_1h_pct,volume,baseline_volume,volume_ratio,passed,news_24h,signal_type,earnings
+1217a6a5f03e,2026-11-05T09:00:51Z,crypto,RAIN,rain,Rain,0.00615307,BTC,80445,5.935,13964132,13270691.35,1.052,0,,move_1h,
