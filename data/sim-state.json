@@ -203,11 +203,15 @@
    "source": "mid:DBC",
    "plan": "mid:DBC",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-DBC-202611051451",
    "notional": 75,
    "thesis": "Approved allocation, mid:DBC",
-   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
+   "qty": "2.379879403",
+   "entry": 31.51,
+   "cost": 74.99,
+   "opened": "2026-11-05T14:56:15Z"
   }
  ],
  "spy_start": 766.9,
@@ -225,7 +229,7 @@
   "HYPE/USD",
   "DOGE/USD"
  ],
- "stock_cash": 225.039997203297,
+ "stock_cash": 225.049997214767,
  "btc_start": 80189.9,
  "flags": [],
  "plan_spent": {
