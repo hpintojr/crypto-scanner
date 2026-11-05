@@ -1,20 +1,20 @@
 # Biggest movers
 
-As of 2026-11-05T10:51:22Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
+As of 2026-11-05T11:50:53Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
 
 ## Crypto, top 100
 
 | Window | Biggest gainers | Biggest losers |
 |---|---|---|
-| 1h | RAIN +6.1% (+1h), INJ +2.8% (+3h), APT +1.9% (+1h), POL +1.9% (+3h), ETC +1.8% (+1h) | PEARL -1.2% (-2h), BTW -0.4% (-1h), HTX -0.4% (-1h), BGB -0.3% (-2h), WLFI -0.3% (-2h) |
-| 2h | RAIN +5.3% (+1h), INJ +3.8% (+3h), POL +2.1% (+3h), ETC +1.6% (+1h), ETHFI +1.5% (+1h) | WLFI -2.0% (-2h), BGB -1.7% (-2h), PEARL -1.6% (-2h), VVV -1.5% (+1h), MORPHO -0.8% (+1h) |
-| 4h | INJ +4.5% (+3h), RAIN +3.6% (+1h), LIT +2.7% (+1h), BCH +2.3% (+1h), BTW +1.9% (-1h) | BGB -1.5% (-2h), STX -1.2% (+1h), NIGHT -1.1% (+1h), MNT -1.0% (+1h), XMR -1.0% (+1h) |
-| 6h | INJ +5.2% (+3h), RAIN +2.7% (+1h), BCH +2.7% (+1h), CC +2.5% (+1h), POL +2.4% (+3h) | ZRO -1.6% (-2h), BGB -1.6% (-2h), NIGHT -1.5% (+1h), OKB -1.3% (+1h), DASH -1.2% (+1h) |
-| 8h | INJ +5.7% (+3h), PEARL +5.6% (-2h), LIT +4.6% (+1h), CC +4.4% (+1h), ATOM +3.5% (+1h) | NIGHT -2.1% (+1h), STX -2.0% (+1h), WLFI -1.8% (-2h), BGB -1.5% (-2h), MNT -0.9% (+1h) |
-| 12h | INJ +6.4% (+3h), PEARL +5.7% (-2h), CC +5.6% (+1h), ATOM +4.9% (+1h), RENDER +4.2% (+1h) | WLFI -3.7% (-2h), GT -1.6% (+1h), GRAM -1.5% (-2h), NIGHT -1.5% (+1h), BGB -1.2% (-2h) |
-| 16h | PEARL +9.5% (-2h), INJ +8.1% (+3h), CC +4.1% (+1h), RAIN +3.5% (+1h), ATOM +3.2% (+1h) | VVV -6.7% (+1h), NIGHT -5.2% (+1h), WLD -2.8% (+1h), PEPE -2.7% (+1h), ZRO -2.7% (-2h) |
-| 20h | PEARL +13.1% (-2h), INJ +10.0% (+3h), ATOM +7.5% (+1h), CAKE +6.1% (+1h), RENDER +6.0% (+1h) | VVV -7.4% (+1h), WLFI -5.2% (-2h), BTW -4.2% (-1h), ZRO -2.7% (-2h), NIGHT -1.9% (+1h) |
-| 24h | PEARL +13.2% (-2h), INJ +10.0% (+3h), ATOM +7.0% (+1h), ALGO +6.1% (+1h), QNT +5.6% (-2h) | VVV -11.5% (+1h), ZRO -5.3% (-2h), WLFI -3.9% (-2h), WLD -3.5% (+1h), HYPE -3.1% (+1h) |
+| 1h | PEARL +2.6% (+1h), ALGO +0.9% (+2h), JST +0.3% (+1h), ZEC +0.3% (+2h), KCS +0.3% (+2h) | ZRO -1.6% (-3h), STX -1.5% (-1h), BTW -1.2% (-2h), LIT -0.8% (-1h), MNT -0.8% (-1h) |
+| 2h | RAIN +6.3% (+2h), INJ +3.1% (+4h), ALGO +2.2% (+2h), POL +1.6% (-1h), ETHFI +1.5% (-1h) | ZRO -1.7% (-3h), BTW -1.6% (-2h), MNT -0.7% (-1h), NIGHT -0.7% (-1h), GRAM -0.4% (-3h) |
+| 4h | INJ +5.3% (+4h), RAIN +4.2% (+2h), LIT +2.8% (-1h), BCH +2.8% (-1h), ETHFI +2.0% (-1h) | STX -2.6% (-1h), BGB -1.6% (-3h), ZRO -1.6% (-3h), BTW -1.5% (-2h), MNT -1.4% (-1h) |
+| 6h | INJ +4.8% (+4h), PEARL +4.5% (+1h), RAIN +3.3% (+2h), BCH +2.2% (-1h), LIT +2.1% (-1h) | STX -3.4% (-1h), ZRO -2.6% (-3h), NIGHT -2.3% (-1h), MNT -2.3% (-1h), VVV -1.7% (-1h) |
+| 8h | PEARL +5.8% (+1h), INJ +5.0% (+4h), CC +3.3% (+2h), ATOM +2.9% (+2h), RAIN +2.8% (+2h) | STX -3.9% (-1h), ZRO -2.1% (-3h), NIGHT -2.0% (-1h), MNT -1.9% (-1h), BGB -1.6% (-3h) |
+| 12h | PEARL +7.1% (+1h), INJ +6.3% (+4h), CC +5.4% (+2h), ATOM +4.9% (+2h), LIT +4.0% (-1h) | WLFI -2.5% (-3h), GRAM -2.1% (-3h), STX -2.1% (-1h), ZRO -2.0% (-3h), NIGHT -1.8% (-1h) |
+| 16h | PEARL +11.9% (+1h), INJ +7.4% (+4h), CC +5.5% (+2h), ATOM +4.3% (+2h), RENDER +3.2% (+2h) | VVV -5.6% (-1h), BTW -3.8% (-2h), NIGHT -3.0% (-1h), ZRO -2.7% (-3h), NEAR -2.2% (-1h) |
+| 20h | PEARL +11.9% (+1h), INJ +10.1% (+4h), ATOM +7.1% (+2h), RENDER +6.3% (+2h), CC +6.1% (+2h) | BTW -9.0% (-2h), VVV -6.9% (-1h), WLFI -6.1% (-3h), ZRO -3.7% (-3h), NIGHT -3.0% (-1h) |
+| 24h | PEARL +16.5% (+1h), INJ +9.9% (+4h), ALGO +7.2% (+2h), ATOM +6.8% (+2h), RENDER +6.3% (+2h) | VVV -10.2% (-1h), ZRO -6.3% (-3h), BTW -4.0% (-2h), WLFI -3.9% (-3h), HYPE -3.5% (-1h) |
 
 ## Stocks, fixed list
 
