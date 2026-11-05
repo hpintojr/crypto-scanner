@@ -1,3 +1,3 @@
 # Next picks
 
-No new buys. Both budgets wait in cash until Hamilton approves an allocation. Older coins keep their exits.
+Approved allocation: see PLAN in research/sim.py. Buys go long slice first, then mid when its 100-day trend is up, as cash allows.

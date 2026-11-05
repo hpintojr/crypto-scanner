@@ -31,3 +31,19 @@ Period: 2020-11-05 to 2026-11-04, after an assumed 0.05% round-trip cost. Past r
 
 Period: 2021-01-01 to 2026-11-04, after an assumed 0.5% round-trip cost. Past results don't guarantee future ones.
 
+## The approved allocation
+
+Commodities
+| Rule | Total % | Worst drop % | First half % | Second half % |
+|---|---:|---:|---:|---:|
+| Approved mix | 98.1 | -16.1 | 23.1 | 61.0 |
+
+Period: 2020-11-05 to 2026-11-04.
+
+Crypto
+| Rule | Total % | Worst drop % | First half % | Second half % |
+|---|---:|---:|---:|---:|
+| Approved mix | 243.0 | -66.6 | 79.0 | 91.6 |
+
+Period: 2021-01-01 to 2026-11-04.
+
