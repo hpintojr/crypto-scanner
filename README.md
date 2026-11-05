@@ -28,7 +28,13 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 | `status.md` | Latest cycle, errors, measured time between runs |
 | `data/sim.md` | Simulation value, comparison with SPY, checkpoints |
 | `data/sim-trades.csv` | Each closed trade with its thesis and argument against |
+| `research/wallets.csv` | The wallet collection: who, chain, address, source, and date last confirmed |
+| `data/wallet-moves.csv` | New moves by enabled wallets |
 | `data/report.md` | Whether signals kept moving, plus the Form 4 review |
+
+## Adding wallets
+
+Add one row per address in `research/wallets.csv`, reusing the owner's name for extra addresses. Fill in the chain, full address, source link and date confirmed, then set `enabled` to yes. Arkham's labels are attributions, so recheck them over time. Blurred sample rows on Arkham's logged-out pages use placeholder data, so don't collect from them.
 
 ## Safety
 

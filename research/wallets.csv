@@ -1,7 +1,7 @@
 number,owner,category,enabled,chain,address,attribution_source,last_verified,profile,notes
-1,Ripple,company treasury,no,,,,,https://arkm.com/explorer/entity/ripple,"Corporate wallets, never a personal holding"
-2,Tesla,company treasury,no,,,,,https://arkm.com/explorer/entity/tesla,"Corporate wallets, never a personal holding"
-3,SpaceX,company treasury,no,,,,,https://arkm.com/explorer/entity/spacex,"Corporate wallets, never a personal holding"
+1,Ripple,company treasury,yes,ethereum,0xa2Eea193444B16fE2D18CFe977aceeea6Dd9c367,https://arkm.com/explorer/address/0xa2Eea193444B16fE2D18CFe977aceeea6Dd9c367,2026-11-05,https://arkm.com/explorer/entity/ripple,"Arkham label ""Ripple: MultiSign"". About 2.005M RLUSD on Nov 5, 2026. RLUSD contract wallet, not the XRP treasury. Token moves are not read yet, so it logs little. XRP accounts still needed"
+2,Tesla,company treasury,yes,bitcoin,1FnhpZnvLgNDcvmezQnXi6HewU39qNjwY9,https://arkm.com/explorer/address/1FnhpZnvLgNDcvmezQnXi6HewU39qNjwY9,2026-11-05,https://arkm.com/explorer/entity/tesla,"Arkham label ""Tesla"". About 2,109 BTC on Nov 5, 2026. One of many Tesla addresses. A move can be custody, not a sale"
+3,SpaceX,company treasury,yes,bitcoin,bc1qz3edjl4eznyml4jaslfwe7upm5lkzrzge37vhe,https://arkm.com/explorer/address/bc1qz3edjl4eznyml4jaslfwe7upm5lkzrzge37vhe,2026-11-05,https://arkm.com/explorer/entity/spacex,"Arkham label ""SpaceX"". About 1,389 BTC on Nov 5, 2026. One of many SpaceX addresses. A move can be custody, not a sale"
 4,Arthur Hayes,named person,no,,,,,https://arkm.com/explorer/entity/arthur-hayes,"Needs the owner's own disclosure or strong published attribution, address by address"
 5,Andrew Kang,named person,no,,,,,https://arkm.com/explorer/entity/rewkang,"Needs the owner's own disclosure or strong published attribution, address by address"
 6,Justin Sun,named person,no,,,,,https://arkm.com/explorer/entity/justin-sun,"Needs the owner's own disclosure or strong published attribution, address by address"
