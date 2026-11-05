@@ -13,7 +13,7 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 
 ## Simulation rules
 
-**Current rule: hold mode.** On Nov 5, 2026, Hamilton chose to stick to proven approaches. There are no new buys: the commodities $1,000 and free crypto cash wait in cash until Hamilton approves an allocation. Older crypto positions keep their exits, and that cash stays in cash. The rules below apply only if `HOLD_MODE` is turned off. Research and the strategy tests keep running.
+**Current rule: approved allocation.** Hamilton approved this on Nov 5, 2026. Commodities: long $700 (GLD $300, DBC $250, DBA $75, CPER $75), mid $300 ($75 each, in or out by the 100-day average, checked weekly). Crypto: long $600 (BTC $400, ETH $200), mid $400 ($200 each, same rule). No short-term slice until a rule passes. Older crypto positions keep their exits, and that cash joins the plan. The rules below apply only if `HOLD_MODE` is turned off. Research and the strategy tests keep running.
 
 - Budget: $1,000 for crypto and $1,000 for stocks, kept separate. No limit on the number of trades. Cash can't go below zero, and there's no margin.
 - Every signal can trade while there's cash: qualifying Form 4 buys and up movers on at least 2x volume. At most one buy per market per cycle, and nothing is bought twice in a day.

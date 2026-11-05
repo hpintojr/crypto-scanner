@@ -7,7 +7,9 @@ import os
 from datetime import timedelta
 from . import backtest, core, stocks
 
-VERSION = 1
+VERSION = 2
+PLAN_WEIGHTS = {"Commodities": {"GLD": (.30, .075), "DBC": (.25, .075), "DBA": (.075, .075), "CPER": (.075, .075)},
+                "Crypto": {"BTC/USD": (.40, .20), "ETH/USD": (.20, .20)}}  # (long share, mid share) of each $1,000
 YEARS = 6
 FUNDS = ["GLD", "SLV", "USO", "UNG", "CPER", "DBA", "DBC"]
 COINS = ["BTC/USD", "ETH/USD"]
@@ -88,6 +90,29 @@ def basket(closes, symbols, rule, cost):
     return summary([_avg(rets[d]) for d in all_dates if d in rets]), all_dates[0], all_dates[-1]
 
 
+def plan_mix(closes, weights, cost):
+    """The approved allocation as one portfolio, rebalanced daily, over the dates all its assets share."""
+    shared = sorted(set.intersection(*[set(closes[s]) for s in weights]))
+    if len(shared) < 250:
+        return None
+    daily = [0.0] * (len(shared) - 1)
+    for sym, (long_w, mid_w) in weights.items():
+        c = [closes[sym][d] for d in shared]
+        for rule, w in ((long_hold, long_w), (trend, mid_w)):
+            for i, r in enumerate(returns(c, rule(c), cost)):
+                daily[i] += w * r
+    return summary(daily), shared[0], shared[-1]
+
+
+def _plan_row(closes, weights, cost):
+    res = plan_mix(closes, weights, cost)
+    if not res:
+        return []
+    s, a, b = res
+    return ["| Rule | Total % | Worst drop % | First half % | Second half % |", "|---|---:|---:|---:|---:|",
+            f"| Approved mix | {s['total']:.1f} | {s['drop']:.1f} | {s['first']:.1f} | {s['second']:.1f} |", "", f"Period: {a} to {b}.", ""]
+
+
 def _lines(title, closes, symbols, cost):
     rows = [("Long: hold", long_hold), ("Mid: 100-day trend", trend), ("Short: buy dips in an uptrend", pullback)]
     out = [f"## {title}", "", "| Rule | Total % | Worst drop % | First half % | Second half % |", "|---|---:|---:|---:|---:|"]
@@ -118,6 +143,8 @@ def cycle(state, errors, creds):
         lines = ["# Commodities and crypto test", "", "A rule is worth paper trading only if it makes money in both halves and has a better "
                  "return for its risk than holding. No orders come from this file.", ""]
         lines += _lines("Commodity funds", f, FUNDS, FUND_COST) + _lines("Crypto", c, COINS, COIN_COST)
+        lines += ["## The approved allocation", "", "Commodities"] + _plan_row(f, PLAN_WEIGHTS["Commodities"], FUND_COST)
+        lines += ["Crypto"] + _plan_row(c, PLAN_WEIGHTS["Crypto"], COIN_COST)
         with open(os.path.join(core.DATA, "allocation-test.md"), "w") as out:
             out.write("\n".join(lines) + "\n")
         state["allocation_version"] = VERSION

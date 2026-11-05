@@ -1,7 +1,7 @@
 """$1,000 paper simulation. Places orders on Alpaca's PAPER endpoint only, never live.
 
-HOLD_MODE (Hamilton's rule, Nov 5, 2026): no unproven picks. New money only buys and holds SPY or BTC, with no exits.
-Older positions keep their normal exits, and their cash moves into the hold. Set HOLD_MODE to False for the old picks.
+HOLD_MODE (Hamilton approved this allocation Nov 5, 2026): new money follows PLAN below. No short-term slice until a rule passes.
+Older positions keep their normal exits, and their cash joins the plan. Set HOLD_MODE to False for the old picks.
 
 Two separate budgets, $1,000 for crypto and $1,000 for stocks. No limit on the number of trades, only on
 money: no margin, and neither budget can spend the other's cash.
@@ -14,7 +14,7 @@ Create a file named SIM_STOP in the repo to stop all new orders.
 import csv, json, os, urllib.error, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import date, datetime, timedelta, timezone
-from . import core, form4, metrics, stocks
+from . import backtest, core, form4, metrics, stocks
 
 PAPER_URL = "https://paper-api.alpaca.markets"  # the only place orders can go
 START_CASH = 1000.0
@@ -23,6 +23,10 @@ STOP_PCT, TARGET_PCT, MAX_HOLD_DAYS = -5.0, 10.0, 7
 REPEAT_MOMENTUM = True  # keep buying momentum picks until the cash is used
 STALE_BUY_MINUTES = 15  # an unfilled buy older than this is canceled, and its cash returns
 HOLD_MODE = True
+PLAN = {"crypto": {"long": {"BTC/USD": 400, "ETH/USD": 200}, "mid": {"BTC/USD": 200, "ETH/USD": 200}},
+        "stock": {"long": {"GLD": 300, "DBC": 250, "DBA": 75, "CPER": 75}, "mid": {"GLD": 75, "DBC": 75, "DBA": 75, "CPER": 75}}}
+TREND_DAYS = 100
+TREND_CHECK_DAYS = 7
 MIN_ORDER = 10.0  # smaller orders can be refused, and cash that low is effectively used up
 PEPE_ACTUAL_COST, PEPE_ACTUAL_ENTRY = 98.0546, 4.99e-06  # Alpaca cash fell from $100,000 to $99,901.95
 ENTRY_MINUTE = 10 * 60 + 30
@@ -85,7 +89,7 @@ def _cancel_order(creds, order_id):
 
 
 def _order_age_minutes(cid):
-    """Orders carry their UTC placement time in the ID: sim-buy-POLUSD-202611051009."""
+    """Orders carry their UTC placement time in the ID, such as sim-buy-POLUSD-202611051009."""
     placed = datetime.strptime(cid.rsplit("-", 1)[-1], "%Y%m%d%H%M").replace(tzinfo=timezone.utc)
     return (core.now() - placed).total_seconds() / 60
 
@@ -137,6 +141,8 @@ def _sync(s, creds):
         elif state in ("canceled", "expired", "rejected"):
             if p["status"] == "buying":
                 s[_bucket(p)] += p["notional"]
+                if p.get("plan"):
+                    s["plan_spent"][p["plan"]] -= p["notional"]
                 s["positions"].remove(p)
             else:
                 p["status"] = "open"  # a sell that didn't fill: try again next cycle
@@ -162,14 +168,7 @@ def _exits(s, creds, prices, today, is_open):
         reason = "stop" if move <= STOP_PCT else "target" if move >= TARGET_PCT else \
             "time" if held >= MAX_HOLD_DAYS else None
         if reason:
-            p["sell_id"] = f"sim-sell-{p['symbol'].replace('/', '')}-{core.now():%Y%m%d%H%M}"
-            qty = p["qty"]
-            if crypto:  # any crypto fee comes out of the coins, so sell what the account really holds
-                held_qty = stocks._get(PAPER_URL, f"/v2/positions/{p['symbol'].replace('/', '')}", creds).get("qty")
-                qty = str(min(float(qty), float(held_qty or qty)))
-            _post_order(creds, {"symbol": p["symbol"], "qty": qty, "side": "sell", "type": "market",
-                                "time_in_force": "gtc" if crypto else "day", "client_order_id": p["sell_id"]})
-            p.update(status="selling", exit_reason=reason)
+            _sell_position(s, creds, p, reason)
 
 
 def candidates(today, held):
@@ -298,22 +297,92 @@ def _check_paper(creds):
         raise RuntimeError("account is not a paper account, refusing to trade")
 
 
-def _hold_buy(s, creds, market):
-    """Puts all of a budget's free cash into its index or coin, to hold."""
+def _place_plan_buy(s, creds, market, sym, amount, key, hold):
+    """One plan buy, in dollars where the asset allows it and whole shares where it doesn't."""
     crypto = market == "crypto"
-    bucket, sym = ("cash", "BTC/USD") if crypto else ("stock_cash", stocks.BENCH)
-    notional = round(s[bucket], 2)
-    if notional < MIN_ORDER or any(p["symbol"] == sym and p["status"] == "buying" for p in s["positions"]):
+    bucket = "cash" if crypto else "stock_cash"
+    notional = round(min(amount, s[bucket]), 2)
+    if notional < MIN_ORDER:
         return False
     _check_paper(creds)
-    cid = f"sim-hold-{sym.replace('/', '')}-{core.now():%Y%m%d%H%M}"
-    _post_order(creds, {"symbol": sym, "notional": str(notional), "side": "buy", "type": "market",
-                        "time_in_force": "gtc" if crypto else "day", "client_order_id": cid})
+    cid = f"sim-plan-{sym.replace('/', '')}-{core.now():%Y%m%d%H%M}"
+    body = {"symbol": sym, "side": "buy", "type": "market", "time_in_force": "gtc" if crypto else "day", "client_order_id": cid}
+    if crypto or stocks._get(PAPER_URL, f"/v2/assets/{sym}", creds).get("fractionable"):
+        body["notional"] = str(notional)
+    else:
+        px = _price(creds, sym)
+        shares = int(notional // px) if px else 0
+        if not shares:
+            return False
+        body["qty"] = str(shares)
+        notional = round(shares * px, 2)
+    _post_order(creds, body)
     s[bucket] -= notional
-    s["positions"].append({"symbol": sym, "market": market, "source": "hold", "hold": True, "status": "buying", "buy_id": cid,
-                           "notional": notional, "thesis": f"Long-term hold of {sym}, the benchmark for this budget",
-                           "against": "Can fall a lot and stay down for years. No stop, by design."})
+    s["plan_spent"][key] = s["plan_spent"].get(key, 0) + notional
+    s["positions"].append({"symbol": sym, "market": market, "source": key, "plan": key, "hold": True, "status": "buying", "buy_id": cid,
+                           "notional": notional, "thesis": f"Approved allocation, {key}",
+                           "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."})
     return True
+
+
+def _update_trends(s, creds, today):
+    """The mid slice's weekly check: in when the last close is above its 100-day average."""
+    last = s.get("trend_checked")
+    if last and (today - date.fromisoformat(last)).days < TREND_CHECK_DAYS:
+        return
+    end, start = today - timedelta(days=1), today - timedelta(days=220)
+    funds = sorted(PLAN["stock"]["mid"])
+    closes = backtest._daily_closes(creds, "/v2/stocks/bars", funds, start, end, feed="iex", adjustment="all")
+    closes.update(backtest._daily_closes(creds, "/v1beta3/crypto/us/bars", sorted(PLAN["crypto"]["mid"]), start, end))
+    trends = s.setdefault("trends", {})
+    for sym, by_day in closes.items():
+        c = [by_day[d] for d in sorted(by_day)]
+        if len(c) >= TREND_DAYS:
+            trends[sym] = c[-1] > sum(c[-TREND_DAYS:]) / TREND_DAYS
+    s["trend_checked"] = today.isoformat()
+
+
+def _sell_position(s, creds, p, reason):
+    crypto = p.get("market") == "crypto"
+    p["sell_id"] = f"sim-sell-{p['symbol'].replace('/', '')}-{core.now():%Y%m%d%H%M}"
+    qty = p["qty"]
+    if crypto:
+        held_qty = stocks._get(PAPER_URL, f"/v2/positions/{p['symbol'].replace('/', '')}", creds).get("qty")
+        qty = str(min(float(qty), float(held_qty or qty)))
+    _post_order(creds, {"symbol": p["symbol"], "qty": qty, "side": "sell", "type": "market",
+                        "time_in_force": "gtc" if crypto else "day", "client_order_id": p["sell_id"]})
+    p.update(status="selling", exit_reason=reason)
+
+
+def _run_plan(s, creds, today, is_open):
+    """Applies the approved allocation. Long slice first, then mid, at most one buy per market per cycle."""
+    s.setdefault("plan_spent", {})
+    _update_trends(s, creds, today)
+    trends = s.get("trends", {})
+    for market, slices in PLAN.items():
+        if market == "stock" and not is_open:
+            continue
+        for p in s["positions"]:  # the mid slice sells when its trend turns down
+            key = p.get("plan", "")
+            if p.get("market") == market and key.startswith("mid:") and p["status"] == "open" and trends.get(p["symbol"]) is False:
+                _sell_position(s, creds, p, "trend")
+                s["plan_spent"][key] = 0
+        placed = False
+        for sym, target in slices["long"].items():
+            key = f"long:{sym}"
+            left = target - s["plan_spent"].get(key, 0)
+            if left >= MIN_ORDER and not any(x.get("plan") == key and x["status"] == "buying" for x in s["positions"]):
+                placed = _place_plan_buy(s, creds, market, sym, left, key, True)
+                if placed:
+                    break
+        if placed:
+            continue
+        for sym, target in slices["mid"].items():
+            key = f"mid:{sym}"
+            busy = any(x.get("plan") == key and x["status"] in ("buying", "selling") for x in s["positions"])
+            left = target - s["plan_spent"].get(key, 0)
+            if trends.get(sym) and not busy and left >= MIN_ORDER and _place_plan_buy(s, creds, market, sym, left, key, True):
+                break
 
 
 def _buy(s, creds, prices, today, market, may_use_momentum):
@@ -356,7 +425,7 @@ def _preview(s, creds, state, today, is_open):
     """Hourly list of what the rules would buy next, using the same picks as real buys. Places no orders."""
     if HOLD_MODE:
         with open(os.path.join(core.DATA, "sim-next.md"), "w") as f:
-            f.write("# Next picks\n\nNo new buys. Both budgets wait in cash until Hamilton approves an allocation. Older coins keep their exits.\n")
+            f.write("# Next picks\n\nApproved allocation: see PLAN in research/sim.py. Buys go long slice first, then mid when its 100-day trend is up, as cash allows.\n")
         return
     last = state.get("preview_checked")
     if last and core.now() - core.parse(last) < timedelta(minutes=55):
@@ -424,8 +493,8 @@ def _report(s, prices):
         due = (start + timedelta(days=days)).isoformat()
         hit = next((r for r in rows if r["date"] >= due), None)
         lines.append(f"- {days}-day checkpoint ({due}): " + (f"${float(hit['equity']):,.2f}, SPY ${hit['spy_equivalent']}" if hit else "not reached"))
-    lines += ["", "Rules: no new buys. The commodities $1,000 and free crypto cash wait in cash until Hamilton approves an allocation. "
-              "Older crypto positions keep their -5%, +10% and 7-day exits. No margin. "
+    lines += ["", "Rules: approved allocation. Commodities: long $700 in GLD, DBC, DBA and CPER, mid $300 by 100-day trend. "
+              "Crypto: long $600 in BTC and ETH, mid $400 by 100-day trend. No short-term slice. Older coins keep their exits, and that cash joins the plan. No margin. "
               "Trade data is in sim-trades.csv."]
     with open(os.path.join(core.DATA, "sim.md"), "w") as f:
         f.write("\n".join(lines) + "\n")
@@ -456,7 +525,7 @@ def cycle(state, errors, creds):
         if not stopped:
             _exits(s, creds, prices, today, is_open)
             if HOLD_MODE:
-                pass  # Both budgets wait in cash until Hamilton approves an allocation. Older coins still exit.
+                _run_plan(s, creds, today, is_open)
             else:
                 _buy(s, creds, prices, today, "crypto", True)
                 if is_open:
