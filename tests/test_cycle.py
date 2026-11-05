@@ -512,6 +512,19 @@ def main():
     sim._preview({"cash": 700.0, "positions": []}, stocks.credentials(), {}, NOW.date(), False)
     assert len(ORDERS) == n and "## Stocks" in open(os.path.join(core.DATA, "sim-next.md")).read()
 
+    # crypto needs neutral or better news, and gold-backed tokens are never picked
+    saved_news = sim._news_score
+    CRYPTO[0] = [{"symbol": "SOL/USD", "tradable": True}, {"symbol": "PAXG/USD", "tradable": True}, {"symbol": "BTC/USD", "tradable": True}]
+    open(os.path.join(core.DATA, "signals.csv"), "w").write(",".join(core.SIGNAL_FIELDS) + "\n")
+    sim._news_score = lambda c, s, q: (10, -4)
+    picks = sim._crypto_candidates(creds, NOW.date(), set())
+    assert picks == [], picks
+    sim._news_score = lambda c, s, q: (10, 0)
+    picks = [c[2] for c in sim._crypto_candidates(creds, NOW.date(), set())]
+    assert "SOL/USD" in picks and "PAXG/USD" not in picks, picks
+    sim._news_score = saved_news
+    CRYPTO[0] = []
+
     # measured schedule: runs five minutes apart report five
     s = {"last_run": (NOW - timedelta(minutes=5)).strftime(core.FMT)}
     assert scanner.cycle_minutes(s) == 5

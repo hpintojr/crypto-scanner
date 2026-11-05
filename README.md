@@ -16,6 +16,7 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 - Budget: $1,000 to start, shared across stocks and crypto, with at least $300 of cash held back for stocks that crypto can't spend. No limit on the number of trades. Cash can't go below zero, and there's no margin.
 - Every signal can trade while there's cash: qualifying Form 4 buys and up movers on at least 2x volume. At most one buy per market per cycle, and nothing is bought twice in a day.
 - Keeps buying until the cash is used: when there's no signal, the best remaining pick from the past month's returns against SPY or BTC plus news. Crypto runs 24/7. Stocks run in market hours, with these picks from 10:30 AM ET (7:30 AM PT).
+- Crypto buys need neutral or better news tone. Stablecoins and gold-backed tokens are never bought.
 - News comes from Alpaca's news feed and Google News. X.com is not included. Momentum picks must score above zero.
 - Each trade is 10% of current value, $100 at the start, so gains are reinvested.
 - Sell at -5%, +10%, or after 7 days.

@@ -23,7 +23,8 @@ PEPE_ACTUAL_COST, PEPE_ACTUAL_ENTRY = 98.0546, 4.99e-06  # Alpaca cash fell from
 ENTRY_MINUTE = 10 * 60 + 30
 LOOKBACK_DAYS = 20  # trading sessions of history in the momentum score
 SHORTLIST = 8  # names checked for news each day
-STABLECOINS = {"USDC", "USDT", "USDG", "DAI", "PYUSD", "BUSD", "TUSD", "FDUSD"}
+# Pegged to a dollar or to gold, so they don't fit a momentum strategy
+STABLECOINS = {"USDC", "USDT", "USDG", "DAI", "PYUSD", "BUSD", "TUSD", "FDUSD", "RLUSD", "PAXG", "XAUT", "XAUM"}
 GOOD_WORDS = ("beat", "beats", "surge", "soar", "rally", "upgrade", "record", "raises", "wins", "partnership", "approval", "gains")
 BAD_WORDS = ("miss", "misses", "plunge", "tumble", "downgrade", "lawsuit", "probe", "fraud", "hack", "cuts", "falls", "recall", "sec charges")
 FORM4_MAX_AGE_DAYS = 3
@@ -188,7 +189,7 @@ def _news_score(creds, sym, query):
     return len(low), good - bad
 
 
-def _rank(creds, closes, bench, held, query_fn, label):
+def _rank(creds, closes, bench, held, query_fn, label, min_tone=None):
     """Score = month return vs benchmark + half the 5-day return + a capped news nudge. Best first, positive only."""
     if len(closes.get(bench) or []) < LOOKBACK_DAYS / 2:
         return []
@@ -205,7 +206,7 @@ def _rank(creds, closes, bench, held, query_fn, label):
     for base, sym, month, week in sorted(scored, reverse=True)[:SHORTLIST]:
         count, tone = _news_score(creds, sym, query_fn(sym))
         score = base + max(-5, min(5, tone))
-        if score > 0:
+        if score > 0 and (min_tone is None or tone >= min_tone):
             out.append((0, score, sym, label,
                         f"Up {month:.1f}% over about a month ({month - bench_ret:+.1f}% vs {bench}), {week:+.1f}% this week, "
                         f"{count} headlines in the last day, news tone {tone:+d}",
@@ -252,7 +253,8 @@ def _crypto_candidates(creds, today, held, momentum_ok=True):
     for r in core.read("signals.csv"):
         pair = f"{r['symbol']}/USD"
         if (r["market"] == "crypto" and r["time"][:10] == today.isoformat() and r["passed"] == "1"
-                and float(r["move_1h_pct"]) > 0 and pair in pairs and pair not in held):
+                and float(r["move_1h_pct"]) > 0 and pair in pairs and pair not in held
+                and _news_score(creds, pair, f"{r['symbol']} crypto")[1] >= 0):
             out.append((1, float(r["volume_ratio"]), pair, "crypto-mover",
                         f"Up {float(r['move_1h_pct']):.1f}% in an hour on {float(r['volume_ratio']):.1f}x usual volume",
                         "The move may already be over, and this signal has no proven edge yet."))
@@ -261,7 +263,7 @@ def _crypto_candidates(creds, today, held, momentum_ok=True):
     page = stocks._get(stocks.DATA_URL, "/v1beta3/crypto/us/bars", creds, symbols=",".join(pairs), timeframe="1Day",
                        start=(today - timedelta(days=LOOKBACK_DAYS)).isoformat(), limit=10000)
     closes = {k: [b["c"] for b in v] for k, v in (page.get("bars") or {}).items()}
-    return _rank(creds, closes, "BTC/USD", held, lambda s: f"{s.split('/')[0]} crypto", "crypto-momentum")
+    return _rank(creds, closes, "BTC/USD", held, lambda s: f"{s.split('/')[0]} crypto", "crypto-momentum", min_tone=0)
 
 
 def _check_paper(creds):
