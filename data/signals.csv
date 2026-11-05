@@ -2,3 +2,5 @@ signal_id,time,market,symbol,asset_id,name,price,benchmark,benchmark_price,move_
 1217a6a5f03e,2026-11-05T09:00:51Z,crypto,RAIN,rain,Rain,0.00615307,BTC,80445,5.935,13964132,13270691.35,1.052,0,,move_1h,
 8cc88701c39d,2026-11-05T12:05:09Z,crypto,WLFI,world-liberty-financial,World Liberty Financial,0.04380861,BTC,80206,-5.641,65688766,27213738.67,2.414,1,,move_1h,
 facbdbb75403,2026-11-05T13:05:11Z,stocks,MU,MU,MU,758.43,SPY,766.9,-4.59,0,0,0,0,6,premarket_gap,no
+3ae78e0e3fca,2026-11-05T13:10:11Z,stocks,INTC,INTC,INTC,56.51,SPY,767.12,-3.037,0,0,0,0,8,premarket_gap,no
+4a7183ff8377,2026-11-05T13:10:11Z,stocks,DELL,DELL,DELL,352.98,SPY,767.12,-5.268,0,0,0,0,2,premarket_gap,no
