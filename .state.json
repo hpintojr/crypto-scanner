@@ -2,24 +2,23 @@
  "buzz": {
   "world-liberty-financial": "2026-11-05T12:05:10Z"
  },
- "last_watch": "2026-11-05T15:16:40Z",
+ "last_watch": "2026-11-05T17:05:25Z",
  "last_flag": "2026-11-05T13:00:21Z WLFI",
  "inbox_hash": "7f9d95d9402f57d8ca4e2efcc4825389ad5a7c320a8cdcf4c91a9942e2ae11dc",
  "answers_hash": "4433d13ee12e546443e456514dc71497b1ddda7690e898314eb6abfc6d4d4bba",
  "pending_request": false,
- "last_scan": "2026-11-05T17:00:35Z: 40 movers >3% 1h, 0 kept after 2x volume check",
- "last_push_error": "error: failed to push some refs to 'https://github.com/hpintojr/crypto-scanner.git'",
- "last_stock_scan": "2026-11-05T17:00:35Z: 100 stocks, 11 movers over 2.0% 1h, 7 kept after 2x volume check, 1 without enough data",
+ "last_scan": "2026-11-05T17:05:25Z: 2 movers >3% 1h, 0 kept after 2x volume check",
+ "last_push_error": null,
+ "last_stock_scan": "2026-11-05T17:05:25Z: 100 stocks, 9 movers over 2.0% 1h, 4 kept after 2x volume check, 1 without enough data",
  "form4": {
   "next_day": "2026-11-05",
   "offset": 0
  },
- "last_form4": "2026-11-05T17:01:53Z: 0 filings read, 0 code P buys added, working on 2026-11-05, 134 logged, 2 qualifying",
- "last_run": "2026-11-05T17:03:03Z",
- "cycle_minutes": 61,
+ "last_form4": "2026-11-05T17:06:20Z: 0 filings read, 0 code P buys added, working on 2026-11-05, 134 logged, 2 qualifying",
+ "last_run": "2026-11-05T17:06:57Z",
+ "cycle_minutes": 4,
  "last_sim": "value $1,933.98 of $2,000, 14 open, crypto cash $0.00, stock cash $225.05",
  "signal_seen": {
-  "stocks:MU:premarket_gap:0": "2026-11-05T13:05:11Z",
   "stocks:INTC:premarket_gap:0": "2026-11-05T13:10:11Z",
   "stocks:DELL:premarket_gap:0": "2026-11-05T13:10:11Z",
   "stocks:QCOM:premarket_gap:0": "2026-11-05T13:15:06Z",
@@ -105,7 +104,9 @@
   "crypto:DOGE:move_1h:0": "2026-11-05T17:00:28Z",
   "crypto:WBT:move_1h:0": "2026-11-05T17:00:32Z",
   "stocks:LLY:move_1h:0": "2026-11-05T17:01:23Z",
-  "stocks:GILD:move_1h:0": "2026-11-05T17:01:24Z"
+  "stocks:GILD:move_1h:0": "2026-11-05T17:01:24Z",
+  "crypto:RAIN:move_1h:0": "2026-11-05T17:05:25Z",
+  "stocks:TMUS:move_1h:0": "2026-11-05T17:06:01Z"
  },
  "wallets_seen": {
   "0xa2Eea193444B16fE2D18CFe977aceeea6Dd9c367": [
@@ -2979,11 +2980,11 @@
    "0x468f8434d2fc3e62509c495569610dbb82516824ceef2e2bc243907e4def9946:336"
   ]
  },
- "last_wallets": "25 checked this cycle, 59 enabled in rotation, 3 new moves",
+ "last_wallets": "25 checked this cycle, 59 enabled in rotation, 0 new moves",
  "holdings_checked": "2026-11-05T17:02:45Z",
  "last_holdings": "-6.05% since 2026-11-05, BTC -5.19%",
  "preview_checked": "2026-11-05T11:00:28Z",
- "wallets_offset": 57,
+ "wallets_offset": 82,
  "backtest_date": "2026-11-05",
  "last_backtest": "2026-11-05: 501 trading days tested, see data/backtest.md",
  "movers_checked": "2026-11-05T17:03:03Z",
@@ -2993,17 +2994,17 @@
  "last_gap_check": "2026-11-05T14:25:10Z: 3 of 100 stocks gapped 3%+ pre-market",
  "step_seconds": {
   "simulation": 8,
-  "crypto scan": 19,
+  "crypto scan": 4,
   "buzz": 0,
   "watchlist": 0,
-  "stocks": 49,
+  "stocks": 36,
   "score crypto": 0,
-  "score stocks": 28,
+  "score stocks": 19,
   "form 4": 1,
-  "wallets": 51,
+  "wallets": 36,
   "holdings": 0,
   "backtest": 0,
-  "movers": 18,
+  "movers": 0,
   "allocation": 0
  },
  "skipped_steps": []
