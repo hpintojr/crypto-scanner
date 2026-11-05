@@ -4,6 +4,7 @@ One invocation = one 15-minute cycle. Run via run.sh (loop) or cron."""
 import csv, hashlib, json, os, re, subprocess, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
+from research import core as research_core, stocks as research_stocks
 
 REPO = os.path.dirname(os.path.abspath(__file__))
 CG = "https://api.coingecko.com/api/v3"
@@ -78,19 +79,32 @@ def scan(state):
     movers = [c for c in data if c.get("price_change_percentage_1h_in_currency") is not None
               and abs(c["price_change_percentage_1h_in_currency"]) > 3]
     kept = []
+    btc = next((c["current_price"] for c in data if c["id"] == "bitcoin"), None)
     for c in movers:
         time.sleep(3)
         ch = get(f"{CG}/coins/{c['id']}/market_chart?vs_currency=usd&days=7")
         if not ch or not ch.get("total_volumes"):
             continue
-        # CoinGecko total_volumes are rolling-24h samples; average one sample per UTC day
+        # CoinGecko total_volumes are rolling-24h samples. The baseline leaves out the last 24h
+        # so the current move can't inflate its own comparison; average one sample per UTC day.
         days = {}
+        cutoff = now() - timedelta(hours=24)
         for ts, v in ch["total_volumes"]:
-            days.setdefault(datetime.fromtimestamp(ts / 1000, timezone.utc).date(), []).append(v)
+            sampled = datetime.fromtimestamp(ts / 1000, timezone.utc)
+            if sampled < cutoff:
+                days.setdefault(sampled.date(), []).append(v)
         daily = [sum(v) / len(v) for v in days.values()]
         avg = sum(daily) / len(daily) if daily else 0
         vol = c.get("total_volume") or 0
-        if avg > 0 and vol >= 2 * avg:
+        if avg <= 0:
+            continue
+        passed = vol >= 2 * avg
+        if btc:
+            research_core.log_signal(state, market="crypto", symbol=c["symbol"].upper(), asset_id=c["id"],
+                                     name=c["name"], price=c["current_price"], benchmark="BTC",
+                                     benchmark_price=btc, move=c["price_change_percentage_1h_in_currency"],
+                                     volume=vol, baseline=avg, ratio=vol / avg, passed=passed)
+        if passed:
             kept.append((c, vol, avg, vol / avg))
     rows = [[iso(), c["id"], c["symbol"], c["name"], c["current_price"],
              round(c["price_change_percentage_1h_in_currency"], 3), vol, round(avg, 2), round(r, 3)]
@@ -118,7 +132,7 @@ def buzz(flagged, state):
             continue
         rank = ranks.get(c["id"])
         tp = 0 if rank is None else 6 if rank <= 3 else 5 if rank <= 6 else 4 if rank <= 9 else 3 if rank <= 12 else 2 if rank <= 15 else 0
-        q = urllib.parse.quote(f'{c["name"]} crypto')
+        q = urllib.parse.quote(f'{c["name"]} crypto when:1d')
         xml = get(f"https://news.google.com/rss/search?q={q}&hl=en-US&gl=US&ceid=US:en", kind="raw")
         n = 0
         if xml:
@@ -165,6 +179,31 @@ def watchlist(state):
         state["last_watch"] = iso()
 
 
+def score_crypto():
+    """Fill in returns for crypto signals that have come due."""
+    due = research_core.pending("crypto")
+    if not due:
+        return
+    ids = sorted({s["asset_id"] for s, _, _ in due} | {"bitcoin"})[:100]
+    prices = get(f"{CG}/simple/price?ids={','.join(ids)}&vs_currencies=usd")
+    if not prices or "bitcoin" not in prices:
+        return
+    for sig, horizon, when in due:
+        if sig["asset_id"] in prices:
+            research_core.record_outcome(sig, horizon, when, prices[sig["asset_id"]]["usd"], prices["bitcoin"]["usd"])
+
+
+def research(state):
+    """Stock scan, outcome scoring and report. A failure here must not stop the crypto cycle."""
+    try:
+        creds = research_stocks.scan(state, errors)
+        score_crypto()
+        research_stocks.score(creds, errors)
+        research_core.write_report()
+    except Exception as e:
+        errors.append(f"research: {type(e).__name__}: {e}")
+
+
 def inbox(state):
     """requests-from-chip.md is the only inbox. A change marks it pending until
     answers-to-chip.md changes; replies are written by the agent, not this script."""
@@ -183,6 +222,7 @@ def write_status(state, host, push_error=None):
     status = ["# Scanner status", "", f"- Last run: {iso()}", f"- Host: {host}",
               f"- Last scan: {state.get('last_scan') or 'none yet'}",
               f"- Last flag: {state.get('last_flag') or 'none yet'}",
+              f"- Last stock scan: {state.get('last_stock_scan') or 'none yet'}",
               f"- Last watchlist snapshot: {state.get('last_watch') or 'none yet'}",
               f"- Next run: ~{iso(now() + timedelta(minutes=15))}",
               f"- Inbox: {'NEW request in requests-from-chip.md awaiting reply' if state.get('pending_request') else 'no pending requests'}",
@@ -219,6 +259,7 @@ def main():
     flagged = scan(state)
     buzz(flagged, state)
     watchlist(state)
+    research(state)
     write_status(state, host)
     publish(state)
     print("cycle done", iso(), "flagged:", [c["symbol"] for c in flagged], "errors:", errors)
