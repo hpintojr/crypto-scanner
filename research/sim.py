@@ -17,7 +17,7 @@ START_CASH = 1000.0
 TRADE_FRACTION = 0.10
 STOP_PCT, TARGET_PCT, MAX_HOLD_DAYS = -5.0, 10.0, 7
 MIN_ORDER = 10.0  # smaller orders can be refused, and cash that low is effectively used up
-MIN_EXACT_PRICE = 0.01  # below this, Alpaca's reported fill price can be rounded
+PEPE_ACTUAL_COST, PEPE_ACTUAL_ENTRY = 98.0546, 4.99e-06  # Alpaca cash fell from $100,000 to $99,901.95
 ENTRY_MINUTE = 10 * 60 + 30
 LOOKBACK_DAYS = 20  # trading sessions of history in the momentum score
 SHORTLIST = 8  # names checked for news each day
@@ -74,12 +74,18 @@ def _order(creds, cid):
     return stocks._get(PAPER_URL, "/v2/orders:by_client_order_id", creds, client_order_id=cid)
 
 
+def _held_qty(creds, p, fallback):
+    if p.get("market") != "crypto":
+        return fallback
+    return stocks._get(PAPER_URL, f"/v2/positions/{p['symbol'].replace('/', '')}", creds).get("qty") or fallback
+
+
 def _sync(s, creds):
     """Apply fills from Alpaca."""
-    for p in s["positions"]:  # repair a position recorded before the rounding fix
-        if p["status"] == "open" and p.get("cost", p["notional"]) < p["notional"] * 0.995:
-            s["cash"] -= p["notional"] - p["cost"]
-            p.update(cost=p["notional"], entry=p["notional"] / float(p["qty"]))
+    for p in s["positions"]:  # one-time correction: match the first PEPE buy to Alpaca's actual charge
+        if p.get("buy_id") == "sim-buy-PEPEUSD-20261105" and p["status"] == "open" and not p.get("reconciled"):
+            s["cash"] = s["cash"] + p.get("cost", p["notional"]) - PEPE_ACTUAL_COST
+            p.update(cost=PEPE_ACTUAL_COST, entry=PEPE_ACTUAL_ENTRY, qty=_held_qty(creds, p, p["qty"]), reconciled=True)
     for p in list(s["positions"]):
         if p["status"] not in ("buying", "selling"):
             continue
@@ -88,12 +94,13 @@ def _sync(s, creds):
         if state == "filled":
             qty, px = float(o["filled_qty"]), float(o["filled_avg_price"])
             if p["status"] == "buying":
-                # Very small prices come back rounded, so a dollar-sized buy costs its full amount.
-                p.update(status="open", qty=o["filled_qty"], entry=p["notional"] / qty, cost=p["notional"],
+                # Alpaca's account charge is the truth: filled quantity times fill price.
+                # A crypto fee comes out of the coins, so record what the account really holds.
+                cost = qty * px
+                s["cash"] += p["notional"] - cost
+                p.update(status="open", qty=_held_qty(creds, p, o["filled_qty"]), entry=px, cost=round(cost, 4),
                          opened=core.now().strftime(core.FMT))
             else:
-                if px < MIN_EXACT_PRICE:
-                    px = _position_price(creds, p) or px  # same rounding on the way out
                 s["cash"] += qty * px
                 _close(p, px, qty)
                 s["positions"].remove(p)

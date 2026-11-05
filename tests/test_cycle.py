@@ -376,13 +376,14 @@ def main():
     sim.cycle(state, errs, creds)
     assert errs == [] and not sim._load()["positions"], errs
 
-    # a rounded fill price must not create a fake gain, and an already-recorded one gets repaired
-    fixed = {"cash": 901.95, "positions": [{"symbol": "PEPE/USD", "status": "open", "notional": 100.0, "cost": 98.05, "qty": "19650225.98", "entry": 4.99e-06}]}
-    sim._sync(fixed, creds)
-    assert abs(fixed["cash"] - 900) < 1e-6 and fixed["positions"][0]["cost"] == 100.0, fixed
-    assert abs(fixed["positions"][0]["entry"] - 5.089e-06) < 1e-08, fixed
-    sim._sync(fixed, creds)
-    assert abs(fixed["cash"] - 900) < 1e-6, "repair must only run once"
+    # the first PEPE buy is corrected to what Alpaca charged, once, whichever state it's in
+    for start_cash, start_cost in ((900.0, 100.0), (901.9454, 98.0546)):
+        fixed = {"cash": start_cash, "positions": [{"symbol": "PEPE/USD", "market": "crypto", "status": "open", "notional": 100.0,
+                                                    "buy_id": "sim-buy-PEPEUSD-20261105", "cost": start_cost, "qty": "19650225.98", "entry": 5e-06}]}
+        sim._sync(fixed, creds)
+        sim._sync(fixed, creds)
+        p = fixed["positions"][0]
+        assert abs(fixed["cash"] - 901.9454) < 1e-3 and p["cost"] == 98.0546 and p["qty"] == "1.9", fixed
 
     # a stock with no signal today falls back to the month's numbers, and only after 10:30 ET
     CRYPTO[0] = []

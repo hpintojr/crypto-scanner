@@ -35,5 +35,6 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 - Create a file named `SIM_STOP` in the repo to stop new orders and automatic exits. Open positions stay open until it's removed.
 - Orders can only go to Alpaca's paper endpoint, and the simulation refuses a non-paper account.
 - Keys and contact details stay outside this repo, beside it on Otto. Never commit them.
+- The simulation's cash and holdings must match Alpaca's charges and positions. Alpaca is the source of truth.
 - Run one scheduler only. Don't run `run.sh` or cron alongside the Otto schedule.
 - Test changes with `python3 tests/test_cycle.py`.
