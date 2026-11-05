@@ -5,14 +5,15 @@
  "inbox_hash": "7f9d95d9402f57d8ca4e2efcc4825389ad5a7c320a8cdcf4c91a9942e2ae11dc",
  "answers_hash": "4433d13ee12e546443e456514dc71497b1ddda7690e898314eb6abfc6d4d4bba",
  "pending_request": false,
- "last_scan": "2026-11-05T08:35:39Z: 0 movers >3% 1h, 0 kept after 2x volume check",
+ "last_scan": "2026-11-05T08:43:24Z: 0 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-05T08:35:39Z: market closed",
+ "last_stock_scan": "2026-11-05T08:43:24Z: market closed",
  "form4": {
   "next_day": "2026-11-02",
-  "offset": 240
+  "offset": 360
  },
- "last_form4": "2026-11-05T08:36:30Z: 120 filings read, 7 code P buys added, working on 2026-11-02, 21 logged, 0 qualifying",
- "last_run": "2026-11-05T08:36:36Z",
- "cycle_minutes": 8
+ "last_form4": "2026-11-05T08:44:07Z: 120 filings read, 9 code P buys added, working on 2026-11-02, 30 logged, 0 qualifying",
+ "last_run": "2026-11-05T08:44:16Z",
+ "cycle_minutes": 8,
+ "last_sim": "starts at the next market open"
 }
