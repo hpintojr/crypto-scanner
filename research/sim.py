@@ -14,6 +14,7 @@ Create a file named SIM_STOP in the repo to stop all new orders.
 import csv, json, os, urllib.error, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import date, datetime, timedelta, timezone
+from decimal import Decimal, ROUND_DOWN
 from . import backtest, core, form4, metrics, stocks
 
 PAPER_URL = "https://paper-api.alpaca.markets"  # the only place orders can go
@@ -23,6 +24,7 @@ STOP_PCT, TARGET_PCT, MAX_HOLD_DAYS = -5.0, 10.0, 7
 REPEAT_MOMENTUM = True  # keep buying momentum picks until the cash is used
 STALE_BUY_MINUTES = 15  # an unfilled buy older than this is canceled, and its cash returns
 HOLD_MODE = True
+order_errors = []  # refused orders this cycle, shown in status.md
 PLAN = {"crypto": {"long": {"BTC/USD": 400, "ETH/USD": 200}, "mid": {"BTC/USD": 200, "ETH/USD": 200}},
         "stock": {"long": {"GLD": 300, "DBC": 250, "DBA": 75, "CPER": 75}, "mid": {"GLD": 75, "DBC": 75, "DBA": 75, "CPER": 75}}}
 TREND_DAYS = 100
@@ -60,17 +62,27 @@ def _load():
         return None
 
 
+class OrderRefused(Exception):
+    """Alpaca said no. Carries its reason, because a bare status code doesn't say why."""
+
+
 def _save(s):
+    """Replaced whole, so a killed cycle can't leave it half-written."""
     os.makedirs(core.DATA, exist_ok=True)
-    with open(_state_path(), "w") as f:
+    tmp = _state_path() + ".tmp"
+    with open(tmp, "w") as f:
         json.dump(s, f, indent=1)
+    os.replace(tmp, _state_path())
 
 
 def _post_order(creds, body):
     req = urllib.request.Request(PAPER_URL + "/v2/orders", data=json.dumps(body).encode(), method="POST",
                                  headers={**creds, "Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read())
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read())
+    except urllib.error.HTTPError as e:
+        raise OrderRefused(f"{body.get('side')} {body.get('symbol')}: HTTP {e.code} {e.read().decode(errors='replace')[:200]}")
 
 
 def _crypto_price(creds, sym):
@@ -109,7 +121,12 @@ def _held_qty(creds, p, fallback):
         return fallback
     # Alpaca merges all of a coin into one position, so never record more than this order filled.
     held = stocks._get(PAPER_URL, f"/v2/positions/{p['symbol'].replace('/', '')}", creds).get("qty") or fallback
-    return str(min(float(fallback), float(held)))
+    return _smaller(fallback, held)
+
+
+def _smaller(a, b):
+    """Exact, because float rounding can turn a large coin balance into slightly more than the account holds."""
+    return str(min(Decimal(str(a)), Decimal(str(b))))
 
 
 def _reconcile_crypto(s, creds):
@@ -120,10 +137,16 @@ def _reconcile_crypto(s, creds):
         if any(p["status"] != "open" for p in lots):
             continue
         held = stocks._get(PAPER_URL, f"/v2/positions/{sym.replace('/', '')}", creds).get("qty")
-        total = sum(float(p["qty"]) for p in lots)
-        if held and total and float(held) != total and abs(float(held) / total - 1) <= RECONCILE_MAX_GAP:
-            for p in lots:
-                p["qty"] = f"{float(p['qty']) * float(held) / total:.9f}"
+        if not held:
+            continue
+        held, total = Decimal(str(held)), sum(Decimal(str(p["qty"])) for p in lots)
+        if total and held != total and abs(held / total - 1) <= Decimal(str(RECONCILE_MAX_GAP)):
+            left = held
+            for p in lots[:-1]:
+                share = (Decimal(str(p["qty"])) * held / total).quantize(Decimal("0.000000001"), rounding=ROUND_DOWN)
+                p["qty"] = str(share)
+                left -= share
+            lots[-1]["qty"] = str(left)  # the lots add up to exactly what Alpaca holds
 
 
 def _sync(s, creds):
@@ -183,7 +206,7 @@ def _exits(s, creds, prices, today, is_open):
         reason = "stop" if move <= STOP_PCT else "target" if move >= TARGET_PCT else \
             "time" if held >= MAX_HOLD_DAYS else None
         if reason:
-            _sell_position(s, creds, p, reason)
+            _try_sell(s, creds, p, reason)
 
 
 def candidates(today, held):
@@ -337,6 +360,7 @@ def _place_plan_buy(s, creds, market, sym, amount, key, hold):
     s["positions"].append({"symbol": sym, "market": market, "source": key, "plan": key, "hold": True, "status": "buying", "buy_id": cid,
                            "notional": notional, "thesis": f"Approved allocation, {key}",
                            "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."})
+    _save(s)  # recorded right away, so a later failure can't lose this order
     return True
 
 
@@ -359,14 +383,25 @@ def _update_trends(s, creds, today):
 
 def _sell_position(s, creds, p, reason):
     crypto = p.get("market") == "crypto"
-    p["sell_id"] = f"sim-sell-{p['symbol'].replace('/', '')}-{core.now():%Y%m%d%H%M}"
+    sell_id = f"sim-sell-{p['symbol'].replace('/', '')}-{core.now():%Y%m%d%H%M}"
     qty = p["qty"]
     if crypto:
         held_qty = stocks._get(PAPER_URL, f"/v2/positions/{p['symbol'].replace('/', '')}", creds).get("qty")
-        qty = str(min(float(qty), float(held_qty or qty)))
+        qty = _smaller(qty, held_qty or qty)
     _post_order(creds, {"symbol": p["symbol"], "qty": qty, "side": "sell", "type": "market",
-                        "time_in_force": "gtc" if crypto else "day", "client_order_id": p["sell_id"]})
-    p.update(status="selling", exit_reason=reason)
+                        "time_in_force": "gtc" if crypto else "day", "client_order_id": sell_id})
+    p.update(status="selling", exit_reason=reason, sell_id=sell_id)
+    _save(s)  # recorded right away, so a later failure can't lose this order
+
+
+def _try_sell(s, creds, p, reason):
+    """One refused sell must not stop the other sells, the plan, or saving. It tries again next cycle."""
+    try:
+        _sell_position(s, creds, p, reason)
+        return True
+    except Exception as e:
+        order_errors.append(f"{p['symbol']} {reason} sell failed: {e}")
+        return False
 
 
 def _run_plan(s, creds, today, is_open):
@@ -380,8 +415,8 @@ def _run_plan(s, creds, today, is_open):
         for p in s["positions"]:  # the mid slice sells when its trend turns down
             key = p.get("plan", "")
             if p.get("market") == market and key.startswith("mid:") and p["status"] == "open" and trends.get(p["symbol"]) is False:
-                _sell_position(s, creds, p, "trend")
-                s["plan_spent"][key] = 0
+                if _try_sell(s, creds, p, "trend"):
+                    s["plan_spent"][key] = 0
         placed = False
         for sym, target in slices["long"].items():
             key = f"long:{sym}"
@@ -542,11 +577,16 @@ def cycle(state, errors, creds):
         if not stopped:
             _exits(s, creds, prices, today, is_open)
             if HOLD_MODE:
-                _run_plan(s, creds, today, is_open)
+                try:
+                    _run_plan(s, creds, today, is_open)
+                except OrderRefused as e:
+                    order_errors.append(f"plan buy failed: {e}")
             else:
                 _buy(s, creds, prices, today, "crypto", True)
                 if is_open:
                     _buy(s, creds, prices, today, "stock", et.hour * 60 + et.minute >= ENTRY_MINUTE)
+        errors.extend(order_errors)
+        order_errors.clear()
         equity = _report(s, prices)
         _save(s)
         state["last_flags"] = "; ".join(s.get("flags") or []) or "none"

@@ -1,4 +1,5 @@
 """Full-cycle test on simulated data. No network, no git. Run: python3 tests/test_cycle.py"""
+from decimal import Decimal
 import csv, io, json, os, shutil, sys, tempfile, urllib.error, urllib.parse, urllib.request
 from datetime import datetime, timezone, timedelta
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -773,6 +774,30 @@ def main():
     assert any("boom" in e for e in scanner.errors)
     scanner.errors.clear()
     assert scanner.load_state().get("step_seconds", {}).get("boom") is not None
+    # a big balance keeps every digit, lots add up exactly, and a refused sell doesn't stop the rest
+    assert sim._smaller("19601100.412654745", "19601100.41265474") == "19601100.41265474"
+    r4 = {"positions": [{"symbol": "PEPE/USD", "market": "crypto", "status": "open", "qty": "19601100.412654745"}]}
+    orig8, orig9, orig10 = stocks._get, sim._post_order, sim._save
+    stocks._get = lambda b, r, c, **k: {"qty": "19601100.41265474"}
+    sim._reconcile_crypto(r4, creds)
+    assert r4["positions"][0]["qty"] == "19601100.41265474", r4
+    r5 = {"positions": [{"symbol": "X/USD", "market": "crypto", "status": "open", "qty": "1.1"}, {"symbol": "X/USD", "market": "crypto", "status": "open", "qty": "2.2"}]}
+    stocks._get = lambda b, r, c, **k: {"qty": "3.299"}
+    sim._reconcile_crypto(r5, creds)
+    assert sum(Decimal(p["qty"]) for p in r5["positions"]) == Decimal("3.299"), r5
+    sold = []
+    def refuse_first(c, body):
+        if body["symbol"] == "AAA":
+            raise sim.OrderRefused("sell AAA: HTTP 403 insufficient balance")
+        sold.append(body["symbol"])
+        return {}
+    sim._post_order, sim._save = refuse_first, lambda s: None
+    r6 = {"positions": [{"symbol": "AAA", "market": "stock", "status": "open", "qty": "1"}, {"symbol": "BBB", "market": "stock", "status": "open", "qty": "1"}]}
+    assert not sim._try_sell(r6, creds, r6["positions"][0], "stop") and sim._try_sell(r6, creds, r6["positions"][1], "stop")
+    assert sold == ["BBB"] and r6["positions"][0]["status"] == "open" and r6["positions"][1]["status"] == "selling"
+    assert "insufficient balance" in sim.order_errors[0]
+    sim.order_errors.clear()
+    stocks._get, sim._post_order, sim._save = orig8, orig9, orig10
     # fee shrinkage matches Alpaca, a big gap is left for the alert, and lots still filling wait
     r1 = {"positions": [{"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.95"}, {"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.955"}]}
     orig7 = stocks._get
