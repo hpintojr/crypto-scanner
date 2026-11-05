@@ -185,6 +185,8 @@ def scan(state, errors):
             movers += 1
             passed = m["ratio"] >= VOLUME_RATIO
             kept += passed
+            if core.recently_logged(state, "stocks", sym):
+                continue  # already logged during its cooldown, so skip the news and filing lookups
             news, earnings = _labels(creds, sym, t)
             core.log_signal(state, market="stocks", symbol=sym, asset_id=sym, name=sym, price=m["price"],
                             benchmark=BENCH, benchmark_price=spy[-1]["c"], move=m["move"],

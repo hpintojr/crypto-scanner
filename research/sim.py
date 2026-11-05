@@ -27,6 +27,7 @@ PLAN = {"crypto": {"long": {"BTC/USD": 400, "ETH/USD": 200}, "mid": {"BTC/USD": 
         "stock": {"long": {"GLD": 300, "DBC": 250, "DBA": 75, "CPER": 75}, "mid": {"GLD": 75, "DBC": 75, "DBA": 75, "CPER": 75}}}
 TREND_DAYS = 100
 TREND_CHECK_DAYS = 7
+RECONCILE_MAX_GAP = 0.01
 MIN_ORDER = 10.0  # smaller orders can be refused, and cash that low is effectively used up
 PEPE_ACTUAL_COST, PEPE_ACTUAL_ENTRY = 98.0546, 4.99e-06  # Alpaca cash fell from $100,000 to $99,901.95
 ENTRY_MINUTE = 10 * 60 + 30
@@ -109,6 +110,20 @@ def _held_qty(creds, p, fallback):
     # Alpaca merges all of a coin into one position, so never record more than this order filled.
     held = stocks._get(PAPER_URL, f"/v2/positions/{p['symbol'].replace('/', '')}", creds).get("qty") or fallback
     return str(min(float(fallback), float(held)))
+
+
+def _reconcile_crypto(s, creds):
+    """Crypto fees come out of the coins, so lots shrink slightly. Match each coin's lots to Alpaca's merged total.
+    A gap over 1% isn't a fee, so it's left alone for the mismatch alert."""
+    for sym in {p["symbol"] for p in s["positions"] if p.get("market") == "crypto"}:
+        lots = [p for p in s["positions"] if p["symbol"] == sym]
+        if any(p["status"] != "open" for p in lots):
+            continue
+        held = stocks._get(PAPER_URL, f"/v2/positions/{sym.replace('/', '')}", creds).get("qty")
+        total = sum(float(p["qty"]) for p in lots)
+        if held and total and float(held) != total and abs(float(held) / total - 1) <= RECONCILE_MAX_GAP:
+            for p in lots:
+                p["qty"] = f"{float(p['qty']) * float(held) / total:.9f}"
 
 
 def _sync(s, creds):
@@ -514,6 +529,7 @@ def cycle(state, errors, creds):
                  "spy_start": _price(creds, stocks.BENCH), "last_trade_day": None}
         s.setdefault("stock_cash", START_CASH)  # the crypto budget keeps its history, stocks start fresh
         _sync(s, creds)
+        _reconcile_crypto(s, creds)
         prices = {stocks.BENCH: _price(creds, stocks.BENCH), "BTC/USD": _crypto_price(creds, "BTC/USD")}
         s.setdefault("btc_start", prices["BTC/USD"])
         for p in s["positions"]:

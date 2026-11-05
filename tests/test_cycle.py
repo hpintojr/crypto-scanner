@@ -739,6 +739,25 @@ def main():
     pm = al.plan_mix({"X": {f"2026-{i:03d}": 100.0 + i for i in range(300)}}, {"X": (.5, .5)}, 0)
     assert pm[0]["total"] > 0 and al._plan_row({"X": {f"2026-{i:03d}": 100.0 + i for i in range(300)}}, {"X": (.5, .5)}, 0)
 
+    # fee shrinkage matches Alpaca, a big gap is left for the alert, and lots still filling wait
+    r1 = {"positions": [{"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.95"}, {"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.955"}]}
+    orig7 = stocks._get
+    stocks._get = lambda b, r, c, **k: {"qty": "1.9"}
+    sim._reconcile_crypto(r1, creds)
+    assert abs(sum(float(p["qty"]) for p in r1["positions"]) - 1.9) < 1e-8, r1
+    r2 = {"positions": [{"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "3"}]}
+    sim._reconcile_crypto(r2, creds)
+    assert r2["positions"][0]["qty"] == "3", "a large gap isn't a fee"
+    r3 = {"positions": [{"symbol": "BTC/USD", "market": "crypto", "status": "buying", "notional": 5}, {"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "1.905"}]}
+    sim._reconcile_crypto(r3, creds)
+    assert r3["positions"][1]["qty"] == "1.905"
+    stocks._get = orig7
+    # a logged mover skips lookups during its cooldown, then counts as new again
+    st6 = {}
+    assert not core.recently_logged(st6, "stocks", "AAA")
+    core.log_signal(st6, market="stocks", symbol="AAA", asset_id="AAA", name="AAA", price=1, benchmark="SPY", benchmark_price=1, move=3, volume=1, baseline=1, ratio=1, passed=False)
+    assert core.recently_logged(st6, "stocks", "AAA") and not core.recently_logged(st6, "stocks", "BBB")
+
     # measured schedule: runs five minutes apart report five
     s = {"last_run": (NOW - timedelta(minutes=5)).strftime(core.FMT)}
     assert scanner.cycle_minutes(s) == 5

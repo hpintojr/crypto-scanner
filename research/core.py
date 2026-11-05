@@ -57,6 +57,14 @@ def _append(name, fields, rows):
         w.writerows(rows)
 
 
+def recently_logged(state, market, symbol, signal_type="move_1h"):
+    """True if this mover is already logged either way, so it needs no more lookups during its cooldown."""
+    seen = state.get("signal_seen", {})
+    t = now()
+    keys = (f"{market}:{symbol}:{signal_type}:{n}" for n in (0, 1))
+    return any(k in seen and t - parse(seen[k]) <= COOLDOWN for k in keys)
+
+
 def log_signal(state, *, market, symbol, asset_id, name, price, benchmark, benchmark_price,
                move, volume, baseline, ratio, passed, news="", signal_type="move_1h", earnings=""):
     """Record a mover, passed or rejected. Rejects are the comparison group."""

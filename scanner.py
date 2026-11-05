@@ -81,6 +81,8 @@ def scan(state):
     kept = []
     btc = next((c["current_price"] for c in data if c["id"] == "bitcoin"), None)
     for c in movers:
+        if research_core.recently_logged(state, "crypto", c["symbol"].upper()):
+            continue  # already logged during its cooldown, so save the CoinGecko call
         time.sleep(3)
         ch = get(f"{CG}/coins/{c['id']}/market_chart?vs_currency=usd&days=7")
         if not ch or not ch.get("total_volumes"):
