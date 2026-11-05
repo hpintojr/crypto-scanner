@@ -12,6 +12,8 @@ MARKET_OPEN = [True]
 FAIL = set()
 ORDERS, ACCOUNT, FILL, LAST = {}, ["PA123"], [50.0], [50.0]
 CRYPTO = [[]]
+CANCELLED = []
+STALE = {"id": "stale1", "status": "new", "filled_qty": "0"}
 
 
 def bars(sym):
@@ -63,6 +65,11 @@ def fake_urlopen(req, timeout=None):
         return Resp(sec(u).encode())
     if "news.google" in u.hostname:
         return Resp(b"<rss><channel><item><title>Pump crypto price</title></item></channel></rss>")
+    if req.get_method() == "DELETE":
+        assert u.hostname == "paper-api.alpaca.markets" and u.path == "/v2/orders/stale1", url
+        CANCELLED.append(u.path)
+        STALE["status"] = "canceled"
+        return Resp(b"")
     if req.get_method() == "POST":
         assert url == "https://paper-api.alpaca.markets/v2/orders", url
         order = json.loads(req.data)
@@ -82,6 +89,8 @@ def fake_urlopen(req, timeout=None):
         return Resp(json.dumps({"qty": "1.9"}).encode())
     if u.path.startswith("/v2/assets/"):
         return Resp(json.dumps({"tradable": True, "fractionable": True}).encode())
+    if u.path == "/v2/orders:by_client_order_id" and q["client_order_id"][0].startswith("sim-buy-STALE"):
+        return Resp(json.dumps(STALE).encode())
     if u.path == "/v2/orders:by_client_order_id":
         o = ORDERS[q["client_order_id"][0]]
         px = FILL[0]
@@ -566,6 +575,18 @@ def main():
     assert "SOL/USD" in picks and "PAXG/USD" not in picks, picks
     sim._news_score = saved_news
     CRYPTO[0] = []
+
+    # an unfilled buy is left alone at first, canceled once stale, and its cash returns without a rebuy
+    recent = NOW.strftime("%Y%m%d%H%M")
+    old = (NOW - timedelta(minutes=30)).strftime("%Y%m%d%H%M")
+    s9 = {"cash": 200.0, "positions": [{"symbol": "STALE/USD", "market": "crypto", "status": "buying", "notional": 100.0, "buy_id": f"sim-buy-STALEUSD-{recent}"}]}
+    sim._sync(s9, creds)
+    assert not CANCELLED and s9["cash"] == 200.0, CANCELLED
+    s9["positions"][0]["buy_id"] = f"sim-buy-STALEUSD-{old}"
+    sim._sync(s9, creds)
+    assert CANCELLED and s9["cash"] == 200.0 and s9["positions"], s9
+    sim._sync(s9, creds)
+    assert s9["cash"] == 300.0 and not s9["positions"], s9
 
     # measured schedule: runs five minutes apart report five
     s = {"last_run": (NOW - timedelta(minutes=5)).strftime(core.FMT)}

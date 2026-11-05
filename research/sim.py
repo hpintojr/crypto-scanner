@@ -9,7 +9,7 @@ Create a file named SIM_STOP in the repo to stop all new orders.
 """
 import csv, json, os, urllib.error, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from . import core, form4, stocks
 
 PAPER_URL = "https://paper-api.alpaca.markets"  # the only place orders can go
@@ -18,6 +18,7 @@ TRADE_FRACTION = 0.10
 STOP_PCT, TARGET_PCT, MAX_HOLD_DAYS = -5.0, 10.0, 7
 REPEAT_MOMENTUM = True  # keep buying momentum picks until the cash is used
 STOCK_RESERVE = 300.0  # crypto buys can never take cash below this, so stocks always have money
+STALE_BUY_MINUTES = 15  # an unfilled buy older than this is canceled, and its cash returns
 MIN_ORDER = 10.0  # smaller orders can be refused, and cash that low is effectively used up
 PEPE_ACTUAL_COST, PEPE_ACTUAL_ENTRY = 98.0546, 4.99e-06  # Alpaca cash fell from $100,000 to $99,901.95
 ENTRY_MINUTE = 10 * 60 + 30
@@ -68,6 +69,19 @@ def _position_price(creds, p):
     return _crypto_price(creds, p["symbol"]) if p.get("market") == "crypto" else _price(creds, p["symbol"])
 
 
+def _cancel_order(creds, order_id):
+    """Cancels one simulation order on the paper account. There's no cancel-all here."""
+    req = urllib.request.Request(f"{PAPER_URL}/v2/orders/{order_id}", headers=creds, method="DELETE")
+    with urllib.request.urlopen(req, timeout=30):
+        pass
+
+
+def _order_age_minutes(cid):
+    """Orders carry their UTC placement time in the ID: sim-buy-POLUSD-202611051009."""
+    placed = datetime.strptime(cid.rsplit("-", 1)[-1], "%Y%m%d%H%M").replace(tzinfo=timezone.utc)
+    return (core.now() - placed).total_seconds() / 60
+
+
 def _price(creds, sym):
     t = stocks._get(stocks.DATA_URL, f"/v2/stocks/{sym}/trades/latest", creds, feed="iex").get("trade") or {}
     return t.get("p")
@@ -107,6 +121,9 @@ def _sync(s, creds):
                 s["cash"] += qty * px
                 _close(p, px, qty)
                 s["positions"].remove(p)
+        elif p["status"] == "buying" and state in ("new", "accepted", "pending_new") \
+                and not float(o.get("filled_qty") or 0) and _order_age_minutes(p["buy_id"]) > STALE_BUY_MINUTES:
+            _cancel_order(creds, o["id"])  # the cash comes back once Alpaca reports it canceled
         elif state in ("canceled", "expired", "rejected"):
             if p["status"] == "buying":
                 s["cash"] += p["notional"]
