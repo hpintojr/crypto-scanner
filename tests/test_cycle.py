@@ -313,6 +313,7 @@ def main():
     after = rows(os.path.join(core.DATA, "signals.csv"))
     assert len(after) == before + 1 and after[-1]["symbol"] == "AAPL" and after[-1]["signal_type"] == "premarket_gap", after[-1]
 
+    sim.HOLD_MODE = False
     sim.REPEAT_MOMENTUM = False
     # paper simulation: buy at 3:30 ET, fill, reinvest, stop out, refuse a non-paper account, kill switch
     ORDERS.clear()
@@ -669,6 +670,29 @@ def main():
     wallets.cycle(st4, [])
     got = rows(os.path.join(core.DATA, "wallet-moves.csv"))[size0:]
     assert [g["tx"] for g in got] == ["whale"], got
+
+    # hold mode: stock cash goes to SPY only with the market open, crypto cash to BTC any time, and holds never sell
+    sim.HOLD_MODE = True
+    os.remove(os.path.join(core.DATA, "sim-state.json"))
+    ORDERS.clear()
+    sim.ROOT = tempfile.mkdtemp()
+    FILL[0], LAST[0] = 50.0, 50.0
+    MARKET_OPEN[0] = False
+    er5 = []
+    sim.cycle({}, er5, creds)
+    assert er5 == [] and [o["symbol"] for o in ORDERS.values()] == ["BTC/USD"], (er5, ORDERS)
+    assert list(ORDERS.values())[0]["notional"] == "1000.0"
+    MARKET_OPEN[0] = True
+    sim.cycle({}, er5, creds)
+    syms = sorted(o["symbol"] for o in ORDERS.values())
+    assert er5 == [] and syms == ["BTC/USD", "SPY"], (er5, ORDERS)
+    n = len(ORDERS)
+    LAST[0] = 1.0  # a huge fall must not sell a hold
+    sim.cycle({}, er5, creds)
+    sim.cycle({}, er5, creds)
+    assert er5 == [] and len(ORDERS) == n and not any(o["side"] == "sell" for o in ORDERS.values()), (er5, ORDERS)
+    # a filled buy records its own coins, not the whole merged Alpaca position
+    assert sim._held_qty(creds, {"market": "crypto", "symbol": "BTC/USD"}, "0.5") == "0.5"
 
     # measured schedule: runs five minutes apart report five
     s = {"last_run": (NOW - timedelta(minutes=5)).strftime(core.FMT)}

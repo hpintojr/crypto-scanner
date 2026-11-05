@@ -1,5 +1,8 @@
 """$1,000 paper simulation. Places orders on Alpaca's PAPER endpoint only, never live.
 
+HOLD_MODE (Hamilton's rule, Nov 5, 2026): no unproven picks. New money only buys and holds SPY or BTC, with no exits.
+Older positions keep their normal exits, and their cash moves into the hold. Set HOLD_MODE to False for the old picks.
+
 Two separate budgets, $1,000 for crypto and $1,000 for stocks. No limit on the number of trades, only on
 money: no margin, and neither budget can spend the other's cash.
 Keeps buying until the budget is used: signals first, then the best remaining pick from the past month's
@@ -19,6 +22,7 @@ TRADE_FRACTION = 0.10
 STOP_PCT, TARGET_PCT, MAX_HOLD_DAYS = -5.0, 10.0, 7
 REPEAT_MOMENTUM = True  # keep buying momentum picks until the cash is used
 STALE_BUY_MINUTES = 15  # an unfilled buy older than this is canceled, and its cash returns
+HOLD_MODE = True
 MIN_ORDER = 10.0  # smaller orders can be refused, and cash that low is effectively used up
 PEPE_ACTUAL_COST, PEPE_ACTUAL_ENTRY = 98.0546, 4.99e-06  # Alpaca cash fell from $100,000 to $99,901.95
 ENTRY_MINUTE = 10 * 60 + 30
@@ -98,7 +102,9 @@ def _order(creds, cid):
 def _held_qty(creds, p, fallback):
     if p.get("market") != "crypto":
         return fallback
-    return stocks._get(PAPER_URL, f"/v2/positions/{p['symbol'].replace('/', '')}", creds).get("qty") or fallback
+    # Alpaca merges all of a coin into one position, so never record more than this order filled.
+    held = stocks._get(PAPER_URL, f"/v2/positions/{p['symbol'].replace('/', '')}", creds).get("qty") or fallback
+    return str(min(float(fallback), float(held)))
 
 
 def _sync(s, creds):
@@ -149,7 +155,7 @@ def _close(p, px, qty):
 def _exits(s, creds, prices, today, is_open):
     for p in s["positions"]:
         crypto = p.get("market") == "crypto"
-        if p["status"] != "open" or p["symbol"] not in prices or not (crypto or is_open):
+        if p.get("hold") or p["status"] != "open" or p["symbol"] not in prices or not (crypto or is_open):
             continue
         move = (prices[p["symbol"]] / p["entry"] - 1) * 100
         held = (today - date.fromisoformat(p["opened"][:10])).days
@@ -292,6 +298,24 @@ def _check_paper(creds):
         raise RuntimeError("account is not a paper account, refusing to trade")
 
 
+def _hold_buy(s, creds, market):
+    """Puts all of a budget's free cash into its index or coin, to hold."""
+    crypto = market == "crypto"
+    bucket, sym = ("cash", "BTC/USD") if crypto else ("stock_cash", stocks.BENCH)
+    notional = round(s[bucket], 2)
+    if notional < MIN_ORDER or any(p["symbol"] == sym and p["status"] == "buying" for p in s["positions"]):
+        return False
+    _check_paper(creds)
+    cid = f"sim-hold-{sym.replace('/', '')}-{core.now():%Y%m%d%H%M}"
+    _post_order(creds, {"symbol": sym, "notional": str(notional), "side": "buy", "type": "market",
+                        "time_in_force": "gtc" if crypto else "day", "client_order_id": cid})
+    s[bucket] -= notional
+    s["positions"].append({"symbol": sym, "market": market, "source": "hold", "hold": True, "status": "buying", "buy_id": cid,
+                           "notional": notional, "thesis": f"Long-term hold of {sym}, the benchmark for this budget",
+                           "against": "Can fall a lot and stay down for years. No stop, by design."})
+    return True
+
+
 def _buy(s, creds, prices, today, market, may_use_momentum):
     """Place one buy for this market if there's a pick and cash. Returns True once an order goes in."""
     day = today.isoformat()
@@ -330,6 +354,10 @@ def _buy(s, creds, prices, today, market, may_use_momentum):
 
 def _preview(s, creds, state, today, is_open):
     """Hourly list of what the rules would buy next, using the same picks as real buys. Places no orders."""
+    if HOLD_MODE:
+        with open(os.path.join(core.DATA, "sim-next.md"), "w") as f:
+            f.write("# Next picks\n\nHold mode: stock cash goes into SPY at the market open, and crypto cash goes into BTC. No other picks.\n")
+        return
     last = state.get("preview_checked")
     if last and core.now() - core.parse(last) < timedelta(minutes=55):
         return
@@ -396,8 +424,8 @@ def _report(s, prices):
         due = (start + timedelta(days=days)).isoformat()
         hit = next((r for r in rows if r["date"] >= due), None)
         lines.append(f"- {days}-day checkpoint ({due}): " + (f"${float(hit['equity']):,.2f}, SPY ${hit['spy_equivalent']}" if hit else "not reached"))
-    lines += ["", "Rules: $1,000 each for crypto and stocks, with no margin and no limit on trades. Buys until each budget's cash is used, "
-              "crypto 24/7 and stocks in market hours, 10% of that budget's value each, -5% stop, +10% target, 7-day limit. Picks must score above zero. "
+    lines += ["", "Rules: hold mode. Stock cash buys and holds SPY, and crypto cash buys and holds BTC, with no exits. "
+              "Older crypto positions keep their -5%, +10% and 7-day exits, and that cash moves into BTC. No margin. "
               "Trade data is in sim-trades.csv."]
     with open(os.path.join(core.DATA, "sim.md"), "w") as f:
         f.write("\n".join(lines) + "\n")
@@ -427,9 +455,14 @@ def cycle(state, errors, creds):
         stopped = os.path.exists(os.path.join(ROOT, "SIM_STOP"))
         if not stopped:
             _exits(s, creds, prices, today, is_open)
-            _buy(s, creds, prices, today, "crypto", True)
-            if is_open:
-                _buy(s, creds, prices, today, "stock", et.hour * 60 + et.minute >= ENTRY_MINUTE)
+            if HOLD_MODE:
+                _hold_buy(s, creds, "crypto")
+                if is_open:
+                    _hold_buy(s, creds, "stock")
+            else:
+                _buy(s, creds, prices, today, "crypto", True)
+                if is_open:
+                    _buy(s, creds, prices, today, "stock", et.hour * 60 + et.minute >= ENTRY_MINUTE)
         equity = _report(s, prices)
         _save(s)
         state["last_flags"] = "; ".join(s.get("flags") or []) or "none"

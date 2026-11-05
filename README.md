@@ -13,6 +13,8 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 
 ## Simulation rules
 
+**Current rule: hold mode.** On Nov 5, 2026, Hamilton chose to stick to proven approaches. Stock cash buys and holds SPY, and crypto cash buys and holds BTC, with no exits. Older crypto positions keep their exits, and that cash moves into BTC. The rules below apply only if `HOLD_MODE` is turned off. Research and the strategy tests keep running.
+
 - Budget: $1,000 for crypto and $1,000 for stocks, kept separate. No limit on the number of trades. Cash can't go below zero, and there's no margin.
 - Every signal can trade while there's cash: qualifying Form 4 buys and up movers on at least 2x volume. At most one buy per market per cycle, and nothing is bought twice in a day.
 - Keeps buying until the cash is used: when there's no signal, the best remaining pick from the past month's returns against SPY or BTC plus news. Crypto runs 24/7. Stocks run in market hours, with these picks from 10:30 AM ET (7:30 AM PT).
