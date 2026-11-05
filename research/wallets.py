@@ -10,6 +10,9 @@ from . import core
 LIST = os.path.join(os.path.dirname(os.path.abspath(__file__)), "wallets.csv")
 FIELDS = ["seen_at", "owner", "category", "chain", "address", "tx", "direction", "amount", "asset", "tx_time", "source"]
 MAX_PER_CYCLE = 25
+# Smallest move worth logging, so tiny dust transfers don't bury real ones. Anything else logs at any size.
+MIN_MOVE = {"BTC": 0.1, "ETH": 1, "WETH": 1, "WBTC": 0.1, "XRP": 5000, "USDT": 10000, "USDC": 10000, "DAI": 10000,
+            "RLUSD": 10000, "AAVE": 50, "UNI": 1000, "LDO": 5000, "CRV": 10000, "ARB": 10000}
 KEEP_SEEN = 50
 PATTERNS = {"bitcoin": r"(bc1[a-z0-9]{20,60}|[13][a-km-zA-HJ-NP-Z1-9]{25,34})",
             "ethereum": r"0x[0-9a-fA-F]{40}", "xrp": r"r[1-9A-HJ-NP-Za-km-z]{24,34}"}
@@ -123,7 +126,7 @@ def cycle(state, errors):
                 continue
             first = key not in seen  # first look sets a baseline, so old history isn't logged as new
             known = set(seen.get(key, []))
-            new = [] if first else [t for t in txs if t[0] not in known]
+            new = [] if first else [t for t in txs if t[0] not in known and t[2] >= MIN_MOVE.get(t[3], 0)]
             core._append("wallet-moves.csv", FIELDS, [{
                 "seen_at": core.now().strftime(core.FMT), "owner": row["owner"], "category": row["category"], "chain": chain,
                 "address": addr, "tx": t[0], "direction": t[1], "amount": t[2], "asset": t[3], "tx_time": t[4],

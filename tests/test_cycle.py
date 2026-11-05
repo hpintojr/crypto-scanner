@@ -514,7 +514,7 @@ def main():
     st3 = {"wallets_seen": {me: []}}
     wallets.cycle(st3, [])
     before = len(rows(os.path.join(core.DATA, "wallet-moves.csv")))
-    feed2[0] = [("new", "out", 2.0, "USDC", 2), ("old", "in", 1.0, "USDC", 1)]
+    feed2[0] = [("new", "out", 20000.0, "USDC", 2), ("old", "in", 1.0, "USDC", 1)]
     wallets.cycle(st3, [])
     after = rows(os.path.join(core.DATA, "wallet-moves.csv"))
     assert len(after) == before + 1 and after[-1]["tx"] == "new" and after[-1]["asset"] == "USDC", after[-1]
@@ -629,6 +629,46 @@ def main():
     urllib.request.urlopen = real_open
     assert "USDT" not in cs and abs(cs["ABC"][-1][0]) < 1e-9 and cs["ABC"][-1][1] == 110.0, list(cs)
     assert movers.rank(cs)[1][0][0][0] == "ABC", movers.rank(cs)[1]
+
+    # metrics: known trades give known numbers, and flags only appear with enough trades
+    from research import metrics
+    tr = [{"symbol": "A", "pnl": "10"}, {"symbol": "B", "pnl": "-5"}, {"symbol": "C", "pnl": "-5"}, {"symbol": "D", "pnl": "20"}]
+    m = metrics.trade_stats(tr)
+    assert m["n"] == 4 and m["win"] == 50 and m["avg_win"] == 15 and m["avg_loss"] == -5 and m["expectancy"] == 5 and m["profit_factor"] == 3, m
+    assert metrics.drawdown([100, 120, 90, 100])[0] == -25 and round(metrics.drawdown([100, 120, 90, 108])[1]) == -10
+    bad = metrics.trade_stats([{"symbol": "A", "pnl": "-1"}] * 30)
+    assert metrics.flags({"Stocks": bad}, -2) and not metrics.flags({"Stocks": metrics.trade_stats(tr)}, -2)
+    assert metrics.flags({}, -12)
+    metrics.write({"positions": [{"symbol": "A/USD", "status": "open", "qty": "2", "cost": 10.0}], "spy_start": 100, "btc_start": 50},
+                  {"A/USD": 6.0, "SPY": 110, "BTC/USD": 40}, [{"equity": "2000"}])
+    text = open(os.path.join(core.DATA, "metrics.md")).read()
+    assert "$12.00" in text and "BTC since start: -20.00%" in text and "SPY since start: +10.00%" in text, text
+
+    # momentum test: picks the strongest stock, applies exits, charges costs, and compares with the benchmark
+    days_list = [f"2026-01-{i:02d}" for i in range(1, 29)]
+    cl = {"SPY": {d: 100.0 for d in days_list}, "WIN": {d: 100.0 + i for i, d in enumerate(days_list)}, "FLAT": {d: 100.0 for d in days_list}}
+    mt = backtest.momentum_test(cl, "SPY", 0.05)
+    assert mt and all(r > 0 for _, r, _ in mt) and mt[0][2] == 0, mt[:2]
+    fall = {"SPY": {d: 100.0 for d in days_list}, "DROP": {d: 200.0 - i for i, d in enumerate(days_list)}}
+    assert backtest.momentum_test(fall, "SPY", 0.05) == [], "a falling stock scores below zero, so no pick"
+    crash = {d: (100.0 + i if i <= 20 else 50.0) for i, d in enumerate(days_list)}
+    assert round(backtest.momentum_test({"SPY": cl["SPY"], "X": crash}, "SPY", 0)[-1][1]) <= -5
+    assert backtest.buy_and_hold(days) > -100
+    assert "Average beat over SPY" in "\n".join(backtest.momentum_lines("t", mt, "SPY"))
+
+    # dust moves are skipped but real ones log
+    wallets.READERS["ethereum"] = lambda a: []
+    wallets.READERS["ethereum-tokens"] = lambda a: feed2[0]
+    with open(wallets.LIST, "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fields, restval="")
+        w.writeheader()
+        w.writerow({"owner": "Token Co", "enabled": "yes", "chain": "ethereum", "address": me, "attribution_source": "x", "last_verified": "y"})
+    st4 = {"wallets_seen": {me: [], me + "#tokens": []}}
+    feed2[0] = [("dust", "in", 5.0, "USDT", 1), ("whale", "in", 50000.0, "USDT", 2)]
+    size0 = len(rows(os.path.join(core.DATA, "wallet-moves.csv")))
+    wallets.cycle(st4, [])
+    got = rows(os.path.join(core.DATA, "wallet-moves.csv"))[size0:]
+    assert [g["tx"] for g in got] == ["whale"], got
 
     # measured schedule: runs five minutes apart report five
     s = {"last_run": (NOW - timedelta(minutes=5)).strftime(core.FMT)}

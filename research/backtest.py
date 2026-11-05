@@ -9,6 +9,9 @@ from datetime import timedelta
 from . import core, stocks
 
 COST_PCT = 0.02  # assumed round-trip cost on SPY, in percent
+STOCK_COST_PCT = 0.05  # assumed round trip on the stock list, in percent
+CRYPTO_COST_PCT = 0.50  # assumed round trip on crypto, in percent, from fees seen on the paper account
+VERSION = 2  # a new version runs right away instead of waiting for the next close
 LOOKBACK_DAYS = 730
 MIN = lambda h, m: h * 60 + m
 
@@ -78,6 +81,63 @@ def run_all(days):
     return out
 
 
+def _daily_closes(creds, route, symbols, start, end, **extra):
+    """{symbol: {date: close}} from daily bars, across every page."""
+    out, token = {}, None
+    while True:
+        params = dict(symbols=",".join(symbols), timeframe="1Day", start=start.isoformat(), end=end.isoformat(), limit=10000, **extra)
+        if token:
+            params["page_token"] = token
+        page = stocks._get(stocks.DATA_URL, route, creds, **params)
+        for sym, bars in (page.get("bars") or {}).items():
+            out.setdefault(sym, {}).update({b["t"][:10]: b["c"] for b in bars})
+        token = page.get("next_page_token")
+        if not token:
+            return out
+
+
+def momentum_test(closes, bench, cost, stop=-5.0, target=10.0, max_days=5, lookback=20, week=5):
+    """Replays the live momentum pick without its news check: each day, buy the best score, then apply the live exits.
+    Returns [(date, percent return after cost, benchmark percent return over the same days), ...]."""
+    dates = sorted(closes[bench])
+    out = []
+    for i in range(lookback, len(dates) - 1):
+        d, past, wk = dates[i], dates[i - lookback], dates[i - week]
+        b = (closes[bench][d] / closes[bench][past] - 1) * 100
+        best, best_score = None, 0.0
+        for sym, c in closes.items():
+            if sym == bench or d not in c or past not in c or wk not in c:
+                continue
+            score = (c[d] / c[past] - 1) * 100 - b + (c[d] / c[wk] - 1) * 50
+            if score > best_score:
+                best, best_score = sym, score
+        if not best:
+            continue
+        c, entry, ret, last = closes[best], closes[best][d], None, d
+        for later in dates[i + 1:i + 1 + max_days]:
+            if later not in c:
+                continue
+            ret, last = (c[later] / entry - 1) * 100, later
+            if ret <= stop or ret >= target:
+                break
+        if ret is not None:
+            out.append((d, ret - cost, (closes[bench][last] / closes[bench][d] - 1) * 100))
+    return out
+
+
+def momentum_lines(title, rows, bench):
+    if not rows:
+        return [f"### {title}", "", "Not enough data.", ""]
+    half = len(rows) // 2
+    avg = lambda v: sum(v) / len(v) if v else 0
+    edge = [r - b for _, r, b in rows]
+    return [f"### {title}", "", f"- Trades: {len(rows)}, one new pick a day, so holding periods overlap",
+            f"- Win rate: {100 * sum(r > 0 for _, r, _ in rows) / len(rows):.0f}%",
+            f"- Average per trade after costs: {avg([r for _, r, _ in rows]):+.2f}%",
+            f"- Average beat over {bench} on the same days: {avg(edge):+.2f}%",
+            f"- That beat in the first half: {avg(edge[:half]):+.2f}%, second half: {avg(edge[half:]):+.2f}%", ""]
+
+
 def stats(rows):
     """Summary after costs. Each half is reported so a result that only worked once stands out."""
     net = [r - COST_PCT for _, r in rows]
@@ -93,7 +153,13 @@ def stats(rows):
             "first": total(net[:half]), "second": total(net[half:])}
 
 
-def write_report(results, first_day, last_day, days_count):
+def buy_and_hold(days):
+    """SPY's whole-period return with no repeated costs: the number other strategies have to beat."""
+    dates = sorted(days)
+    return (days[dates[-1]][max(days[dates[-1]])]["c"] / days[dates[0]][min(days[dates[0]])]["o"] - 1) * 100
+
+
+def write_report(results, first_day, last_day, days_count, hold=None, extra=()):
     lines = ["# Strategy test on SPY", "", f"{first_day} to {last_day}, {days_count} trading days. "
              f"Returns are after an assumed {COST_PCT}% round-trip cost. Past results don't guarantee future ones.", "",
              "A strategy is only worth paper testing if it makes money in both halves and beats simply holding.", "",
@@ -103,8 +169,9 @@ def write_report(results, first_day, last_day, days_count):
     for name, s in sorted(summary.items(), key=lambda kv: -kv[1]["total"]):
         lines.append(f"| {name} | {s['n']} | {s['win']:.0f} | {s['avg']:.3f} | {s['total']:.1f} | {s['drawdown']:.1f} | "
                      f"{s['first']:.1f} | {s['second']:.1f} |")
-    lines += ["", "Daily strategies only hold SPY part of the time, so compare them with \"Hold open to close\" plus "
-              "\"Hold overnight\", which together are about the same as holding SPY all the time."]
+    if hold is not None:
+        lines += ["", f"**Simply holding SPY the whole time: {hold:+.1f}%.** That's the number to beat."]
+    lines += list(extra)
     os.makedirs(core.DATA, exist_ok=True)
     with open(os.path.join(core.DATA, "backtest.md"), "w") as f:
         f.write("\n".join(lines) + "\n")
@@ -116,13 +183,28 @@ def cycle(state, errors, creds):
     et = core.now().astimezone(stocks.ET)
     today = et.date().isoformat()
     # first run as soon as this loads, then once a day after the close
-    if state.get("backtest_date") == today or (state.get("backtest_date") and et.hour < 17):
+    current = state.get("backtest_version") == VERSION
+    if current and (state.get("backtest_date") == today or et.hour < 17):
         return
     try:
         days = _sessions(creds)
         if not days:
             raise ValueError("no SPY history returned")
-        write_report(run_all(days), min(days), max(days), len(days))
+        end = et.date() - timedelta(days=1)
+        start = end - timedelta(days=LOOKBACK_DAYS)
+        extra = ["", "## Live pick rules on past prices", "", "These replay the month-long momentum pick and its -5%, +10% and time exits, "
+                 "using daily closes and leaving out the news check. A stop can really fill worse than its daily close. "
+                 "The stock list is today's large companies, which flatters the past, because it leaves out companies that fell away.", ""]
+        names = stocks.universe() + [stocks.BENCH]
+        sc = _daily_closes(creds, "/v2/stocks/bars", names, start, end, feed="iex", adjustment="all")
+        extra += momentum_lines(f"Stocks, after an assumed {STOCK_COST_PCT}% cost", momentum_test(sc, stocks.BENCH, STOCK_COST_PCT), "SPY")
+        assets = stocks._get(stocks.PAPER_URL, "/v2/assets", creds, asset_class="crypto", status="active") or []
+        pairs = [a["symbol"] for a in assets if a.get("tradable") and a["symbol"].endswith("/USD")]
+        if "BTC/USD" in pairs:
+            cc = _daily_closes(creds, "/v1beta3/crypto/us/bars", pairs, start, end)
+            extra += momentum_lines(f"Crypto, after an assumed {CRYPTO_COST_PCT}% cost", momentum_test(cc, "BTC/USD", CRYPTO_COST_PCT, max_days=7), "BTC")
+        write_report(run_all(days), min(days), max(days), len(days), buy_and_hold(days), extra)
+        state["backtest_version"] = VERSION
         state["backtest_date"] = today
         state["last_backtest"] = f"{today}: {len(days)} trading days tested, see data/backtest.md"
     except Exception as e:

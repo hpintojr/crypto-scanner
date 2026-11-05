@@ -11,7 +11,7 @@ Create a file named SIM_STOP in the repo to stop all new orders.
 import csv, json, os, urllib.error, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import date, datetime, timedelta, timezone
-from . import core, form4, stocks
+from . import core, form4, metrics, stocks
 
 PAPER_URL = "https://paper-api.alpaca.markets"  # the only place orders can go
 START_CASH = 1000.0
@@ -401,6 +401,7 @@ def _report(s, prices):
               "Trade data is in sim-trades.csv."]
     with open(os.path.join(core.DATA, "sim.md"), "w") as f:
         f.write("\n".join(lines) + "\n")
+    s["flags"] = metrics.write(s, prices, rows)
     return equity
 
 
@@ -416,7 +417,8 @@ def cycle(state, errors, creds):
                  "spy_start": _price(creds, stocks.BENCH), "last_trade_day": None}
         s.setdefault("stock_cash", START_CASH)  # the crypto budget keeps its history, stocks start fresh
         _sync(s, creds)
-        prices = {stocks.BENCH: _price(creds, stocks.BENCH)}
+        prices = {stocks.BENCH: _price(creds, stocks.BENCH), "BTC/USD": _crypto_price(creds, "BTC/USD")}
+        s.setdefault("btc_start", prices["BTC/USD"])
         for p in s["positions"]:
             prices[p["symbol"]] = _position_price(creds, p)
         prices = {k: v for k, v in prices.items() if v}
@@ -428,8 +430,9 @@ def cycle(state, errors, creds):
             _buy(s, creds, prices, today, "crypto", True)
             if is_open:
                 _buy(s, creds, prices, today, "stock", et.hour * 60 + et.minute >= ENTRY_MINUTE)
-        _save(s)
         equity = _report(s, prices)
+        _save(s)
+        state["last_flags"] = "; ".join(s.get("flags") or []) or "none"
         _preview(s, creds, state, today, is_open)
         state["last_sim"] = (f"value ${equity:,.2f} of $2,000, {len(s['positions'])} open, crypto cash ${s['cash']:,.2f}, "
                              f"stock cash ${s['stock_cash']:,.2f}"
