@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 300.3611591025776,
+ "cash": 200.58115910257757,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -110,6 +110,16 @@
    "notional": 99.82,
    "thesis": "Up 2.7% over about a month (+4.3% vs BTC/USD), -6.2% this week, 18 headlines in the last day, news tone +2",
    "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days."
+  },
+  {
+   "symbol": "DOGE/USD",
+   "market": "crypto",
+   "source": "crypto-momentum",
+   "status": "buying",
+   "buy_id": "sim-buy-DOGEUSD-202611051105",
+   "notional": 99.78,
+   "thesis": "Up -4.9% over about a month (-3.3% vs BTC/USD), +1.7% this week, 51 headlines in the last day, news tone +3",
+   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days."
   }
  ],
  "spy_start": 766.9,
@@ -124,7 +134,8 @@
   "POL/USD",
   "BTC/USD",
   "BONK/USD",
-  "HYPE/USD"
+  "HYPE/USD",
+  "DOGE/USD"
  ],
  "stock_cash": 1000.0,
  "btc_start": 80189.9,
