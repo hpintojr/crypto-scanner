@@ -2,7 +2,7 @@
 import json, os, urllib.parse, urllib.request
 from datetime import timedelta
 from zoneinfo import ZoneInfo
-from . import core
+from . import core, edgar
 
 DATA_URL = "https://data.alpaca.markets"
 PAPER_URL = "https://paper-api.alpaca.markets"
@@ -10,7 +10,9 @@ ET = ZoneInfo("America/New_York")
 BENCH = "SPY"
 MOVE_PCT = 2.0
 VOLUME_RATIO = 2.0
+GAP_PCT = 3.0
 MAX_SCORES = 30  # outcome lookups per cycle
+EARNINGS_WORDS = ("earnings", "quarterly results", "q1 ", "q2 ", "q3 ", "q4 ", "guidance", "eps ")
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -107,14 +109,64 @@ def _measure(bars, t):
             "volume": volume, "baseline": baseline, "ratio": volume / baseline if baseline else 0}
 
 
+def _labels(creds, sym, t):
+    """News count and an earnings label from headlines or an 8-K item 2.02. Blank if a source fails."""
+    news, earnings = "", ""
+    try:
+        items = _get(DATA_URL, "/v1beta1/news", creds, symbols=sym, limit=50,
+                     start=_stamp(t - timedelta(hours=24))).get("news") or []
+        news = len(items)
+        earnings = "yes" if any(w in (i.get("headline") or "").lower() for i in items for w in EARNINGS_WORDS) else "no"
+    except Exception:
+        pass
+    try:
+        if edgar.recent_earnings_8k(sym):
+            earnings = "yes"
+        elif not earnings:
+            earnings = "no"
+    except Exception:
+        pass
+    return news, earnings
+
+
+def premarket_gaps(state, creds, clock, errors):
+    """From 8:00 to 9:30 ET on a trading day, log stocks whose latest trade is 3%+ from the prior close."""
+    t = core.now()
+    et = t.astimezone(ET)
+    if et.hour * 60 + et.minute < 480 or str(clock.get("next_open", ""))[:10] != et.strftime("%Y-%m-%d"):
+        return
+    symbols = universe()
+    snaps = _get(DATA_URL, "/v2/stocks/snapshots", creds, symbols=",".join(symbols + [BENCH]), feed="iex")
+    spy = (snaps.get(BENCH) or {}).get("latestTrade", {}).get("p")
+    found = 0
+    for sym in symbols:
+        s = snaps.get(sym) or {}
+        trade, daily, prev = s.get("latestTrade") or {}, s.get("dailyBar") or {}, s.get("prevDailyBar") or {}
+        if not trade.get("p") or not spy or t - _bar_time(trade) > timedelta(minutes=30):
+            continue
+        before = daily if daily.get("t") and _bar_time(daily).astimezone(ET).date() < et.date() else prev
+        if not before.get("c"):
+            continue
+        gap = (trade["p"] / before["c"] - 1) * 100
+        if abs(gap) >= GAP_PCT:
+            found += 1
+            news, earnings = _labels(creds, sym, t)
+            core.log_signal(state, market="stocks", symbol=sym, asset_id=sym, name=sym, price=trade["p"], benchmark=BENCH,
+                            benchmark_price=spy, move=gap, volume=0, baseline=0, ratio=0, passed=False, news=news,
+                            signal_type="premarket_gap", earnings=earnings)
+    state["last_gap_check"] = f"{_stamp(t)}: {found} of {len(symbols)} stocks gapped {GAP_PCT:g}%+ pre-market"
+
+
 def scan(state, errors):
     creds = credentials()
     if not creds:
         state["last_stock_scan"] = f"{_stamp(core.now())}: skipped, no paper credentials readable"
         return None
     try:
-        if not _get(PAPER_URL, "/v2/clock", creds).get("is_open"):
+        clock = _get(PAPER_URL, "/v2/clock", creds)
+        if not clock.get("is_open"):
             state["last_stock_scan"] = f"{_stamp(core.now())}: market closed"
+            premarket_gaps(state, creds, clock, errors)
             return creds
         t = core.now()
         symbols = universe()
@@ -133,16 +185,11 @@ def scan(state, errors):
             movers += 1
             passed = m["ratio"] >= VOLUME_RATIO
             kept += passed
-            news = ""
-            try:
-                news = len(_get(DATA_URL, "/v1beta1/news", creds, symbols=sym, limit=50,
-                                start=_stamp(t - timedelta(hours=24))).get("news") or [])
-            except Exception:
-                pass  # optional feature, leave blank
+            news, earnings = _labels(creds, sym, t)
             core.log_signal(state, market="stocks", symbol=sym, asset_id=sym, name=sym, price=m["price"],
                             benchmark=BENCH, benchmark_price=spy[-1]["c"], move=m["move"],
                             volume=m["volume"], baseline=m["baseline"], ratio=m["ratio"],
-                            passed=passed, news=news)
+                            passed=passed, news=news, earnings=earnings)
         state["last_stock_scan"] = (f"{_stamp(t)}: {len(symbols)} stocks, {movers} movers over {MOVE_PCT}% 1h, "
                                     f"{kept} kept after {VOLUME_RATIO:g}x volume check, {thin} without enough data")
     except Exception as e:

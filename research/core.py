@@ -8,7 +8,7 @@ COOLDOWN = timedelta(hours=4)  # a persisting move is one event, not one per cyc
 MAX_LATE_MIN = 60  # outcomes scored later than this are kept but left out of the report
 SIGNAL_FIELDS = ["signal_id", "time", "market", "symbol", "asset_id", "name", "price", "benchmark",
                  "benchmark_price", "move_1h_pct", "volume", "baseline_volume", "volume_ratio",
-                 "passed", "news_24h"]
+                 "passed", "news_24h", "signal_type", "earnings"]
 OUTCOME_FIELDS = ["signal_id", "horizon", "due", "scored_at", "late_min", "price", "benchmark_price",
                   "return_pct", "benchmark_return_pct", "excess_pct"]
 HORIZONS = {
@@ -41,6 +41,15 @@ def _append(name, fields, rows):
         return
     os.makedirs(DATA, exist_ok=True)
     new = not os.path.exists(_path(name))
+    if not new:
+        with open(_path(name), newline="") as f:
+            old = csv.DictReader(f)
+            have, existing = old.fieldnames, list(old)
+        if have != fields:  # new columns were added: rewrite so every row lines up
+            with open(_path(name), "w", newline="") as f:
+                w = csv.DictWriter(f, fieldnames=fields, restval="")
+                w.writeheader()
+                w.writerows(existing)
     with open(_path(name), "a", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields)
         if new:
@@ -49,13 +58,13 @@ def _append(name, fields, rows):
 
 
 def log_signal(state, *, market, symbol, asset_id, name, price, benchmark, benchmark_price,
-               move, volume, baseline, ratio, passed, news=""):
+               move, volume, baseline, ratio, passed, news="", signal_type="move_1h", earnings=""):
     """Record a mover, passed or rejected. Rejects are the comparison group."""
     seen = state.setdefault("signal_seen", {})
     t = now()
     for k in [k for k, v in seen.items() if t - parse(v) > COOLDOWN]:
         del seen[k]
-    key = f"{market}:{symbol}:{int(bool(passed))}"
+    key = f"{market}:{symbol}:{signal_type}:{int(bool(passed))}"
     if key in seen:
         return False
     stamp = t.strftime(FMT)
@@ -65,7 +74,7 @@ def log_signal(state, *, market, symbol, asset_id, name, price, benchmark, bench
         "time": stamp, "market": market, "symbol": symbol, "asset_id": asset_id, "name": name,
         "price": price, "benchmark": benchmark, "benchmark_price": benchmark_price,
         "move_1h_pct": round(move, 3), "volume": volume, "baseline_volume": round(baseline, 2),
-        "volume_ratio": round(ratio, 3), "passed": int(bool(passed)), "news_24h": news}])
+        "volume_ratio": round(ratio, 3), "passed": int(bool(passed)), "news_24h": news, "signal_type": signal_type, "earnings": earnings}])
     return True
 
 
@@ -108,7 +117,11 @@ def write_report():
         if not s or float(o["late_min"]) > MAX_LATE_MIN or s["symbol"] == s["benchmark"]:
             continue
         direction = 1 if float(s["move_1h_pct"]) >= 0 else -1
-        key = (s["market"], "passed" if s["passed"] == "1" else "rejected", o["horizon"])
+        group = "premarket gap" if s.get("signal_type") == "premarket_gap" else \
+            "passed" if s["passed"] == "1" else "rejected"
+        if s.get("earnings") == "yes":
+            group += ", earnings"
+        key = (s["market"], group, o["horizon"])
         groups.setdefault(key, []).append(direction * float(o["excess_pct"]))
     n_sig = len(signals)
     n_pass = sum(s["passed"] == "1" for s in signals.values())
@@ -120,7 +133,7 @@ def write_report():
              "| Market | Group | Horizon | Signals | Avg follow-through % | Median % | Continued % |",
              "|---|---|---|---:|---:|---:|---:|"]
     order = {"1h": 0, "4h": 1, "1d": 2, "24h": 2, "5d": 3}
-    for key in sorted(groups, key=lambda k: (k[0], k[1] != "passed", order[k[2]])):
+    for key in sorted(groups, key=lambda k: (k[0], k[1], order[k[2]])):
         v = groups[key]
         lines.append(f"| {key[0]} | {key[1]} | {key[2]} | {len(v)} | {statistics.mean(v):.2f} | "
                      f"{statistics.median(v):.2f} | {100 * sum(x > 0 for x in v) / len(v):.0f} |")

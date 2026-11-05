@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Crypto Scanner research agent. Research only: no trading, no keys, no money.
-One invocation = one 15-minute cycle. Run via run.sh (loop) or cron."""
+"""Market research agent: crypto and stock movers, Form 4 buys. Research only: no trading, no money.
+One invocation = one cycle. Run from the Otto schedule, or via run.sh or cron, never more than one."""
 import csv, hashlib, json, os, re, subprocess, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
-from research import core as research_core, stocks as research_stocks
+from research import core as research_core, form4 as research_form4, stocks as research_stocks
 
 REPO = os.path.dirname(os.path.abspath(__file__))
 CG = "https://api.coingecko.com/api/v3"
@@ -199,7 +199,9 @@ def research(state):
         creds = research_stocks.scan(state, errors)
         score_crypto()
         research_stocks.score(creds, errors)
+        research_form4.cycle(state, errors, creds)
         research_core.write_report()
+        research_form4.append_report()
     except Exception as e:
         errors.append(f"research: {type(e).__name__}: {e}")
 
@@ -218,13 +220,28 @@ def git(*args):
     return subprocess.run(["git", "-C", REPO, *args], capture_output=True, text=True)
 
 
+def cycle_minutes(state):
+    """Measured gap between the last two runs, so status.md reports the real schedule."""
+    last, t = state.get("last_run"), now()
+    if last:
+        gap = (t - datetime.strptime(last, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)).total_seconds() / 60
+        if 1 <= gap <= 120:
+            state["cycle_minutes"] = round(gap)
+    state["last_run"] = iso(t)
+    return state.get("cycle_minutes", 15)
+
+
 def write_status(state, host, push_error=None):
+    minutes = cycle_minutes(state)
     status = ["# Scanner status", "", f"- Last run: {iso()}", f"- Host: {host}",
               f"- Last scan: {state.get('last_scan') or 'none yet'}",
               f"- Last flag: {state.get('last_flag') or 'none yet'}",
               f"- Last stock scan: {state.get('last_stock_scan') or 'none yet'}",
               f"- Last watchlist snapshot: {state.get('last_watch') or 'none yet'}",
-              f"- Next run: ~{iso(now() + timedelta(minutes=15))}",
+              f"- Last pre-market gap check: {state.get('last_gap_check') or 'none yet'}",
+              f"- Last Form 4 run: {state.get('last_form4') or 'none yet'}",
+              f"- Measured time between runs: {minutes} min",
+              f"- Next run: ~{iso(now() + timedelta(minutes=minutes))}",
               f"- Inbox: {'NEW request in requests-from-chip.md awaiting reply' if state.get('pending_request') else 'no pending requests'}",
               f"- Errors this cycle: {len(errors)}"]
     status += [f"  - {e}" for e in errors]

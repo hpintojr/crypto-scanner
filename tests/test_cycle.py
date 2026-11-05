@@ -1,10 +1,10 @@
 """Full-cycle test on simulated data. No network, no git. Run: python3 tests/test_cycle.py"""
-import csv, io, json, os, shutil, sys, tempfile, urllib.parse, urllib.request
+import csv, io, json, os, shutil, sys, tempfile, urllib.error, urllib.parse, urllib.request
 from datetime import datetime, timezone, timedelta
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 import scanner
-from research import core, stocks
+from research import core, form4, stocks
 
 NOW = datetime.now(timezone.utc)
 calls = []
@@ -57,6 +57,8 @@ def fake_urlopen(req, timeout=None):
         else:
             raise AssertionError(url)
         return Resp(json.dumps(b).encode())
+    if u.hostname.endswith("sec.gov"):
+        return Resp(sec(u).encode())
     if "news.google" in u.hostname:
         return Resp(b"<rss><channel><item><title>Pump crypto price</title></item></channel></rss>")
     assert req.get_method() == "GET", "only GET is allowed against Alpaca"
@@ -66,13 +68,77 @@ def fake_urlopen(req, timeout=None):
     elif u.path == "/v2/stocks/bars":
         b = {"bars": {s: bars(s) for s in q["symbols"][0].split(",")}, "next_page_token": None}
     elif u.path == "/v1beta1/news":
-        b = {"news": [{}, {}]}
+        b = {"news": [{"headline": "NVDA Q3 earnings beat"}, {}]}
     elif u.path.endswith("/bars"):
         sym = u.path.split("/")[3]
-        b = {"bars": [{"t": "x", "c": 105 if sym == "NVDA" else 500}]}
+        if q.get("timeframe") == ["1Day"]:
+            if q.get("feed") == ["sip"] and sym == "SMAL":
+                raise urllib.error.HTTPError(url, 403, "plan", {}, None)
+            b = {"bars": [{"t": "x", "c": 20 if sym == "SMAL" else 100}]}
+        else:
+            b = {"bars": [{"t": "x", "c": 105 if sym == "NVDA" else 500}]}
     else:
         raise AssertionError(url)
     return Resp(json.dumps(b).encode())
+
+
+FORM4 = """<SEC-DOCUMENT>
+<ACCEPTANCE-DATETIME>20261103173000
+<XML>
+<?xml version="1.0"?>
+<ownershipDocument><documentType>4</documentType>
+<issuer><issuerCik>0000555</issuerCik><issuerName>Small Co</issuerName><issuerTradingSymbol>SMAL</issuerTradingSymbol></issuer>
+<reportingOwner><reportingOwnerId><rptOwnerCik>%s</rptOwnerCik><rptOwnerName>%s</rptOwnerName></reportingOwnerId>
+<reportingOwnerRelationship><isOfficer>1</isOfficer><officerTitle>%s</officerTitle></reportingOwnerRelationship></reportingOwner>
+<nonDerivativeTable>%s</nonDerivativeTable></ownershipDocument>
+</XML></SEC-DOCUMENT>"""
+
+
+def txn(code, shares, price, ad="A"):
+    return (f"<nonDerivativeTransaction><transactionCoding><transactionCode>{code}</transactionCode></transactionCoding>"
+            f"<transactionAmounts><transactionShares><value>{shares}</value></transactionShares>"
+            f"<transactionPricePerShare><value>{price}</value></transactionPricePerShare>"
+            f"<transactionAcquiredDisposedCode><value>{ad}</value></transactionAcquiredDisposedCode></transactionAmounts>"
+            f"<ownershipNature><directOrIndirectOwnership><value>D</value></directOrIndirectOwnership></ownershipNature>"
+            f"</nonDerivativeTransaction>")
+
+
+DOCS = {
+    "ceo.txt": FORM4 % ("900", "Jane CEO", "Chief Executive Officer", txn("P", 10000, 10) + txn("P", 10000, 12) + txn("M", 500, 1)),
+    "cfo.txt": FORM4 % ("901", "Bob CFO", "CFO", txn("P", 50000, 10)),
+    "grant.txt": FORM4 % ("902", "Ann VP", "VP", txn("A", 900, 0)),
+    "tax.txt": FORM4 % ("902", "Ann VP", "VP", txn("F", 900, 10, "D")),
+    "old.txt": FORM4 % ("900", "Jane CEO", "Chief Executive Officer", txn("P", 1000, 10)),
+}
+
+
+def sec(u):
+    p = u.path
+    if p.endswith("company_tickers.json"):
+        return json.dumps({"0": {"cik_str": 320193, "ticker": "NVDA"}})
+    if "/submissions/CIK0000320193" in p:
+        today = NOW.strftime("%Y-%m-%d")
+        return json.dumps({"filings": {"recent": {"form": ["8-K"], "filingDate": [today], "items": ["2.02,9.01"]}}})
+    if "/submissions/" in p:
+        return json.dumps({"filings": {"recent": {"form": ["4"], "filingDate": ["2020-01-01"], "accessionNumber": ["old"]}}})
+    if "EntityPublicFloat" in p:
+        return json.dumps({"units": {"USD": [{"end": "2025-06-30", "val": 300000000}]}})
+    if p.endswith("old.txt"):
+        return DOCS["old.txt"]
+    if ".idx" in p:
+        if "form.20261103" not in p and form4_days.get("only") and form4_days["only"] not in p:
+            raise urllib.error.HTTPError(u.geturl(), 404, "none", {}, None)
+        return ("Form Type  Company  CIK  Date  File Name\n-----\n"
+                "4   Small Co   555   2026-11-03   edgar/data/555/ceo.txt\n"
+                "4   Jane CEO   900   2026-11-03   edgar/data/555/ceo.txt\n"
+                "4   Small Co   555   2026-11-03   edgar/data/555/cfo.txt\n"
+                "4   Small Co   555   2026-11-03   edgar/data/555/grant.txt\n"
+                "4/A Small Co   555   2026-11-03   edgar/data/555/amend.txt\n"
+                "4   Small Co   555   2026-11-03   edgar/data/555/tax.txt\n")
+    return DOCS[os.path.basename(p)]
+
+
+form4_days = {"only": "form.20261103"}
 
 
 def rows(p):
@@ -88,6 +154,11 @@ def main():
     open(os.path.join(cfg, "paper.yaml"), "w").write(f"api_key: PKTEST\nsecret_key: {secret}\n")
     os.environ["ALPACA_CONFIG_DIR"] = os.path.dirname(cfg)
     scanner.REPO, core.DATA = tmp, os.path.join(tmp, "data")
+    form4.LOG = os.path.join(tmp, "form4-log.csv")
+    form4.edgar.CACHE = os.path.join(tmp, "cache")
+    form4.edgar.time.sleep = lambda s: None
+    state0 = {"buzz": {}, "form4": {"next_day": "2026-11-03", "offset": 0}}
+    json.dump(state0, open(os.path.join(tmp, ".state.json"), "w"))
     scanner.time.sleep = lambda s: None
     scanner.git = lambda *a: type("R", (), {"returncode": 0, "stderr": "", "stdout": ""})()
     urllib.request.urlopen = fake_urlopen
@@ -101,6 +172,16 @@ def main():
     assert by["DULL"]["passed"] == "0", "reject must be logged"
     assert by["NVDA"]["passed"] == "1" and by["NVDA"]["news_24h"] == "2", by["NVDA"]
     assert by["AAPL"]["passed"] == "0", by["AAPL"]
+    assert by["NVDA"]["earnings"] == "yes", by["NVDA"]
+    log = rows(form4.LOG)
+    assert [r["insider"] for r in log] == ["Jane CEO", "Bob CFO"], log
+    ceo, cfo = log
+    assert float(ceo["shares"]) == 20000 and float(ceo["dollar_value"]) == 220000 and float(ceo["price"]) == 11, ceo
+    assert ceo["large_vs_pattern"] == "yes" and ceo["prior_buys"] == "1" and ceo["small_company"] == "yes", ceo
+    assert ceo["cluster"] == "no" and cfo["cluster"] == "yes", log
+    assert ceo["after_close"] == "yes" and ceo["qualifies"] == "yes", ceo
+    assert ceo["verified"] == "yes" and float(ceo["entry_close"]) == 20 and float(ceo["spy_entry"]) == 100, ceo
+    assert "2 of 10 qualifying" in open(os.path.join(core.DATA, "report.md")).read()
     assert "MSFT" not in by, "non-movers are not signals"
     assert any("when%3A1d" in u for _, u in calls), "news must be date-limited"
 
@@ -160,6 +241,43 @@ def main():
             continue
         for fn in fs:
             assert secret not in open(os.path.join(dp, fn), errors="ignore").read(), fn
+    # at 10 qualifying signals the filter table appears, and reviews come due
+    open(os.path.join(cfg, "paper.yaml"), "w").write(f"api_key: PKTEST\nsecret_key: {secret}\n")
+    log = rows(form4.LOG)
+    extra = [dict(log[0], accession=f"x{i}", url="https://www.sec.gov/Archives/edgar/data/555/ceo.txt",
+                  filing_date="2026-01-05", entry_close="10", spy_entry="100") for i in range(8)]
+    with open(form4.LOG, "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=form4.FIELDS)
+        w.writeheader(); w.writerows(log + extra)
+    scanner.errors.clear()
+    scanner.main()
+    assert scanner.errors == [], scanner.errors
+    report = open(os.path.join(core.DATA, "report.md")).read()
+    assert "| Cluster | yes |" in report and " / 7 " in report, report
+    o = rows(os.path.join(core.DATA, "form4-outcomes.csv"))
+    assert o and float(o[0]["return_pct"]) == 100 and o[0]["beat_spy"] == "yes", o[:1]
+
+    # pre-market gap: closed market, next open today, 8:30 ET
+    trade_t = NOW.strftime("%Y-%m-%dT%H:%M:%SZ")
+    payload = {"AAPL": {"latestTrade": {"p": 106, "t": trade_t}, "dailyBar": {"c": 100, "t": "2026-01-02T05:00:00Z"}},
+               "MSFT": {"latestTrade": {"p": 101, "t": trade_t}, "dailyBar": {"c": 100, "t": "2026-01-02T05:00:00Z"}},
+               "SPY": {"latestTrade": {"p": 500, "t": trade_t}}}
+    orig_get = stocks._get
+    stocks._get = lambda b, r, c, **p: payload if "snapshots" in r else orig_get(b, r, c, **p)
+    orig_now = core.now
+    st = {"signal_seen": {}}
+    core.now = lambda: NOW.astimezone(stocks.ET).replace(hour=8, minute=30)
+    payload["AAPL"]["latestTrade"]["t"] = payload["MSFT"]["latestTrade"]["t"] = payload["SPY"]["latestTrade"]["t"] = \
+        core.now().astimezone(timezone.utc).strftime(core.FMT)
+    before = len(rows(os.path.join(core.DATA, "signals.csv")))
+    stocks.premarket_gaps(st, {}, {"next_open": core.now().strftime("%Y-%m-%dT09:30:00-05:00")}, [])
+    core.now, stocks._get = orig_now, orig_get
+    after = rows(os.path.join(core.DATA, "signals.csv"))
+    assert len(after) == before + 1 and after[-1]["symbol"] == "AAPL" and after[-1]["signal_type"] == "premarket_gap", after[-1]
+
+    # measured schedule: runs five minutes apart report five
+    s = {"last_run": (NOW - timedelta(minutes=5)).strftime(core.FMT)}
+    assert scanner.cycle_minutes(s) == 5
     print(report)
     print("ALL PASSED", len(calls), "simulated requests")
     shutil.rmtree(tmp)

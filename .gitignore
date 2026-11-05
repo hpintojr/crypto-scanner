@@ -2,3 +2,5 @@ scanner.out
 __pycache__/
 .alpaca-config/
 *.yaml
+.edgar-cache/
+.sec-user-agent
