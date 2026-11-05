@@ -356,7 +356,7 @@ def _preview(s, creds, state, today, is_open):
     """Hourly list of what the rules would buy next, using the same picks as real buys. Places no orders."""
     if HOLD_MODE:
         with open(os.path.join(core.DATA, "sim-next.md"), "w") as f:
-            f.write("# Next picks\n\nHold mode: crypto cash goes into BTC. The second $1,000 waits in cash for a tested commodities plan. No other picks.\n")
+            f.write("# Next picks\n\nNo new buys. Both budgets wait in cash until Hamilton approves an allocation. Older coins keep their exits.\n")
         return
     last = state.get("preview_checked")
     if last and core.now() - core.parse(last) < timedelta(minutes=55):
@@ -424,8 +424,8 @@ def _report(s, prices):
         due = (start + timedelta(days=days)).isoformat()
         hit = next((r for r in rows if r["date"] >= due), None)
         lines.append(f"- {days}-day checkpoint ({due}): " + (f"${float(hit['equity']):,.2f}, SPY ${hit['spy_equivalent']}" if hit else "not reached"))
-    lines += ["", "Rules: hold mode. The second $1,000 waits in cash for a commodities plan, and crypto cash buys and holds BTC, with no exits. "
-              "Older crypto positions keep their -5%, +10% and 7-day exits, and that cash moves into BTC. No margin. "
+    lines += ["", "Rules: no new buys. The commodities $1,000 and free crypto cash wait in cash until Hamilton approves an allocation. "
+              "Older crypto positions keep their -5%, +10% and 7-day exits. No margin. "
               "Trade data is in sim-trades.csv."]
     with open(os.path.join(core.DATA, "sim.md"), "w") as f:
         f.write("\n".join(lines) + "\n")
@@ -456,8 +456,7 @@ def cycle(state, errors, creds):
         if not stopped:
             _exits(s, creds, prices, today, is_open)
             if HOLD_MODE:
-                _hold_buy(s, creds, "crypto")
-                # The stock budget waits: Hamilton moved it to commodities, and those rules aren't tested yet.
+                pass  # Both budgets wait in cash until Hamilton approves an allocation. Older coins still exit.
             else:
                 _buy(s, creds, prices, today, "crypto", True)
                 if is_open:

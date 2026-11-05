@@ -681,17 +681,21 @@ def main():
     MARKET_OPEN[0] = False
     er5 = []
     sim.cycle({}, er5, creds)
-    assert er5 == [] and [o["symbol"] for o in ORDERS.values()] == ["BTC/USD"], (er5, ORDERS)
-    assert list(ORDERS.values())[0]["notional"] == "1000.0"
+    assert er5 == [] and not ORDERS, "both budgets wait in cash"
+    assert sim._hold_buy(sim._load(), creds, "crypto") is True and list(ORDERS.values())[0]["notional"] == "1000.0"
+    ORDERS.clear()
     MARKET_OPEN[0] = True
     sim.cycle({}, er5, creds)
     syms = sorted(o["symbol"] for o in ORDERS.values())
-    assert er5 == [] and syms == ["BTC/USD"], "the second budget stays in cash for now"
+    assert er5 == [] and syms == [], "no buys with the market open either"
     n = len(ORDERS)
     LAST[0] = 1.0  # a huge fall must not sell a hold
     sim.cycle({}, er5, creds)
     sim.cycle({}, er5, creds)
     assert er5 == [] and len(ORDERS) == n and not any(o["side"] == "sell" for o in ORDERS.values()), (er5, ORDERS)
+    s8 = {"cash": 0.0, "positions": [{"symbol": "BTC/USD", "market": "crypto", "hold": True, "status": "open", "entry": 50.0, "opened": "2020-01-01", "qty": "1", "cost": 50.0}]}
+    sim._exits(s8, creds, {"BTC/USD": 1.0}, NOW.date(), True)
+    assert s8["positions"][0]["status"] == "open", "a hold never sells"
     # a filled buy records its own coins, not the whole merged Alpaca position
     assert sim._held_qty(creds, {"market": "crypto", "symbol": "BTC/USD"}, "0.5") == "0.5"
 
