@@ -499,6 +499,14 @@ def main():
     holdings.cycle(st, er)
     assert "+52.17%" in st["last_holdings"], st
 
+    # a missing price must not name the coin, because errors reach public status.md
+    with open(os.path.join(tmp, ".holdings.csv"), "w") as f:
+        f.write("coin_id,symbol,quantity\nsecretcoin,SECRET,5\n")
+    st.pop("holdings_checked")
+    er = []
+    holdings.cycle(st, er)
+    assert er and "SECRET" not in er[0].upper() and "secretcoin" not in er[0], er
+
     # measured schedule: runs five minutes apart report five
     s = {"last_run": (NOW - timedelta(minutes=5)).strftime(core.FMT)}
     assert scanner.cycle_minutes(s) == 5

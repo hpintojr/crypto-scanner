@@ -27,9 +27,10 @@ def cycle(state, errors):
                                      headers={"User-Agent": "crypto-scanner-research/1.0"})
         with urllib.request.urlopen(req, timeout=30) as r:
             prices = json.loads(r.read())
-        missing = [c["symbol"] for c in coins if c["coin_id"].strip() not in prices]
+        missing = sum(c["coin_id"].strip() not in prices for c in coins)
         if missing or "bitcoin" not in prices:
-            errors.append(f"hold test: no price for {', '.join(missing) or 'BTC'}, check its CoinGecko id")
+            # status.md is public, so errors never name a coin from the private list
+            errors.append(f"hold test: {missing or 1} coin(s) have no price, check the CoinGecko ids in .holdings.csv")
             return
         base_path = os.path.join(DIR, ".holdings-baseline.json")
         if os.path.exists(base_path):
@@ -58,4 +59,4 @@ def cycle(state, errors):
         state["holdings_checked"] = core.now().strftime(core.FMT)
         state["last_holdings"] = f"{ret:+.2f}% since {base['date']}, BTC {(prices['bitcoin']['usd'] / base['btc'] - 1) * 100:+.2f}%"
     except Exception as e:
-        errors.append(f"hold test: {type(e).__name__}: {e}")
+        errors.append(f"hold test: {type(e).__name__}")  # the details could include the private list
