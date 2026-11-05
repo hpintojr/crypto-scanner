@@ -4,7 +4,7 @@ from datetime import datetime, timezone, timedelta
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 import scanner
-from research import core, form4, sim, stocks
+from research import core, form4, sim, stocks, wallets
 
 NOW = datetime.now(timezone.utc)
 calls = []
@@ -398,6 +398,28 @@ def main():
     assert "month" in sim._load()["positions"][0]["thesis"]
     sim._daily_stock_closes = orig_daily
     core.now = orig_now
+
+    # wallet watch: first look is a baseline, later only new moves log, and incomplete rows are refused
+    addr = "bc1q" + "a" * 38
+    fields = ["number", "owner", "category", "enabled", "chain", "address", "attribution_source", "last_verified", "profile", "notes"]
+    wallets.LIST = os.path.join(tmp, "w.csv")
+    with open(wallets.LIST, "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fields, restval="")
+        w.writeheader()
+        w.writerow({"owner": "Good Co", "category": "company", "enabled": "yes", "chain": "bitcoin", "address": addr, "attribution_source": "filing", "last_verified": "2026-11-05"})
+        w.writerow({"owner": "No Source", "enabled": "yes", "chain": "bitcoin", "address": addr})
+        w.writerow({"owner": "Off", "enabled": "no"})
+    feed = [[("t1", "in", 1.0, "BTC", 1)]]
+    wallets.READERS["bitcoin"] = lambda a: feed[0]
+    st, errs2 = {}, []
+    wallets.cycle(st, errs2)
+    assert not os.path.exists(os.path.join(core.DATA, "wallet-moves.csv")), "baseline must not log history"
+    assert any("No Source" in e for e in errs2), errs2
+    feed[0] = [("t2", "out", 2.5, "BTC", 2), ("t1", "in", 1.0, "BTC", 1)]
+    wallets.cycle(st, [])
+    moves = rows(os.path.join(core.DATA, "wallet-moves.csv"))
+    assert [m["tx"] for m in moves] == ["t2"] and moves[0]["owner"] == "Good Co", moves
+    assert wallets.admitted({"chain": "ethereum", "address": "0xabc", "attribution_source": "x", "last_verified": "y"})
 
     # measured schedule: runs five minutes apart report five
     s = {"last_run": (NOW - timedelta(minutes=5)).strftime(core.FMT)}

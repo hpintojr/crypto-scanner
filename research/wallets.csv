@@ -1,0 +1,101 @@
+number,owner,category,enabled,chain,address,attribution_source,last_verified,profile,notes
+1,Ripple,company treasury,no,,,,,https://arkm.com/explorer/entity/ripple,"Corporate wallets, never a personal holding"
+2,Tesla,company treasury,no,,,,,https://arkm.com/explorer/entity/tesla,"Corporate wallets, never a personal holding"
+3,SpaceX,company treasury,no,,,,,https://arkm.com/explorer/entity/spacex,"Corporate wallets, never a personal holding"
+4,Arthur Hayes,named person,no,,,,,https://arkm.com/explorer/entity/arthur-hayes,"Needs the owner's own disclosure or strong published attribution, address by address"
+5,Andrew Kang,named person,no,,,,,https://arkm.com/explorer/entity/rewkang,"Needs the owner's own disclosure or strong published attribution, address by address"
+6,Justin Sun,named person,no,,,,,https://arkm.com/explorer/entity/justin-sun,"Needs the owner's own disclosure or strong published attribution, address by address"
+7,Wintermute,market maker,no,,,,,https://arkm.com/explorer/entity/wintermute,"Inventory flows, not necessarily directional trades"
+8,Vitalik Buterin,named person,no,,,,,https://arkm.com/explorer/entity/vitalik-buterin,"Needs the owner's own disclosure or strong published attribution, address by address"
+9,Donald Trump,named person,no,,,,,https://arkm.com/explorer/entity/donald-trump,"Needs the owner's own disclosure or strong published attribution, address by address"
+10,Mark Cuban,named person,no,,,,,https://arkm.com/explorer/entity/mark-cuban,"Needs the owner's own disclosure or strong published attribution, address by address"
+11,Snoop Dogg,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+12,Zach Hyman,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+13,Gary Vaynerchuk,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+14,Marshmello,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+15,Logan Paul,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+16,Alexis Ohanian,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+17,Steve Aoki,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+18,Beeple,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+19,Bill Murray,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+20,Post Malone,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+21,Neymar Jr.,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+22,Lil Baby,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+23,The Chainsmokers,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+24,Paris Hilton,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+25,FaZe Banks,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+26,Serena Williams,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+27,LaMelo Ball,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+28,Justin Bieber,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+29,Stephen Curry,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+30,Dillon Francis,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+31,Jimmy Fallon,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+32,Jay-Z,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+33,Heidi Klum,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+34,Gwyneth Paltrow,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+35,Kevin Hart,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+36,Madonna,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+37,Future,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+38,Eminem,"celebrity, historical",no,,,,,https://dappradar.com/blog/celebrity-wallets-a-dive-into-crypto-hollywood,"Old published attribution, recheck first. Stays disabled until confirmed"
+39,Binance,institution or protocol,no,,,,,https://arkm.com/explorer/entity/binance,Exchange and protocol flows are often customer or internal transfers
+40,Coinbase,institution or protocol,no,,,,,https://arkm.com/explorer/entity/coinbase,Exchange and protocol flows are often customer or internal transfers
+41,BlackRock,institution or protocol,no,,,,,https://arkm.com/explorer/entity/blackrock,Exchange and protocol flows are often customer or internal transfers
+42,Strategy,institution or protocol,no,,,,,https://arkm.com/explorer/entity/microstrategy,Exchange and protocol flows are often customer or internal transfers
+43,Lido,institution or protocol,no,,,,,https://arkm.com/explorer/entity/lido,Exchange and protocol flows are often customer or internal transfers
+44,OKX,institution or protocol,no,,,,,https://arkm.com/explorer/entity/okx,Exchange and protocol flows are often customer or internal transfers
+45,U.S. Government,institution or protocol,no,,,,,https://arkm.com/explorer/entity/usg,Exchange and protocol flows are often customer or internal transfers
+46,Upbit,institution or protocol,no,,,,,https://arkm.com/explorer/entity/upbit,Exchange and protocol flows are often customer or internal transfers
+47,Bitfinex,institution or protocol,no,,,,,https://arkm.com/explorer/entity/bitfinex,Exchange and protocol flows are often customer or internal transfers
+48,Robinhood,institution or protocol,no,,,,,https://arkm.com/explorer/entity/robinhood,Exchange and protocol flows are often customer or internal transfers
+49,Fidelity Custody,institution or protocol,no,,,,,https://arkm.com/explorer/entity/fidelity-custody,Exchange and protocol flows are often customer or internal transfers
+50,Kraken,institution or protocol,no,,,,,https://arkm.com/explorer/entity/kraken,Exchange and protocol flows are often customer or internal transfers
+51,BNB Chain,institution or protocol,no,,,,,https://arkm.com/explorer/entity/bnb-chain,Exchange and protocol flows are often customer or internal transfers
+52,Grayscale,institution or protocol,no,,,,,https://arkm.com/explorer/entity/grayscale,Exchange and protocol flows are often customer or internal transfers
+53,Aave,institution or protocol,no,,,,,https://arkm.com/explorer/entity/aave,Exchange and protocol flows are often customer or internal transfers
+54,Bybit,institution or protocol,no,,,,,https://arkm.com/explorer/entity/bybit,Exchange and protocol flows are often customer or internal transfers
+55,Arbitrum,institution or protocol,no,,,,,https://arkm.com/explorer/entity/arbitrum,Exchange and protocol flows are often customer or internal transfers
+56,MakerDAO,institution or protocol,no,,,,,https://arkm.com/explorer/entity/makerdao,Exchange and protocol flows are often customer or internal transfers
+57,Bitmine,institution or protocol,no,,,,,https://arkm.com/explorer/entity/bitmine,Exchange and protocol flows are often customer or internal transfers
+58,Tether,institution or protocol,no,,,,,https://arkm.com/explorer/entity/tether,Exchange and protocol flows are often customer or internal transfers
+59,Morpho,institution or protocol,no,,,,,https://arkm.com/explorer/entity/morpho,Exchange and protocol flows are often customer or internal transfers
+60,WhiteBIT,institution or protocol,no,,,,,https://arkm.com/explorer/entity/whitebit,Exchange and protocol flows are often customer or internal transfers
+61,Wrapped Bitcoin,institution or protocol,no,,,,,https://arkm.com/explorer/entity/wrapped-bitcoin,Exchange and protocol flows are often customer or internal transfers
+62,Spark Protocol,institution or protocol,no,,,,,https://arkm.com/explorer/entity/spark-protocol,Exchange and protocol flows are often customer or internal transfers
+63,ether.fi,institution or protocol,no,,,,,https://arkm.com/explorer/entity/ether-fi,Exchange and protocol flows are often customer or internal transfers
+64,Gemini,institution or protocol,no,,,,,https://arkm.com/explorer/entity/gemini,Exchange and protocol flows are often customer or internal transfers
+65,Uniswap,institution or protocol,no,,,,,https://arkm.com/explorer/entity/uniswap,Exchange and protocol flows are often customer or internal transfers
+66,Bitget,institution or protocol,no,,,,,https://arkm.com/explorer/entity/bitget,Exchange and protocol flows are often customer or internal transfers
+67,Gate.io,institution or protocol,no,,,,,https://arkm.com/explorer/entity/gate-io,Exchange and protocol flows are often customer or internal transfers
+68,Bithumb,institution or protocol,no,,,,,https://arkm.com/explorer/entity/bithumb,Exchange and protocol flows are often customer or internal transfers
+69,Crypto.com,institution or protocol,no,,,,,https://arkm.com/explorer/entity/crypto-com,Exchange and protocol flows are often customer or internal transfers
+70,Bitstamp,institution or protocol,no,,,,,https://arkm.com/explorer/entity/bitstamp,Exchange and protocol flows are often customer or internal transfers
+71,Revolut,institution or protocol,no,,,,,https://arkm.com/explorer/entity/revolut,Exchange and protocol flows are often customer or internal transfers
+72,World Liberty Financial,institution or protocol,no,,,,,https://arkm.com/explorer/entity/worldlibertyfi,Exchange and protocol flows are often customer or internal transfers
+73,Twenty One Capital,institution or protocol,no,,,,,https://arkm.com/explorer/entity/twenty-one-capital,Exchange and protocol flows are often customer or internal transfers
+74,Coincheck,institution or protocol,no,,,,,https://arkm.com/explorer/entity/coincheck,Exchange and protocol flows are often customer or internal transfers
+75,Jupiter,institution or protocol,no,,,,,https://arkm.com/explorer/entity/jupiter,Exchange and protocol flows are often customer or internal transfers
+76,USDT0,institution or protocol,no,,,,,https://arkm.com/explorer/entity/usdt0,Exchange and protocol flows are often customer or internal transfers
+77,Sablier,institution or protocol,no,,,,,https://arkm.com/explorer/entity/sablier,Exchange and protocol flows are often customer or internal transfers
+78,Backed,institution or protocol,no,,,,,https://arkm.com/explorer/entity/backed,Exchange and protocol flows are often customer or internal transfers
+79,Babylon,institution or protocol,no,,,,,https://arkm.com/explorer/entity/babylon,Exchange and protocol flows are often customer or internal transfers
+80,Paxos,institution or protocol,no,,,,,https://arkm.com/explorer/entity/paxos,Exchange and protocol flows are often customer or internal transfers
+81,Trade Republic,institution or protocol,no,,,,,https://arkm.com/explorer/entity/trade-republic,Exchange and protocol flows are often customer or internal transfers
+82,Base,institution or protocol,no,,,,,https://arkm.com/explorer/entity/base,Exchange and protocol flows are often customer or internal transfers
+83,Polygon,institution or protocol,no,,,,,https://arkm.com/explorer/entity/polygon,Exchange and protocol flows are often customer or internal transfers
+84,Metaplanet,institution or protocol,no,,,,,https://arkm.com/explorer/entity/metaplanet-2,Exchange and protocol flows are often customer or internal transfers
+85,Mt. Gox,institution or protocol,no,,,,,https://arkm.com/explorer/entity/mt-gox,Exchange and protocol flows are often customer or internal transfers
+86,Curve Finance,institution or protocol,no,,,,,https://arkm.com/explorer/entity/curve-fi,Exchange and protocol flows are often customer or internal transfers
+87,KuCoin,institution or protocol,no,,,,,https://arkm.com/explorer/entity/kucoin,Exchange and protocol flows are often customer or internal transfers
+88,PancakeSwap,institution or protocol,no,,,,,https://arkm.com/explorer/entity/pancakeswap,Exchange and protocol flows are often customer or internal transfers
+89,Copper,institution or protocol,no,,,,,https://arkm.com/explorer/entity/copper,Exchange and protocol flows are often customer or internal transfers
+90,Bitvavo,institution or protocol,no,,,,,https://arkm.com/explorer/entity/bitvavo,Exchange and protocol flows are often customer or internal transfers
+91,Mantle,institution or protocol,no,,,,,https://arkm.com/explorer/entity/mantle,Exchange and protocol flows are often customer or internal transfers
+92,ARK Invest,institution or protocol,no,,,,,https://arkm.com/explorer/entity/ark-invest,Exchange and protocol flows are often customer or internal transfers
+93,Cash App,institution or protocol,no,,,,,https://arkm.com/explorer/entity/cash-app,Exchange and protocol flows are often customer or internal transfers
+94,Circle,institution or protocol,no,,,,,https://arkm.com/explorer/entity/circle,Exchange and protocol flows are often customer or internal transfers
+95,Coinbase Prime,institution or protocol,no,,,,,https://arkm.com/explorer/entity/coinbase-prime,Exchange and protocol flows are often customer or internal transfers
+96,Ondo Finance,institution or protocol,no,,,,,https://arkm.com/explorer/entity/ondo-finance,Exchange and protocol flows are often customer or internal transfers
+97,Pump.fun,institution or protocol,no,,,,,https://arkm.com/explorer/entity/pump-fun,Exchange and protocol flows are often customer or internal transfers
+98,Ceffu,institution or protocol,no,,,,,https://arkm.com/explorer/entity/ceffu,Exchange and protocol flows are often customer or internal transfers
+99,Lighter,institution or protocol,no,,,,,https://arkm.com/explorer/entity/lighter,Exchange and protocol flows are often customer or internal transfers
+100,WisdomTree,institution or protocol,no,,,,,https://arkm.com/explorer/entity/wisdomtree,Exchange and protocol flows are often customer or internal transfers
