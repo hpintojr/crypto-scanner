@@ -305,6 +305,28 @@ def _buy(s, creds, prices, today, market, may_use_momentum):
     return False
 
 
+def _preview(s, creds, state, today, is_open):
+    """Hourly list of what the rules would buy next, using the same picks as real buys. Places no orders."""
+    last = state.get("preview_checked")
+    if last and core.now() - core.parse(last) < timedelta(minutes=55):
+        return
+    state["preview_checked"] = core.now().strftime(core.FMT)
+    bought = set(s.get("bought_today") or []) if s.get("bought_date") == today.isoformat() else set()
+    held = {p["symbol"] for p in s["positions"]} | bought
+    signals = candidates(today, held)
+    lines = ["# Next picks", "", f"As of {core.now().strftime(core.FMT)}. A preview, not a promise: prices and signals change, "
+             "and a stock that can't be traded in fractions is skipped.", "",
+             f"- Cash ${s['cash']:,.2f}, of which ${max(0, s['cash'] - STOCK_RESERVE):,.2f} can go to crypto", "",
+             "## Stocks", "", "Form 4 and mover signals can buy from the open. Other picks start at 10:30 AM ET.", ""]
+    picks = signals + _stock_momentum(creds, today, held)
+    lines += [f"{i}. {c[2]} ({c[3]}): {c[4]}" for i, c in enumerate(picks[:6], 1)] or ["No stock scores above zero."]
+    lines += ["", "## Crypto", ""]
+    coins = _crypto_candidates(creds, today, held)
+    lines += [f"{i}. {c[2]} ({c[3]}): {c[4]}" for i, c in enumerate(coins[:6], 1)] or ["No coin scores above zero."]
+    with open(os.path.join(core.DATA, "sim-next.md"), "w") as f:
+        f.write("\n".join(lines) + "\n")
+
+
 def _equity(s, prices):
     total = s["cash"]
     for p in s["positions"]:
@@ -373,6 +395,7 @@ def cycle(state, errors, creds):
                 _buy(s, creds, prices, today, "stock", et.hour * 60 + et.minute >= ENTRY_MINUTE)
         _save(s)
         equity = _report(s, prices)
+        _preview(s, creds, state, today, is_open)
         state["last_sim"] = (f"value ${equity:,.2f}, {len(s['positions'])} open, cash ${s['cash']:,.2f}"
                              + (", STOPPED by SIM_STOP" if stopped else ""))
     except urllib.error.HTTPError as e:

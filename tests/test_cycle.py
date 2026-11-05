@@ -507,6 +507,11 @@ def main():
     holdings.cycle(st, er)
     assert er and "SECRET" not in er[0].upper() and "secretcoin" not in er[0], er
 
+    # the preview lists picks and places nothing
+    n = len(ORDERS)
+    sim._preview({"cash": 700.0, "positions": []}, stocks.credentials(), {}, NOW.date(), False)
+    assert len(ORDERS) == n and "## Stocks" in open(os.path.join(core.DATA, "sim-next.md")).read()
+
     # measured schedule: runs five minutes apart report five
     s = {"last_run": (NOW - timedelta(minutes=5)).strftime(core.FMT)}
     assert scanner.cycle_minutes(s) == 5

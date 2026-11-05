@@ -28,6 +28,7 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 |---|---|
 | `status.md` | Latest cycle, errors, measured time between runs |
 | `data/sim.md` | Simulation value, comparison with SPY, checkpoints |
+| `data/sim-next.md` | Hourly preview of what the rules would buy next. No orders |
 | `data/sim-trades.csv` | Each closed trade with its thesis and argument against |
 | `research/wallets.csv` | The wallet collection: who, chain, address, source, and date last confirmed |
 | `data/wallet-moves.csv` | New moves by enabled wallets |
