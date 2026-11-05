@@ -1,7 +1,9 @@
 """$1,000 paper simulation. Places orders on Alpaca's PAPER endpoint only, never live.
 
-One stock buy a trading day at 10:30 AM ET and one crypto buy a day, sharing one $1,000 budget.
-Picks use today's signals first, then the past month's numbers plus news. 10% of equity per trade
+No limit on the number of trades, only on money: $1,000 to start, no margin, cash can't go below zero.
+Every signal can trade while there's cash, at most one buy per market per cycle, and a coin or stock
+isn't bought twice in a day. If a day has no trade, one pick from the past month's numbers plus news
+(crypto any time, stocks from 10:30 AM ET). 10% of equity per trade
 ($100 at the start, so gains are reinvested). Exit at -5%, +10%, or after 7 calendar days.
 Create a file named SIM_STOP in the repo to stop all new orders.
 """
@@ -14,7 +16,7 @@ PAPER_URL = "https://paper-api.alpaca.markets"  # the only place orders can go
 START_CASH = 1000.0
 TRADE_FRACTION = 0.10
 STOP_PCT, TARGET_PCT, MAX_HOLD_DAYS = -5.0, 10.0, 7
-MAX_OPEN = 10
+MIN_ORDER = 10.0  # smaller orders can be refused, and cash that low is effectively used up
 MIN_EXACT_PRICE = 0.01  # below this, Alpaca's reported fill price can be rounded
 ENTRY_MINUTE = 10 * 60 + 30
 LOOKBACK_DAYS = 20  # trading sessions of history in the momentum score
@@ -230,7 +232,7 @@ def _stock_momentum(creds, today, held):
     return _rank(creds, closes, stocks.BENCH, held, lambda s: f"{s} stock", "stock-momentum")
 
 
-def _crypto_candidates(creds, today, held):
+def _crypto_candidates(creds, today, held, momentum_ok=True):
     """A coin that passed today's mover check first, then the past month's numbers plus news."""
     assets = stocks._get(PAPER_URL, "/v2/assets", creds, asset_class="crypto", status="active") or []
     pairs = [a["symbol"] for a in assets if a.get("tradable") and a["symbol"].endswith("/USD")
@@ -245,7 +247,7 @@ def _crypto_candidates(creds, today, held):
             out.append((1, float(r["volume_ratio"]), pair, "crypto-mover",
                         f"Up {float(r['move_1h_pct']):.1f}% in an hour on {float(r['volume_ratio']):.1f}x usual volume",
                         "The move may already be over, and this signal has no proven edge yet."))
-    if out:
+    if out or not momentum_ok:
         return sorted(out, key=lambda c: c[1], reverse=True)
     page = stocks._get(stocks.DATA_URL, "/v1beta3/crypto/us/bars", creds, symbols=",".join(pairs), timeframe="1Day",
                        start=(today - timedelta(days=LOOKBACK_DAYS)).isoformat(), limit=10000)
@@ -258,31 +260,37 @@ def _check_paper(creds):
         raise RuntimeError("account is not a paper account, refusing to trade")
 
 
-def _buy(s, creds, prices, today, market):
-    """Place today's buy for this market. Returns True once an order goes in."""
-    held = {p["symbol"] for p in s["positions"]}
+def _buy(s, creds, prices, today, market, may_use_momentum):
+    """Place one buy for this market if there's a pick and cash. Returns True once an order goes in."""
+    day = today.isoformat()
+    if s.get("bought_date") != day:
+        s["bought_date"], s["bought_today"] = day, []
+    held = {p["symbol"] for p in s["positions"]} | set(s["bought_today"])
     equity = _equity(s, prices)
     notional = round(min(equity * TRADE_FRACTION, s["cash"]), 2)
-    if len(s["positions"]) >= MAX_OPEN or notional < 1:
-        return
+    if notional < MIN_ORDER:
+        return False
     _check_paper(creds)
     crypto = market == "crypto"
+    day_key = "last_crypto_day" if crypto else "last_trade_day"
+    momentum_ok = may_use_momentum and s.get(day_key) != day
     if crypto:
-        picks = _crypto_candidates(creds, today, held)
+        picks = _crypto_candidates(creds, today, held, momentum_ok)
     else:
-        picks = candidates(today, held) or _stock_momentum(creds, today, held)
+        picks = candidates(today, held) or (_stock_momentum(creds, today, held) if momentum_ok else [])
     for _, _, sym, source, thesis, against in picks:
         if not crypto:
             asset = stocks._get(PAPER_URL, f"/v2/assets/{sym}", creds)
             if not (asset.get("tradable") and asset.get("fractionable")):
                 continue
-        cid = f"sim-buy-{sym.replace('/', '')}-{today:%Y%m%d}"
+        cid = f"sim-buy-{sym.replace('/', '')}-{core.now():%Y%m%d%H%M}"
         _post_order(creds, {"symbol": sym, "notional": str(notional), "side": "buy", "type": "market",
                             "time_in_force": "gtc" if crypto else "day", "client_order_id": cid})
         s["cash"] -= notional
         s["positions"].append({"symbol": sym, "market": market, "source": source, "status": "buying", "buy_id": cid, "notional": notional,
                                "thesis": thesis, "against": against + f" Exit: {STOP_PCT:g}%, +{TARGET_PCT:g}%, or {MAX_HOLD_DAYS} days."})
-        s["last_crypto_day" if crypto else "last_trade_day"] = today.isoformat()
+        s[day_key] = day
+        s["bought_today"].append(sym)
         return True
     return False
 
@@ -322,8 +330,8 @@ def _report(s, prices):
         due = (start + timedelta(days=days)).isoformat()
         hit = next((r for r in rows if r["date"] >= due), None)
         lines.append(f"- {days}-day checkpoint ({due}): " + (f"${float(hit['equity']):,.2f}, SPY ${hit['spy_equivalent']}" if hit else "not reached"))
-    lines += ["", "Rules: one stock buy a trading day at 10:30 AM ET and one crypto buy a day, 10% of equity each, "
-              "-5% stop, +10% target, 7-day limit. No buy if nothing scores above zero. Trade data is in sim-trades.csv."]
+    lines += ["", "Rules: $1,000 starting budget with no margin and no limit on trades. Every signal can trade while there's cash, "
+              "10% of equity each, -5% stop, +10% target, 7-day limit. Trade data is in sim-trades.csv."]
     with open(os.path.join(core.DATA, "sim.md"), "w") as f:
         f.write("\n".join(lines) + "\n")
     return equity
@@ -349,10 +357,9 @@ def cycle(state, errors, creds):
         stopped = os.path.exists(os.path.join(ROOT, "SIM_STOP"))
         if not stopped:
             _exits(s, creds, prices, today, is_open)
-            if s.get("last_crypto_day") != today.isoformat():
-                _buy(s, creds, prices, today, "crypto")
-            if is_open and et.hour * 60 + et.minute >= ENTRY_MINUTE and s.get("last_trade_day") != today.isoformat():
-                _buy(s, creds, prices, today, "stock")
+            _buy(s, creds, prices, today, "crypto", True)
+            if is_open:
+                _buy(s, creds, prices, today, "stock", et.hour * 60 + et.minute >= ENTRY_MINUTE)
         _save(s)
         equity = _report(s, prices)
         state["last_sim"] = (f"value ${equity:,.2f}, {len(s['positions'])} open, cash ${s['cash']:,.2f}"

@@ -12,9 +12,10 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 
 ## Simulation rules
 
-- One stock buy a trading day at 10:30 AM ET (7:30 AM PT): a qualifying Form 4 buy first, then the strongest up mover on at least 2x volume, then the best score from the past month's returns against SPY plus news.
-- One crypto buy a day, any time: a coin that passed today's mover check first, then the best score from the past month's returns against BTC plus news. Both markets share the $1,000.
-- News comes from Alpaca's news feed and Google News. X.com is not included. No buy if nothing scores above zero.
+- Budget: $1,000 to start, shared across stocks and crypto. No limit on the number of trades. Cash can't go below zero, and there's no margin.
+- Every signal can trade while there's cash: qualifying Form 4 buys and up movers on at least 2x volume. At most one buy per market per cycle, and nothing is bought twice in a day.
+- If a day has no trade in a market, one pick from the past month's returns against SPY or BTC plus news: crypto any time, stocks from 10:30 AM ET (7:30 AM PT).
+- News comes from Alpaca's news feed and Google News. X.com is not included. Momentum picks must score above zero.
 - Each trade is 10% of current value, $100 at the start, so gains are reinvested.
 - Sell at -5%, +10%, or after 7 days.
 - Cash only: no margin, shorting or options.

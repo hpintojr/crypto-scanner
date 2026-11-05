@@ -326,7 +326,7 @@ def main():
     os.remove(os.path.join(core.DATA, "sim-state.json")) if os.path.exists(os.path.join(core.DATA, "sim-state.json")) else None
     sim.cycle(state, errs, creds)
     assert errs == [], errs
-    buy = ORDERS[f"sim-buy-WIN-{day:%Y%m%d}"]
+    buy = next(o for o in ORDERS.values() if o["symbol"] == "WIN")
     assert buy["notional"] == "100.0" and buy["side"] == "buy", buy
     sim.cycle(state, errs, creds)  # fill arrives, and no second buy the same day
     assert len(ORDERS) == 1, ORDERS
@@ -367,7 +367,7 @@ def main():
     buy = [o for o in ORDERS.values() if o["side"] == "buy"]
     assert len(buy) == 1 and buy[0]["symbol"] == "SOL/USD" and buy[0]["time_in_force"] == "gtc", ORDERS
     sim.cycle(state, errs, creds)
-    assert len(ORDERS) == 1, "one crypto buy a day"
+    assert len(ORDERS) == 1, "with no new signal, only one momentum pick a day"
     LAST[0] = 56.0
     sim.cycle(state, errs, creds)
     sell = [o for o in ORDERS.values() if o["side"] == "sell"]
@@ -403,6 +403,25 @@ def main():
     assert errs == [], errs
     picked = list(ORDERS.values())
     assert len(picked) == 1 and picked[0]["symbol"] == "MSFT", ORDERS
+
+    # no daily limit: every new signal trades, the same stock isn't bought twice in a day, cash is the only cap
+    s0 = sim._load()
+    s0["cash"] = 110.0
+    sim._save(s0)
+    for sym in ("AAA", "BBB", "CCC"):
+        with open(os.path.join(core.DATA, "signals.csv"), "a", newline="") as f:
+            csv.DictWriter(f, fieldnames=core.SIGNAL_FIELDS, restval="").writerow(
+                {"market": "stocks", "symbol": sym, "time": later.date().isoformat() + "T15:00:00Z", "passed": 1,
+                 "signal_type": "move_1h", "move_1h_pct": 4, "volume_ratio": 3})
+    for minute in (36, 37, 38, 39):
+        moment = later.replace(minute=minute)
+        core.now = lambda: moment
+        sim.cycle(state, errs, creds)
+    assert errs == [], errs
+    bought = [o["symbol"] for o in ORDERS.values() if o["side"] == "buy"]
+    assert len(bought) == len(set(bought)), bought
+    assert {"AAA", "BBB"} <= set(bought) or "CCC" in bought, bought
+    assert sim._load()["cash"] >= 0 and len(bought) < 5, (bought, sim._load()["cash"])
     assert "month" in sim._load()["positions"][0]["thesis"]
     sim._daily_stock_closes = orig_daily
     core.now = orig_now
