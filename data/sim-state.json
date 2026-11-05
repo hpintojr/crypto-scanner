@@ -1,12 +1,12 @@
 {
  "start": "2026-11-05",
- "cash": 0.00024765778475455136,
+ "cash": 1.7935663616167403,
  "positions": [
   {
    "symbol": "PEPE/USD",
    "market": "crypto",
    "source": "crypto-momentum",
-   "status": "open",
+   "status": "selling",
    "buy_id": "sim-buy-PEPEUSD-20261105",
    "notional": 100.0,
    "thesis": "Up 24.4% over about a month (+25.7% vs BTC/USD), +1.0% this week, 54 headlines in the last day, news tone -4",
@@ -15,7 +15,9 @@
    "entry": 4.99e-06,
    "cost": 98.0546,
    "opened": "2026-11-05T09:08:15Z",
-   "reconciled": true
+   "reconciled": true,
+   "exit_reason": "stop",
+   "sell_id": "sim-sell-PEPEUSD-202611051735"
   },
   {
    "symbol": "BCH/USD",
@@ -56,7 +58,7 @@
    "notional": 302.35,
    "thesis": "Approved allocation, long:BTC/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.003683348",
+   "qty": "0.003681801",
    "entry": 80289.662338988,
    "cost": 296.476,
    "opened": "2026-11-05T11:40:09Z"
@@ -120,7 +122,7 @@
    "notional": 97.65,
    "thesis": "Approved allocation, long:BTC/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.001211952",
+   "qty": "0.001211442",
    "entry": 78826.03,
    "cost": 95.7728,
    "opened": "2026-11-05T14:51:10Z"
@@ -200,7 +202,7 @@
    "notional": 84.81,
    "thesis": "Approved allocation, mid:BTC/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.001085616",
+   "qty": "0.001085160",
    "entry": 76422.77,
    "cost": 83.1737,
    "opened": "2026-11-05T15:42:26Z"
@@ -211,11 +213,15 @@
    "source": "mid:BTC/USD",
    "plan": "mid:BTC/USD",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-BTCUSD-202611051601",
    "notional": 93.55,
    "thesis": "Approved allocation, mid:BTC/USD",
-   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
+   "qty": "0.001206917",
+   "entry": 75993.816,
+   "cost": 91.7567,
+   "opened": "2026-11-05T17:35:07Z"
   }
  ],
  "spy_start": 766.9,
