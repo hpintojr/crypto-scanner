@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 309.97551718013926,
+ "cash": 299.99704145551874,
  "positions": [
   {
    "symbol": "PEPE/USD",
@@ -87,10 +87,24 @@
    "symbol": "BTC/USD",
    "market": "crypto",
    "source": "crypto-momentum",
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-buy-BTCUSD-202611051016",
    "notional": 99.89,
    "thesis": "Up -1.4% over about a month (+0.0% vs BTC/USD), +3.7% this week, 118 headlines in the last day, news tone +12",
+   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days.",
+   "qty": "0.001216016",
+   "entry": 80330.741505891,
+   "cost": 97.9285,
+   "opened": "2026-11-05T10:20:36Z"
+  },
+  {
+   "symbol": "BONK/USD",
+   "market": "crypto",
+   "source": "crypto-momentum",
+   "status": "buying",
+   "buy_id": "sim-buy-BONKUSD-202611051020",
+   "notional": 11.94,
+   "thesis": "Up -0.7% over about a month (+0.8% vs BTC/USD), +4.5% this week, 14 headlines in the last day, news tone +2",
    "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days."
   }
  ],
@@ -104,6 +118,7 @@
   "BCH/USD",
   "UNI/USD",
   "POL/USD",
-  "BTC/USD"
+  "BTC/USD",
+  "BONK/USD"
  ]
 }
