@@ -9,7 +9,7 @@ Costs and slippage are not included. Treat any row under 30 signals as noise.
 | Market | Group | Horizon | Signals | Avg follow-through % | Median % | Continued % |
 |---|---|---|---:|---:|---:|---:|
 | crypto | passed | 1h | 1 | -2.18 | -2.18 | 0 |
-| crypto | rejected | 1h | 80 | 0.34 | 0.32 | 71 |
+| crypto | rejected | 1h | 93 | 0.34 | 0.32 | 72 |
 | crypto | rejected | 4h | 1 | -3.45 | -3.45 | 0 |
 | stocks | passed | 1h | 17 | 0.31 | 0.04 | 53 |
 | stocks | passed, earnings | 1h | 9 | -0.41 | -0.50 | 44 |
