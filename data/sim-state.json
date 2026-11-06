@@ -8,7 +8,7 @@
    "source": "long:BTC/USD",
    "plan": "long:BTC/USD",
    "hold": true,
-   "status": "open",
+   "status": "selling",
    "buy_id": "sim-plan-BTCUSD-202611051135",
    "notional": 302.35,
    "thesis": "Approved allocation, long:BTC/USD",
@@ -16,7 +16,9 @@
    "qty": "0.003681455",
    "entry": 80289.662338988,
    "cost": 296.476,
-   "opened": "2026-11-05T11:40:09Z"
+   "opened": "2026-11-05T11:40:09Z",
+   "exit_reason": "plan change",
+   "sell_id": "sim-sell-BTCUSD-202611061839"
   },
   {
    "symbol": "GLD",
@@ -24,7 +26,7 @@
    "source": "long:GLD",
    "plan": "long:GLD",
    "hold": true,
-   "status": "open",
+   "status": "selling",
    "buy_id": "sim-plan-GLD-202611051431",
    "notional": 300,
    "thesis": "Approved allocation, long:GLD",
@@ -32,7 +34,9 @@
    "qty": "0.792504768",
    "entry": 378.534,
    "cost": 299.99,
-   "opened": "2026-11-05T14:36:31Z"
+   "opened": "2026-11-05T14:36:31Z",
+   "exit_reason": "plan change",
+   "sell_id": "sim-sell-GLD-202611061839"
   },
   {
    "symbol": "DBC",
@@ -40,7 +44,7 @@
    "source": "long:DBC",
    "plan": "long:DBC",
    "hold": true,
-   "status": "open",
+   "status": "selling",
    "buy_id": "sim-plan-DBC-202611051436",
    "notional": 250,
    "thesis": "Approved allocation, long:DBC",
@@ -48,7 +52,9 @@
    "qty": "7.931450333",
    "entry": 31.518826,
    "cost": 249.99,
-   "opened": "2026-11-05T14:41:15Z"
+   "opened": "2026-11-05T14:41:15Z",
+   "exit_reason": "plan change",
+   "sell_id": "sim-sell-DBC-202611061839"
   },
   {
    "symbol": "DBA",
@@ -56,7 +62,7 @@
    "source": "long:DBA",
    "plan": "long:DBA",
    "hold": true,
-   "status": "open",
+   "status": "selling",
    "buy_id": "sim-plan-DBA-202611051441",
    "notional": 75,
    "thesis": "Approved allocation, long:DBA",
@@ -64,7 +70,9 @@
    "qty": "2.845920303",
    "entry": 26.35,
    "cost": 74.99,
-   "opened": "2026-11-05T14:46:09Z"
+   "opened": "2026-11-05T14:46:09Z",
+   "exit_reason": "plan change",
+   "sell_id": "sim-sell-DBA-202611061839"
   },
   {
    "symbol": "BTC/USD",
@@ -88,7 +96,7 @@
    "source": "long:CPER",
    "plan": "long:CPER",
    "hold": true,
-   "status": "open",
+   "status": "selling",
    "buy_id": "sim-plan-CPER-202611051446",
    "notional": 75,
    "thesis": "Approved allocation, long:CPER",
@@ -96,7 +104,9 @@
    "qty": "1.953475044",
    "entry": 38.388,
    "cost": 74.99,
-   "opened": "2026-11-05T14:51:11Z"
+   "opened": "2026-11-05T14:51:11Z",
+   "exit_reason": "plan change",
+   "sell_id": "sim-sell-CPER-202611061839"
   },
   {
    "symbol": "DBC",
@@ -120,7 +130,7 @@
    "source": "long:ETH/USD",
    "plan": "long:ETH/USD",
    "hold": true,
-   "status": "open",
+   "status": "selling",
    "buy_id": "sim-plan-ETHUSD-202611051522",
    "notional": 188.39,
    "thesis": "Approved allocation, long:ETH/USD",
@@ -128,7 +138,9 @@
    "qty": "0.080388653",
    "entry": 2288.58,
    "cost": 184.7241,
-   "opened": "2026-11-05T15:27:38Z"
+   "opened": "2026-11-05T15:27:38Z",
+   "exit_reason": "plan change",
+   "sell_id": "sim-sell-ETHUSD-202611061839"
   },
   {
    "symbol": "ETH/USD",
@@ -262,13 +274,7 @@
  "btc_start": 80189.9,
  "flags": [],
  "plan_spent": {
-  "long:BTC/USD": 400.0,
-  "long:GLD": 300,
-  "long:DBC": 250,
-  "long:DBA": 75,
-  "long:CPER": 75,
   "mid:DBC": 75,
-  "long:ETH/USD": 200.0,
   "mid:BTC/USD": 200.0,
   "mid:ETH/USD": 179.33
  },
@@ -277,8 +283,11 @@
   "DBA": false,
   "DBC": true,
   "GLD": false,
-  "BTC/USD": true,
-  "ETH/USD": true
+  "BTC/USD": false,
+  "ETH/USD": false,
+  "QQQ": false,
+  "VTI": false,
+  "SOL/USD": false
  },
- "trend_checked": "2026-11-05"
+ "trend_checked": "2026-11-06"
 }
