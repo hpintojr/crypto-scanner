@@ -1,6 +1,6 @@
 # Biggest movers
 
-As of 2026-11-06T08:01:03Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
+As of 2026-11-06T08:56:44Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
 
 ## Crypto, top 100
 
