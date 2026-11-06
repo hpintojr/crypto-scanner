@@ -15,29 +15,29 @@ Paper money. Expectancy is average profit per closed trade. Profit factor is tot
 
 | Symbol | Cost | Value | Profit or loss | % |
 |---|---:|---:|---:|---:|
-| BTC/USD | $296.48 | $278.42 | $-18.05 | -6.09 |
-| GLD | $299.99 | $294.98 | $-5.01 | -1.67 |
+| BTC/USD | $296.48 | $278.11 | $-18.37 | -6.20 |
+| GLD | $299.99 | $292.74 | $-7.25 | -2.42 |
 | DBC | $249.99 | $249.64 | $-0.35 | -0.14 |
 | DBA | $74.99 | $74.45 | $-0.54 | -0.72 |
-| BTC/USD | $95.77 | $91.61 | $-4.16 | -4.35 |
-| CPER | $74.99 | $72.98 | $-2.01 | -2.68 |
+| BTC/USD | $95.77 | $91.51 | $-4.27 | -4.45 |
+| CPER | $74.99 | $73.33 | $-1.66 | -2.21 |
 | DBC | $74.99 | $74.91 | $-0.08 | -0.11 |
 | ETH/USD | $184.72 | $179.12 | $-5.60 | -3.03 |
 | ETH/USD | $11.39 | $11.12 | $-0.27 | -2.37 |
-| BTC/USD | $83.17 | $82.06 | $-1.11 | -1.34 |
-| BTC/USD | $91.76 | $91.27 | $-0.49 | -0.53 |
-| BTC/USD | $21.22 | $21.17 | $-0.05 | -0.24 |
+| BTC/USD | $83.17 | $81.97 | $-1.20 | -1.45 |
+| BTC/USD | $91.76 | $91.17 | $-0.59 | -0.64 |
+| BTC/USD | $21.22 | $21.14 | $-0.07 | -0.35 |
 | ETH/USD | $71.49 | $70.74 | $-0.75 | -1.04 |
 | ETH/USD | $91.84 | $90.84 | $-1.00 | -1.09 |
 | ETH/USD | $12.52 | $12.51 | $-0.02 | -0.14 |
 
 ## Risk
 
-- Largest fall from peak: -0.18%
-- Currently below peak: -0.18%
-- Money in open positions: $1,695.82 of $1,921.11
-- BTC since start: -5.69%
-- SPY since start: -4.32%
+- Largest fall from peak: -0.31%
+- Currently below peak: -0.31%
+- Money in open positions: $1,693.29 of $1,918.58
+- BTC since start: -5.79%
+- SPY since start: -4.14%
 
 ## Flags
 
