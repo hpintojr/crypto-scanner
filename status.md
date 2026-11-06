@@ -1,23 +1,23 @@
 # Scanner status
 
-- Last run: 2026-11-06T19:06:46Z
+- Last run: 2026-11-06T19:11:22Z
 - Host: otto-16usdmc576-067297
-- Step seconds: simulation 1, crypto scan 0, buzz 0, watchlist 0, stocks 40, score crypto 0, score stocks 2, form 4 11, wallets 37, holdings 0, backtest 0, movers 0, allocation 0
-- Requests this cycle: api.coingecko.com 3, data.alpaca.markets 52, eth.blockscout.com 14, mempool.space 8, paper-api.alpaca.markets 4
+- Step seconds: simulation 1, crypto scan 0, buzz 0, watchlist 0, stocks 34, score crypto 0, score stocks 0, form 4 10, wallets 29, holdings 0, backtest 0, movers 0, allocation 0
+- Requests this cycle: api.coingecko.com 1, data.alpaca.markets 50, eth.blockscout.com 18, mempool.space 6, paper-api.alpaca.markets 2
 - Skipped for time: none
-- Last scan: 2026-11-06T19:05:16Z: 0 movers >3% 1h, 0 kept after 2x volume check
+- Last scan: 2026-11-06T19:10:08Z: 0 movers >3% 1h, 0 kept after 2x volume check
 - Last flag: 2026-11-06T09:05:20Z CC
-- Last stock scan: 2026-11-06T19:05:17Z: 100 stocks, 4 movers over 2.0% 1h, 0 kept after 2x volume check, 1 without enough data
+- Last stock scan: 2026-11-06T19:10:09Z: 100 stocks, 1 movers over 2.0% 1h, 0 kept after 2x volume check, 1 without enough data
 - Last watchlist snapshot: 2026-11-06T19:00:21Z
 - Last pre-market gap check: 2026-11-06T14:25:16Z: 7 of 100 stocks gapped 3%+ pre-market
-- Last Form 4 run: 2026-11-06T19:05:58Z: 0 filings read, 0 code P buys added, working on 2026-11-06, 188 logged, 4 qualifying
+- Last Form 4 run: 2026-11-06T19:10:43Z: 0 filings read, 0 code P buys added, working on 2026-11-06, 188 logged, 4 qualifying
 - $2,000 paper simulation: value $1,921.81 of $2,000, 0 open, crypto cash $929.76, stock cash $992.04
 - Simulation flags: none
 - Strategy test: 2026-11-05: 501 trading days tested, see data/backtest.md
 - Hold test: -10.53% since 2026-11-05, BTC -5.83%
-- Wallet watch: 15 checked this cycle, 63 enabled in rotation, 2 new moves
-- Measured time between runs: 4 min
-- Next run: ~2026-11-06T19:10:46Z
+- Wallet watch: 15 checked this cycle, 63 enabled in rotation, 0 new moves
+- Measured time between runs: 5 min
+- Next run: ~2026-11-06T19:16:22Z
 - Inbox: no pending requests
 - Errors this cycle: 0
 
