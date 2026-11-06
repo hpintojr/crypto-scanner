@@ -33,7 +33,7 @@ Paper money. Expectancy is average profit per closed trade. Profit factor is tot
 - Currently below peak: -0.14%
 - Money in open positions: $0.00 of $1,921.81
 - BTC since start: -5.60%
-- SPY since start: -3.89%
+- SPY since start: -3.75%
 
 ## Flags
 
