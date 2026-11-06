@@ -1,30 +1,24 @@
 # Scanner status
 
-- Last run: 2026-11-06T06:01:16Z
+- Last run: 2026-11-06T06:06:22Z
 - Host: otto-16usdmc576-067297
-- Step seconds: simulation 6, crypto scan 0, buzz 0, watchlist 0, stocks 0, score crypto 0, score stocks 0, form 4 8, wallets 48, holdings 0, backtest 0, movers 7, allocation 0
-- Requests this cycle: api.coingecko.com 2, data.alpaca.markets 55, eth.blockscout.com 20, mempool.space 5, paper-api.alpaca.markets 4
+- Step seconds: simulation 6, crypto scan 3, buzz 0, watchlist 0, stocks 0, score crypto 0, score stocks 0, form 4 7, wallets 56, holdings 0, backtest 0, movers 0, allocation 0
+- Requests this cycle: api.coingecko.com 4, data.alpaca.markets 41, eth.blockscout.com 16, mempool.space 7, paper-api.alpaca.markets 4
 - Skipped for time: none
-- Last scan: 2026-11-06T06:00:12Z: 0 movers >3% 1h, 0 kept after 2x volume check
+- Last scan: 2026-11-06T06:05:17Z: 1 movers >3% 1h, 0 kept after 2x volume check
 - Last flag: 2026-11-05T13:00:21Z WLFI
-- Last stock scan: 2026-11-06T06:00:13Z: market closed
-- Last watchlist snapshot: 2026-11-06T05:05:23Z
+- Last stock scan: 2026-11-06T06:05:18Z: market closed
+- Last watchlist snapshot: 2026-11-06T06:05:18Z
 - Last pre-market gap check: 2026-11-05T14:25:10Z: 3 of 100 stocks gapped 3%+ pre-market
-- Last Form 4 run: 2026-11-06T06:00:13Z: 0 filings read, 0 code P buys added, working on 2026-11-06, 188 logged, 4 qualifying
+- Last Form 4 run: 2026-11-06T06:05:18Z: 0 filings read, 0 code P buys added, working on 2026-11-06, 188 logged, 4 qualifying
 - $2,000 paper simulation: value $1,923.08 of $2,000, 15 open, crypto cash $0.24, stock cash $225.05
 - Simulation flags: none
 - Strategy test: 2026-11-05: 501 trading days tested, see data/backtest.md
 - Hold test: -9.05% since 2026-11-05, BTC -6.08%
-- Wallet watch: 11 checked this cycle, 63 enabled in rotation, 2 new moves
+- Wallet watch: 15 checked this cycle, 63 enabled in rotation, 1 new moves
 - Measured time between runs: 5 min
-- Next run: ~2026-11-06T06:06:16Z
+- Next run: ~2026-11-06T06:11:22Z
 - Inbox: no pending requests
-- Errors this cycle: 6
-  - wallet Bitfinex: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet Bitfinex: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet Bitfinex: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet Bitfinex: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet Bitfinex: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet Uniswap: HTTPError: HTTP Error 500: Internal Server Error
+- Errors this cycle: 0
 
 Paper only, approved by Hamilton. No real money. No keys in this repo. Create SIM_STOP to stop new orders.
