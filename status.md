@@ -1,23 +1,23 @@
 # Scanner status
 
-- Last run: 2026-11-06T15:26:35Z
+- Last run: 2026-11-06T15:32:15Z
 - Host: otto-16usdmc576-067297
-- Step seconds: simulation 6, crypto scan 0, buzz 0, watchlist 0, stocks 39, score crypto 0, score stocks 5, form 4 13, wallets 24, holdings 0, backtest 0, movers 0, allocation 0
-- Requests this cycle: api.coingecko.com 1, data.alpaca.markets 82, data.sec.gov 6, eth.blockscout.com 20, mempool.space 5, paper-api.alpaca.markets 4
+- Step seconds: simulation 7, crypto scan 0, buzz 0, watchlist 0, stocks 65, score crypto 0, score stocks 1, form 4 15, wallets 38, holdings 0, backtest 0, movers 0, allocation 0
+- Requests this cycle: api.coingecko.com 1, data.alpaca.markets 69, data.sec.gov 2, eth.blockscout.com 14, mempool.space 8, paper-api.alpaca.markets 4
 - Skipped for time: none
-- Last scan: 2026-11-06T15:25:13Z: 1 movers >3% 1h, 0 kept after 2x volume check
+- Last scan: 2026-11-06T15:30:16Z: 1 movers >3% 1h, 0 kept after 2x volume check
 - Last flag: 2026-11-06T09:05:20Z CC
-- Last stock scan: 2026-11-06T15:25:14Z: 100 stocks, 38 movers over 2.0% 1h, 2 kept after 2x volume check, 1 without enough data
+- Last stock scan: 2026-11-06T15:30:17Z: 100 stocks, 28 movers over 2.0% 1h, 2 kept after 2x volume check, 1 without enough data
 - Last watchlist snapshot: 2026-11-06T15:00:20Z
 - Last pre-market gap check: 2026-11-06T14:25:16Z: 7 of 100 stocks gapped 3%+ pre-market
-- Last Form 4 run: 2026-11-06T15:25:58Z: 0 filings read, 0 code P buys added, working on 2026-11-06, 188 logged, 4 qualifying
-- $2,000 paper simulation: value $1,917.99 of $2,000, 15 open, crypto cash $0.24, stock cash $225.05
+- Last Form 4 run: 2026-11-06T15:31:22Z: 0 filings read, 0 code P buys added, working on 2026-11-06, 188 logged, 4 qualifying
+- $2,000 paper simulation: value $1,916.93 of $2,000, 15 open, crypto cash $0.24, stock cash $225.05
 - Simulation flags: none
 - Strategy test: 2026-11-05: 501 trading days tested, see data/backtest.md
 - Hold test: -9.79% since 2026-11-05, BTC -5.84%
-- Wallet watch: 15 checked this cycle, 63 enabled in rotation, 8 new moves
-- Measured time between runs: 5 min
-- Next run: ~2026-11-06T15:31:35Z
+- Wallet watch: 15 checked this cycle, 63 enabled in rotation, 1 new moves
+- Measured time between runs: 6 min
+- Next run: ~2026-11-06T15:38:15Z
 - Inbox: no pending requests
 - Errors this cycle: 0
 
