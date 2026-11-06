@@ -2,22 +2,22 @@
  "buzz": {
   "world-liberty-financial": "2026-11-05T12:05:10Z"
  },
- "last_watch": "2026-11-06T03:05:17Z",
+ "last_watch": "2026-11-06T04:05:19Z",
  "last_flag": "2026-11-05T13:00:21Z WLFI",
  "inbox_hash": "7f9d95d9402f57d8ca4e2efcc4825389ad5a7c320a8cdcf4c91a9942e2ae11dc",
  "answers_hash": "4433d13ee12e546443e456514dc71497b1ddda7690e898314eb6abfc6d4d4bba",
  "pending_request": false,
- "last_scan": "2026-11-06T04:00:12Z: 1 movers >3% 1h, 0 kept after 2x volume check",
+ "last_scan": "2026-11-06T04:05:19Z: 1 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-06T04:00:12Z: market closed",
+ "last_stock_scan": "2026-11-06T04:05:20Z: market closed",
  "form4": {
   "next_day": "2026-11-05",
   "offset": 0
  },
- "last_form4": "2026-11-06T04:00:12Z: 0 filings read, 0 code P buys added, working on 2026-11-05, 134 logged, 2 qualifying",
- "last_run": "2026-11-06T04:01:00Z",
+ "last_form4": "2026-11-06T04:05:20Z: 0 filings read, 0 code P buys added, working on 2026-11-05, 134 logged, 2 qualifying",
+ "last_run": "2026-11-06T04:05:47Z",
  "cycle_minutes": 5,
- "last_sim": "value $1,926.05 of $2,000, 15 open, crypto cash $1.82, stock cash $225.05",
+ "last_sim": "value $1,924.87 of $2,000, 15 open, crypto cash $1.82, stock cash $225.05",
  "signal_seen": {
   "crypto:ZEC:move_1h:0": "2026-11-06T01:00:19Z",
   "crypto:NEAR:move_1h:0": "2026-11-06T01:00:22Z",
@@ -26,7 +26,8 @@
   "crypto:DASH:move_1h:0": "2026-11-06T01:05:16Z",
   "crypto:ETHFI:move_1h:0": "2026-11-06T01:05:19Z",
   "crypto:LIT:move_1h:0": "2026-11-06T02:05:15Z",
-  "crypto:BTW:move_1h:0": "2026-11-06T03:05:17Z"
+  "crypto:BTW:move_1h:0": "2026-11-06T03:05:17Z",
+  "crypto:VVV:move_1h:0": "2026-11-06T04:05:19Z"
  },
  "wallets_seen": {
   "0xa2Eea193444B16fE2D18CFe977aceeea6Dd9c367": [
@@ -2916,11 +2917,11 @@
    "0x468f8434d2fc3e62509c495569610dbb82516824ceef2e2bc243907e4def9946:336"
   ]
  },
- "last_wallets": "11 checked this cycle, 59 enabled in rotation, 0 new moves",
+ "last_wallets": "15 checked this cycle, 59 enabled in rotation, 0 new moves",
  "holdings_checked": "2026-11-06T03:31:05Z",
  "last_holdings": "-8.30% since 2026-11-05, BTC -5.52%",
  "preview_checked": "2026-11-05T11:00:28Z",
- "wallets_offset": 55,
+ "wallets_offset": 70,
  "backtest_date": "2026-11-05",
  "last_backtest": "2026-11-05: 501 trading days tested, see data/backtest.md",
  "movers_checked": "2026-11-06T04:01:00Z",
@@ -2930,17 +2931,17 @@
  "last_gap_check": "2026-11-05T14:25:10Z: 3 of 100 stocks gapped 3%+ pre-market",
  "step_seconds": {
   "simulation": 6,
-  "crypto scan": 0,
+  "crypto scan": 3,
   "buzz": 0,
   "watchlist": 0,
   "stocks": 0,
   "score crypto": 0,
   "score stocks": 0,
   "form 4": 1,
-  "wallets": 39,
+  "wallets": 26,
   "holdings": 0,
   "backtest": 0,
-  "movers": 7,
+  "movers": 0,
   "allocation": 0
  },
  "skipped_steps": []
