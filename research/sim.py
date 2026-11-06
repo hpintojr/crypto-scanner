@@ -532,7 +532,7 @@ def _report(s, prices):
     trades = core.read("sim-trades.csv")
     wins = sum(float(t["pnl"]) > 0 for t in trades)
     start = date.fromisoformat(s["start"])
-    lines = ["# $1,000 paper simulation", "", "Paper money with simulated fills. No real money, no real fills.", "",
+    lines = ["# $2,000 paper simulation", "", "Paper money with simulated fills. No real money, no real fills.", "",
              f"- Started: {s['start']}", f"- Total value: ${equity:,.2f} of ${start_total:,.0f} ({(equity / start_total - 1) * 100:+.2f}%)",
              f"- Crypto budget: ${crypto_value:,.2f} ({(crypto_value / START_CASH - 1) * 100:+.2f}%), cash ${s['cash']:,.2f}",
              f"- Stock budget: ${stock_value:,.2f} ({(stock_value / START_CASH - 1) * 100:+.2f}%), cash ${s.get('stock_cash', 0):,.2f}",
