@@ -16,7 +16,7 @@ Costs and slippage are not included. Treat any row under 30 signals as noise.
 | crypto | rejected | 24h | 2 | -13.49 | -13.49 | 50 |
 | stocks | passed | 1h | 24 | 0.12 | -0.26 | 46 |
 | stocks | passed, earnings | 1h | 10 | -0.30 | -0.17 | 50 |
-| stocks | premarket gap | 1h | 8 | 0.64 | 0.27 | 75 |
+| stocks | premarket gap | 1h | 9 | 0.72 | 0.52 | 78 |
 | stocks | premarket gap | 1d | 5 | 2.85 | 3.40 | 80 |
 | stocks | premarket gap, earnings | 1h | 3 | 0.96 | 1.28 | 100 |
 | stocks | premarket gap, earnings | 1d | 2 | -2.37 | -2.37 | 50 |
