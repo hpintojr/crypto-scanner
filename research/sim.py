@@ -1,6 +1,7 @@
-"""$1,000 paper simulation. Places orders on Alpaca's PAPER endpoint only, never live.
+"""$2,000 paper simulation. Places orders on Alpaca's PAPER endpoint only, never live.
 
-HOLD_MODE (Hamilton approved this allocation Nov 5, 2026): new money follows PLAN below. No short-term slice until a rule passes.
+HOLD_MODE (Hamilton handed buy/sell timing to the agent Nov 6, 2026): money follows PLAN below, every asset gated by its
+100-day trend, checked daily. Positions from an older plan are sold. No short-term slice until a rule passes.
 Older positions keep their normal exits, and their cash joins the plan. Set HOLD_MODE to False for the old picks.
 
 Two separate budgets, $1,000 for crypto and $1,000 for stocks. No limit on the number of trades, only on
@@ -25,10 +26,12 @@ REPEAT_MOMENTUM = True  # keep buying momentum picks until the cash is used
 STALE_BUY_MINUTES = 15  # an unfilled buy older than this is canceled, and its cash returns
 HOLD_MODE = True
 order_errors = []  # refused orders this cycle, shown in status.md
-PLAN = {"crypto": {"long": {"BTC/USD": 400, "ETH/USD": 200}, "mid": {"BTC/USD": 200, "ETH/USD": 200}},
-        "stock": {"long": {"GLD": 300, "DBC": 250, "DBA": 75, "CPER": 75}, "mid": {"GLD": 75, "DBC": 75, "DBA": 75, "CPER": 75}}}
+# Growth mix, every asset in only while above its 100-day average. Backtest 2021-01 to 2026-11, daily check, no costs:
+# $2,000 to $6,219, worst drop -25%. Exit rule: back to cash and review if it falls 20% from its high, or trails VTI by 5+ points after 3 months.
+PLAN = {"crypto": {"long": {}, "mid": {"BTC/USD": 500, "ETH/USD": 333, "SOL/USD": 167}},
+        "stock": {"long": {}, "mid": {"QQQ": 715, "VTI": 285}}}
 TREND_DAYS = 100
-TREND_CHECK_DAYS = 7
+TREND_CHECK_DAYS = 1
 RECONCILE_MAX_GAP = 0.01
 MIN_ORDER = 10.0  # smaller orders can be refused, and cash that low is effectively used up
 PEPE_ACTUAL_COST, PEPE_ACTUAL_ENTRY = 98.0546, 4.99e-06  # Alpaca cash fell from $100,000 to $99,901.95
@@ -359,13 +362,13 @@ def _place_plan_buy(s, creds, market, sym, amount, key, hold):
     s["plan_spent"][key] = s["plan_spent"].get(key, 0) + notional
     s["positions"].append({"symbol": sym, "market": market, "source": key, "plan": key, "hold": True, "status": "buying", "buy_id": cid,
                            "notional": notional, "thesis": f"Approved allocation, {key}",
-                           "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."})
+                           "against": "Trend rules lag: it buys after a rise and sells after a fall, and choppy markets cause repeated small losses."})
     _save(s)  # recorded right away, so a later failure can't lose this order
     return True
 
 
 def _update_trends(s, creds, today):
-    """The mid slice's weekly check: in when the last close is above its 100-day average."""
+    """The mid slice's daily check: in when the last close is above its 100-day average."""
     last = s.get("trend_checked")
     if last and (today - date.fromisoformat(last)).days < TREND_CHECK_DAYS:
         return
@@ -412,6 +415,11 @@ def _run_plan(s, creds, today, is_open):
     for market, slices in PLAN.items():
         if market == "stock" and not is_open:
             continue
+        keys = {f"{sl}:{sym}" for sl, targets in slices.items() for sym in targets}
+        for p in s["positions"]:  # positions from an older plan are sold, and their cash joins this one
+            key = p.get("plan", "")
+            if p.get("market") == market and key and key not in keys and p["status"] == "open" and _try_sell(s, creds, p, "plan change"):
+                s["plan_spent"].pop(key, None)
         for p in s["positions"]:  # the mid slice sells when its trend turns down
             key = p.get("plan", "")
             if p.get("market") == market and key.startswith("mid:") and p["status"] == "open" and trends.get(p["symbol"]) is False:
@@ -475,7 +483,7 @@ def _preview(s, creds, state, today, is_open):
     """Hourly list of what the rules would buy next, using the same picks as real buys. Places no orders."""
     if HOLD_MODE:
         with open(os.path.join(core.DATA, "sim-next.md"), "w") as f:
-            f.write("# Next picks\n\nApproved allocation: see PLAN in research/sim.py. Buys go long slice first, then mid when its 100-day trend is up, as cash allows.\n")
+            f.write("# Next picks\n\nApproved allocation: see PLAN in research/sim.py. Each asset is bought when its 100-day trend is up and sold when it turns down, checked daily.\n")
         return
     last = state.get("preview_checked")
     if last and core.now() - core.parse(last) < timedelta(minutes=55):
@@ -543,8 +551,8 @@ def _report(s, prices):
         due = (start + timedelta(days=days)).isoformat()
         hit = next((r for r in rows if r["date"] >= due), None)
         lines.append(f"- {days}-day checkpoint ({due}): " + (f"${float(hit['equity']):,.2f}, SPY ${hit['spy_equivalent']}" if hit else "not reached"))
-    lines += ["", "Rules: approved allocation. Commodities: long $700 in GLD, DBC, DBA and CPER, mid $300 by 100-day trend. "
-              "Crypto: long $600 in BTC and ETH, mid $400 by 100-day trend. No short-term slice. Older coins keep their exits, and that cash joins the plan. No margin. "
+    lines += ["", "Rules: growth mix, each asset held only while above its 100-day average, checked daily. "
+              "Stocks: $715 QQQ, $285 VTI. Crypto: $500 BTC, $333 ETH, $167 SOL. Positions from the older plan are sold. No short-term slice. No margin. "
               "Trade data is in sim-trades.csv."]
     with open(os.path.join(core.DATA, "sim.md"), "w") as f:
         f.write("\n".join(lines) + "\n")
