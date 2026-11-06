@@ -1,6 +1,20 @@
 # Biggest movers
 
-As of 2026-11-06T01:01:03Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
+As of 2026-11-06T02:01:13Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
+
+## Crypto, top 100
+
+| Window | Biggest gainers | Biggest losers |
+|---|---|---|
+| 1h | ARB +4.1% (+1h), ZEC +3.6% (+6h), ETHFI +3.4% (+1h), ATOM +3.1% (+1h), DASH +2.9% (+2h) | GT -0.6% (-4h), LEO -0.5% (-1h), USDY -0.2% (-1h), CC -0.1% (-1h), OUSD -0.1% (-1h) |
+| 2h | ZEC +4.9% (+6h), RAIN +4.9% (+3h), LIT +3.6% (+2h), ARB +3.5% (+1h), ETHFI +3.4% (+1h) | GT -0.6% (-4h), GRAM -0.6% (+1h), USDY -0.2% (-1h), LEO -0.1% (-1h), HTX -0.1% (+1h) |
+| 4h | RAIN +6.7% (+3h), ZEC +5.8% (+6h), ETHFI +4.0% (+1h), ARB +2.4% (+1h), UNI +2.0% (+2h) | GT -3.1% (-4h), ALGO -2.1% (+1h), ZRO -1.8% (+1h), ATOM -1.7% (+1h), STX -1.5% (+1h) |
+| 6h | ZEC +8.2% (+6h), RAIN +5.6% (+3h), ETHFI +4.4% (+1h), LIT +4.2% (+2h), INJ +3.8% (+2h) | ZRO -3.4% (+1h), ALGO -2.0% (+1h), PUMP -1.7% (+1h), ATOM -1.6% (+1h), XRP -1.3% (+1h) |
+| 8h | RAIN +8.9% (+3h), LIT +6.6% (+2h), ZEC +5.4% (+6h), ARB +5.1% (+1h), PEARL +5.0% (+2h) | ZRO -2.2% (+1h), XRP -2.1% (+1h), HYPE -2.0% (+1h), ATOM -1.3% (+1h), FIGR_HELOC -1.3% (-1h) |
+| 12h | BTW +10.5% (+1h), RAIN +9.2% (+3h), LIT +4.8% (+2h), WLFI +4.1% (+1h), ZEC +2.2% (+6h) | ENA -8.1% (+1h), ATOM -8.0% (+1h), ZRO -7.6% (+1h), WLD -7.5% (+1h), PUMP -7.0% (+1h) |
+| 16h | BTW +8.8% (+1h), RAIN +4.6% (+3h), LIT +0.3% (+2h), ZEC +0.3% (+6h), TRX +0.1% (+1h) | ZRO -11.4% (+1h), WLD -10.0% (+1h), ENA -9.5% (+1h), PUMP -9.5% (+1h), ONDO -9.2% (+1h) |
+| 20h | BTW +10.9% (+1h), RAIN +8.4% (+3h), INJ +3.5% (+2h), LIT +3.0% (+2h), ZEC +0.7% (+6h) | ZRO -12.1% (+1h), PUMP -9.6% (+1h), ENA -9.2% (+1h), UNI -9.0% (+2h), MNT -8.9% (+1h) |
+| 24h | BTW +11.1% (+1h), RAIN +7.7% (+3h), LIT +4.9% (+2h), INJ +4.8% (+2h), PEARL +3.3% (+2h) | ZRO -11.5% (+1h), ENA -9.3% (+1h), WLD -9.1% (+1h), NIGHT -8.9% (+1h), UNI -8.9% (+2h) |
 
 ## Stocks, fixed list
 
