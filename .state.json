@@ -7,17 +7,17 @@
  "inbox_hash": "7f9d95d9402f57d8ca4e2efcc4825389ad5a7c320a8cdcf4c91a9942e2ae11dc",
  "answers_hash": "4433d13ee12e546443e456514dc71497b1ddda7690e898314eb6abfc6d4d4bba",
  "pending_request": false,
- "last_scan": "2026-11-06T04:40:11Z: 1 movers >3% 1h, 0 kept after 2x volume check",
+ "last_scan": "2026-11-06T04:45:15Z: 1 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-06T04:40:12Z: market closed",
+ "last_stock_scan": "2026-11-06T04:45:15Z: market closed",
  "form4": {
   "next_day": "2026-11-05",
   "offset": 0
  },
- "last_form4": "2026-11-06T04:40:12Z: 0 filings read, 0 code P buys added, working on 2026-11-05, 134 logged, 2 qualifying",
- "last_run": "2026-11-06T04:40:36Z",
+ "last_form4": "2026-11-06T04:45:15Z: 0 filings read, 0 code P buys added, working on 2026-11-05, 134 logged, 2 qualifying",
+ "last_run": "2026-11-06T04:45:47Z",
  "cycle_minutes": 5,
- "last_sim": "value $1,924.14 of $2,000, 15 open, crypto cash $0.24, stock cash $225.05",
+ "last_sim": "value $1,924.09 of $2,000, 15 open, crypto cash $0.24, stock cash $225.05",
  "signal_seen": {
   "crypto:ZEC:move_1h:0": "2026-11-06T01:00:19Z",
   "crypto:NEAR:move_1h:0": "2026-11-06T01:00:22Z",
@@ -2077,6 +2077,7 @@
    "0xd7332237b40e9ddcb70233db953f9c43282307798248ba03d6c62ddebccf2732:718"
   ],
   "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De": [
+   "62CC069C950D48EC73033D15AD89B3B774622E91CF0E23C97A3C6313A153E5F6",
    "3B66236E068F7A700F25B1FB446FE0BCA7ACEC72958D63E3AF60362B7D2FF669",
    "5E7C67CBC1CC380C97EA621FF8433F55FD71F737AF64743EDB60CB0AC9CD7119",
    "72A992834ED402C19383533D9B831F2F8EE9BC1DCFAFB580FCEB62E4038FFA5D",
@@ -2918,11 +2919,11 @@
    "0x468f8434d2fc3e62509c495569610dbb82516824ceef2e2bc243907e4def9946:336"
   ]
  },
- "last_wallets": "15 checked this cycle, 59 enabled in rotation, 2 new moves",
+ "last_wallets": "15 checked this cycle, 59 enabled in rotation, 1 new moves",
  "holdings_checked": "2026-11-06T04:33:29Z",
  "last_holdings": "-9.05% since 2026-11-05, BTC -5.98%",
  "preview_checked": "2026-11-05T11:00:28Z",
- "wallets_offset": 57,
+ "wallets_offset": 72,
  "backtest_date": "2026-11-05",
  "last_backtest": "2026-11-05: 501 trading days tested, see data/backtest.md",
  "movers_checked": "2026-11-06T04:01:00Z",
@@ -2939,7 +2940,7 @@
   "score crypto": 0,
   "score stocks": 0,
   "form 4": 1,
-  "wallets": 23,
+  "wallets": 31,
   "holdings": 0,
   "backtest": 0,
   "movers": 0,
