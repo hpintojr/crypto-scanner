@@ -9,8 +9,8 @@ Costs and slippage are not included. Treat any row under 30 signals as noise.
 | Market | Group | Horizon | Signals | Avg follow-through % | Median % | Continued % |
 |---|---|---|---:|---:|---:|---:|
 | crypto | passed | 1h | 1 | -2.18 | -2.18 | 0 |
-| crypto | rejected | 1h | 128 | 0.31 | 0.27 | 70 |
-| crypto | rejected | 4h | 124 | -0.83 | -0.60 | 31 |
+| crypto | rejected | 1h | 129 | 0.30 | 0.26 | 69 |
+| crypto | rejected | 4h | 130 | -0.77 | -0.60 | 32 |
 | stocks | passed | 1h | 24 | 0.12 | -0.26 | 46 |
 | stocks | passed, earnings | 1h | 10 | -0.30 | -0.17 | 50 |
 | stocks | premarket gap | 1h | 5 | 0.27 | 0.02 | 80 |
@@ -20,7 +20,7 @@ Costs and slippage are not included. Treat any row under 30 signals as noise.
 
 ## Form 4 insider buys
 
-154 verified code P buys logged. 3 of 10 qualifying signals (CEO or CFO, large vs their pattern, small company). Entry is the close on filing day, against SPY.
-2 of the qualifying signals were filed after the close, so that entry price could not really have been traded.
+174 verified code P buys logged. 4 of 10 qualifying signals (CEO or CFO, large vs their pattern, small company). Entry is the close on filing day, against SPY.
+3 of the qualifying signals were filed after the close, so that entry price could not really have been traded.
 
 The filter breakdown starts at 10 qualifying signals.
