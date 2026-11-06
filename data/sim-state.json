@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 561.0327794912787,
+ "cash": 713.9360380603991,
  "positions": [
   {
    "symbol": "BTC/USD",
@@ -9,24 +9,6 @@
    "plan": "mid:BTC/USD",
    "hold": true,
    "status": "selling",
-   "buy_id": "sim-plan-BTCUSD-202611051537",
-   "notional": 84.81,
-   "thesis": "Approved allocation, mid:BTC/USD",
-   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.001085058",
-   "entry": 76422.77,
-   "cost": 83.1737,
-   "opened": "2026-11-05T15:42:26Z",
-   "exit_reason": "trend",
-   "sell_id": "sim-sell-BTCUSD-202611061850"
-  },
-  {
-   "symbol": "BTC/USD",
-   "market": "crypto",
-   "source": "mid:BTC/USD",
-   "plan": "mid:BTC/USD",
-   "hold": true,
-   "status": "open",
    "buy_id": "sim-plan-BTCUSD-202611051601",
    "notional": 93.55,
    "thesis": "Approved allocation, mid:BTC/USD",
@@ -34,7 +16,9 @@
    "qty": "0.001206803",
    "entry": 75993.816,
    "cost": 91.7567,
-   "opened": "2026-11-05T17:35:07Z"
+   "opened": "2026-11-05T17:35:07Z",
+   "exit_reason": "trend",
+   "sell_id": "sim-sell-BTCUSD-202611061855"
   },
   {
    "symbol": "BTC/USD",
@@ -59,24 +43,6 @@
    "plan": "mid:ETH/USD",
    "hold": true,
    "status": "selling",
-   "buy_id": "sim-plan-ETHUSD-202611051745",
-   "notional": 72.9,
-   "thesis": "Approved allocation, mid:ETH/USD",
-   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.031749134",
-   "entry": 2248.5,
-   "cost": 71.4886,
-   "opened": "2026-11-05T17:50:04Z",
-   "exit_reason": "trend",
-   "sell_id": "sim-sell-ETHUSD-202611061850"
-  },
-  {
-   "symbol": "ETH/USD",
-   "market": "crypto",
-   "source": "mid:ETH/USD",
-   "plan": "mid:ETH/USD",
-   "hold": true,
-   "status": "open",
    "buy_id": "sim-plan-ETHUSD-202611051750",
    "notional": 93.66,
    "thesis": "Approved allocation, mid:ETH/USD",
@@ -84,7 +50,9 @@
    "qty": "0.040768113",
    "entry": 2251.2,
    "cost": 91.8443,
-   "opened": "2026-11-05T17:55:07Z"
+   "opened": "2026-11-05T17:55:07Z",
+   "exit_reason": "trend",
+   "sell_id": "sim-sell-ETHUSD-202611061855"
   },
   {
    "symbol": "ETH/USD",
