@@ -1,68 +1,14 @@
 {
  "start": "2026-11-05",
- "cash": 458.1623788869903,
+ "cash": 561.0327794912787,
  "positions": [
-  {
-   "symbol": "BTC/USD",
-   "market": "crypto",
-   "source": "long:BTC/USD",
-   "plan": "long:BTC/USD",
-   "hold": true,
-   "status": "selling",
-   "buy_id": "sim-plan-BTCUSD-202611051446",
-   "notional": 97.65,
-   "thesis": "Approved allocation, long:BTC/USD",
-   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.001211328",
-   "entry": 78826.03,
-   "cost": 95.7728,
-   "opened": "2026-11-05T14:51:10Z",
-   "exit_reason": "plan change",
-   "sell_id": "sim-sell-BTCUSD-202611061845"
-  },
-  {
-   "symbol": "DBC",
-   "market": "stock",
-   "source": "mid:DBC",
-   "plan": "mid:DBC",
-   "hold": true,
-   "status": "selling",
-   "buy_id": "sim-plan-DBC-202611051451",
-   "notional": 75,
-   "thesis": "Approved allocation, mid:DBC",
-   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "2.379879403",
-   "entry": 31.51,
-   "cost": 74.99,
-   "opened": "2026-11-05T14:56:15Z",
-   "exit_reason": "plan change",
-   "sell_id": "sim-sell-DBC-202611061845"
-  },
-  {
-   "symbol": "ETH/USD",
-   "market": "crypto",
-   "source": "long:ETH/USD",
-   "plan": "long:ETH/USD",
-   "hold": true,
-   "status": "selling",
-   "buy_id": "sim-plan-ETHUSD-202611051533",
-   "notional": 11.61,
-   "thesis": "Approved allocation, long:ETH/USD",
-   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.004989750",
-   "entry": 2278.814,
-   "cost": 11.3884,
-   "opened": "2026-11-05T15:37:23Z",
-   "exit_reason": "plan change",
-   "sell_id": "sim-sell-ETHUSD-202611061845"
-  },
   {
    "symbol": "BTC/USD",
    "market": "crypto",
    "source": "mid:BTC/USD",
    "plan": "mid:BTC/USD",
    "hold": true,
-   "status": "open",
+   "status": "selling",
    "buy_id": "sim-plan-BTCUSD-202611051537",
    "notional": 84.81,
    "thesis": "Approved allocation, mid:BTC/USD",
@@ -70,7 +16,9 @@
    "qty": "0.001085058",
    "entry": 76422.77,
    "cost": 83.1737,
-   "opened": "2026-11-05T15:42:26Z"
+   "opened": "2026-11-05T15:42:26Z",
+   "exit_reason": "trend",
+   "sell_id": "sim-sell-BTCUSD-202611061850"
   },
   {
    "symbol": "BTC/USD",
@@ -110,7 +58,7 @@
    "source": "mid:ETH/USD",
    "plan": "mid:ETH/USD",
    "hold": true,
-   "status": "open",
+   "status": "selling",
    "buy_id": "sim-plan-ETHUSD-202611051745",
    "notional": 72.9,
    "thesis": "Approved allocation, mid:ETH/USD",
@@ -118,7 +66,9 @@
    "qty": "0.031749134",
    "entry": 2248.5,
    "cost": 71.4886,
-   "opened": "2026-11-05T17:50:04Z"
+   "opened": "2026-11-05T17:50:04Z",
+   "exit_reason": "trend",
+   "sell_id": "sim-sell-ETHUSD-202611061850"
   },
   {
    "symbol": "ETH/USD",
@@ -168,12 +118,12 @@
   "HYPE/USD",
   "DOGE/USD"
  ],
- "stock_cash": 917.2663516446191,
+ "stock_cash": 992.0421624868791,
  "btc_start": 80189.9,
  "flags": [],
  "plan_spent": {
-  "mid:BTC/USD": 200.0,
-  "mid:ETH/USD": 179.33
+  "mid:BTC/USD": 0,
+  "mid:ETH/USD": 0
  },
  "trends": {
   "CPER": false,
