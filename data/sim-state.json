@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 529.762890794779,
+ "cash": 337.57028402432957,
  "positions": [
   {
    "symbol": "BTC/USD",
@@ -8,11 +8,15 @@
    "source": "long:BTC/USD",
    "plan": "long:BTC/USD",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-BTCUSD-202611062040",
    "notional": 400,
    "thesis": "Approved allocation, long:BTC/USD",
-   "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend."
+   "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend.",
+   "qty": "0.005163411",
+   "entry": 75766.172677579,
+   "cost": 392.1926,
+   "opened": "2026-11-06T20:45:12Z"
   },
   {
    "symbol": "GLD",
@@ -20,10 +24,38 @@
    "source": "long:GLD",
    "plan": "long:GLD",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-GLD-202611062040",
    "notional": 300,
    "thesis": "Approved allocation, long:GLD",
+   "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend.",
+   "qty": "0.805627766",
+   "entry": 372.368,
+   "cost": 299.99,
+   "opened": "2026-11-06T20:45:12Z"
+  },
+  {
+   "symbol": "ETH/USD",
+   "market": "crypto",
+   "source": "long:ETH/USD",
+   "plan": "long:ETH/USD",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-ETHUSD-202611062045",
+   "notional": 200,
+   "thesis": "Approved allocation, long:ETH/USD",
+   "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend."
+  },
+  {
+   "symbol": "DBC",
+   "market": "stock",
+   "source": "long:DBC",
+   "plan": "long:DBC",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-DBC-202611062045",
+   "notional": 250,
+   "thesis": "Approved allocation, long:DBC",
    "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend."
   }
  ],
@@ -42,14 +74,16 @@
   "HYPE/USD",
   "DOGE/USD"
  ],
- "stock_cash": 692.0421624868791,
+ "stock_cash": 442.0521625169911,
  "btc_start": 80189.9,
  "flags": [],
  "plan_spent": {
   "mid:BTC/USD": 0,
   "mid:ETH/USD": 0,
   "long:BTC/USD": 400,
-  "long:GLD": 300
+  "long:GLD": 300,
+  "long:ETH/USD": 200,
+  "long:DBC": 250
  },
  "trends": {
   "CPER": false,
