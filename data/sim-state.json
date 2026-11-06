@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": -0.0049502256837907765,
+ "cash": 0.24065515411554905,
  "positions": [
   {
    "symbol": "BTC/USD",
@@ -125,7 +125,7 @@
    "notional": 188.39,
    "thesis": "Approved allocation, long:ETH/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.080395554",
+   "qty": "0.080388653",
    "entry": 2288.58,
    "cost": 184.7241,
    "opened": "2026-11-05T15:27:38Z"
@@ -141,7 +141,7 @@
    "notional": 11.61,
    "thesis": "Approved allocation, long:ETH/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.004990179",
+   "qty": "0.004989750",
    "entry": 2278.814,
    "cost": 11.3884,
    "opened": "2026-11-05T15:37:23Z"
@@ -205,7 +205,7 @@
    "notional": 72.9,
    "thesis": "Approved allocation, mid:ETH/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.031751860",
+   "qty": "0.031749134",
    "entry": 2248.5,
    "cost": 71.4886,
    "opened": "2026-11-05T17:50:04Z"
@@ -221,7 +221,7 @@
    "notional": 93.66,
    "thesis": "Approved allocation, mid:ETH/USD",
    "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
-   "qty": "0.040771613",
+   "qty": "0.040768113",
    "entry": 2251.2,
    "cost": 91.8443,
    "opened": "2026-11-05T17:55:07Z"
@@ -232,11 +232,15 @@
    "source": "mid:ETH/USD",
    "plan": "mid:ETH/USD",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-ETHUSD-202611060415",
    "notional": 12.77,
    "thesis": "Approved allocation, mid:ETH/USD",
-   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design.",
+   "qty": "0.005612949",
+   "entry": 2231.149062605,
+   "cost": 12.5244,
+   "opened": "2026-11-06T04:20:07Z"
   }
  ],
  "spy_start": 766.9,
