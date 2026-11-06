@@ -191,6 +191,7 @@ def main():
     os.environ["ALPACA_CONFIG_DIR"] = os.path.dirname(cfg)
     scanner.REPO, core.DATA = tmp, os.path.join(tmp, "data")
     form4.LOG = os.path.join(tmp, "form4-log.csv")
+    form4.SALES_LOG = os.path.join(tmp, "form4-sales.csv")
     wallets.LIST = os.path.join(tmp, "no-wallets.csv")  # keep real wallets out of the simulated cycles
     form4.edgar.CACHE = os.path.join(tmp, "cache")
     form4.edgar.time.sleep = lambda s: None
@@ -674,7 +675,7 @@ def main():
     got = rows(os.path.join(core.DATA, "wallet-moves.csv"))[size0:]
     assert [g["tx"] for g in got] == ["whale"], got
 
-    # approved plan: crypto buys any time, funds only with the market open, long first, and trend decides the mid slice
+    # approved plan: crypto buys any time, funds only with the market open, and the daily trend decides every slice
     sim.HOLD_MODE = True
     os.remove(os.path.join(core.DATA, "sim-state.json"))
     ORDERS.clear()
@@ -693,30 +694,29 @@ def main():
             sim.cycle(st5, er5, creds)
     run5()
     first = list(ORDERS.values())
-    assert er5 == [] and len(first) == 1 and first[0]["symbol"] == "BTC/USD" and float(first[0]["notional"]) == 400, (er5, ORDERS)
+    target = {**sim.PLAN["crypto"]["mid"], **sim.PLAN["stock"]["mid"]}
+    assert er5 == [] and len(first) == 1 and float(first[0]["notional"]) == target[first[0]["symbol"]], (er5, ORDERS)
     run5(8)
     buys = [o for o in ORDERS.values() if o["side"] == "buy"]
-    coins = [(o["symbol"], float(o["notional"])) for o in buys]
-    assert ("ETH/USD", 200) in coins and ("BTC/USD", 200) in coins, coins
-    assert sum(1 for c in coins if c[0] == "ETH/USD") == 1, "ETH's mid slice waits while its trend is down"
-    assert not any(o["symbol"] in sim.PLAN["stock"]["long"] for o in buys), "funds wait for the open"
-    n = len(ORDERS)
+    coins = {o["symbol"] for o in buys}
+    assert {"BTC/USD", "SOL/USD"} <= coins and "ETH/USD" not in coins, "ETH waits while its trend is down"
+    assert not coins & set(sim.PLAN["stock"]["mid"]), "funds wait for the open"
     MARKET_OPEN[0] = True
     run5(10)
-    fund = {o["symbol"]: o["notional"] for o in ORDERS.values() if o["symbol"] in sim.PLAN["stock"]["long"]}
-    assert er5 == [] and set(fund) == {"GLD", "DBC", "DBA", "CPER"}, (er5, fund)
-    s5 = sim._load()
-    assert abs(s5["stock_cash"]) < 1e-6 and s5["plan_spent"]["long:GLD"] == 300 and s5["plan_spent"]["mid:GLD"] == 75, s5["plan_spent"]
-    LAST[0] = 1.0  # a huge fall must not sell a long hold
-    before = sum(o["side"] == "sell" for o in ORDERS.values())
-    run5(2)
-    assert er5 == [] and sum(o["side"] == "sell" for o in ORDERS.values()) == before, ORDERS
-    # next weekly check: BTC's trend turns down, so only its mid slice sells
+    fund = {o["symbol"] for o in ORDERS.values() if o["symbol"] in sim.PLAN["stock"]["mid"]}
+    assert er5 == [] and fund == set(sim.PLAN["stock"]["mid"]), (er5, fund)
+    # next day's check: every trend turns down, so everything held sells
     sim.backtest._daily_closes = lambda c, route, syms, a, b, **k: {x: down for x in syms}
-    clock[0] += timedelta(days=8)
+    clock[0] += timedelta(days=1)
     sim.cycle(st5, er5, creds)
-    sells = [o for o in ORDERS.values() if o["side"] == "sell"]
-    assert sells and er5 == [] and all(p["symbol"] != "BTC/USD" or p.get("plan") != "long:BTC/USD" or p["status"] == "open" for p in sim._load()["positions"]), (er5, sells)
+    held = {p["symbol"] for p in sim._load()["positions"] if p["status"] == "open"}
+    assert er5 == [] and not held, (er5, held)
+    # a position from an older plan is sold
+    s9 = sim._load()
+    s9["positions"].append({"symbol": "GLD", "market": "stock", "plan": "long:GLD", "status": "open", "qty": "1", "hold": True})
+    sim._save(s9)
+    run5()
+    assert any(o["symbol"] == "GLD" and o["side"] == "sell" for o in ORDERS.values()), "old-plan position sells"
     core.now = orig_now
 
     # a filled buy records its own coins, not the whole merged Alpaca position
@@ -805,6 +805,21 @@ def main():
     seen(urllib.request.Request("https://api.example.com/b"))
     assert scanner.request_counts == {"api.example.com": 2}, scanner.request_counts
     scanner.request_counts.clear()
+    # large open-market sales are logged for research, with the 10b5-1 flag; small ones and buys are not
+    from research import form4 as f4
+    def doc(code, ad, n, px, plan="1"):
+        return ("<ACCEPTANCE-DATETIME>20261106170000\n<XML>\n<ownershipDocument><documentType>4</documentType>"
+                f"<aff10b5One>{plan}</aff10b5One><issuer><issuerTradingSymbol>blk</issuerTradingSymbol><issuerName>BlackRock</issuerName></issuer>"
+                "<reportingOwner><reportingOwnerId><rptOwnerName>Fink Laurence</rptOwnerName></reportingOwnerId>"
+                "<reportingOwnerRelationship><officerTitle>Chairman and CEO</officerTitle></reportingOwnerRelationship></reportingOwner>"
+                f"<nonDerivativeTable><nonDerivativeTransaction><transactionCoding><transactionCode>{code}</transactionCode></transactionCoding>"
+                f"<transactionAmounts><transactionShares><value>{n}</value></transactionShares><transactionPricePerShare><value>{px}</value></transactionPricePerShare>"
+                f"<transactionAcquiredDisposedCode><value>{ad}</value></transactionAcquiredDisposedCode></transactionAmounts></nonDerivativeTransaction></nonDerivativeTable>"
+                "</ownershipDocument>\n</XML>")
+    big = f4.parse_sales(doc("S", "D", 2000, 1000))
+    assert big["ticker"] == "BLK" and big["dollar_value"] == 2_000_000 and big["ceo_cfo"] == "yes" and big["plan_10b5_1"] == "yes", big
+    assert f4.parse_sales(doc("S", "D", 10, 1000)) is None and f4.parse_sales(doc("P", "A", 2000, 1000)) is None
+    assert f4.parse_sales(doc("S", "D", 2000, 1000, plan="0"))["plan_10b5_1"] == "no"
     # fee shrinkage matches Alpaca, a big gap is left for the alert, and lots still filling wait
     r1 = {"positions": [{"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.95"}, {"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.955"}]}
     orig7 = stocks._get

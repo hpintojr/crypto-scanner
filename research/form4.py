@@ -24,6 +24,10 @@ FIELDS = ["filing_date", "accepted_et", "after_close", "ticker", "issuer", "issu
           "role", "ceo_cfo", "shares", "price", "dollar_value", "ownership", "prior_buys", "median_prior_value",
           "large_vs_pattern", "cluster", "public_float", "small_company", "qualifies", "entry_close", "spy_entry",
           "verified", "accession", "url"]
+SALES_LOG = os.path.join(ROOT, "research", "form4-sales.csv")
+LARGE_SALE = 1_000_000  # research only: open-market sales of $1M or more
+SALE_FIELDS = ["filing_date", "ticker", "issuer", "insider", "role", "ceo_cfo", "shares", "price", "dollar_value",
+               "plan_10b5_1", "accession", "url"]
 OUT_FIELDS = ["accession", "review", "due", "close", "spy_close", "return_pct", "spy_return_pct", "beat_spy"]
 CEO_CFO = re.compile(r"\b(CEO|CFO)\b|CHIEF EXECUTIVE|CHIEF FINANCIAL|PRINCIPAL EXECUTIVE|PRINCIPAL FINANCIAL", re.I)
 
@@ -87,6 +91,50 @@ def parse_filing(text):
             "ownership": "/".join(sorted(k for k in kinds if k)),
             "accepted_et": accepted.strftime("%Y-%m-%d %H:%M") if accepted else "",
             "after_close": "" if not accepted else "yes" if accepted.time() >= datetime(2000, 1, 1, 16).time() else "no"}
+
+
+def parse_sales(text):
+    """Large code S open-market sales, for research only. Sales are a weak signal: many are taxes,
+    diversification or pre-set 10b5-1 plans, so this logs them to test, never to trade."""
+    m = re.search(r"<XML>(.*?)</XML>", text, re.S)
+    if not m:
+        return None
+    doc = ET.fromstring(m.group(1).strip().encode())
+    if (doc.findtext("documentType") or "").strip() != "4":
+        return None
+    shares = value = 0.0
+    for t in doc.findall("nonDerivativeTable/nonDerivativeTransaction"):
+        code = (t.findtext("transactionCoding/transactionCode") or "").strip()
+        if code != "S" or _val(t, "transactionAmounts/transactionAcquiredDisposedCode") != "D":
+            continue
+        n = float(_val(t, "transactionAmounts/transactionShares") or 0)
+        p = float(_val(t, "transactionAmounts/transactionPricePerShare") or 0)
+        if n > 0 and p > 0:
+            shares += n
+            value += n * p
+    if value < LARGE_SALE:
+        return None
+    owner = doc.findall("reportingOwner")[0]
+    rel = owner.find("reportingOwnerRelationship")
+    role = (rel.findtext("officerTitle") or "").strip() or ", ".join(
+        n for k, n in {"isDirector": "Director", "isTenPercentOwner": "10% owner", "isOfficer": "Officer"}.items()
+        if (rel.findtext(k) or "").strip().lower() in ("1", "true"))
+    plan = (doc.findtext("aff10b5One") or "").strip().lower()
+    return {"ticker": (doc.findtext("issuer/issuerTradingSymbol") or "").strip().upper(),
+            "issuer": (doc.findtext("issuer/issuerName") or "").strip(),
+            "insider": (owner.findtext("reportingOwnerId/rptOwnerName") or "").strip(),
+            "role": role, "ceo_cfo": "yes" if CEO_CFO.search(role) else "no",
+            "shares": shares, "price": round(value / shares, 4), "dollar_value": round(value, 2),
+            "plan_10b5_1": "yes" if plan in ("1", "true") else "no" if plan in ("0", "false") else ""}
+
+
+def _log_sale(sale, day, acc, url):
+    new = not os.path.exists(SALES_LOG)
+    with open(SALES_LOG, "a", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=SALE_FIELDS)
+        if new:
+            w.writeheader()
+        w.writerow({**sale, "filing_date": day, "accession": acc, "url": url})
 
 
 def _pattern(buy, filing_date):
@@ -173,8 +221,12 @@ def _collect(state, errors):
             acc = os.path.basename(p)[:-4]
             if acc in known:
                 continue
+            text = edgar.get("https://www.sec.gov/Archives/" + p, raw=True)
             try:
-                buy = parse_filing(edgar.get("https://www.sec.gov/Archives/" + p, raw=True))
+                sale = parse_sales(text)  # same file, no extra request
+                if sale and sale["ticker"] not in ("", "NONE", "N/A", "NA"):
+                    _log_sale(sale, day.isoformat(), acc, "https://www.sec.gov/Archives/" + p)
+                buy = parse_filing(text)
             except ET.ParseError:
                 continue
             if not buy or not buy["ticker"] or buy["ticker"] in ("NONE", "N/A", "NA"):
