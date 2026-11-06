@@ -1,32 +1,32 @@
 # Biggest movers
 
-As of 2026-11-06T14:51:50Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
+As of 2026-11-06T15:51:39Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
 
 ## Crypto, top 100
 
 | Window | Biggest gainers | Biggest losers |
 |---|---|---|
-| 1h | BTW +2.0% (+5h), ZEC +1.5% (+4h), RENDER +1.3% (+4h), ZRO +1.3% (+4h), DASH +1.3% (+4h) | RAIN -1.6% (-6h), GT -1.6% (-1h), CC -1.2% (-1h), XDC -0.8% (-1h), NIGHT -0.8% (-2h) |
-| 2h | BTW +3.3% (+5h), RENDER +2.2% (+4h), ALGO +2.0% (+2h), ZEC +1.9% (+4h), PUMP +1.7% (+4h) | RAIN -2.2% (-6h), LIT -1.8% (-2h), BDX -1.5% (+1h), GT -1.5% (-1h), POL -1.5% (-2h) |
-| 4h | BTW +5.4% (+5h), ZEC +4.3% (+4h), RENDER +3.8% (+4h), LIT +3.3% (-2h), DASH +3.2% (+4h) | RAIN -5.5% (-6h), CC -2.7% (-1h), GT -0.8% (-1h), JST -0.6% (+1h), KCS -0.6% (-2h) |
-| 6h | BTW +5.9% (+5h), ZEC +4.3% (+4h), RENDER +3.8% (+4h), PEPE +3.3% (+2h), DASH +2.9% (+4h) | CC -5.8% (-1h), RAIN -5.7% (-6h), NIGHT -1.9% (-2h), WLFI -1.4% (-2h), MORPHO -1.1% (+1h) |
-| 8h | BTW +7.5% (+5h), XDC +4.6% (-1h), PEPE +4.0% (+2h), ZRO +4.0% (+4h), RENDER +3.7% (+4h) | RAIN -6.3% (-6h), BCH -2.7% (+2h), GT -2.6% (-1h), LIT -2.4% (-2h), CC -1.6% (-1h) |
-| 12h | ETHFI +5.2% (-1h), PEPE +4.8% (+2h), XDC +4.0% (-1h), BTW +3.8% (+5h), ARB +3.6% (+1h) | RAIN -11.2% (-6h), BCH -3.6% (+2h), LIT -3.0% (-2h), STX -2.8% (-1h), NEXO -2.7% (+1h) |
-| 16h | ETHFI +9.4% (-1h), ARB +6.1% (+1h), PEPE +5.5% (+2h), ZEC +4.6% (+4h), XDC +4.4% (-1h) | RAIN -5.3% (-6h), STX -4.2% (-1h), GT -3.6% (-1h), VVV -3.5% (-2h), XRP -3.5% (-1h) |
-| 20h | ETHFI +10.1% (-1h), ARB +8.9% (+1h), PEPE +8.3% (+2h), PEARL +7.7% (+3h), BTW +6.4% (+5h) | XRP -4.4% (-1h), RAIN -3.4% (-6h), BCH -3.3% (+2h), NEXO -1.9% (+1h), BDX -1.5% (+1h) |
-| 24h | BTW +14.7% (+5h), WLFI +5.5% (-2h), ARB +4.3% (+1h), PEPE +3.7% (+2h), M +1.9% (-1h) | XRP -8.9% (-1h), ENA -7.3% (-1h), ATOM -7.1% (-1h), BCH -6.8% (+2h), ETH -6.5% (-1h) |
+| 1h | BTW +5.1% (+6h), RAIN +2.9% (+1h), GT +1.9% (+1h), FIL +1.8% (+1h), DASH +1.6% (+5h) | RENDER -1.3% (-1h), BCH -1.0% (-1h), QNT -0.9% (-1h), PEPE -0.9% (-1h), XDC -0.8% (-2h) |
+| 2h | BTW +7.3% (+6h), DASH +2.8% (+5h), ZEC +1.9% (+5h), FIL +1.5% (+1h), ZRO +1.2% (-1h) | XDC -1.6% (-2h), ETC -1.0% (-2h), NIGHT -1.0% (-3h), XRP -0.9% (-2h), OKB -0.8% (-2h) |
+| 4h | BTW +9.3% (+6h), DASH +3.7% (+5h), ZEC +2.8% (+5h), FIL +2.5% (+1h), ZRO +1.9% (-1h) | CC -1.8% (+1h), RAIN -1.6% (+1h), XDC -1.1% (-2h), XRP -1.1% (-2h), BDX -1.1% (+2h) |
+| 6h | BTW +11.5% (+6h), DASH +4.4% (+5h), ZEC +4.0% (+5h), STX +2.6% (-2h), RENDER +2.4% (-1h) | CC -6.5% (+1h), RAIN -2.9% (+1h), MORPHO -1.2% (-1h), WLFI -0.9% (-3h), UNI -0.8% (+1h) |
+| 8h | BTW +13.4% (+6h), DASH +5.1% (+5h), ZEC +4.0% (+5h), PEPE +3.2% (-1h), ZRO +3.0% (-1h) | BCH -3.4% (-1h), RAIN -2.9% (+1h), CC -2.4% (+1h), WLFI -1.6% (-3h), ASTER -1.5% (-2h) |
+| 12h | BTW +7.8% (+6h), PEARL +4.1% (+4h), DASH +3.9% (+5h), XDC +3.1% (-2h), PEPE +3.1% (-1h) | RAIN -4.6% (+1h), BCH -3.4% (-1h), NEXO -2.5% (+2h), XRP -2.4% (-2h), OKB -2.2% (-2h) |
+| 16h | ETHFI +7.7% (-2h), BTW +6.8% (+6h), ARB +6.7% (+2h), ZEC +4.8% (+5h), DASH +4.8% (+5h) | XRP -2.9% (-2h), NEXO -2.7% (+2h), VVV -2.5% (-3h), BCH -2.3% (-1h), GRAM -1.9% (-1h) |
+| 20h | BTW +11.9% (+6h), ETHFI +11.0% (-2h), ARB +8.8% (+2h), PEPE +6.4% (-1h), DASH +6.3% (+5h) | XRP -3.8% (-2h), RAIN -3.5% (+1h), BCH -2.8% (-1h), STX -1.3% (-2h), GRAM -1.2% (-1h) |
+| 24h | BTW +24.8% (+6h), ARB +3.7% (+2h), PEPE +3.0% (-1h), WLFI +2.3% (-3h), M +2.0% (+1h) | XRP -9.2% (-2h), BCH -8.3% (-1h), ENA -7.1% (+1h), ATOM -6.6% (+1h), QNT -6.5% (-1h) |
 
 ## Stocks, fixed list
 
 | Window | Biggest gainers | Biggest losers |
 |---|---|---|
-| 1h | DELL +10.2% (+1h), KLAC +9.9% (+1h), ANET +8.3% (+1h), AMAT +8.3% (+2h), PLTR +6.8% (+1h) | INTU -3.4% (-1h), BSX -3.2% (-1h), ACN -2.8% (-2h), ADBE -2.8% (-2h), SYK -2.7% (-1h) |
-| 2h | AMD +11.1% (+3h), DELL +10.2% (+1h), KLAC +9.9% (+1h), LRCX +9.4% (-1h), INTC +8.3% (+2h) | INTU -3.4% (-1h), BSX -3.2% (-1h), ACN -2.8% (-2h), ADBE -2.8% (-2h), SYK -2.7% (-1h) |
-| 4h | AMD +11.1% (+3h), DELL +10.2% (+1h), KLAC +9.9% (+1h), LRCX +9.4% (-1h), INTC +8.3% (+2h) | INTU -3.4% (-1h), BSX -3.2% (-1h), ACN -2.8% (-2h), ADBE -2.8% (-2h), SYK -2.7% (-1h) |
-| 6h | AMD +11.1% (+3h), DELL +10.2% (+1h), KLAC +9.9% (+1h), LRCX +9.4% (-1h), INTC +8.3% (+2h) | INTU -3.4% (-1h), BSX -3.2% (-1h), ACN -2.8% (-2h), ADBE -2.8% (-2h), SYK -2.7% (-1h) |
-| 8h | AMD +11.1% (+3h), DELL +10.2% (+1h), KLAC +9.9% (+1h), LRCX +9.4% (-1h), INTC +8.3% (+2h) | INTU -3.4% (-1h), BSX -3.2% (-1h), ACN -2.8% (-2h), ADBE -2.8% (-2h), SYK -2.7% (-1h) |
-| 12h | AMD +11.1% (+3h), DELL +10.2% (+1h), KLAC +9.9% (+1h), LRCX +9.4% (-1h), INTC +8.3% (+2h) | INTU -3.4% (-1h), BSX -3.2% (-1h), ACN -2.8% (-2h), ADBE -2.8% (-2h), SYK -2.7% (-1h) |
-| 16h | AMD +11.1% (+3h), DELL +10.2% (+1h), KLAC +9.9% (+1h), LRCX +9.4% (-1h), INTC +8.3% (+2h) | INTU -3.4% (-1h), BSX -3.2% (-1h), ACN -2.8% (-2h), ADBE -2.8% (-2h), SYK -2.7% (-1h) |
-| 20h | AMD +10.4% (+3h), LRCX +8.0% (-1h), ANET +7.9% (+1h), DELL +7.6% (+1h), MU +6.9% (+3h) | PFE -4.3% (-3h), ACN -3.9% (-2h), PGR -3.4% (-4h), TXN -3.2% (-1h), WMT -2.9% (-3h) |
-| 24h | AMD +7.3% (+3h), INTC +5.2% (+2h), ANET +5.1% (+1h), DELL +4.6% (+1h), PLTR +4.0% (+1h) | PFE -7.3% (-3h), BSX -5.8% (-1h), PM -5.6% (-2h), TXN -5.4% (-1h), GILD -5.4% (-7h) |
+| 1h | QCOM +2.6% (+1h), MCD +1.8% (+1h), META +1.3% (+2h), KO +1.2% (+1h), HD +1.2% (+1h) | MU -3.5% (-1h), PANW -2.6% (-1h), AMAT -2.4% (-1h), AMD -2.3% (-1h), CRWD -2.2% (-2h) |
+| 2h | ANET +7.0% (-1h), KLAC +7.0% (-1h), DELL +6.7% (-1h), PLTR +5.5% (-1h), AMAT +4.7% (-1h) | INTU -4.4% (+1h), CRM -4.1% (-2h), CRWD -3.3% (-2h), LRCX -3.2% (-2h), BSX -3.2% (-2h) |
+| 4h | AMD +8.2% (-1h), LRCX +7.3% (-2h), ANET +7.0% (-1h), KLAC +7.0% (-1h), INTC +7.0% (-1h) | INTU -4.4% (+1h), CRM -4.1% (-2h), BSX -3.2% (-2h), SYK -2.9% (+1h), MDT -2.5% (-2h) |
+| 6h | AMD +8.2% (-1h), LRCX +7.3% (-2h), ANET +7.0% (-1h), KLAC +7.0% (-1h), INTC +7.0% (-1h) | INTU -4.4% (+1h), CRM -4.1% (-2h), BSX -3.2% (-2h), SYK -2.9% (+1h), MDT -2.5% (-2h) |
+| 8h | AMD +8.2% (-1h), LRCX +7.3% (-2h), ANET +7.0% (-1h), KLAC +7.0% (-1h), INTC +7.0% (-1h) | INTU -4.4% (+1h), CRM -4.1% (-2h), BSX -3.2% (-2h), SYK -2.9% (+1h), MDT -2.5% (-2h) |
+| 12h | AMD +8.2% (-1h), LRCX +7.3% (-2h), ANET +7.0% (-1h), KLAC +7.0% (-1h), INTC +7.0% (-1h) | INTU -4.4% (+1h), CRM -4.1% (-2h), BSX -3.2% (-2h), SYK -2.9% (+1h), MDT -2.5% (-2h) |
+| 16h | AMD +8.2% (-1h), LRCX +7.3% (-2h), ANET +7.0% (-1h), KLAC +7.0% (-1h), INTC +7.0% (-1h) | INTU -4.4% (+1h), CRM -4.1% (-2h), BSX -3.2% (-2h), SYK -2.9% (+1h), MDT -2.5% (-2h) |
+| 20h | AMD +5.9% (-1h), LRCX +5.6% (-2h), ANET +4.9% (-1h), TSLA +4.1% (+3h), QCOM +4.0% (+1h) | ADI -4.4% (-2h), TXN -4.3% (-2h), CRM -3.9% (-2h), ACN -3.6% (+1h), INTU -3.6% (+1h) |
+| 24h | QCOM +10.7% (+1h), AMD +8.6% (-1h), LRCX +6.2% (-2h), ANET +6.2% (-1h), SHOP +5.9% (+2h) | LMT -5.9% (-7h), CRM -5.8% (-2h), PFE -5.7% (+1h), INTU -5.2% (+1h), PGR -5.0% (+1h) |
 
