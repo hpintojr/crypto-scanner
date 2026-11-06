@@ -1,7 +1,32 @@
 {
  "start": "2026-11-05",
- "cash": 929.762890794779,
- "positions": [],
+ "cash": 529.762890794779,
+ "positions": [
+  {
+   "symbol": "BTC/USD",
+   "market": "crypto",
+   "source": "long:BTC/USD",
+   "plan": "long:BTC/USD",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-BTCUSD-202611062040",
+   "notional": 400,
+   "thesis": "Approved allocation, long:BTC/USD",
+   "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend."
+  },
+  {
+   "symbol": "GLD",
+   "market": "stock",
+   "source": "long:GLD",
+   "plan": "long:GLD",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-GLD-202611062040",
+   "notional": 300,
+   "thesis": "Approved allocation, long:GLD",
+   "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend."
+  }
+ ],
  "spy_start": 766.9,
  "last_trade_day": null,
  "last_crypto_day": "2026-11-05",
@@ -17,12 +42,14 @@
   "HYPE/USD",
   "DOGE/USD"
  ],
- "stock_cash": 992.0421624868791,
+ "stock_cash": 692.0421624868791,
  "btc_start": 80189.9,
  "flags": [],
  "plan_spent": {
   "mid:BTC/USD": 0,
-  "mid:ETH/USD": 0
+  "mid:ETH/USD": 0,
+  "long:BTC/USD": 400,
+  "long:GLD": 300
  },
  "trends": {
   "CPER": false,
@@ -35,5 +62,13 @@
   "VTI": false,
   "SOL/USD": false
  },
- "trend_checked": "2026-11-06"
+ "trend_checked": "2026-11-06",
+ "trend_assets": [
+  "BTC/USD",
+  "CPER",
+  "DBA",
+  "DBC",
+  "ETH/USD",
+  "GLD"
+ ]
 }
