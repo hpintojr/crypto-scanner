@@ -1,20 +1,20 @@
 # Biggest movers
 
-As of 2026-11-05T23:00:53Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
+As of 2026-11-06T00:01:18Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
 
 ## Crypto, top 100
 
 | Window | Biggest gainers | Biggest losers |
 |---|---|---|
-| 1h | GT +3.5% (+1h), XMR +1.1% (+2h), BTW +1.0% (+3h), PEARL +0.6% (+2h), ZEC +0.5% (+2h) | ICP -1.7% (-1h), CC -1.6% (-1h), ATOM -1.6% (-1h), DASH -1.5% (-1h), QNT -1.5% (-1h) |
-| 2h | GT +3.5% (+1h), LIT +3.4% (-1h), VVV +3.3% (-1h), BTW +3.0% (+3h), ZEC +2.2% (+2h) | ZRO -1.6% (-2h), RAIN -1.1% (+1h), PUMP -1.0% (-1h), BDX -0.8% (-2h), WLD -0.6% (-1h) |
-| 4h | PEARL +6.5% (+2h), LIT +5.8% (-1h), VVV +5.2% (-1h), STX +3.9% (-1h), AAVE +3.4% (-1h) | HYPE -1.2% (+3h), BDX -1.2% (-2h), XRP -1.0% (-1h), BCH -0.9% (-1h), NEAR -0.9% (-1h) |
-| 6h | BTW +14.8% (+3h), STX +4.6% (-1h), RAIN +3.5% (+1h), LIT +2.4% (-1h), M +2.2% (-1h) | ETHFI -6.9% (-1h), ENA -5.9% (-1h), DASH -5.4% (-1h), QNT -5.0% (-1h), WLD -4.6% (-1h) |
-| 8h | BTW +11.3% (+3h), LIT +4.0% (-1h), WLFI +3.3% (-1h), RAIN +2.4% (+1h), STX +1.9% (-1h) | ETHFI -9.6% (-1h), ENA -8.6% (-1h), WLD -7.8% (-1h), FIL -6.7% (-1h), ONDO -6.6% (-1h) |
-| 12h | BTW +9.7% (+3h), STX +0.2% (-1h), USD0 +0.1% (-1h), FIGR_HELOC +0.0% (-2h), USDY +0.0% (+3h) | ETHFI -12.4% (-1h), UNI -10.3% (+2h), WLD -10.2% (-1h), ENA -10.0% (-1h), ZRO -9.8% (-2h) |
-| 16h | BTW +11.8% (+3h), LIT +2.2% (-1h), INJ +1.8% (+3h), RAIN +1.6% (+1h), PEARL +0.5% (+2h) | ETHFI -11.0% (-1h), UNI -10.8% (+2h), ZRO -10.5% (-2h), ENA -9.7% (-1h), MNT -9.4% (-1h) |
-| 20h | BTW +12.0% (+3h), PEARL +4.9% (+2h), LIT +4.1% (-1h), INJ +3.1% (+3h), VVV +1.3% (-1h) | UNI -10.7% (+2h), ETHFI -10.2% (-1h), ZRO -10.0% (-2h), ENA -9.8% (-1h), WLD -9.3% (-1h) |
-| 24h | BTW +9.8% (+3h), PEARL +5.0% (+2h), INJ +3.7% (+3h), LIT +3.2% (-1h), FIGR_HELOC +1.5% (-2h) | ETHFI -10.6% (-1h), UNI -10.0% (+2h), ZRO -9.5% (-2h), ONDO -9.4% (-1h), ENA -9.4% (-1h) |
+| 1h | RAIN +3.3% (+1h), ZEC +0.8% (+4h), MNT +0.6% (+1h), JST +0.4% (+1h), SKY +0.4% (+1h) | BTW -2.7% (-1h), VVV -1.7% (-3h), ATOM -1.6% (-3h), GT -1.4% (-2h), LIT -1.3% (-3h) |
+| 2h | RAIN +1.7% (+1h), ZEC +0.9% (+4h), NEXO +0.8% (-1h), ETHFI +0.6% (-1h), MNT +0.6% (+1h) | STX -3.6% (-3h), ATOM -3.4% (-3h), VVV -2.8% (-3h), LIT -2.8% (-3h), PEARL -2.7% (-2h) |
+| 4h | ZEC +3.1% (+4h), XMR +1.7% (+4h), BTW +1.7% (-1h), WLFI +1.2% (-1h), ETHFI +1.0% (-1h) | ZRO -3.6% (-4h), ATOM -3.3% (-3h), ALGO -2.5% (-3h), ICP -2.5% (-3h), WLD -1.9% (-3h) |
+| 6h | RAIN +3.8% (+1h), PEARL +3.7% (-2h), LIT +2.9% (-3h), WLFI +2.5% (-1h), VVV +2.2% (-3h) | ATOM -3.1% (-3h), HYPE -3.0% (-2h), ICP -2.7% (-3h), ZRO -2.4% (-4h), ONDO -2.2% (-3h) |
+| 8h | BTW +13.3% (-1h), RAIN +5.3% (+1h), M +1.6% (-3h), WLFI +1.2% (-1h), STX +0.9% (-3h) | ATOM -7.0% (-3h), ENA -6.7% (-3h), DASH -6.7% (-3h), ETHFI -6.4% (-1h), ICP -5.9% (-3h) |
+| 12h | BTW +8.1% (-1h), RAIN +0.9% (+1h), USD0 +0.0% (-3h), OUSD +0.0% (+3h), USDGO +0.0% (-1h) | ETHFI -10.6% (-1h), WLD -9.9% (-3h), ENA -9.8% (-3h), ATOM -9.4% (-3h), UNI -9.0% (-2h) |
+| 16h | BTW +8.4% (-1h), RAIN +5.0% (+1h), USDF +0.1% (+2h), U +0.0% (+2h), USTB +0.0% (0h) | ZRO -12.1% (-4h), UNI -11.3% (-2h), ETHFI -10.5% (-1h), WLD -10.5% (-3h), ONDO -10.4% (-3h) |
+| 20h | BTW +8.4% (-1h), RAIN +2.4% (+1h), INJ +1.2% (-2h), USDY +0.2% (+1h), U +0.1% (+2h) | ZRO -13.1% (-4h), ENA -11.3% (-3h), UNI -11.3% (-2h), ONDO -11.1% (-3h), WLD -10.9% (-3h) |
+| 24h | BTW +7.7% (-1h), RAIN +2.7% (+1h), LIT +1.1% (-3h), INJ +1.1% (-2h), USDY +0.3% (+1h) | ZRO -13.3% (-4h), UNI -12.9% (-2h), ENA -11.9% (-3h), ETHFI -11.7% (-1h), WLD -11.6% (-3h) |
 
 ## Stocks, fixed list
 
