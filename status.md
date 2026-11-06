@@ -1,23 +1,23 @@
 # Scanner status
 
-- Last run: 2026-11-06T20:06:38Z
+- Last run: 2026-11-06T20:11:44Z
 - Host: otto-16usdmc576-067297
-- Step seconds: simulation 1, crypto scan 0, buzz 0, watchlist 0, stocks 42, score crypto 0, score stocks 0, form 4 15, wallets 28, holdings 0, backtest 0, movers 0, allocation 0
-- Requests this cycle: api.coingecko.com 2, data.alpaca.markets 50, eth.blockscout.com 20, mempool.space 5, paper-api.alpaca.markets 2
+- Step seconds: simulation 1, crypto scan 0, buzz 0, watchlist 0, stocks 44, score crypto 0, score stocks 0, form 4 18, wallets 32, holdings 0, backtest 0, movers 0, allocation 0
+- Requests this cycle: api.coingecko.com 1, data.alpaca.markets 50, eth.blockscout.com 16, mempool.space 7, paper-api.alpaca.markets 2
 - Skipped for time: none
-- Last scan: 2026-11-06T20:05:12Z: 0 movers >3% 1h, 0 kept after 2x volume check
+- Last scan: 2026-11-06T20:10:09Z: 0 movers >3% 1h, 0 kept after 2x volume check
 - Last flag: 2026-11-06T09:05:20Z CC
-- Last stock scan: 2026-11-06T20:05:12Z: 100 stocks, 0 movers over 2.0% 1h, 0 kept after 2x volume check, 1 without enough data
+- Last stock scan: 2026-11-06T20:10:10Z: 100 stocks, 0 movers over 2.0% 1h, 0 kept after 2x volume check, 1 without enough data
 - Last watchlist snapshot: 2026-11-06T20:00:16Z
 - Last pre-market gap check: 2026-11-06T14:25:16Z: 7 of 100 stocks gapped 3%+ pre-market
-- Last Form 4 run: 2026-11-06T20:05:54Z: 0 filings read, 0 code P buys added, working on 2026-11-06, 188 logged, 4 qualifying
+- Last Form 4 run: 2026-11-06T20:10:54Z: 0 filings read, 0 code P buys added, working on 2026-11-06, 188 logged, 4 qualifying
 - $2,000 paper simulation: value $1,921.81 of $2,000, 0 open, crypto cash $929.76, stock cash $992.04
 - Simulation flags: none
 - Strategy test: 2026-11-05: 501 trading days tested, see data/backtest.md
 - Hold test: -9.79% since 2026-11-05, BTC -5.65%
-- Wallet watch: 15 checked this cycle, 63 enabled in rotation, 5 new moves
+- Wallet watch: 15 checked this cycle, 63 enabled in rotation, 3 new moves
 - Measured time between runs: 5 min
-- Next run: ~2026-11-06T20:11:38Z
+- Next run: ~2026-11-06T20:16:44Z
 - Inbox: no pending requests
 - Errors this cycle: 0
 
