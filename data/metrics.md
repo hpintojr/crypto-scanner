@@ -22,20 +22,20 @@ Paper money. Expectancy is average profit per closed trade. Profit factor is tot
 | BTC/USD | $95.77 | $92.18 | $-3.59 | -3.75 |
 | CPER | $74.99 | $72.98 | $-2.01 | -2.68 |
 | DBC | $74.99 | $74.91 | $-0.08 | -0.11 |
-| ETH/USD | $184.72 | $180.39 | $-4.33 | -2.35 |
-| ETH/USD | $11.39 | $11.20 | $-0.19 | -1.68 |
+| ETH/USD | $184.72 | $180.19 | $-4.53 | -2.45 |
+| ETH/USD | $11.39 | $11.18 | $-0.20 | -1.79 |
 | BTC/USD | $83.17 | $82.58 | $-0.60 | -0.72 |
 | BTC/USD | $91.76 | $91.84 | $0.08 | +0.09 |
 | BTC/USD | $21.22 | $21.30 | $0.08 | +0.39 |
-| ETH/USD | $71.49 | $71.25 | $-0.24 | -0.34 |
-| ETH/USD | $91.84 | $91.48 | $-0.36 | -0.39 |
-| ETH/USD | $12.52 | $12.60 | $0.07 | +0.57 |
+| ETH/USD | $71.49 | $71.17 | $-0.32 | -0.45 |
+| ETH/USD | $91.84 | $91.38 | $-0.46 | -0.50 |
+| ETH/USD | $12.52 | $12.58 | $0.06 | +0.46 |
 
 ## Risk
 
 - Largest fall from peak: 0.00%
 - Currently below peak: 0.00%
-- Money in open positions: $1,704.58 of $1,929.87
+- Money in open positions: $1,704.17 of $1,929.46
 - BTC since start: -5.10%
 - SPY since start: -4.74%
 
