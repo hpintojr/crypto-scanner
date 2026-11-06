@@ -11,3 +11,4 @@ time,coin_id,symbol,name,price,move_1h_pct,volume_24h,avg_daily_volume_7d,volume
 2026-11-05T12:50:11Z,world-liberty-financial,wlfi,World Liberty Financial,0.04523934,-5.641,73749018,27258102.67,2.706
 2026-11-05T12:55:11Z,world-liberty-financial,wlfi,World Liberty Financial,0.04468954,-5.641,74232303,27258102.67,2.723
 2026-11-05T13:00:21Z,world-liberty-financial,wlfi,World Liberty Financial,0.04459338,-5.641,73988325,27339342.83,2.706
+2026-11-06T09:05:20Z,canton-network,cc,Canton,0.098865,-4.362,31309392,13908849.55,2.251
