@@ -25,7 +25,7 @@ Costs and slippage are not included. Treat any row under 30 signals as noise.
 | stocks | rejected | 1h | 84 | 0.40 | 0.20 | 54 |
 | stocks | rejected | 1d | 37 | -0.30 | 0.54 | 51 |
 | stocks | rejected, earnings | 1h | 20 | 0.13 | 0.26 | 55 |
-| stocks | rejected, earnings | 1d | 8 | -2.23 | -2.71 | 25 |
+| stocks | rejected, earnings | 1d | 9 | -2.02 | -2.26 | 22 |
 
 ## Form 4 insider buys
 
