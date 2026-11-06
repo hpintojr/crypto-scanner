@@ -1,23 +1,7 @@
 {
  "start": "2026-11-05",
- "cash": 1.815827980680723,
+ "cash": -0.0049502256837907765,
  "positions": [
-  {
-   "symbol": "BONK/USD",
-   "market": "crypto",
-   "source": "crypto-momentum",
-   "status": "selling",
-   "buy_id": "sim-buy-BONKUSD-202611051020",
-   "notional": 11.94,
-   "thesis": "Up -0.7% over about a month (+0.8% vs BTC/USD), +4.5% this week, 14 headlines in the last day, news tone +2",
-   "against": "Past gains may not continue, and headline tone is a rough measure. Exit: -5%, +10%, or 7 days.",
-   "qty": "3828399.228543876",
-   "entry": 3.05e-06,
-   "cost": 11.7059,
-   "opened": "2026-11-05T10:32:49Z",
-   "exit_reason": "stop",
-   "sell_id": "sim-sell-BONKUSD-202611060410"
-  },
   {
    "symbol": "BTC/USD",
    "market": "crypto",
@@ -241,6 +225,18 @@
    "entry": 2251.2,
    "cost": 91.8443,
    "opened": "2026-11-05T17:55:07Z"
+  },
+  {
+   "symbol": "ETH/USD",
+   "market": "crypto",
+   "source": "mid:ETH/USD",
+   "plan": "mid:ETH/USD",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-ETHUSD-202611060415",
+   "notional": 12.77,
+   "thesis": "Approved allocation, mid:ETH/USD",
+   "against": "Can fall a lot and stay down for years. The long slice has no stop, by design."
   }
  ],
  "spy_start": 766.9,
@@ -270,7 +266,7 @@
   "mid:DBC": 75,
   "long:ETH/USD": 200.0,
   "mid:BTC/USD": 200.0,
-  "mid:ETH/USD": 166.56
+  "mid:ETH/USD": 179.33
  },
  "trends": {
   "CPER": false,
