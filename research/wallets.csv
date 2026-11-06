@@ -55,6 +55,9 @@ number,owner,category,enabled,chain,address,attribution_source,last_verified,pro
 47,Bitfinex,"exchange, self-published",yes,bitcoin,bc1qgdjqv0av3q56jvd82tkdjpy7gdp9ut8tlqmgrpmv24sq90ecnvqqjwvw97,https://github.com/bitfinexcom/pub/blob/master/wallets.txt,2026-11-05,https://arkm.com/explorer/entity/bitfinex,"Published by Bitfinex as BTC cold wallet, list last updated Dec 2022. Recheck"
 47,Bitfinex,"exchange, self-published",yes,ethereum,0x742d35Cc6634C0532925a3b844Bc454e4438f44e,https://github.com/bitfinexcom/pub/blob/master/wallets.txt,2026-11-05,https://arkm.com/explorer/entity/bitfinex,"Published by Bitfinex as ETH cold wallet, list last updated Dec 2022. Recheck"
 47,Bitfinex,"exchange, self-published",yes,ethereum,0xC61b9BB3A7a0767E3179713f3A5c7a9aeDCE193C,https://github.com/bitfinexcom/pub/blob/master/wallets.txt,2026-11-05,https://arkm.com/explorer/entity/bitfinex,"Published by Bitfinex as ETH cold wallet, list last updated Dec 2022. Recheck"
+47,Bitfinex,"exchange, self-published",yes,bitcoin,1Kr6QSydW9bFQG1mXiPNNu6WpJGmUa9i1g,https://github.com/bitfinexcom/pub/blob/master/wallets.txt,2026-11-05,,Listed by Bitfinex in its own published wallet file.
+47,Bitfinex,"exchange, self-published",yes,ethereum,0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec,https://github.com/bitfinexcom/pub/blob/master/wallets.txt,2026-11-05,,Listed by Bitfinex in its own published wallet file.
+47,Bitfinex,"exchange, self-published",yes,ethereum,0x876EabF441B2EE5B5b0554Fd502a8E0600950cFa,https://github.com/bitfinexcom/pub/blob/master/wallets.txt,2026-11-05,,Listed by Bitfinex in its own published wallet file.
 48,Robinhood,institution or protocol,no,,,,,https://arkm.com/explorer/entity/robinhood,Exchange and protocol flows are often customer or internal transfers
 49,Fidelity Custody,institution or protocol,no,,,,,https://arkm.com/explorer/entity/fidelity-custody,Exchange and protocol flows are often customer or internal transfers
 50,Kraken,institution or protocol,no,,,,,https://arkm.com/explorer/entity/kraken,Exchange and protocol flows are often customer or internal transfers
@@ -70,7 +73,7 @@ number,owner,category,enabled,chain,address,attribution_source,last_verified,pro
 60,WhiteBIT,institution or protocol,no,,,,,https://arkm.com/explorer/entity/whitebit,Exchange and protocol flows are often customer or internal transfers
 61,Wrapped Bitcoin,institution or protocol,no,,,,,https://arkm.com/explorer/entity/wrapped-bitcoin,Exchange and protocol flows are often customer or internal transfers
 62,Spark Protocol,institution or protocol,no,,,,,https://arkm.com/explorer/entity/spark-protocol,Exchange and protocol flows are often customer or internal transfers
-63,ether.fi,institution or protocol,no,,,,,https://arkm.com/explorer/entity/ether-fi,Exchange and protocol flows are often customer or internal transfers
+63,ether.fi,"protocol, self-published",yes,ethereum,0x0c83EAe1FE72c390A02E426572854931EefF93BA,https://etherfi.gitbook.io/etherfi/contracts-and-integrations/deployed-contracts,2026-11-05,,"Labelled Treasury in ether.fi deployed contracts docs. Protocol treasury flows, not trading signals."
 64,Gemini,institution or protocol,no,,,,,https://arkm.com/explorer/entity/gemini,Exchange and protocol flows are often customer or internal transfers
 65,Uniswap,"protocol, self-published",yes,ethereum,0x1a9C8182C09F50C8318d769245beA52c32BE35BC,https://developers.uniswap.org/docs/ecosystem/governance/technical-reference,2026-11-05,https://arkm.com/explorer/entity/uniswap,"Listed in Uniswap's docs as the governance Timelock. Native ETH moves only, tokens aren't read yet"
 66,Bitget,institution or protocol,no,,,,,https://arkm.com/explorer/entity/bitget,Exchange and protocol flows are often customer or internal transfers
