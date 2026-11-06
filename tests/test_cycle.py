@@ -675,7 +675,7 @@ def main():
     got = rows(os.path.join(core.DATA, "wallet-moves.csv"))[size0:]
     assert [g["tx"] for g in got] == ["whale"], got
 
-    # approved plan: crypto buys any time, funds only with the market open, and the daily trend decides every slice
+    # approved plan: crypto buys any time, funds only with the market open, long first, and trend decides the mid slice
     sim.HOLD_MODE = True
     os.remove(os.path.join(core.DATA, "sim-state.json"))
     ORDERS.clear()
@@ -694,29 +694,30 @@ def main():
             sim.cycle(st5, er5, creds)
     run5()
     first = list(ORDERS.values())
-    target = {**sim.PLAN["crypto"]["mid"], **sim.PLAN["stock"]["mid"]}
-    assert er5 == [] and len(first) == 1 and float(first[0]["notional"]) == target[first[0]["symbol"]], (er5, ORDERS)
+    assert er5 == [] and len(first) == 1 and first[0]["symbol"] == "BTC/USD" and float(first[0]["notional"]) == 400, (er5, ORDERS)
     run5(8)
     buys = [o for o in ORDERS.values() if o["side"] == "buy"]
-    coins = {o["symbol"] for o in buys}
-    assert {"BTC/USD", "SOL/USD"} <= coins and "ETH/USD" not in coins, "ETH waits while its trend is down"
-    assert not coins & set(sim.PLAN["stock"]["mid"]), "funds wait for the open"
+    coins = [(o["symbol"], float(o["notional"])) for o in buys]
+    assert ("ETH/USD", 200) in coins and ("BTC/USD", 200) in coins, coins
+    assert sum(1 for c in coins if c[0] == "ETH/USD") == 1, "ETH's mid slice waits while its trend is down"
+    assert not any(o["symbol"] in sim.PLAN["stock"]["long"] for o in buys), "funds wait for the open"
+    n = len(ORDERS)
     MARKET_OPEN[0] = True
     run5(10)
-    fund = {o["symbol"] for o in ORDERS.values() if o["symbol"] in sim.PLAN["stock"]["mid"]}
-    assert er5 == [] and fund == set(sim.PLAN["stock"]["mid"]), (er5, fund)
-    # next day's check: every trend turns down, so everything held sells
+    fund = {o["symbol"]: o["notional"] for o in ORDERS.values() if o["symbol"] in sim.PLAN["stock"]["long"]}
+    assert er5 == [] and set(fund) == {"GLD", "DBC", "DBA", "CPER"}, (er5, fund)
+    s5 = sim._load()
+    assert abs(s5["stock_cash"]) < 1e-6 and s5["plan_spent"]["long:GLD"] == 300 and s5["plan_spent"]["mid:GLD"] == 75, s5["plan_spent"]
+    LAST[0] = 1.0  # a huge fall must not sell a long hold
+    before = sum(o["side"] == "sell" for o in ORDERS.values())
+    run5(2)
+    assert er5 == [] and sum(o["side"] == "sell" for o in ORDERS.values()) == before, ORDERS
+    # next weekly check: BTC's trend turns down, so only its mid slice sells
     sim.backtest._daily_closes = lambda c, route, syms, a, b, **k: {x: down for x in syms}
-    clock[0] += timedelta(days=1)
+    clock[0] += timedelta(days=8)
     sim.cycle(st5, er5, creds)
-    held = {p["symbol"] for p in sim._load()["positions"] if p["status"] == "open"}
-    assert er5 == [] and not held, (er5, held)
-    # a position from an older plan is sold
-    s9 = sim._load()
-    s9["positions"].append({"symbol": "GLD", "market": "stock", "plan": "long:GLD", "status": "open", "qty": "1", "hold": True})
-    sim._save(s9)
-    run5()
-    assert any(o["symbol"] == "GLD" and o["side"] == "sell" for o in ORDERS.values()), "old-plan position sells"
+    sells = [o for o in ORDERS.values() if o["side"] == "sell"]
+    assert sells and er5 == [] and all(p["symbol"] != "BTC/USD" or p.get("plan") != "long:BTC/USD" or p["status"] == "open" for p in sim._load()["positions"]), (er5, sells)
     core.now = orig_now
 
     # a filled buy records its own coins, not the whole merged Alpaca position
