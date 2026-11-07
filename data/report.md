@@ -29,7 +29,7 @@ Costs and slippage are not included. Treat any row under 30 signals as noise.
 
 ## Form 4 insider buys
 
-223 verified code P buys logged. 6 of 10 qualifying signals (CEO or CFO, large vs their pattern, small company). Entry is the close on filing day, against SPY.
+226 verified code P buys logged. 6 of 10 qualifying signals (CEO or CFO, large vs their pattern, small company). Entry is the close on filing day, against SPY.
 4 of the qualifying signals were filed after the close, so that entry price could not really have been traded.
 
 The filter breakdown starts at 10 qualifying signals.
