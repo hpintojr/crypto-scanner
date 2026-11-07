@@ -8,7 +8,7 @@ COOLDOWN = timedelta(hours=4)  # a persisting move is one event, not one per cyc
 MAX_LATE_MIN = 60  # outcomes scored later than this are kept but left out of the report
 SIGNAL_FIELDS = ["signal_id", "time", "market", "symbol", "asset_id", "name", "price", "benchmark",
                  "benchmark_price", "move_1h_pct", "volume", "baseline_volume", "volume_ratio",
-                 "passed", "news_24h", "signal_type", "earnings"]
+                 "passed", "news_24h", "signal_type", "earnings", "detail"]
 OUTCOME_FIELDS = ["signal_id", "horizon", "due", "scored_at", "late_min", "price", "benchmark_price",
                   "return_pct", "benchmark_return_pct", "excess_pct"]
 HORIZONS = {
@@ -66,7 +66,7 @@ def recently_logged(state, market, symbol, signal_type="move_1h"):
 
 
 def log_signal(state, *, market, symbol, asset_id, name, price, benchmark, benchmark_price,
-               move, volume, baseline, ratio, passed, news="", signal_type="move_1h", earnings=""):
+               move, volume, baseline, ratio, passed, news="", signal_type="move_1h", earnings="", detail=""):
     """Record a mover, passed or rejected. Rejects are the comparison group."""
     seen = state.setdefault("signal_seen", {})
     t = now()
@@ -82,7 +82,7 @@ def log_signal(state, *, market, symbol, asset_id, name, price, benchmark, bench
         "time": stamp, "market": market, "symbol": symbol, "asset_id": asset_id, "name": name,
         "price": price, "benchmark": benchmark, "benchmark_price": benchmark_price,
         "move_1h_pct": round(move, 3), "volume": volume, "baseline_volume": round(baseline, 2),
-        "volume_ratio": round(ratio, 3), "passed": int(bool(passed)), "news_24h": news, "signal_type": signal_type, "earnings": earnings}])
+        "volume_ratio": round(ratio, 3), "passed": int(bool(passed)), "news_24h": news, "signal_type": signal_type, "earnings": earnings, "detail": detail}])
     return True
 
 
@@ -124,6 +124,8 @@ def write_report():
         s = signals.get(o["signal_id"])
         if not s or float(o["late_min"]) > MAX_LATE_MIN or s["symbol"] == s["benchmark"]:
             continue
+        if s.get("signal_type") == "poc_touch":
+            continue  # scored in data/poc.md, where a touch has its own meaning
         direction = 1 if float(s["move_1h_pct"]) >= 0 else -1
         group = "premarket gap" if s.get("signal_type") == "premarket_gap" else \
             "passed" if s["passed"] == "1" else "rejected"

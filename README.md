@@ -6,7 +6,9 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 
 - **Crypto:** logs top-100 movers over 3% in an hour, including those that fail the 2x volume check.
 - **Stocks:** during market hours, logs moves of 2% or more in an hour across `research/stock_universe.txt`. Checks pre-market gaps of 3% or more from 8:00 to 9:30 AM ET.
+- **Insider sales:** logs open-market sales of $1M or more to `research/form4-sales.csv`, with the 10b5-1 plan flag. Research only.
 - **Form 4:** logs code P open-market buys from SEC EDGAR to `research/form4-log.csv`. Reviews against SPY at 30, 90 and 180 days.
+- **POC touches:** logs when price returns to the previous session's point of control (the price with the most volume), for the stock list and BTC and ETH, with whether the level held or broke. Stock bars are IEX only. Scored in `data/poc.md`. Research only, no orders.
 - **Simulation:** runs the $1,000 paper simulation in `research/sim.py`.
 - **Hold test:** tracks a separate buy-and-hold of a private coin list at simulated cost, with no orders. The list and dollar values stay beside the repo on Otto, and `status.md` shows only a percentage.
 - **Wallet watch:** logs moves by enabled wallets in `research/wallets.csv` to `data/wallet-moves.csv`. Reads native BTC, ETH and XRP, plus major Ethereum tokens by contract address (USDT, USDC, DAI, WETH, WBTC, RLUSD, AAVE, UNI, LDO, CRV, ARB). Log only, nothing trades on it. A wallet needs a full address, chain, attribution source and verification date before it can be enabled.
@@ -35,6 +37,7 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 | `data/movers.md` | Hourly list of biggest gainers and losers over 1 to 24 hours, with streaks. No orders |
 | `data/metrics.md` | Win rate, profit per trade, profit factor, open positions, and drawdown, with flags |
 | `data/allocation-test.md` | Long, mid and short-term rules tested on commodity funds and crypto. No orders |
+| `data/poc.md` | How previous-session POC touches played out, held vs broke, with and without a liquidity sweep. No orders |
 | `data/backtest.md` | SPY strategies tested on past prices. No orders |
 | `data/sim-next.md` | Hourly preview of what the rules would buy next. No orders |
 | `data/sim-trades.csv` | Each closed trade with its thesis and argument against |

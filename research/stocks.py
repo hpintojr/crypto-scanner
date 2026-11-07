@@ -172,6 +172,8 @@ def scan(state, errors):
         t = core.now()
         symbols = universe()
         data = _bars(creds, symbols + [BENCH], t - timedelta(days=9), t)
+        from . import poc
+        poc.LAST_BARS[:] = [t, data]  # shared with the POC log, so the bars aren't fetched twice
         spy = data.get(BENCH) or []
         if not spy:
             raise ValueError("no SPY bars")

@@ -4,7 +4,7 @@ One invocation = one cycle. Run from the Otto schedule, or via run.sh or cron, n
 import csv, hashlib, json, os, re, subprocess, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
-from research import allocation as research_allocation, backtest as research_backtest, core as research_core, form4 as research_form4, holdings as research_holdings, movers as research_movers, sim as research_sim, stocks as research_stocks, wallets as research_wallets
+from research import allocation as research_allocation, backtest as research_backtest, core as research_core, form4 as research_form4, holdings as research_holdings, movers as research_movers, poc as research_poc, sim as research_sim, stocks as research_stocks, wallets as research_wallets
 
 REPO = os.path.dirname(os.path.abspath(__file__))
 CG = "https://api.coingecko.com/api/v3"
@@ -245,6 +245,7 @@ def timed(state, name, fn):
 def research(state, creds):
     """Research steps, skipped once the cycle runs long. The next cycle picks them up."""
     steps = [("stocks", lambda: research_stocks.scan(state, errors)),
+             ("poc", lambda: research_poc.cycle(state, errors, creds)),
              ("score crypto", score_crypto),
              ("score stocks", lambda: research_stocks.score(creds, errors)),
              ("form 4", lambda: research_form4.cycle(state, errors, creds)),
@@ -301,6 +302,7 @@ def write_status(state, host, push_error=None):
               f"- Last scan: {state.get('last_scan') or 'none yet'}",
               f"- Last flag: {state.get('last_flag') or 'none yet'}",
               f"- Last stock scan: {state.get('last_stock_scan') or 'none yet'}",
+              f"- Last POC log: {state.get('last_poc') or 'none yet'}",
               f"- Last watchlist snapshot: {state.get('last_watch') or 'none yet'}",
               f"- Last pre-market gap check: {state.get('last_gap_check') or 'none yet'}",
               f"- Last Form 4 run: {state.get('last_form4') or 'none yet'}",

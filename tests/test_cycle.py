@@ -821,6 +821,33 @@ def main():
     assert big["ticker"] == "BLK" and big["dollar_value"] == 2_000_000 and big["ceo_cfo"] == "yes" and big["plan_10b5_1"] == "yes", big
     assert f4.parse_sales(doc("S", "D", 10, 1000)) is None and f4.parse_sales(doc("P", "A", 2000, 1000)) is None
     assert f4.parse_sales(doc("S", "D", 2000, 1000, plan="0"))["plan_10b5_1"] == "no"
+    # POC log: a touch that holds, a break, and no signal when price stays away; the 4h cooldown stops repeats
+    from research import poc
+    def pbar(t, o, h, l, c, v): return {"t": t, "o": o, "h": h, "l": l, "c": c, "v": v}
+    prev = [pbar(f"2026-11-05T{14 + i // 12:02d}:{(i % 12) * 5:02d}:00Z", 100, 100.2, 99.8, 100, 1000 if i % 3 else 100) for i in range(60)]
+    day = [pbar(f"2026-11-06T{14 + i // 12:02d}:{(i % 12) * 5:02d}:00Z", 101, 101.3, 100.8, 101, 500) for i in range(20)]
+    day[-1] = pbar("2026-11-06T15:35:00Z", 101, 101.1, 99.95, 100.4, 800)
+    hold = poc.touch(prev + day, "stocks")
+    assert hold and hold["held"] and hold["side"] == 1 and "sweep=no" in hold["detail"] and "target=" in hold["detail"], hold
+    day[-1] = pbar("2026-11-06T15:35:00Z", 101, 101.1, 99.5, 99.6, 800)
+    broke = poc.touch(prev + day, "stocks")
+    assert broke and not broke["held"] and broke["side"] == -1, broke
+    day[-1] = pbar("2026-11-06T15:35:00Z", 101, 101.3, 100.8, 101, 800)
+    assert poc.touch(prev + day, "stocks") is None
+    day[-1] = pbar("2026-11-06T15:35:00Z", 101, 101.1, 99.95, 100.4, 800)
+    st9 = {}
+    poc.LAST_BARS[:] = [core.now(), {"AAA": prev + day, "SPY": prev + day}]
+    orig11 = poc._crypto_bars
+    poc._crypto_bars = lambda c: {"BTC/USD": prev + day, "ETH/USD": prev + day}
+    er9 = []
+    poc.cycle(st9, er9, creds)
+    assert er9 == [] and st9["last_poc"].endswith("3 POC touches logged"), (er9, st9)
+    poc.cycle(st9, er9, creds)
+    assert st9["last_poc"].endswith("0 POC touches logged"), st9
+    pocs = [s for s in rows(os.path.join(core.DATA, "signals.csv")) if s["signal_type"] == "poc_touch"]
+    assert len(pocs) == 3 and all("poc=" in s["detail"] for s in pocs), pocs
+    assert os.path.exists(os.path.join(core.DATA, "poc.md"))
+    poc._crypto_bars, poc.LAST_BARS[:] = orig11, [None, None]
     # fee shrinkage matches Alpaca, a big gap is left for the alert, and lots still filling wait
     r1 = {"positions": [{"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.95"}, {"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.955"}]}
     orig7 = stocks._get
