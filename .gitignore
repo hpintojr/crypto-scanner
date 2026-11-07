@@ -6,3 +6,4 @@ __pycache__/
 .sec-user-agent
 .holdings*
 scanner.log
+scanner.lock

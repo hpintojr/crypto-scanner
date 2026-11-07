@@ -883,6 +883,15 @@ def main():
     assert lg.build_row(cl, uni, "2026-11-09")["verdict"] == "holding", "a missing laggard is skipped, not invented"
     lg.write_report([row])
     assert "holding" in open(os.path.join(core.DATA, "laggards.md")).read()
+    # a second copy of the scanner exits at once while the first holds the lock
+    import fcntl as _fcntl
+    held = open(os.path.join(scanner.REPO, "scanner.lock"), "w")
+    _fcntl.flock(held, _fcntl.LOCK_EX | _fcntl.LOCK_NB)
+    n_before = len(ORDERS)
+    scanner.main()
+    assert len(ORDERS) == n_before, "the locked-out copy must do nothing"
+    assert "skipped: another cycle" in open(os.path.join(scanner.REPO, "scanner.log")).read()
+    _fcntl.flock(held, _fcntl.LOCK_UN); held.close()
     # fee shrinkage matches Alpaca, a big gap is left for the alert, and lots still filling wait
     r1 = {"positions": [{"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.95"}, {"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.955"}]}
     orig7 = stocks._get

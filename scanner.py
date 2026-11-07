@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Market research agent: crypto and stock movers, Form 4 buys, $1,000 paper simulation. Paper only, no real money.
 One invocation = one cycle. Run from the Otto schedule, or via run.sh or cron, never more than one."""
-import csv, hashlib, json, os, re, subprocess, time, urllib.parse, urllib.request
+import csv, fcntl, hashlib, json, os, re, subprocess, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from research import allocation as research_allocation, backtest as research_backtest, core as research_core, form4 as research_form4, holdings as research_holdings, laggards as research_laggards, movers as research_movers, poc as research_poc, sim as research_sim, stocks as research_stocks, wallets as research_wallets
@@ -350,6 +350,15 @@ def log_line(text):
 
 
 def main():
+    # Only one cycle at a time. A second copy (the runner and the scheduler overlapping) exits at once,
+    # so two cycles can never place the same order twice. The lock releases when the process ends, even if killed.
+    lock = open(path("scanner.lock"), "w")
+    try:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        log_line("skipped: another cycle is still running")
+        print("another cycle is still running, skipping")
+        return
     request_counts.clear()
     original = urllib.request.urlopen
     urllib.request.urlopen = counted(original)
