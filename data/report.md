@@ -15,7 +15,7 @@ Costs and slippage are not included. Treat any row under 30 signals as noise.
 | crypto | rejected | 4h | 136 | -0.80 | -0.63 | 31 |
 | crypto | rejected | 24h | 122 | -1.90 | -1.84 | 18 |
 | stocks | passed | 1h | 26 | 0.20 | 0.02 | 50 |
-| stocks | passed | 1d | 25 | -0.70 | -0.55 | 48 |
+| stocks | passed | 1d | 26 | -0.69 | -0.51 | 46 |
 | stocks | passed, earnings | 1h | 10 | -0.30 | -0.17 | 50 |
 | stocks | passed, earnings | 1d | 10 | -1.05 | -2.65 | 40 |
 | stocks | premarket gap | 1h | 10 | 0.52 | 0.27 | 70 |
@@ -23,13 +23,13 @@ Costs and slippage are not included. Treat any row under 30 signals as noise.
 | stocks | premarket gap, earnings | 1h | 5 | 0.82 | 1.28 | 80 |
 | stocks | premarket gap, earnings | 1d | 5 | -1.31 | -0.96 | 40 |
 | stocks | rejected | 1h | 86 | 0.38 | 0.15 | 52 |
-| stocks | rejected | 1d | 54 | 0.03 | 0.81 | 57 |
+| stocks | rejected | 1d | 79 | 0.01 | 0.31 | 53 |
 | stocks | rejected, earnings | 1h | 21 | 0.19 | 0.27 | 57 |
-| stocks | rejected, earnings | 1d | 14 | -1.19 | -1.25 | 29 |
+| stocks | rejected, earnings | 1d | 18 | -0.89 | -0.92 | 39 |
 
 ## Form 4 insider buys
 
-196 verified code P buys logged. 4 of 10 qualifying signals (CEO or CFO, large vs their pattern, small company). Entry is the close on filing day, against SPY.
+200 verified code P buys logged. 5 of 10 qualifying signals (CEO or CFO, large vs their pattern, small company). Entry is the close on filing day, against SPY.
 3 of the qualifying signals were filed after the close, so that entry price could not really have been traded.
 
 The filter breakdown starts at 10 qualifying signals.
