@@ -17,7 +17,7 @@ import csv, json, os, urllib.error, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import date, datetime, timedelta, timezone
 from decimal import Decimal, ROUND_DOWN
-from . import backtest, core, form4, metrics, stocks
+from . import backtest, core, form4, graduation, metrics, stocks
 
 PAPER_URL = "https://paper-api.alpaca.markets"  # the only place orders can go
 START_CASH = 1000.0
@@ -142,7 +142,9 @@ def _reconcile_crypto(s, creds):
         if not held:
             continue
         held, total = Decimal(str(held)), sum(Decimal(str(p["qty"])) for p in lots)
-        if total and held != total and abs(held / total - 1) <= Decimal(str(RECONCILE_MAX_GAP)):
+        if total and held != total and abs(held / total - 1) > Decimal(str(RECONCILE_MAX_GAP)):
+            order_errors.append(f"{sym} quantity mismatch: simulation {total} vs Alpaca {held}")
+        elif total and held != total:
             left = held
             for p in lots[:-1]:
                 share = (Decimal(str(p["qty"])) * held / total).quantize(Decimal("0.000000001"), rounding=ROUND_DOWN)
@@ -554,8 +556,10 @@ def _report(s, prices):
     lines += ["", "Rules: approved allocation. Commodities: long $700 in GLD, DBC, DBA and CPER, mid $300 by 100-day trend. "
               "Crypto: long $600 in BTC and ETH, mid $400 by 100-day trend, checked weekly. Positions from an older plan are sold. No short-term slice. No margin. "
               "Trade data is in sim-trades.csv."]
+    grad, met, total_checks = graduation.lines(s, rows, today)
+    s["graduation"] = f"{met} of {total_checks} conditions met"
     with open(os.path.join(core.DATA, "sim.md"), "w") as f:
-        f.write("\n".join(lines) + "\n")
+        f.write("\n".join(lines + grad) + "\n")
     s["flags"] = metrics.write(s, prices, rows)
     return equity
 
@@ -593,16 +597,33 @@ def cycle(state, errors, creds):
                 _buy(s, creds, prices, today, "crypto", True)
                 if is_open:
                     _buy(s, creds, prices, today, "stock", et.hour * 60 + et.minute >= ENTRY_MINUTE)
+        graduation.track_plan(s, PLAN, today)
+        if order_errors:
+            graduation.note_issue(s, today)
         errors.extend(order_errors)
         order_errors.clear()
         equity = _report(s, prices)
         _save(s)
         state["last_flags"] = "; ".join(s.get("flags") or []) or "none"
+        state["graduation"] = s.get("graduation")
         _preview(s, creds, state, today, is_open)
         state["last_sim"] = (f"value ${equity:,.2f} of $2,000, {len(s['positions'])} open, crypto cash ${s['cash']:,.2f}, "
                              f"stock cash ${s['stock_cash']:,.2f}"
                              + (", STOPPED by SIM_STOP" if stopped else ""))
     except urllib.error.HTTPError as e:
         errors.append(f"simulation: HTTP {e.code} {e.url.split('?')[0]}")
+        _mark_issue()
     except Exception as e:
         errors.append(f"simulation: {type(e).__name__}: {e}")
+        _mark_issue()
+
+
+def _mark_issue():
+    """A failed cycle counts against the clean-days condition, even though its state never saved."""
+    try:
+        s = _load()
+        if s:
+            graduation.note_issue(s, core.now().astimezone(stocks.ET).date())
+            _save(s)
+    except Exception:
+        pass

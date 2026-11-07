@@ -308,6 +308,7 @@ def write_status(state, host, push_error=None):
               f"- Last Form 4 run: {state.get('last_form4') or 'none yet'}",
               f"- $2,000 paper simulation: {state.get('last_sim') or 'not started'}",
               f"- Simulation flags: {state.get('last_flags') or 'none'}",
+              f"- Graduation checklist: {state.get('graduation') or 'none yet'} (data/sim.md)",
               f"- Strategy test: {state.get('last_backtest') or 'not run yet'}",
               f"- Hold test: {state.get('last_holdings') or 'not started'}",
               f"- Wallet watch: {state.get('last_wallets') or 'not started'}",

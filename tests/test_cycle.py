@@ -87,7 +87,11 @@ def fake_urlopen(req, timeout=None):
     if u.path == "/v1beta3/crypto/us/latest/trades":
         return Resp(json.dumps({"trades": {q["symbols"][0]: {"p": LAST[0]}}}).encode())
     if u.path.startswith("/v2/positions/"):
-        return Resp(json.dumps({"qty": "1.9"}).encode())
+        # what Alpaca would hold: filled buys minus sells for this coin, or a stand-in when nothing was ordered
+        sym = u.path.rsplit("/", 1)[-1]
+        held = sum((1 if o["side"] == "buy" else -1) * float(o["_filled_qty"]) for o in ORDERS.values()
+                   if o["symbol"].replace("/", "") == sym and o.get("_filled_qty"))
+        return Resp(json.dumps({"qty": str(held) if held else "1.9"}).encode())
     if u.path.startswith("/v2/assets/"):
         return Resp(json.dumps({"tradable": True, "fractionable": True}).encode())
     if u.path == "/v2/orders:by_client_order_id" and q["client_order_id"][0].startswith("sim-buy-STALE"):
@@ -96,6 +100,7 @@ def fake_urlopen(req, timeout=None):
         o = ORDERS[q["client_order_id"][0]]
         px = FILL[0]
         qty = o.get("qty") or str(float(o["notional"]) / px)
+        o["_filled_qty"] = qty
         return Resp(json.dumps({"status": "filled", "filled_qty": qty, "filled_avg_price": str(px)}).encode())
     if u.path.endswith("/trades/latest"):
         return Resp(json.dumps({"trade": {"p": LAST[0] if "SPY" not in u.path else 500}}).encode())
@@ -389,7 +394,7 @@ def main():
     LAST[0] = 56.0
     sim.cycle(state, errs, creds)
     sell = [o for o in ORDERS.values() if o["side"] == "sell"]
-    assert len(sell) == 1 and sell[0]["qty"] == "1.9" and sell[0]["time_in_force"] == "gtc", ORDERS
+    assert len(sell) == 1 and sell[0]["qty"] == "2.0" and sell[0]["time_in_force"] == "gtc", ORDERS  # sells what Alpaca holds
     FILL[0] = 56.0
     sim.cycle(state, errs, creds)
     assert errs == [] and not sim._load()["positions"], errs
@@ -848,6 +853,21 @@ def main():
     assert len(pocs) == 3 and all("poc=" in s["detail"] for s in pocs), pocs
     assert os.path.exists(os.path.join(core.DATA, "poc.md"))
     poc._crypto_bars, poc.LAST_BARS[:] = orig11, [None, None]
+    # graduation checklist: nothing met on day one, the clock restarts on a plan change, issues reset clean days
+    from research import graduation as gr
+    from datetime import date as _date
+    g = {"start": "2026-11-06", "plan_since": "2026-11-06"}
+    eqs = [{"date": "2026-11-06", "equity": "2000", "spy_equivalent": "1000"}, {"date": "2026-11-07", "equity": "1990", "spy_equivalent": "980"}]
+    out, met, n = gr.lines(g, eqs, _date(2026, 11, 7))
+    assert n == 5 and met == 2 and any("plan -0.50% vs SPY -2.00%" in l for l in out), (met, out)
+    gr.track_plan(g, {"a": 1}, _date(2026, 11, 7))
+    assert g["plan_since"] == "2026-11-07"
+    gr.track_plan(g, {"a": 1}, _date(2026, 11, 8))
+    assert g["plan_since"] == "2026-11-07", "same plan keeps its start"
+    gr.note_issue(g, _date(2026, 11, 8))
+    out2, met2, _ = gr.lines(g, eqs + [{"date": "2026-12-20", "equity": "2100", "spy_equivalent": "1000"}], _date(2026, 12, 20))
+    assert any("42 clean days" in l for l in out2), out2
+    assert gr._drawdown([100, 120, 90, 130]) == -25.0 and gr._stretches([100, 106, 100]) == (True, True)
     # fee shrinkage matches Alpaca, a big gap is left for the alert, and lots still filling wait
     r1 = {"positions": [{"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.95"}, {"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.955"}]}
     orig7 = stocks._get

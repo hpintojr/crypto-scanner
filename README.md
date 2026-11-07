@@ -33,7 +33,7 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 | File | What it shows |
 |---|---|
 | `status.md` | Latest cycle, errors, measured time between runs |
-| `data/sim.md` | Simulation value, comparison with SPY, checkpoints |
+| `data/sim.md` | Simulation value, comparison with SPY, checkpoints, and the graduation checklist (conditions before real money is discussed) |
 | `data/movers.md` | Hourly list of biggest gainers and losers over 1 to 24 hours, with streaks. No orders |
 | `data/metrics.md` | Win rate, profit per trade, profit factor, open positions, and drawdown, with flags |
 | `data/allocation-test.md` | Long, mid and short-term rules tested on commodity funds and crypto. No orders |
