@@ -5,3 +5,4 @@ __pycache__/
 .edgar-cache/
 .sec-user-agent
 .holdings*
+scanner.log

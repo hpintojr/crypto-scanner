@@ -340,12 +340,26 @@ def publish(state):
         print("push failed:", p.stderr)
 
 
+def log_line(text):
+    """One line per event in a local, untracked log, so a killed run leaves evidence behind."""
+    try:
+        with open(path("scanner.log"), "a") as f:
+            f.write(f"{iso()} pid {os.getpid()} {text}\n")
+    except OSError:
+        pass
+
+
 def main():
     request_counts.clear()
     original = urllib.request.urlopen
     urllib.request.urlopen = counted(original)
+    log_line("start")
     try:
         run_cycle()
+        log_line(f"done in {round(time.monotonic() - started)}s, errors {len(errors)}")
+    except BaseException as e:
+        log_line(f"stopped by {type(e).__name__}: {str(e)[:120]}")
+        raise
     finally:
         urllib.request.urlopen = original
 
