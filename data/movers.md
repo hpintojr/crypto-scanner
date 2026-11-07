@@ -1,20 +1,20 @@
 # Biggest movers
 
-As of 2026-11-07T22:26:59Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
+As of 2026-11-07T23:25:51Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
 
 ## Crypto, top 100
 
 | Window | Biggest gainers | Biggest losers |
 |---|---|---|
-| 1h | PEARL +1.4% (+1h), FIGR_HELOC +0.7% (+1h), M +0.4% (+1h), OUSD +0.1% (+2h), NEXO +0.1% (+5h) | BCH -3.6% (-2h), BTW -2.6% (-1h), ZEC -1.6% (-2h), GRAM -1.5% (-2h), APT -1.2% (-2h) |
-| 2h | PEARL +1.2% (+1h), FIGR_HELOC +0.6% (+1h), RAIN +0.4% (-1h), M +0.2% (+1h), OUSD +0.2% (+2h) | BCH -4.1% (-2h), LIT -2.4% (-2h), PUMP -2.3% (-2h), APT -2.1% (-2h), ZRO -2.0% (-2h) |
-| 4h | BTW +4.8% (-1h), LIT +1.6% (-2h), M +1.4% (+1h), ETHFI +1.2% (-2h), PUMP +0.8% (-2h) | BCH -3.6% (-2h), OKB -2.3% (-3h), FIL -2.1% (-3h), WLD -1.4% (-2h), ZEC -1.3% (-2h) |
-| 6h | BTW +6.7% (-1h), PEARL +2.2% (+1h), ETHFI +1.4% (-2h), M +1.4% (+1h), ASTER +1.1% (-2h) | BCH -4.3% (-2h), OKB -3.0% (-3h), VVV -2.8% (-2h), PUMP -2.5% (-2h), FIL -2.3% (-3h) |
-| 8h | BTW +5.8% (-1h), STX +3.0% (-2h), M +2.9% (+1h), NIGHT +1.7% (-2h), ETHFI +1.4% (-2h) | BCH -3.7% (-2h), PUMP -3.6% (-2h), OKB -3.2% (-3h), ZEC -3.0% (-2h), ENA -2.9% (-2h) |
-| 12h | BTW +4.1% (-1h), M +3.8% (+1h), JST +1.2% (+2h), FIGR_HELOC +1.0% (+1h), UNI +0.8% (-2h) | LIT -8.1% (-2h), PUMP -7.6% (-2h), ZEC -5.8% (-2h), BCH -5.3% (-2h), ENA -4.3% (-2h) |
-| 16h | M +3.0% (+1h), NIGHT +2.6% (-2h), QNT +1.5% (-2h), ETHFI +1.3% (-2h), ARB +1.3% (-2h) | PUMP -6.3% (-2h), BCH -5.7% (-2h), LIT -5.5% (-2h), ZEC -5.3% (-2h), ENA -4.6% (-2h) |
-| 20h | NIGHT +3.4% (-2h), UNI +2.4% (-2h), M +1.9% (+1h), QNT +1.3% (-2h), MNT +1.2% (-2h) | PUMP -7.0% (-2h), ZEC -6.7% (-2h), BCH -6.0% (-2h), FIL -4.4% (-3h), ENA -4.3% (-2h) |
-| 24h | NIGHT +4.1% (-2h), UNI +2.8% (-2h), QNT +2.8% (-2h), ETHFI +1.9% (-2h), M +1.9% (+1h) | PUMP -8.3% (-2h), ZEC -6.5% (-2h), BCH -6.2% (-2h), PEARL -4.7% (+1h), ENA -4.7% (-2h) |
+| 1h | LIT +1.1% (+1h), KCS +0.7% (+1h), BTW +0.6% (+1h), ETHFI +0.6% (+1h), NEAR +0.6% (+1h) | XMR -1.9% (-2h), GRAM -1.0% (-3h), M -0.8% (-1h), NIGHT -0.6% (-3h), CC -0.6% (-8h) |
+| 2h | PEARL +0.9% (-1h), FIGR_HELOC +0.8% (+2h), NEAR +0.3% (+1h), KCS +0.2% (+1h), ETHFI +0.1% (+1h) | BCH -3.7% (-3h), GRAM -2.4% (-3h), XMR -2.2% (-2h), BTW -2.0% (+1h), ZEC -1.4% (+1h) |
+| 4h | BTW +2.2% (+1h), INJ +0.8% (+1h), ETHFI +0.7% (+1h), LIT +0.7% (+1h), PEARL +0.4% (-1h) | BCH -3.8% (-3h), OKB -2.8% (-4h), STX -2.1% (-3h), FIL -2.0% (+1h), XMR -2.0% (-2h) |
+| 6h | BTW +8.0% (+1h), PEARL +4.3% (-1h), LIT +2.7% (+1h), ETHFI +1.6% (+1h), UNI +1.4% (+1h) | BCH -3.5% (-3h), GRAM -2.6% (-3h), CC -2.0% (-8h), XMR -2.0% (-2h), FIL -1.8% (+1h) |
+| 8h | BTW +7.6% (+1h), ETHFI +1.9% (+1h), M +1.6% (-1h), ASTER +1.0% (-3h), FIGR_HELOC +1.0% (+2h) | BCH -4.0% (-3h), GRAM -3.7% (-3h), OKB -3.3% (-4h), ENA -2.8% (+1h), PUMP -2.6% (+1h) |
+| 12h | BTW +7.1% (+1h), M +3.8% (-1h), UNI +1.6% (+1h), ETHFI +1.5% (+1h), FIGR_HELOC +1.0% (+2h) | ZEC -5.3% (+1h), PUMP -5.1% (+1h), BCH -4.3% (-3h), OKB -3.9% (-4h), GRAM -3.3% (-3h) |
+| 16h | BTW +2.4% (+1h), M +2.3% (-1h), NIGHT +2.2% (-3h), ETHFI +1.2% (+1h), MNT +1.1% (+1h) | LIT -6.6% (+1h), PUMP -6.1% (+1h), BCH -5.5% (-3h), ZEC -4.8% (+1h), ENA -4.5% (+1h) |
+| 20h | NIGHT +2.6% (-3h), UNI +2.2% (+1h), ETHFI +2.2% (+1h), ARB +1.5% (+1h), QNT +1.3% (-3h) | ZEC -7.5% (+1h), PUMP -6.8% (+1h), BCH -6.3% (-3h), LIT -5.4% (+1h), BTW -5.2% (+1h) |
+| 24h | UNI +2.6% (+1h), NIGHT +2.5% (-3h), ETHFI +1.7% (+1h), M +1.6% (-1h), MNT +1.4% (+1h) | PUMP -7.2% (+1h), ZEC -6.5% (+1h), BCH -6.0% (-3h), ENA -5.0% (+1h), FIL -4.9% (+1h) |
 
 ## Stocks, fixed list
 
