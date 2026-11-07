@@ -4,7 +4,7 @@ One invocation = one cycle. Run from the Otto schedule, or via run.sh or cron, n
 import csv, hashlib, json, os, re, subprocess, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
-from research import allocation as research_allocation, backtest as research_backtest, core as research_core, form4 as research_form4, holdings as research_holdings, movers as research_movers, poc as research_poc, sim as research_sim, stocks as research_stocks, wallets as research_wallets
+from research import allocation as research_allocation, backtest as research_backtest, core as research_core, form4 as research_form4, holdings as research_holdings, laggards as research_laggards, movers as research_movers, poc as research_poc, sim as research_sim, stocks as research_stocks, wallets as research_wallets
 
 REPO = os.path.dirname(os.path.abspath(__file__))
 CG = "https://api.coingecko.com/api/v3"
@@ -253,7 +253,8 @@ def research(state, creds):
              ("holdings", lambda: research_holdings.cycle(state, errors)),
              ("backtest", lambda: research_backtest.cycle(state, errors, creds)),
              ("movers", lambda: research_movers.cycle(state, errors, creds)),
-             ("allocation", lambda: research_allocation.cycle(state, errors, creds))]
+             ("allocation", lambda: research_allocation.cycle(state, errors, creds)),
+             ("laggards", lambda: research_laggards.cycle(state, errors, creds))]
     skipped = []
     for name, fn in steps:
         if over_budget():
@@ -302,6 +303,7 @@ def write_status(state, host, push_error=None):
               f"- Last scan: {state.get('last_scan') or 'none yet'}",
               f"- Last flag: {state.get('last_flag') or 'none yet'}",
               f"- Last stock scan: {state.get('last_stock_scan') or 'none yet'}",
+              f"- Laggards watch: {state.get('last_laggards') or 'none yet'}",
               f"- Last POC log: {state.get('last_poc') or 'none yet'}",
               f"- Last watchlist snapshot: {state.get('last_watch') or 'none yet'}",
               f"- Last pre-market gap check: {state.get('last_gap_check') or 'none yet'}",

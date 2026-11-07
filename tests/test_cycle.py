@@ -868,6 +868,21 @@ def main():
     out2, met2, _ = gr.lines(g, eqs + [{"date": "2026-12-20", "equity": "2100", "spy_equivalent": "1000"}], _date(2026, 12, 20))
     assert any("42 clean days" in l for l in out2), out2
     assert gr._drawdown([100, 120, 90, 130]) == -25.0 and gr._stretches([100, 106, 100]) == (True, True)
+    # laggards watch: one row per trading day, mechanical verdict, nothing invented when a close is missing
+    from research import laggards as lg
+    cl = {s: {"2026-11-05": 100.0, "2026-11-06": 101.0, "2026-11-09": 102.0} for s in lg.INDEX + lg.SECTORS}
+    for s in lg.LAGGARDS:
+        cl[s] = {"2026-11-05": 100.0, "2026-11-06": 103.0, "2026-11-09": 105.0}
+    cl["RSP"]["2026-11-09"] = 104.0
+    uni = {"AAA": {"2026-11-06": 1.0, "2026-11-09": 1.1}, "BBB": {"2026-11-06": 1.0, "2026-11-09": 0.9}, "CCC": {"2026-11-09": 1.0}}
+    row = lg.build_row(cl, uni, "2026-11-09")
+    assert row["verdict"] == "holding" and row["laggards_minus_spy_since"] == 3.0 and row["rsp_minus_spy_since"] == 2.0, row
+    assert row["advancers"] == 1 and row["decliners"] == 1 and row["big_move"] == "no" and row["spy_vol_20d"] == "", row
+    assert lg.build_row(cl, uni, "2026-11-10") is None, "no close, no row"
+    del cl["INTU"]["2026-11-05"]
+    assert lg.build_row(cl, uni, "2026-11-09")["verdict"] == "holding", "a missing laggard is skipped, not invented"
+    lg.write_report([row])
+    assert "holding" in open(os.path.join(core.DATA, "laggards.md")).read()
     # fee shrinkage matches Alpaca, a big gap is left for the alert, and lots still filling wait
     r1 = {"positions": [{"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.95"}, {"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.955"}]}
     orig7 = stocks._get
