@@ -1,6 +1,6 @@
 {
  "start": "2026-11-05",
- "cash": 337.57028402432957,
+ "cash": 341.3907249789296,
  "positions": [
   {
    "symbol": "BTC/USD",
@@ -40,11 +40,15 @@
    "source": "long:ETH/USD",
    "plan": "long:ETH/USD",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-ETHUSD-202611062045",
    "notional": 200,
    "thesis": "Approved allocation, long:ETH/USD",
-   "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend."
+   "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend.",
+   "qty": "0.087717562",
+   "entry": 2230.9,
+   "cost": 196.1796,
+   "opened": "2026-11-06T20:50:11Z"
   },
   {
    "symbol": "DBC",
@@ -52,11 +56,31 @@
    "source": "long:DBC",
    "plan": "long:DBC",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-DBC-202611062045",
    "notional": 250,
    "thesis": "Approved allocation, long:DBC",
-   "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend."
+   "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend.",
+   "qty": "7.91608613",
+   "entry": 31.58,
+   "cost": 249.99,
+   "opened": "2026-11-06T20:50:11Z"
+  },
+  {
+   "symbol": "DBA",
+   "market": "stock",
+   "source": "long:DBA",
+   "plan": "long:DBA",
+   "hold": true,
+   "status": "open",
+   "buy_id": "sim-plan-DBA-202611062050",
+   "notional": 75,
+   "thesis": "Approved allocation, long:DBA",
+   "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend.",
+   "qty": "2.870980091",
+   "entry": 26.12,
+   "cost": 74.99,
+   "opened": "2026-11-07T21:27:59Z"
   }
  ],
  "spy_start": 766.9,
@@ -74,7 +98,7 @@
   "HYPE/USD",
   "DOGE/USD"
  ],
- "stock_cash": 442.0521625169911,
+ "stock_cash": 367.0721625546711,
  "btc_start": 80189.9,
  "flags": [],
  "plan_spent": {
@@ -83,7 +107,8 @@
   "long:BTC/USD": 400,
   "long:GLD": 300,
   "long:ETH/USD": 200,
-  "long:DBC": 250
+  "long:DBC": 250,
+  "long:DBA": 75
  },
  "trends": {
   "CPER": false,
@@ -104,5 +129,8 @@
   "DBC",
   "ETH/USD",
   "GLD"
- ]
+ ],
+ "plan_hash": "f14648bc35",
+ "plan_since": "2026-11-07",
+ "graduation": "1 of 5 conditions met"
 }
