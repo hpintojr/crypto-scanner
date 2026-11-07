@@ -1,6 +1,6 @@
 # Research report
 
-298 movers logged, 38 passed the volume check. Research only, no orders.
+299 movers logged, 39 passed the volume check. Research only, no orders.
 
 Follow-through is the return after the signal, net of BTC or SPY, in the direction of
 the original move. Positive means the move kept going. Compare passed against rejected.
@@ -23,13 +23,13 @@ Costs and slippage are not included. Treat any row under 30 signals as noise.
 | stocks | premarket gap, earnings | 1h | 5 | 0.82 | 1.28 | 80 |
 | stocks | premarket gap, earnings | 1d | 5 | -1.31 | -0.96 | 40 |
 | stocks | rejected | 1h | 86 | 0.38 | 0.15 | 52 |
-| stocks | rejected | 1d | 79 | 0.01 | 0.31 | 53 |
+| stocks | rejected | 1d | 86 | -0.02 | 0.16 | 51 |
 | stocks | rejected, earnings | 1h | 21 | 0.19 | 0.27 | 57 |
-| stocks | rejected, earnings | 1d | 18 | -0.89 | -0.92 | 39 |
+| stocks | rejected, earnings | 1d | 21 | -0.74 | -0.86 | 43 |
 
 ## Form 4 insider buys
 
-200 verified code P buys logged. 5 of 10 qualifying signals (CEO or CFO, large vs their pattern, small company). Entry is the close on filing day, against SPY.
+205 verified code P buys logged. 5 of 10 qualifying signals (CEO or CFO, large vs their pattern, small company). Entry is the close on filing day, against SPY.
 3 of the qualifying signals were filed after the close, so that entry price could not really have been traded.
 
 The filter breakdown starts at 10 qualifying signals.
