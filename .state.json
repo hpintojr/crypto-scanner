@@ -8,17 +8,17 @@
  "inbox_hash": "7f9d95d9402f57d8ca4e2efcc4825389ad5a7c320a8cdcf4c91a9942e2ae11dc",
  "answers_hash": "4433d13ee12e546443e456514dc71497b1ddda7690e898314eb6abfc6d4d4bba",
  "pending_request": false,
- "last_scan": "2026-11-08T11:15:11Z: 0 movers >3% 1h, 0 kept after 2x volume check",
+ "last_scan": "2026-11-08T11:20:09Z: 0 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-08T11:15:11Z: market closed",
+ "last_stock_scan": "2026-11-08T11:20:09Z: market closed",
  "form4": {
   "next_day": "2026-11-07",
   "offset": 0
  },
- "last_form4": "2026-11-08T11:15:12Z: blocked by SEC (HTTP 403). SEC wants a contact in the User-Agent, set it in .sec-user-agent beside the repo",
- "last_run": "2026-11-08T11:16:33Z",
- "cycle_minutes": 6,
- "last_sim": "value $1,920.67 of $2,000, 5 open, crypto cash $341.39, stock cash $367.07",
+ "last_form4": "2026-11-08T11:20:10Z: blocked by SEC (HTTP 403). SEC wants a contact in the User-Agent, set it in .sec-user-agent beside the repo",
+ "last_run": "2026-11-08T11:21:03Z",
+ "cycle_minutes": 5,
+ "last_sim": "value $1,920.80 of $2,000, 5 open, crypto cash $341.39, stock cash $367.07",
  "signal_seen": {
   "crypto:ETH:poc_touch:1": "2026-11-08T07:05:11Z",
   "crypto:BTC:poc_touch:1": "2026-11-08T07:50:11Z",
@@ -1686,6 +1686,20 @@
    "0x0ce50d5db90af1501fc23d8e471de9556cc035981343f62a0d65c35fe179ca6a"
   ],
   "0x77021d475E36b3ab1921a0e3A8380f069d3263de": [
+   "0x49819f353f001d3741d169a6098feb9a932e00b46fc8acfa59d04636412dc152",
+   "0xfb05f69d27767d014d7ed97a54db5dc43179bcb97718efdff97db69f45ae4d60",
+   "0x0251b80ff5d5b524d0253acc9f414b14e12cfb2aaa805f8e2ec3b443ba55f965",
+   "0x80dd037dae9d6756b9be82c024d936daa7f85f991fe6a9a46968e0aeb76d4218",
+   "0x3b797b5f76f5f34a0bc4d187bb350ee3b5216b9bda191c777456bd583e8aa787",
+   "0x2f5774d97a4521de1d44281bcce69e51be5822de7840409dab5a2e6bebfdb804",
+   "0xf8c6a57f7776fd3aa7b9d3e985333aaa7bc37c8dd692b3a83d9905bd16df5548",
+   "0xc1a4d1bf1b7e48b5d96f6591b0f2f5e906d13073b7659a24eec6b32d91aeafa4",
+   "0xe8f4a8722ff2c72fd0f71e80002093ab07d8abad46c02af9da3e10377cc8641d",
+   "0x447acfda35b3356daed11b7e493b51c8c2b2ac926097a4b93d8c79b8e8cf8c76",
+   "0xd12a056105a8dde823a4f70aba5bd0f7799b6547e4e23129b109aa349de37668",
+   "0x2e6020ea263e2f8fa4594e31f87379bbfe09282c9a5f9423ba9149799206089b",
+   "0x81aa3c901e560d30edb2e97e1cc1cc81dc5f60143aa25ffed250aeb13377fb6a",
+   "0x350887495980f4038adc303ddf9a500ab2e24a4d8680698712fa4dc59c50c180",
    "0xd2e9ad6b6478ebbd9e0cd0af1b1c7651fe595862c5fad276e38a3693a51bb169",
    "0x96652f1c7bddcc6bc904c952d5e98821629b87643cfe3ae4dee35766041321aa",
    "0xf36a7aba4b29807c702d3fbb55a4c61225cd17edbf8456ae6909d54b088c4e01",
@@ -1721,23 +1735,10 @@
    "0x801802c15b56044dad0a863082715c6f5e38e2f41495190115879325bfb755f4",
    "0x4472f0ffccbed16960243bc0a47c3ab7e83b53e3f908dbe811f39462a28ceef9",
    "0xe4d4f5fad6b8b8fe49a61c47e32b17fe217de70f0f8410807632ba5b3b3f7ee7",
-   "0x3c87ecbb6f1d3f23cba572263e8f75b298599997c2dbc59e9aab39d491d01b7e",
-   "0x600d9b13e33e64b50325aa964f28ce65ecacaedb800932cb6c547432f16873c8",
-   "0x21241a7d12e60117c330064f150b0346eeb33277e30c0c2abafc5fecf885a589",
-   "0x1d93b7f4849e3dcf91e3690602ab0d9075c3807c2ee7413a98dfd98167a1a3f5",
-   "0x1874c847b74825e6db5ef40b9cb1a470f9b99a1b4bd0899367b8f925845188de",
-   "0x0d51231f8a19affae05b853003477ec87e9f0fec981b808bc7a25dc700af34f9",
-   "0x4a530b367e665835ededd5e9956575254d6a5215bf08315c6fb0a6cbe77e16a6",
-   "0x5a1156810033987394199ca06a498b99a136c5daf94f20fb84e4306a3a7102f5",
-   "0x223a4af63049fbc0393f09eae22f310be5921b8c83457a73a8075e71ea032dfa",
-   "0xd8d7ce3fab952775f9b3954211a35140e20dfb32c5402bea5ba1b0c1312f851d",
-   "0x4c7af0d5dc98acb2b48cb84cdd22a5cc795240021bc77c25f0a55c55089aa991",
-   "0xec512265f46d7d1e55a7903aee309d751b9a231737b42fac84a2334f5d4503a6",
-   "0xca9a0ed27979e2a92da544c2cd02ce6ce03758e67b7e0b16e759ec4ac599f7f9",
-   "0xef86ab93596e0301b56aac16264c2a17b5f39c54d12d86258be01b5030c2def8",
-   "0xd881b039f82578de7ac21ddf9bbe040ee56fdcd97e180c86c6e9bd13044ae2e7"
+   "0x3c87ecbb6f1d3f23cba572263e8f75b298599997c2dbc59e9aab39d491d01b7e"
   ],
   "0x77021d475E36b3ab1921a0e3A8380f069d3263de#tokens": [
+   "0x801113adb7a284be985f8d67f49750f1d9cf51afd14b974b140a90d3177ca40f:887",
    "0x98d3d22b59651c3dac06d59841183dbaec4ecb3759fc8c435f17153573d2adba:2216",
    "0x9227f2849d2b5bf0a198a1d7f61496d66fbeb5dbd413914d5dc7f1976cf5cb49:7",
    "0x75b0e4cae03fecdc4e349c25a6636856f3d582d2d9c8cc22b3d643984a947dbc:5",
@@ -1786,8 +1787,7 @@
    "0x9150855ac6f7d40508e8a8cb929fe86cf5e184bbd1d71dcacae62763c06a3f40:477",
    "0x2fc88eca5ee2550ee52c45288a3703222204825375ccc4938c56c304ca8f62dc:24",
    "0xc23b36c578d51b389a8775e97484f51505a96b712922f6299a01b294283643a7:196",
-   "0xc0cf1f9900ef8939428d22fc23bd31e8d975196ffa1ec5af9922b025e3d58a06:43",
-   "0xa9dd3b36372db5f376f2dd5fe6943c087fbc9656d0113f00ffea8129bde0b673:1733"
+   "0xc0cf1f9900ef8939428d22fc23bd31e8d975196ffa1ec5af9922b025e3d58a06:43"
   ],
   "0x1baE874af9f81B8F93315b27F080260Da4702D3a": [
    "0xaded9851269d515001ae10bd3258c3f1cfe6e7e096ee8e83dc2ff6680524353b",
@@ -3249,11 +3249,11 @@
    "0x2a13d3e63037cb9c142fbf53170958c7c6041eb340f8947302a937181ebbb348:960"
   ]
  },
- "last_wallets": "15 checked this cycle, 63 enabled in rotation, 0 new moves",
+ "last_wallets": "15 checked this cycle, 63 enabled in rotation, 1 new moves",
  "holdings_checked": "2026-11-08T10:56:53Z",
  "last_holdings": "-12.06% since 2026-11-05, BTC -5.67%",
  "preview_checked": "2026-11-05T11:00:28Z",
- "wallets_offset": 48,
+ "wallets_offset": 63,
  "backtest_date": "2026-11-07",
  "last_backtest": "2026-11-07: 500 trading days tested, see data/backtest.md",
  "movers_checked": "2026-11-08T11:10:57Z",
@@ -3270,7 +3270,7 @@
   "score crypto": 0,
   "score stocks": 0,
   "form 4": 0,
-  "wallets": 79,
+  "wallets": 52,
   "holdings": 0,
   "backtest": 0,
   "movers": 0,
@@ -3280,5 +3280,5 @@
  },
  "skipped_steps": [],
  "graduation": "2 of 5 conditions met",
- "last_poc": "2026-11-08T11:15:12Z: 0 POC touches logged"
+ "last_poc": "2026-11-08T11:20:10Z: 0 POC touches logged"
 }
