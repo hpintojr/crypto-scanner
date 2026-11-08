@@ -302,3 +302,4 @@ dec9e813d9d9,2026-11-07T22:25:06Z,crypto,ETH,ethereum,ETH,2230.79,BTC,75689.12,-
 18df3ae3d21d,2026-11-08T03:00:13Z,crypto,ETH,ethereum,ETH,2233.035,BTC,75689.096,0.06,6.136532631,0,0,0,,poc_touch,,poc=2231.69;vah=2244;val=2228.33;sweep=no;from=below;stop=2227.96;target=2248.25
 848732bf1b68,2026-11-08T05:05:11Z,crypto,BTW,bitway,Bitway,1.19,BTC,75788,-3.44,5514591,5969548.25,0.924,0,,move_1h,,
 9ecfc4d94ff7,2026-11-08T07:05:11Z,crypto,ETH,ethereum,ETH,2231.496,BTC,75742.95,-0.009,6.136532631,0,0,1,,poc_touch,,poc=2231.69;vah=2244;val=2228.33;sweep=no;from=below;stop=2231.97;target=2230.09
+aec7b825b001,2026-11-08T07:50:11Z,crypto,BTC,bitcoin,BTC,75828.134,BTC,75828.134,-0.078,0.415338099,0,0,1,,poc_touch,,poc=75887.6;vah=76001.4;val=75773.9;sweep=no;from=below;stop=75891;target=75639.6
