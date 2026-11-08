@@ -1,30 +1,28 @@
 # Scanner status
 
-- Last run: 2026-11-08T09:01:21Z
+- Last run: 2026-11-08T09:06:17Z
 - Host: otto-16usdmc576-067297
-- Step seconds: simulation 3, crypto scan 0, buzz 0, watchlist 0, stocks 0, score crypto 0, score stocks 0, form 4 0, wallets 69, holdings 0, backtest 0, movers 0, allocation 0, poc 1, laggards 1
-- Requests this cycle: api.coingecko.com 2, data.alpaca.markets 9, eth.blockscout.com 14, mempool.space 8, paper-api.alpaca.markets 5, www.sec.gov 1
+- Step seconds: simulation 3, crypto scan 0, buzz 0, watchlist 1, stocks 0, score crypto 0, score stocks 0, form 4 0, wallets 66, holdings 0, backtest 0, movers 0, allocation 0, poc 1, laggards 1
+- Requests this cycle: api.coingecko.com 2, data.alpaca.markets 9, eth.blockscout.com 18, mempool.space 6, paper-api.alpaca.markets 5, www.sec.gov 1
 - Skipped for time: none
-- Last scan: 2026-11-08T09:00:10Z: 1 movers >3% 1h, 0 kept after 2x volume check
+- Last scan: 2026-11-08T09:05:08Z: 1 movers >3% 1h, 0 kept after 2x volume check
 - Last flag: 2026-11-06T09:05:20Z CC
-- Last stock scan: 2026-11-08T09:00:10Z: market closed
+- Last stock scan: 2026-11-08T09:05:09Z: market closed
 - Laggards watch: none yet
-- Last POC log: 2026-11-08T09:00:11Z: 0 POC touches logged
-- Last watchlist snapshot: 2026-11-08T08:05:11Z
+- Last POC log: 2026-11-08T09:05:10Z: 0 POC touches logged
+- Last watchlist snapshot: 2026-11-08T09:05:09Z
 - Last pre-market gap check: 2026-11-06T14:25:16Z: 7 of 100 stocks gapped 3%+ pre-market
-- Last Form 4 run: 2026-11-08T09:00:11Z: blocked by SEC (HTTP 403). SEC wants a contact in the User-Agent, set it in .sec-user-agent beside the repo
-- $2,000 paper simulation: value $1,920.84 of $2,000, 5 open, crypto cash $341.39, stock cash $367.07
+- Last Form 4 run: 2026-11-08T09:05:10Z: blocked by SEC (HTTP 403). SEC wants a contact in the User-Agent, set it in .sec-user-agent beside the repo
+- $2,000 paper simulation: value $1,920.57 of $2,000, 5 open, crypto cash $341.39, stock cash $367.07
 - Simulation flags: none
 - Graduation checklist: 2 of 5 conditions met (data/sim.md)
 - Strategy test: 2026-11-07: 500 trading days tested, see data/backtest.md
 - Hold test: -12.06% since 2026-11-05, BTC -5.61%
-- Wallet watch: 13 checked this cycle, 63 enabled in rotation, 6 new moves
+- Wallet watch: 15 checked this cycle, 63 enabled in rotation, 2 new moves
 - Measured time between runs: 5 min
-- Next run: ~2026-11-08T09:06:21Z
+- Next run: ~2026-11-08T09:11:17Z
 - Inbox: no pending requests
-- Errors this cycle: 3
+- Errors this cycle: 1
   - form4: HTTP 403 https://www.sec.gov/Archives/edgar/daily-index/2026/QTR4/form.20261107.idx
-  - wallet BlackRock: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet Lido: HTTPError: HTTP Error 500: Internal Server Error
 
 Paper only, approved by Hamilton. No real money. No keys in this repo. Create SIM_STOP to stop new orders.
