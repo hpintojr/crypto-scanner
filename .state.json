@@ -8,9 +8,9 @@
  "inbox_hash": "7f9d95d9402f57d8ca4e2efcc4825389ad5a7c320a8cdcf4c91a9942e2ae11dc",
  "answers_hash": "4433d13ee12e546443e456514dc71497b1ddda7690e898314eb6abfc6d4d4bba",
  "pending_request": false,
- "last_scan": "2026-11-08T23:25:08Z: 0 movers >3% 1h, 0 kept after 2x volume check",
+ "last_scan": "2026-11-08T23:30:10Z: 0 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-08T23:25:09Z: market closed",
+ "last_stock_scan": "2026-11-08T23:30:10Z: market closed",
  "form4": {
   "next_day": "2026-11-07",
   "offset": 0,
@@ -20,9 +20,9 @@
   "last_run": "2026-11-08T17:25:10Z"
  },
  "last_form4": "2026-11-08T18:20:17Z: paused until 2026-11-08T18:25:10Z after SEC said HTTP 403",
- "last_run": "2026-11-08T23:27:15Z",
- "cycle_minutes": 6,
- "last_sim": "value $1,911.79 of $2,000, 5 open, crypto cash $341.39, stock cash $367.07",
+ "last_run": "2026-11-08T23:32:06Z",
+ "cycle_minutes": 5,
+ "last_sim": "value $1,911.27 of $2,000, 5 open, crypto cash $341.39, stock cash $367.07",
  "signal_seen": {
   "crypto:ETH:move_1h:0": "2026-11-08T22:05:13Z",
   "crypto:XRP:move_1h:0": "2026-11-08T22:05:16Z",
@@ -1206,6 +1206,9 @@
    "d056fdb01096438d71cc60eb6c4a7b3133fde7d5d2648b75c6a35fbac270dbda"
   ],
   "0xcffad3200574698b78f32232aa9d63eabd290703": [
+   "0xdf8f1dbd66339baed79a541a8a28b8c916a7d67bcbd3f37fbdd1160ad2a681cd",
+   "0x7a29a26a8c493b1ed6ae7601548b74ba5ad5511f319731b79bdd7bcc559f4ab3",
+   "0x132b85b988c44290ebc40e4dff12ea3b10f83b70ebfe57c935818081dde1ed2c",
    "0x070b9c41e7b0d07b3ed1b0670bd41eacca1140732cc392676a716e1ffac9012d",
    "0x4dcb2637620aaf6cc9c8dc6e35d9eb5e375fece96bb484ad5db2a2274cd8e654",
    "0x17c3e72f23ab54f668bb9fc814eaa086d3f76f4aba8adfe1329878562706d429",
@@ -1252,10 +1255,7 @@
    "0xc9b372f35289f7de2179f5a1e8a902d28a39b99d2598dc07fc8c7cd000c0b22c",
    "0xd3604b09bd59029e73a38646ced74e0012694f0cdb22302800b10f68e7193376",
    "0x550a1b1a6a3cf5a0faf191e6ecf36a0792bc84669aecd0f96dfa75b8b325d409",
-   "0x78f5164a32a0fd47210d1a0662ee5241a3622d3c4bdc3a713f1f7b22702f8cd5",
-   "0x3505ee47c9c03399d15598ce110affd7b2594a17a37c4ec41955b35bb9ac71af",
-   "0x08fbf1546a1f226644dc16f6d7d184a1c98ed45f3753eaaeb258891cb3bef7b2",
-   "0x51392117224b53df16083f055e26164901bbcdee3c0661eb832062013448b042"
+   "0x78f5164a32a0fd47210d1a0662ee5241a3622d3c4bdc3a713f1f7b22702f8cd5"
   ],
   "0x6262998Ced04146fA42253a5C0AF90CA02dfd2A3": [
    "0xe95627c45958692aaf238750e9173aa5d72483a2daa271a10ba361b2afcd8c8c",
@@ -2347,6 +2347,7 @@
    "0x006763dff653ecddfd3681181a29e7e6d6c2aaa7bafb27fe1376f3f7ce367c1e:677"
   ],
   "0xa2Bcd1a4Efbd04B63cd03f5aFf2561106ebCCE00#tokens": [
+   "0xb6f98a003d8d214ae9505330490ff67d4382318b582dfa1a2c3c4c4a67e20fcd:292",
    "0x972e6db5f587ff15a76522b252579115c1956836695d875367f2149ddd17210f:339",
    "0x419635c204e380d7f5b3f0851ec3dece2ae2b9f9fa45bda492f4d4b3b4b70c09:905",
    "0x3418dfb7873ead271d9f50b28efa2eb95132456c5391bb819f9b1b7fa7848230:249",
@@ -3316,11 +3317,11 @@
    "0x2a13d3e63037cb9c142fbf53170958c7c6041eb340f8947302a937181ebbb348:960"
   ]
  },
- "last_wallets": "14 checked this cycle, 63 enabled in rotation, 11 new moves",
+ "last_wallets": "13 checked this cycle, 63 enabled in rotation, 0 new moves",
  "holdings_checked": "2026-11-08T23:01:28Z",
  "last_holdings": "-15.84% since 2026-11-05, BTC -7.41%",
  "preview_checked": "2026-11-05T11:00:28Z",
- "wallets_offset": 33,
+ "wallets_offset": 48,
  "backtest_date": "2026-11-08",
  "last_backtest": "2026-11-08: 499 trading days tested, see data/backtest.md",
  "movers_checked": "2026-11-08T23:01:32Z",
@@ -3333,11 +3334,11 @@
   "crypto scan": 0,
   "buzz": 0,
   "watchlist": 0,
-  "stocks": 1,
-  "score crypto": 0,
+  "stocks": 0,
+  "score crypto": 1,
   "score stocks": 0,
   "form 4": 0,
-  "wallets": 125,
+  "wallets": 114,
   "holdings": 0,
   "backtest": 0,
   "movers": 0,
@@ -3347,5 +3348,5 @@
  },
  "skipped_steps": [],
  "graduation": "1 of 5 conditions met",
- "last_poc": "2026-11-08T23:25:09Z: 0 POC touches logged"
+ "last_poc": "2026-11-08T23:30:11Z: 0 POC touches logged"
 }
