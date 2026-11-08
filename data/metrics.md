@@ -26,7 +26,7 @@ Paper money. Expectancy is average profit per closed trade. Profit factor is tot
 
 | Symbol | Cost | Value | Profit or loss | % |
 |---|---:|---:|---:|---:|
-| BTC/USD | $392.19 | $390.73 | $-1.46 | -0.37 |
+| BTC/USD | $392.19 | $390.69 | $-1.50 | -0.38 |
 | GLD | $299.99 | $300.14 | $0.15 | +0.05 |
 | ETH/USD | $196.18 | $195.83 | $-0.35 | -0.18 |
 | DBC | $249.99 | $249.52 | $-0.47 | -0.19 |
@@ -36,8 +36,8 @@ Paper money. Expectancy is average profit per closed trade. Profit factor is tot
 
 - Largest fall from peak: -0.26%
 - Currently below peak: -0.26%
-- Money in open positions: $1,211.20 of $1,919.66
-- BTC since start: -5.63%
+- Money in open positions: $1,211.16 of $1,919.62
+- BTC since start: -5.64%
 - SPY since start: -4.02%
 
 ## Flags
