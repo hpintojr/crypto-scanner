@@ -8,17 +8,17 @@
  "inbox_hash": "7f9d95d9402f57d8ca4e2efcc4825389ad5a7c320a8cdcf4c91a9942e2ae11dc",
  "answers_hash": "4433d13ee12e546443e456514dc71497b1ddda7690e898314eb6abfc6d4d4bba",
  "pending_request": false,
- "last_scan": "2026-11-08T08:30:11Z: 1 movers >3% 1h, 0 kept after 2x volume check",
+ "last_scan": "2026-11-08T08:35:09Z: 1 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-08T08:30:11Z: market closed",
+ "last_stock_scan": "2026-11-08T08:35:10Z: market closed",
  "form4": {
   "next_day": "2026-11-07",
   "offset": 0
  },
- "last_form4": "2026-11-08T08:30:12Z: blocked by SEC (HTTP 403). SEC wants a contact in the User-Agent, set it in .sec-user-agent beside the repo",
- "last_run": "2026-11-08T08:30:54Z",
+ "last_form4": "2026-11-08T08:35:11Z: blocked by SEC (HTTP 403). SEC wants a contact in the User-Agent, set it in .sec-user-agent beside the repo",
+ "last_run": "2026-11-08T08:35:39Z",
  "cycle_minutes": 5,
- "last_sim": "value $1,920.47 of $2,000, 5 open, crypto cash $341.39, stock cash $367.07",
+ "last_sim": "value $1,920.44 of $2,000, 5 open, crypto cash $341.39, stock cash $367.07",
  "signal_seen": {
   "crypto:BTW:move_1h:0": "2026-11-08T05:05:11Z",
   "crypto:ETH:poc_touch:1": "2026-11-08T07:05:11Z",
@@ -3237,11 +3237,11 @@
    "0x2a13d3e63037cb9c142fbf53170958c7c6041eb340f8947302a937181ebbb348:960"
   ]
  },
- "last_wallets": "15 checked this cycle, 63 enabled in rotation, 3 new moves",
+ "last_wallets": "15 checked this cycle, 63 enabled in rotation, 0 new moves",
  "holdings_checked": "2026-11-08T08:01:11Z",
  "last_holdings": "-12.06% since 2026-11-05, BTC -5.57%",
  "preview_checked": "2026-11-05T11:00:28Z",
- "wallets_offset": 57,
+ "wallets_offset": 72,
  "backtest_date": "2026-11-07",
  "last_backtest": "2026-11-07: 500 trading days tested, see data/backtest.md",
  "movers_checked": "2026-11-08T08:15:51Z",
@@ -3258,7 +3258,7 @@
   "score crypto": 0,
   "score stocks": 0,
   "form 4": 0,
-  "wallets": 42,
+  "wallets": 27,
   "holdings": 0,
   "backtest": 0,
   "movers": 0,
@@ -3268,5 +3268,5 @@
  },
  "skipped_steps": [],
  "graduation": "2 of 5 conditions met",
- "last_poc": "2026-11-08T08:30:11Z: 0 POC touches logged"
+ "last_poc": "2026-11-08T08:35:10Z: 0 POC touches logged"
 }
