@@ -197,6 +197,7 @@ def main():
     scanner.REPO, core.DATA = tmp, os.path.join(tmp, "data")
     form4.LOG = os.path.join(tmp, "form4-log.csv")
     form4.SALES_LOG = os.path.join(tmp, "form4-sales.csv")
+    form4.RUN_EVERY_HOURS = 0  # the full-cycle tests want Form 4 on every run; the 8-hour gap has its own test
     wallets.LIST = os.path.join(tmp, "no-wallets.csv")  # keep real wallets out of the simulated cycles
     form4.edgar.CACHE = os.path.join(tmp, "cache")
     form4.edgar.time.sleep = lambda s: None
@@ -910,6 +911,16 @@ def main():
     st10["form4"]["blocked_until"] = "2000-01-01T00:00:00Z"
     form4.cycle(st10, er10, None)
     assert st10["form4"]["blocks"] == 0
+    # three checks a day: a run within 8 hours of the last does nothing
+    form4.RUN_EVERY_HOURS = 8
+    f4_calls = []
+    form4._collect = lambda state, errors: f4_calls.append(1)
+    form4.cycle(st10, er10, None)
+    assert f4_calls == [], "ran again inside the 8-hour window"
+    st10["form4"]["last_run"] = "2000-01-01T00:00:00Z"
+    form4.cycle(st10, er10, None)
+    assert f4_calls == [1]
+    form4.RUN_EVERY_HOURS = 0
     form4._collect = orig12
     # fee shrinkage matches Alpaca, a big gap is left for the alert, and lots still filling wait
     r1 = {"positions": [{"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.95"}, {"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.955"}]}

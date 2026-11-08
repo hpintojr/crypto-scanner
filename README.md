@@ -7,7 +7,7 @@ Otto runs everything here on its own schedule. Otto is the only trading bot. Pap
 - **Crypto:** logs top-100 movers over 3% in an hour, including those that fail the 2x volume check.
 - **Stocks:** during market hours, logs moves of 2% or more in an hour across `research/stock_universe.txt`. Checks pre-market gaps of 3% or more from 8:00 to 9:30 AM ET.
 - **Insider sales:** logs open-market sales of $1M or more to `research/form4-sales.csv`, with the 10b5-1 plan flag. Research only.
-- **Form 4:** logs code P open-market buys from SEC EDGAR to `research/form4-log.csv`. Reviews against SPY at 30, 90 and 180 days.
+- **Form 4:** three times a day, logs code P open-market buys from SEC EDGAR to `research/form4-log.csv`. Reviews against SPY at 30, 90 and 180 days.
 - **Laggards watch:** once a day after the close, logs SPY vs equal-weight RSP, the named laggards (INTU, BSX, NKE, MCD) and sectors (XLC, XLY, XLF) since the Nov 5 selloff, breadth, and a mechanical verdict to `data/laggards.md`. Research only.
 - **POC touches:** logs when price returns to the previous session's point of control (the price with the most volume), for the stock list and BTC and ETH, with whether the level held or broke. Stock bars are IEX only. Scored in `data/poc.md`. Research only, no orders.
 - **Simulation:** runs the $1,000 paper simulation in `research/sim.py`.

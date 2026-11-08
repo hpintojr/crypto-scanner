@@ -14,8 +14,9 @@ LARGE_VS_MEDIAN = 2.0      # at least 2x this insider's median earlier buy
 LARGE_NO_HISTORY = 100_000 # with no earlier buys, $100k or more counts as large
 SMALL_FLOAT = 2_000_000_000
 TARGET = 10
-MAX_FILINGS = 120
-MAX_SECONDS = 60
+MAX_FILINGS = 400         # per run; runs are three a day now, so each one reads more
+MAX_SECONDS = 75
+RUN_EVERY_HOURS = 8       # Hamilton: check filings three times a day, not every cycle. Fewer SEC requests.
 BACKOFF_MINUTES = (30, 60, 120, 240, 480)  # after a 403 or 429, wait before asking SEC again; longer each time in a row
 REVIEWS = {"30d": 30, "90d": 90, "180d": 180}
 ET_ZONE = ZoneInfo("America/New_York")
@@ -323,7 +324,11 @@ def cycle(state, errors, creds):
     if until and core.now() < core.parse(until):
         state["last_form4"] = f"{core.now().strftime(core.FMT)}: paused until {until} after SEC said HTTP {st.get('block_code')}"
         return
+    last = st.get("last_run")
+    if last and core.now() - core.parse(last) < timedelta(hours=RUN_EVERY_HOURS):
+        return  # three checks a day; status keeps the last run's line
     try:
+        st["last_run"] = core.now().strftime(core.FMT)
         _collect(state, errors)
         st["blocks"] = 0
         rows = _rows()
