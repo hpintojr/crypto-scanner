@@ -300,3 +300,4 @@ d6f5fe41c08e,2026-11-07T21:28:05Z,crypto,BCH,bitcoin-cash,Bitcoin Cash,247.53,BT
 dec9e813d9d9,2026-11-07T22:25:06Z,crypto,ETH,ethereum,ETH,2230.79,BTC,75689.12,-0.001,17.755647175,0,0,1,,poc_touch,,poc=2230.8;vah=2231.92;val=2227.46;sweep=no;from=below;stop=2231.54;target=2228.53
 3395d08d1c0b,2026-11-08T01:05:13Z,crypto,FIGR_HELOC,figure-heloc,Figure Heloc,1.066,BTC,75723,3.075,3110460,176060434.91,0.018,0,,move_1h,,
 18df3ae3d21d,2026-11-08T03:00:13Z,crypto,ETH,ethereum,ETH,2233.035,BTC,75689.096,0.06,6.136532631,0,0,0,,poc_touch,,poc=2231.69;vah=2244;val=2228.33;sweep=no;from=below;stop=2227.96;target=2248.25
+848732bf1b68,2026-11-08T05:05:11Z,crypto,BTW,bitway,Bitway,1.19,BTC,75788,-3.44,5514591,5969548.25,0.924,0,,move_1h,,
