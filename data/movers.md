@@ -1,20 +1,20 @@
 # Biggest movers
 
-As of 2026-11-08T10:11:12Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
+As of 2026-11-08T11:10:50Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
 
 ## Crypto, top 100
 
 | Window | Biggest gainers | Biggest losers |
 |---|---|---|
-| 1h | ALGO +0.9% (+1h), KAS +0.5% (+1h), WLFI +0.5% (+5h), PUMP +0.4% (+2h), RENDER +0.4% (+2h) | BTW -5.1% (-1h), WLD -0.7% (-1h), RAIN -0.6% (-4h), LIT -0.6% (-1h), CC -0.6% (-1h) |
-| 2h | INJ +1.3% (+2h), PUMP +1.1% (+2h), ARB +1.0% (+2h), VVV +0.9% (-1h), PEPE +0.9% (+2h) | RAIN -0.9% (-4h), LIT -0.6% (-1h), DASH -0.4% (-3h), DOT -0.4% (-1h), CC -0.4% (-1h) |
-| 4h | ALGO +1.8% (+1h), VVV +1.3% (-1h), ARB +1.2% (+2h), INJ +1.1% (+2h), PUMP +1.0% (+2h) | RAIN -1.9% (-4h), LIT -1.3% (-1h), WLD -0.8% (-1h), DASH -0.6% (-3h), FIL -0.6% (-3h) |
-| 6h | PEPE +2.0% (+2h), ALGO +1.8% (+1h), ZEC +1.3% (+2h), OKB +1.1% (-1h), BDX +1.0% (+3h) | BTW -2.2% (-1h), RAIN -1.4% (-4h), LIT -1.2% (-1h), UNI -1.1% (-1h), APT -1.0% (-3h) |
-| 8h | PEPE +1.7% (+2h), XDC +1.3% (+4h), ARB +1.3% (+2h), ALGO +1.1% (+1h), BDX +0.8% (+3h) | BTW -2.4% (-1h), ENA -2.1% (-1h), ZRO -1.5% (+2h), LIT -1.5% (-1h), RAIN -1.4% (-4h) |
-| 12h | FIGR_HELOC +3.2% (+1h), DASH +2.1% (-3h), ARB +1.9% (+2h), ALGO +1.8% (+1h), NEAR +1.7% (-1h) | M -3.2% (-1h), PI -1.9% (-1h), XMR -1.8% (-1h), ENA -1.6% (-1h), RAIN -1.5% (-4h) |
-| 16h | BTW +4.5% (-1h), FIGR_HELOC +3.9% (+1h), ARB +2.3% (+2h), ALGO +2.1% (+1h), PUMP +1.7% (+2h) | BCH -4.3% (+1h), FIL -2.9% (-3h), PI -2.7% (-1h), ENA -2.3% (-1h), CC -2.3% (-1h) |
-| 20h | BTW +5.6% (-1h), FIGR_HELOC +4.3% (+1h), STX +2.1% (-1h), ALGO +2.1% (+1h), ARB +1.9% (+2h) | BCH -4.5% (+1h), ENA -4.4% (-1h), GRAM -3.4% (-1h), WLD -3.2% (-1h), FIL -3.2% (-3h) |
-| 24h | FIGR_HELOC +4.3% (+1h), BTW +3.9% (-1h), ARB +2.6% (+2h), JST +1.3% (-1h), ALGO +1.1% (+1h) | LIT -8.4% (-1h), PUMP -6.7% (+2h), BCH -6.0% (+1h), ENA -5.9% (-1h), ZEC -4.5% (+2h) |
+| 1h | LIT +1.4% (+1h), PEARL +1.0% (+1h), NIGHT +0.8% (+1h), GRAM +0.7% (+1h), INJ +0.6% (+3h) | BTW -1.0% (-2h), MNT -0.7% (-2h), WLFI -0.4% (-1h), MORPHO -0.4% (-2h), ALGO -0.4% (-1h) |
+| 2h | INJ +0.8% (+3h), LIT +0.8% (+1h), PEARL +0.6% (+1h), ALGO +0.5% (-1h), ZRO +0.4% (+3h) | BTW -6.1% (-2h), CRO -0.9% (-2h), RAIN -0.9% (-5h), CC -0.9% (-2h), MORPHO -0.9% (-2h) |
+| 4h | INJ +1.6% (+3h), BTW +1.3% (-2h), PEARL +0.9% (+1h), VVV +0.9% (-2h), ARB +0.9% (-1h) | RAIN -2.1% (-5h), CC -1.0% (-2h), WLD -0.9% (-2h), CRO -0.7% (-2h), DASH -0.7% (+1h) |
+| 6h | GRAM +1.4% (+1h), INJ +1.3% (+3h), ALGO +1.2% (-1h), QNT +0.7% (+1h), OKB +0.7% (-2h) | BTW -3.7% (-2h), RAIN -1.9% (-5h), BCH -1.2% (-1h), M -1.1% (+1h), UNI -1.1% (-2h) |
+| 8h | PEPE +1.5% (-1h), XDC +1.4% (-1h), ZEC +1.3% (+3h), INJ +1.3% (+3h), ARB +1.2% (-1h) | BTW -3.3% (-2h), RAIN -1.7% (-5h), BCH -1.2% (-1h), APT -1.2% (-4h), ENA -1.1% (-2h) |
+| 12h | FIGR_HELOC +3.2% (+1h), DASH +2.2% (+1h), ARB +1.7% (-1h), PEPE +1.6% (-1h), NEAR +1.5% (+1h) | M -2.3% (+1h), ENA -1.9% (-2h), BTW -1.8% (-2h), PI -1.7% (-2h), RAIN -1.4% (-5h) |
+| 16h | FIGR_HELOC +3.9% (+1h), DASH +1.9% (+1h), INJ +1.8% (+3h), ARB +1.6% (-1h), NEAR +1.5% (+1h) | BCH -4.6% (-1h), PI -2.8% (-2h), STX -2.8% (-2h), FIL -2.7% (+1h), ENA -2.7% (-2h) |
+| 20h | BTW +5.7% (-2h), FIGR_HELOC +4.3% (+1h), ALGO +1.5% (-1h), NIGHT +1.3% (+1h), ETHFI +1.3% (+1h) | BCH -4.8% (-1h), ENA -4.6% (-2h), GRAM -3.3% (+1h), WLD -3.1% (-2h), FIL -3.0% (+1h) |
+| 24h | BTW +5.2% (-2h), FIGR_HELOC +4.3% (+1h), ARB +2.6% (-1h), ALGO +1.4% (-1h), M +1.4% (+1h) | PUMP -5.1% (-1h), BCH -5.0% (-1h), ENA -4.9% (-2h), RAIN -4.0% (-5h), ZEC -4.0% (+3h) |
 
 ## Stocks, fixed list
 

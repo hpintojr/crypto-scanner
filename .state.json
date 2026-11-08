@@ -8,17 +8,17 @@
  "inbox_hash": "7f9d95d9402f57d8ca4e2efcc4825389ad5a7c320a8cdcf4c91a9942e2ae11dc",
  "answers_hash": "4433d13ee12e546443e456514dc71497b1ddda7690e898314eb6abfc6d4d4bba",
  "pending_request": false,
- "last_scan": "2026-11-08T11:05:10Z: 0 movers >3% 1h, 0 kept after 2x volume check",
+ "last_scan": "2026-11-08T11:10:12Z: 0 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-08T11:05:11Z: market closed",
+ "last_stock_scan": "2026-11-08T11:10:12Z: market closed",
  "form4": {
   "next_day": "2026-11-07",
   "offset": 0
  },
- "last_form4": "2026-11-08T11:05:12Z: blocked by SEC (HTTP 403). SEC wants a contact in the User-Agent, set it in .sec-user-agent beside the repo",
- "last_run": "2026-11-08T11:05:51Z",
- "cycle_minutes": 4,
- "last_sim": "value $1,920.37 of $2,000, 5 open, crypto cash $341.39, stock cash $367.07",
+ "last_form4": "2026-11-08T11:10:13Z: blocked by SEC (HTTP 403). SEC wants a contact in the User-Agent, set it in .sec-user-agent beside the repo",
+ "last_run": "2026-11-08T11:10:58Z",
+ "cycle_minutes": 5,
+ "last_sim": "value $1,920.42 of $2,000, 5 open, crypto cash $341.39, stock cash $367.07",
  "signal_seen": {
   "crypto:ETH:poc_touch:1": "2026-11-08T07:05:11Z",
   "crypto:BTC:poc_touch:1": "2026-11-08T07:50:11Z",
@@ -1004,6 +1004,7 @@
    "d21eb2bf2588f7248a30c07c88e8215465e8cd5594dac946b8853529480746c0"
   ],
   "bc1qr4dl5wa7kl8yu792dceg9z5knl2gkn220lk7a9": [
+   "ab572fcf64997cc5c2b6f5dbfaa054559d8926f5d52df463c50f51b0ec88a0e3",
    "723c8bad8eb68038651ba377d5235ae182b30f91b8b372dfc779e2d828270404",
    "bf4b0828191ba9e0f15247e7563983f92f5684d5181425f9fc773a131fb8ab08",
    "914649f6f504c5fa32953380bd8fb6d51d472e2766be796a000a55106117c0f4",
@@ -1052,8 +1053,7 @@
    "2bfb40a7a4d2985753a80f968bb2584cb71fd1bb3829e09e107981b84ddfd52f",
    "fe7f9141f4e0de90f9aa303823734614a6844cd8fe080c797b95b3ab0fee0f0d",
    "ecd2c7dcf058da171c0bcb9c784fad70116d71d69a3f1ddc00b4ce450a701f5b",
-   "8975bf0255161ddaaa0767d9da844d5609e3aa1917d26233d5003d49d2175ae4",
-   "a5d9e6546f59eb9850a0fd55d264a3ddce4d63d84a1995753413384d72ea3060"
+   "8975bf0255161ddaaa0767d9da844d5609e3aa1917d26233d5003d49d2175ae4"
   ],
   "bc1q4c8n5t00jmj8temxdgcc3t32nkg2wjwz24lywv": [
    "06af20fcbecf28800200117a8e12ec46431606d0d45ca0e4f94339093a8b70e7",
@@ -3031,6 +3031,10 @@
    "26887da59b03791a8e72c76136497b2c2cb71c9c91893895778bf6a1fcc68c4c"
   ],
   "0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec": [
+   "0xe13bd40da3196b0b5bd13805e2eea7171095c685a48ee86464cae120d04551a9",
+   "0x6bdc1403ef3ca134ccbbdd68453ea5532a70a3efcf2adb202acf1c7ef74a51d9",
+   "0xa1a5bfd4b45e6c8d0dc3c7661ebb24e312fa7f9962eb628fcce7426ef94cef14",
+   "0xd7f680af07089adee4817164f1f9efe2e7eba0d96329b96c5a4bcbaeffab4808",
    "0x70b66548129add6d4ca01dc9ff4bd72972d46784633e1c83cb724655cae2f948",
    "0x5b9782103bb0e1b4f0ed14cb1a5bc20ca72473939f9a576d2b4cff9dd40af764",
    "0xf2569a9fbdf5102c5afd26ca9cd59d62173c632f0e499139bbc7a4edbbcae123",
@@ -3076,13 +3080,13 @@
    "0xf914b43495cf31564e53c81ea62935c963e558e7c805273258927480fa498c5b",
    "0xc6690258a821e20f53e8b1350691afc2454bbf9f2ef34d8e95003d75ce521f70",
    "0x56a9ee0ccb928573949a150a35ff1aaa3a1ef019250e9ceb7335b788755c725e",
-   "0xf762c0ffe9cf3259ab4d924bd4425262d06e98745f729c6d83764cb934a0a9fe",
-   "0x228bfe3e67c443129dd5faea93003258468b9443b1372ac765ea952b48000281",
-   "0x2a40ba1102a37700c25942155cc649393ac642c4ef57cdb7a574e8c761313cc6",
-   "0xfedc19c5ac62dc3c449c15631d2a98041974b3e3eb3ba8afafb4216aac2c5f9c",
-   "0x706b36d7986db00204a3de491a4b0bbce04bffbc555194600b584d8175e7f66a"
+   "0xf762c0ffe9cf3259ab4d924bd4425262d06e98745f729c6d83764cb934a0a9fe"
   ],
   "0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec#tokens": [
+   "0xe13bd40da3196b0b5bd13805e2eea7171095c685a48ee86464cae120d04551a9:171",
+   "0x033d0803bbd053c4df6b6c69f3d12c9fb6c7c87f4189968beda4d5dea2c5df78:153",
+   "0xbeae641a2ad5d71a58e83daec863c7f5781ebbdda3b25113242382cfdc5e0ad6:25",
+   "0x314c2c99f83d7faa55629777fc0d1491b9a56e37a9773318e63f939c1a610927:95",
    "0x70b66548129add6d4ca01dc9ff4bd72972d46784633e1c83cb724655cae2f948:789",
    "0x082fec6725ffdb94fa14ec78f299ce93a2eaf712040af5d757e10042b7f9a66b:169",
    "0x5b9782103bb0e1b4f0ed14cb1a5bc20ca72473939f9a576d2b4cff9dd40af764:185",
@@ -3128,11 +3132,7 @@
    "0xf914b43495cf31564e53c81ea62935c963e558e7c805273258927480fa498c5b:4",
    "0x56a9ee0ccb928573949a150a35ff1aaa3a1ef019250e9ceb7335b788755c725e:4",
    "0xf762c0ffe9cf3259ab4d924bd4425262d06e98745f729c6d83764cb934a0a9fe:301",
-   "0x2a40ba1102a37700c25942155cc649393ac642c4ef57cdb7a574e8c761313cc6:34",
-   "0x706b36d7986db00204a3de491a4b0bbce04bffbc555194600b584d8175e7f66a:41",
-   "0xab8517cf0db8a02fb04358bf18380c3d5e1b26dde98f6b1ce7e70a019807985b:125",
-   "0xdb8b453aa8a6c82bae74763eed723e9da2fd7cc5eade240afcb9dd7404ab5539:26",
-   "0x35b17a8fcd754e7a79d7e6a0aee49382af36c5ee03e5fed034f3e758ded941d0:18"
+   "0x2a40ba1102a37700c25942155cc649393ac642c4ef57cdb7a574e8c761313cc6:34"
   ],
   "0x876EabF441B2EE5B5b0554Fd502a8E0600950cFa": [
    "0x8612b5cef417d59b217c23648c70a375b35869ad29a71e4fc643d83a00e65898",
@@ -3249,36 +3249,36 @@
    "0x2a13d3e63037cb9c142fbf53170958c7c6041eb340f8947302a937181ebbb348:960"
   ]
  },
- "last_wallets": "15 checked this cycle, 63 enabled in rotation, 0 new moves",
+ "last_wallets": "15 checked this cycle, 63 enabled in rotation, 3 new moves",
  "holdings_checked": "2026-11-08T10:56:53Z",
  "last_holdings": "-12.06% since 2026-11-05, BTC -5.67%",
  "preview_checked": "2026-11-05T11:00:28Z",
- "wallets_offset": 18,
+ "wallets_offset": 33,
  "backtest_date": "2026-11-07",
  "last_backtest": "2026-11-07: 500 trading days tested, see data/backtest.md",
- "movers_checked": "2026-11-08T10:11:18Z",
+ "movers_checked": "2026-11-08T11:10:57Z",
  "last_flags": "none",
  "backtest_version": 2,
  "allocation_version": 2,
  "last_gap_check": "2026-11-06T14:25:16Z: 7 of 100 stocks gapped 3%+ pre-market",
  "step_seconds": {
   "simulation": 3,
-  "crypto scan": 0,
+  "crypto scan": 3,
   "buzz": 0,
   "watchlist": 0,
   "stocks": 0,
   "score crypto": 0,
   "score stocks": 0,
   "form 4": 0,
-  "wallets": 38,
+  "wallets": 37,
   "holdings": 0,
   "backtest": 0,
-  "movers": 0,
+  "movers": 7,
   "allocation": 0,
   "poc": 1,
   "laggards": 1
  },
  "skipped_steps": [],
  "graduation": "2 of 5 conditions met",
- "last_poc": "2026-11-08T11:05:11Z: 0 POC touches logged"
+ "last_poc": "2026-11-08T11:10:13Z: 0 POC touches logged"
 }
