@@ -1,20 +1,20 @@
 # Biggest movers
 
-As of 2026-11-08T06:16:01Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
+As of 2026-11-08T07:15:56Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
 
 ## Crypto, top 100
 
 | Window | Biggest gainers | Biggest losers |
 |---|---|---|
-| 1h | OKB +0.3% (+2h), GT +0.3% (+1h), NEXO +0.3% (+2h), RAIN +0.3% (+2h), WLFI +0.2% (+1h) | BTW -3.3% (-1h), M -1.3% (-1h), NEAR -1.0% (-2h), ARB -1.0% (-1h), ZRO -0.9% (-5h) |
-| 2h | PEPE +1.2% (-1h), DASH +0.9% (-1h), NEXO +0.7% (+2h), XDC +0.7% (-1h), OKB +0.6% (+2h) | BTW -2.8% (-1h), NEAR -1.2% (-2h), ZRO -1.0% (-5h), STX -1.0% (-5h), M -1.0% (-1h) |
-| 4h | XDC +1.1% (-1h), PEPE +0.8% (-1h), RAIN +0.4% (+2h), GT +0.3% (+1h), OUSD +0.2% (+1h) | BTW -2.9% (-1h), ENA -2.3% (-5h), ZRO -2.0% (-5h), INJ -1.5% (-2h), STX -1.5% (-5h) |
-| 6h | FIGR_HELOC +4.2% (-3h), DASH +2.1% (-1h), XDC +1.0% (-1h), PEPE +0.8% (-1h), PEARL +0.6% (-2h) | ENA -2.4% (-5h), PI -2.2% (-1h), M -1.9% (-1h), ZRO -1.8% (-5h), STX -1.7% (-5h) |
-| 8h | FIGR_HELOC +3.2% (-3h), DASH +2.7% (-1h), LIT +1.0% (-1h), XDC +1.0% (-1h), KCS +0.8% (+1h) | M -3.3% (-1h), PI -2.2% (-1h), GRAM -1.9% (+2h), ENA -1.9% (-5h), XMR -1.8% (-1h) |
-| 12h | BTW +4.0% (-1h), FIGR_HELOC +3.9% (-3h), LIT +2.7% (-1h), DASH +2.1% (-1h), ARB +1.1% (-1h) | BCH -3.8% (-1h), PI -3.1% (-1h), GRAM -2.8% (+2h), STX -2.7% (-5h), ENA -2.6% (-5h) |
-| 16h | BTW +5.0% (-1h), FIGR_HELOC +4.3% (-3h), LIT +1.7% (-1h), STX +1.4% (-5h), DASH +1.2% (-1h) | ENA -4.7% (-5h), GRAM -4.0% (+2h), BCH -3.9% (-1h), PUMP -3.7% (-1h), PI -3.4% (-1h) |
-| 20h | FIGR_HELOC +4.2% (-3h), BTW +3.4% (-1h), JST +1.5% (-2h), ARB +1.4% (-1h), UNI +0.8% (-2h) | PUMP -7.6% (-1h), LIT -7.2% (-1h), ENA -6.1% (-5h), BCH -5.5% (-1h), ZEC -5.3% (-1h) |
-| 24h | FIGR_HELOC +4.3% (-3h), ARB +2.0% (-1h), NIGHT +1.9% (-2h), JST +0.9% (-2h), TRX +0.8% (-1h) | PUMP -6.4% (-1h), ENA -6.4% (-5h), BCH -5.9% (-1h), ZEC -4.7% (-1h), LIT -4.5% (-1h) |
+| 1h | NEAR +0.9% (+1h), LIT +0.7% (+1h), GT +0.7% (+2h), ALGO +0.6% (+1h), ZEC +0.6% (+1h) | BTW -1.7% (-2h), NEXO -0.5% (-1h), LEO -0.4% (-1h), SHIB -0.3% (-1h), ATOM -0.3% (-1h) |
+| 2h | GT +0.9% (+2h), CC +0.6% (+2h), QNT +0.5% (+4h), GRAM +0.5% (+3h), ALGO +0.5% (+1h) | BTW -4.9% (-2h), M -1.1% (+1h), ARB -0.8% (+1h), ZRO -0.7% (+1h), AAVE -0.7% (+1h) |
+| 4h | PEPE +1.5% (+1h), XDC +1.4% (+1h), DASH +1.2% (+1h), LIT +1.0% (+1h), ZEC +1.0% (+1h) | BTW -4.5% (-2h), ZRO -1.2% (+1h), M -1.0% (+1h), ETHFI -0.9% (+1h), STX -0.7% (+1h) |
+| 6h | GT +1.2% (+2h), DASH +1.2% (+1h), XDC +1.1% (+1h), PEPE +0.8% (+1h), PEARL +0.5% (-3h) | BTW -3.1% (-2h), ZRO -2.6% (+1h), ENA -2.5% (+1h), ETHFI -2.3% (+1h), UNI -2.0% (+1h) |
+| 8h | FIGR_HELOC +3.1% (-4h), DASH +2.9% (+1h), PEPE +1.6% (+1h), NEAR +1.1% (+1h), XDC +1.0% (+1h) | BTW -3.0% (-2h), M -2.3% (+1h), PI -1.5% (+1h), ENA -1.4% (+1h), ZRO -1.3% (+1h) |
+| 12h | FIGR_HELOC +4.0% (-4h), DASH +2.6% (+1h), LIT +1.4% (+1h), NEAR +1.2% (+1h), ARB +0.7% (+1h) | BCH -4.1% (-2h), STX -2.8% (+1h), PI -2.7% (+1h), M -2.6% (+1h), OKB -2.4% (-1h) |
+| 16h | BTW +4.3% (-2h), FIGR_HELOC +2.4% (-4h), DASH +2.0% (+1h), LIT +1.0% (+1h), NIGHT +1.0% (+1h) | BCH -4.3% (-2h), ENA -4.2% (+1h), GRAM -4.2% (+3h), OKB -2.9% (-1h), PUMP -2.7% (+1h) |
+| 20h | FIGR_HELOC +4.3% (-4h), BTW +3.9% (-2h), ARB +1.7% (+1h), M +1.4% (+1h), GT +1.2% (+2h) | PUMP -5.2% (+1h), BCH -4.6% (-2h), ENA -4.5% (+1h), ZEC -4.3% (+1h), GRAM -3.8% (+3h) |
+| 24h | FIGR_HELOC +4.2% (-4h), NIGHT +2.4% (+1h), DASH +1.0% (+1h), MNT +0.9% (-3h), ARB +0.8% (+1h) | PUMP -6.2% (+1h), LIT -6.0% (+1h), ENA -5.9% (+1h), BCH -5.8% (-2h), GRAM -4.5% (+3h) |
 
 ## Stocks, fixed list
 
