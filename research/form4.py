@@ -16,6 +16,7 @@ SMALL_FLOAT = 2_000_000_000
 TARGET = 10
 MAX_FILINGS = 120
 MAX_SECONDS = 60
+BACKOFF_MINUTES = (30, 60, 120, 240, 480)  # after a 403 or 429, wait before asking SEC again; longer each time in a row
 REVIEWS = {"30d": 30, "90d": 90, "180d": 180}
 ET_ZONE = ZoneInfo("America/New_York")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -317,8 +318,14 @@ def _review(rows, creds):
 
 
 def cycle(state, errors, creds):
+    st = state.setdefault("form4", {})
+    until = st.get("blocked_until")
+    if until and core.now() < core.parse(until):
+        state["last_form4"] = f"{core.now().strftime(core.FMT)}: paused until {until} after SEC said HTTP {st.get('block_code')}"
+        return
     try:
         _collect(state, errors)
+        st["blocks"] = 0
         rows = _rows()
         if _verify(rows):
             _save(rows)
@@ -328,8 +335,13 @@ def cycle(state, errors, creds):
             _review(rows, creds)
     except urllib.error.HTTPError as e:
         if e.code in (403, 429):
-            state["last_form4"] = (f"{core.now().strftime(core.FMT)}: blocked by SEC (HTTP {e.code}). "
-                                   "SEC wants a contact in the User-Agent, set it in .sec-user-agent beside the repo")
+            # Retrying every cycle keeps the block alive. Back off, longer each time it repeats.
+            n = st.get("blocks", 0)
+            wait = BACKOFF_MINUTES[min(n, len(BACKOFF_MINUTES) - 1)]
+            st.update(blocks=n + 1, block_code=e.code,
+                      blocked_until=(core.now() + timedelta(minutes=wait)).strftime(core.FMT))
+            state["last_form4"] = (f"{core.now().strftime(core.FMT)}: SEC said HTTP {e.code}, pausing Form 4 for {wait} minutes. "
+                                   "If it persists, check .sec-user-agent beside the repo")
         errors.append(f"form4: HTTP {e.code} {e.url.split('?')[0]}")
     except Exception as e:
         errors.append(f"form4: {type(e).__name__}: {e}")

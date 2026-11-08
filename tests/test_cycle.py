@@ -892,6 +892,25 @@ def main():
     assert len(ORDERS) == n_before, "the locked-out copy must do nothing"
     assert "skipped: another cycle" in open(os.path.join(scanner.REPO, "scanner.log")).read()
     _fcntl.flock(held, _fcntl.LOCK_UN); held.close()
+    # a 403 from SEC pauses Form 4 with a growing backoff, and a clean run resets it
+    orig12 = form4._collect
+    def blocked(state, errors):
+        raise urllib.error.HTTPError("https://www.sec.gov/x", 403, "blocked", {}, None)
+    form4._collect = blocked
+    st10, er10 = {}, []
+    form4.cycle(st10, er10, None)
+    assert st10["form4"]["blocks"] == 1 and "pausing Form 4 for 30 minutes" in st10["last_form4"], st10
+    form4.cycle(st10, er10, None)
+    assert st10["form4"]["blocks"] == 1 and "paused until" in st10["last_form4"], "no SEC call while paused"
+    assert len(er10) == 1, er10
+    st10["form4"]["blocked_until"] = "2000-01-01T00:00:00Z"
+    form4.cycle(st10, er10, None)
+    assert st10["form4"]["blocks"] == 2 and "60 minutes" in st10["last_form4"], st10
+    form4._collect = lambda state, errors: None
+    st10["form4"]["blocked_until"] = "2000-01-01T00:00:00Z"
+    form4.cycle(st10, er10, None)
+    assert st10["form4"]["blocks"] == 0
+    form4._collect = orig12
     # fee shrinkage matches Alpaca, a big gap is left for the alert, and lots still filling wait
     r1 = {"positions": [{"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.95"}, {"symbol": "BTC/USD", "market": "crypto", "status": "open", "qty": "0.955"}]}
     orig7 = stocks._get
