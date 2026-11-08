@@ -23,12 +23,12 @@ def bars(sym):
     for d in range(8, 0, -1):
         for i in range(12):
             t = NOW - timedelta(days=d) - step * (11 - i)
-            out.append({"t": t.strftime("%Y-%m-%dT%H:%M:%SZ"), "o": 100, "c": 100, "v": 1000})
+            out.append({"t": t.strftime("%Y-%m-%dT%H:%M:%SZ"), "o": 100, "h": 100, "l": 100, "c": 100, "v": 1000})
     for i in range(12):
         t = NOW - step * (11 - i)
         c = {"NVDA": 100 + i, "AAPL": 100 - i}.get(sym, 100)
         v = 4000 if sym == "NVDA" else 1000
-        out.append({"t": t.strftime("%Y-%m-%dT%H:%M:%SZ"), "o": c, "c": c, "v": v})
+        out.append({"t": t.strftime("%Y-%m-%dT%H:%M:%SZ"), "o": c, "h": c, "l": c, "c": c, "v": v})
     return out
 
 

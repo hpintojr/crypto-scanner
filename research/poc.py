@@ -25,10 +25,16 @@ MAX_STOCKS = 20       # signals per cycle, so a busy day can't flood the log
 LAST_BARS = [None, None]  # (time, {symbol: bars}) left by the stock scan, so no second fetch
 
 
+def _hl(b):
+    """High and low, falling back to open and close for a feed that leaves them out."""
+    return b.get("h", max(b["o"], b["c"])), b.get("l", min(b["o"], b["c"]))
+
+
 def profile(bars):
     """POC and value area from bars, volume binned by each bar's typical price."""
     if not bars:
         return None
+    bars = [{**b, "h": _hl(b)[0], "l": _hl(b)[1]} for b in bars]
     width = max((sum(b["c"] for b in bars) / len(bars)) * BIN_PCT, 1e-9)
     vol = {}
     for b in bars:
@@ -64,7 +70,8 @@ def _in_hours(bar, market):
 
 def touch(bars, market):
     """The signal for one symbol from its bars, or None."""
-    bars = [b for b in bars if _in_hours(b, market)]
+    bars = [b for b in bars if all(k in b for k in ("t", "o", "c", "v"))]  # a bar missing fields can't be used
+    bars = [{**b, "h": _hl(b)[0], "l": _hl(b)[1]} for b in bars if _in_hours(b, market)]
     if len(bars) < SWEEP_BARS + 3:
         return None
     today = _session_date(bars[-1], market)
