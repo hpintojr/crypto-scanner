@@ -378,3 +378,10 @@ bbeb16d60bb3,2026-11-09T13:05:11Z,stocks,AMD,AMD,AMD,468.9,SPY,742.38,4.79,0,0,0
 1f259f4a6ee3,2026-11-09T13:35:10Z,stocks,AMZN,AMZN,AMZN,267.63,SPY,741.75,3.153,0,0,0,0,5,premarket_gap,no,
 ab5e3a1811e0,2026-11-09T14:05:11Z,crypto,FIGR_HELOC,figure-heloc,Figure Heloc,1.014,BTC,74529,-3.943,171455,156946342.85,0.001,0,,move_1h,,
 1f87684680e8,2026-11-09T14:05:14Z,stocks,META,META,META,629,SPY,741.75,3.094,0,0,0,0,7,premarket_gap,yes,
+24b2e7d5f118,2026-11-09T14:30:44Z,stocks,ADI,ADI,ADI,363.14,SPY,741.75,0.061,400551,0,0,0,,poc_touch,,poc=362.92;vah=380.121;val=362.731;sweep=no;from=below;stop=361.765;target=367.265
+fe1cee674aac,2026-11-09T14:30:44Z,stocks,AMZN,AMZN,AMZN,259.45,SPY,741.75,-0.012,3661139,0,0,0,,poc_touch,,poc=259.482;vah=267.412;val=258.572;sweep=no;from=above;stop=259.91;target=258.07
+31e6f3fcc243,2026-11-09T14:30:44Z,stocks,AVGO,AVGO,AVGO,293.41,SPY,741.75,0.244,1701084,0,0,0,,poc_touch,,poc=292.697;vah=303.343;val=292.547;sweep=no;from=below;stop=291.99;target=297.67
+a29751fa28af,2026-11-09T14:30:44Z,stocks,CRWD,CRWD,CRWD,216.97,SPY,741.75,0.069,775503,0,0,0,,poc_touch,,poc=216.82;vah=220.43;val=216.273;sweep=no;from=below;stop=216.33;target=218.89
+9a1b689d728f,2026-11-09T14:30:45Z,stocks,LLY,LLY,LLY,1354.765,SPY,741.75,-0.971,204540,0,0,1,,poc_touch,,poc=1368.05;vah=1424.76;val=1367.35;sweep=no;from=below;stop=1372.98;target=1300.12
+15c78f8f622a,2026-11-09T14:30:45Z,stocks,MRK,MRK,MRK,146.755,SPY,741.75,-0.126,581314,0,0,1,,poc_touch,,poc=146.94;vah=151.808;val=146.865;sweep=no;from=below;stop=147;target=146.02
+226970db7687,2026-11-09T14:30:45Z,stocks,XOM,XOM,XOM,165.88,SPY,741.75,0.253,725730,0,0,1,,poc_touch,,poc=165.461;vah=172.171;val=165.376;sweep=no;from=above;stop=165.46;target=167.14

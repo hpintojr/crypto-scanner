@@ -81,6 +81,18 @@
    "entry": 26.12,
    "cost": 74.99,
    "opened": "2026-11-07T21:27:59Z"
+  },
+  {
+   "symbol": "CPER",
+   "market": "stock",
+   "source": "long:CPER",
+   "plan": "long:CPER",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-CPER-202611091430",
+   "notional": 75,
+   "thesis": "Approved allocation, long:CPER",
+   "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend."
   }
  ],
  "spy_start": 766.9,
@@ -98,7 +110,7 @@
   "HYPE/USD",
   "DOGE/USD"
  ],
- "stock_cash": 367.0721625546711,
+ "stock_cash": 292.0721625546711,
  "btc_start": 80189.9,
  "flags": [],
  "plan_spent": {
@@ -108,7 +120,8 @@
   "long:GLD": 300,
   "long:ETH/USD": 200,
   "long:DBC": 250,
-  "long:DBA": 75
+  "long:DBA": 75,
+  "long:CPER": 75
  },
  "trends": {
   "CPER": false,
