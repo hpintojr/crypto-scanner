@@ -478,3 +478,4 @@ a523ecfd4bb0,2026-11-09T18:10:37Z,stocks,CMCSA,CMCSA,CMCSA,24.475,SPY,752.32,-0.
 c589a0cf5ece,2026-11-09T20:35:39Z,stocks,INTC,INTC,INTC,59.81,SPY,754.59,2.414,1040986,789783.6,1.318,0,3,move_1h,no,
 5785960ce309,2026-11-09T20:35:40Z,stocks,V,V,V,423.31,SPY,754.59,0.105,398948,0,0,0,,poc_touch,,poc=422.865;vah=423.921;val=420.542;sweep=yes;from=below;stop=422.16;target=426.76
 b847d45a96e3,2026-11-09T20:40:37Z,stocks,NFLX,NFLX,NFLX,63.82,SPY,754.5,-0.011,1787097,0,0,1,,poc_touch,,poc=63.8268;vah=64.1782;val=63.6032;sweep=no;from=below;stop=63.83;target=63.79
+6aca3f974067,2026-11-09T20:55:33Z,stocks,PFE,PFE,PFE,29.275,SPY,753.24,-0.019,2487936,0,0,0,,poc_touch,,poc=29.2806;vah=29.3831;val=29.1782;sweep=no;from=above;stop=29.33;target=29.11
