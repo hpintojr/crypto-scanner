@@ -465,3 +465,5 @@ a7c86dacf630,2026-11-09T16:25:28Z,stocks,V,V,V,422.49,SPY,750.07,-0.089,398948,0
 6bac693fe847,2026-11-09T17:25:31Z,stocks,COST,COST,COST,1053.98,SPY,752.22,-0.05,64285,0,0,1,,poc_touch,,poc=1054.51;vah=1060.33;val=1053.98;sweep=no;from=below;stop=1054.65;target=1051.97
 5ff5e531ce4b,2026-11-09T17:40:32Z,stocks,BA,BA,BA,171.575,SPY,752.32,-0.996,330874,0,0,0,,poc_touch,,poc=173.301;vah=173.56;val=172.35;sweep=no;from=above;stop=174.81;target=161.87
 fda2f4089036,2026-11-09T17:40:34Z,crypto,ETH,ethereum,ETH,2117.5415,BTC,74515.7015,-0.079,12.881947094,0,0,0,,poc_touch,,poc=2119.22;vah=2233.74;val=2115.88;sweep=no;from=above;stop=2125.85;target=2092.61
+8ae6f3ad29b0,2026-11-09T18:10:37Z,stocks,ABT,ABT,ABT,110.51,SPY,752.32,0.044,396577,0,0,0,,poc_touch,,poc=110.462;vah=111.182;val=109.963;sweep=no;from=below;stop=110.44;target=110.72
+a523ecfd4bb0,2026-11-09T18:10:37Z,stocks,CMCSA,CMCSA,CMCSA,24.475,SPY,752.32,-0.034,1855291,0,0,1,,poc_touch,,poc=24.4833;vah=24.692;val=24.4464;sweep=no;from=below;stop=24.49;target=24.43
