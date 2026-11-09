@@ -412,3 +412,8 @@ bb305ccf1b63,2026-11-09T14:40:40Z,stocks,MA,MA,MA,654.485,SPY,744.92,0.186,14588
 92cf9256f871,2026-11-09T14:40:41Z,stocks,VZ,VZ,VZ,45.82,SPY,744.92,0.186,1404154,0,0,0,,poc_touch,,poc=45.7349;vah=46.1249;val=45.6203;sweep=no;from=below;stop=45.625;target=46.405
 d7c8106ac87a,2026-11-09T14:40:41Z,stocks,UNH,UNH,UNH,395.46,SPY,744.92,0.174,229073,0,0,1,,poc_touch,,poc=394.774;vah=396.547;val=391.819;sweep=no;from=above;stop=394.3;target=398.94
 f363adf22e7c,2026-11-09T14:40:41Z,stocks,UNP,UNP,UNP,292.99,SPY,744.92,0.414,151750,0,0,0,,poc_touch,,poc=291.783;vah=293.097;val=291.345;sweep=no;from=below;stop=291.22;target=298.3
+65495d44a8c4,2026-11-09T14:45:36Z,stocks,ABBV,ABBV,ABBV,290,SPY,746.66,-0.083,187639,0,0,0,,poc_touch,,poc=290.241;vah=291.544;val=289.517;sweep=no;from=above;stop=291.925;target=284.225
+82b350b715c0,2026-11-09T14:45:36Z,stocks,COIN,COIN,COIN,134.985,SPY,746.66,0.212,201582,0,0,0,,poc_touch,,poc=134.699;vah=136.378;val=133.558;sweep=no;from=below;stop=132.92;target=141.18
+f46b6b8faa5e,2026-11-09T14:45:36Z,stocks,BRK.B,BRK.B,BRK.B,570.7,SPY,746.66,-0.085,182101,0,0,1,,poc_touch,,poc=571.184;vah=574.9;val=570.326;sweep=no;from=below;stop=571.5;target=568.3
+136f2e6ed83c,2026-11-09T14:45:37Z,stocks,TMO,TMO,TMO,693.32,SPY,746.66,-0.009,161664,0,0,0,,poc_touch,,poc=693.381;vah=697.187;val=688.883;sweep=no;from=above;stop=698.41;target=678.05
+fa8a6c016722,2026-11-09T14:45:38Z,crypto,BTC,bitcoin,BTC,74632.273,BTC,74632.273,0.527,1.1729214399999999,0,0,1,,poc_touch,,poc=74241.3;vah=75792.7;val=74203.5;sweep=no;from=above;stop=74240.3;target=75808.2
