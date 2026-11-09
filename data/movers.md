@@ -1,20 +1,20 @@
 # Biggest movers
 
-As of 2026-11-09T00:01:11Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
+As of 2026-11-09T01:01:31Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
 
 ## Crypto, top 100
 
 | Window | Biggest gainers | Biggest losers |
 |---|---|---|
-| 1h | RENDER +2.5% (+1h), PEPE +1.9% (+1h), LIT +1.9% (+1h), PI +1.9% (+1h), ETHFI +1.8% (+1h) | RAIN -2.7% (-7h), XDC -1.8% (-4h), BTW -1.4% (-3h), GT -1.3% (-4h), M -0.8% (-4h) |
-| 2h | JST +0.0% (-1h), GHO +0.0% (+1h), EURSAFO +0.0% (+1h), EURC +0.0% (+1h), USD0 +0.0% (-1h) | PUMP -5.1% (+1h), RAIN -4.8% (-7h), DASH -4.7% (+1h), ETH -4.4% (+1h), ASTER -4.1% (-2h) |
-| 4h | USDY +0.3% (-1h), OUSD +0.1% (+1h), EURSAFO +0.0% (+1h), GHO +0.0% (+1h), USD0 +0.0% (-1h) | DASH -5.9% (+1h), PUMP -5.5% (+1h), RAIN -5.4% (-7h), ZEC -5.0% (-4h), ETH -4.8% (+1h) |
-| 6h | BDX +0.1% (-1h), GHO +0.0% (+1h), EURC +0.0% (+1h), USD0 +0.0% (-1h), USYC +0.0% (+1h) | RAIN -7.4% (-7h), DASH -4.8% (+1h), ETH -4.5% (+1h), ASTER -4.2% (-2h), PI -4.0% (+1h) |
-| 8h | OUSD +0.2% (+1h), USDY +0.1% (-1h), GHO +0.0% (+1h), USD0 +0.0% (-1h), U +0.0% (-1h) | RAIN -8.5% (-7h), ZEC -5.6% (-4h), PUMP -5.4% (+1h), WLD -5.1% (+1h), TAO -5.0% (+1h) |
-| 12h | FIGR_HELOC +4.2% (+1h), PEPE +0.8% (+1h), USDY +0.2% (-1h), OUSD +0.1% (+1h), USDF +0.0% (-3h) | RAIN -9.2% (-7h), STX -5.5% (-3h), WLD -5.2% (+1h), LIT -5.1% (+1h), PI -5.0% (+1h) |
-| 16h | FIGR_HELOC +3.3% (+1h), PEPE +1.5% (+1h), LEO +0.6% (+1h), WLFI +0.2% (-2h), USDF +0.1% (-3h) | RAIN -11.3% (-7h), WLD -5.5% (+1h), STX -5.4% (-3h), M -5.1% (-4h), BTW -5.0% (-3h) |
-| 20h | PEPE +2.7% (+1h), FIGR_HELOC +2.1% (+1h), WLFI +0.3% (-2h), LEO +0.2% (+1h), USDF +0.1% (-3h) | RAIN -11.7% (-7h), BTW -7.7% (-3h), STX -5.9% (-3h), M -5.9% (-4h), WLD -5.9% (+1h) |
-| 24h | FIGR_HELOC +4.3% (+1h), PEPE +2.3% (+1h), WLFI +0.2% (-2h), USDF +0.1% (-3h), OUSD +0.1% (+1h) | RAIN -11.6% (-7h), PI -6.8% (+1h), M -6.8% (-4h), STX -6.6% (-3h), WLD -6.5% (+1h) |
+| 1h | INJ +1.3% (+2h), GT +1.2% (+1h), ARB +1.1% (+2h), NEAR +1.1% (+2h), TAO +0.9% (+2h) | ASTER -2.0% (-3h), RAIN -1.8% (-8h), LIT -1.2% (-1h), M -0.8% (-5h), USDY -0.6% (-2h) |
+| 2h | RENDER +3.0% (+2h), ARB +2.7% (+2h), NEAR +2.3% (+2h), INJ +2.3% (+2h), PEPE +2.0% (+2h) | RAIN -4.5% (-8h), ASTER -2.4% (-3h), XDC -1.7% (+1h), M -1.6% (-5h), PEARL -0.9% (-5h) |
+| 4h | EURSAFO +0.1% (+2h), BDX +0.1% (+1h), EURC +0.1% (+2h), GHO +0.0% (+2h), U +0.0% (+1h) | RAIN -6.9% (-8h), ASTER -6.0% (-3h), PUMP -5.1% (-1h), DASH -4.8% (+2h), ETH -4.7% (-1h) |
+| 6h | BTW +1.4% (+1h), BDX +0.2% (+1h), EURC +0.0% (+2h), USD0 +0.0% (+1h), GHO +0.0% (+2h) | RAIN -7.4% (-8h), ASTER -5.7% (-3h), ETH -4.7% (-1h), DASH -4.3% (+2h), PUMP -4.1% (-1h) |
+| 8h | BTW +0.8% (+1h), BDX +0.1% (+1h), OUSD +0.1% (-1h), EURC +0.0% (+2h), U +0.0% (+1h) | RAIN -10.3% (-8h), ASTER -6.4% (-3h), PUMP -5.7% (-1h), DASH -5.2% (+2h), ETH -5.1% (-1h) |
+| 12h | FIGR_HELOC +4.2% (+1h), GT +0.5% (+1h), EURC +0.1% (+2h), GHO +0.0% (+2h), USDF +0.0% (-4h) | RAIN -10.6% (-8h), ASTER -6.5% (-3h), STX -6.0% (-4h), LIT -6.0% (-1h), ZEC -5.3% (+1h) |
+| 16h | FIGR_HELOC +3.3% (+1h), PEPE +0.8% (+2h), GT +0.2% (+1h), USDF +0.1% (-4h), XMR +0.1% (+1h) | RAIN -12.7% (-8h), BTW -9.9% (+1h), ASTER -6.6% (-3h), M -6.0% (-5h), LIT -6.0% (-1h) |
+| 20h | FIGR_HELOC +2.1% (+1h), PEPE +1.4% (+2h), GT +0.8% (+1h), WLFI +0.4% (-3h), QNT +0.1% (+2h) | RAIN -13.5% (-8h), BTW -7.7% (+1h), LIT -7.1% (-1h), M -6.9% (-5h), ASTER -6.5% (-3h) |
+| 24h | FIGR_HELOC +4.3% (+1h), PEPE +1.9% (+2h), GT +1.1% (+1h), OUSD +0.2% (-1h), USDF +0.1% (-4h) | RAIN -13.4% (-8h), M -7.7% (-5h), LIT -7.6% (-1h), WLD -7.0% (+2h), STX -7.0% (-4h) |
 
 ## Stocks, fixed list
 
