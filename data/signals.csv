@@ -461,3 +461,4 @@ f071d752e71f,2026-11-09T16:05:13Z,crypto,ONDO,ondo-finance,Ondo,0.389363,BTC,753
 4f90fabfef2d,2026-11-09T16:05:16Z,crypto,JUP,jupiter-exchange-solana,Jupiter,0.250458,BTC,75379,3.429,53260437,44365694.37,1.2,0,,move_1h,,
 54304ac9019d,2026-11-09T16:05:19Z,crypto,PEARL,pearl-2,Pearl,1.61,BTC,75379,5.195,12638789,10913256.51,1.158,0,,move_1h,,
 ed40e1f08f44,2026-11-09T16:20:34Z,stocks,LIN,LIN,LIN,519.76,SPY,750.21,0.031,106876,0,0,0,,poc_touch,,poc=519.599;vah=521.414;val=516.228;sweep=no;from=below;stop=518.61;target=523.21
+a7c86dacf630,2026-11-09T16:25:28Z,stocks,V,V,V,422.49,SPY,750.07,-0.089,398948,0,0,1,,poc_touch,,poc=422.865;vah=423.921;val=420.542;sweep=no;from=below;stop=423.175;target=420.435
