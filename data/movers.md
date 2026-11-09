@@ -1,20 +1,20 @@
 # Biggest movers
 
-As of 2026-11-09T04:57:04Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
+As of 2026-11-09T06:01:09Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
 
 ## Crypto, top 100
 
 | Window | Biggest gainers | Biggest losers |
 |---|---|---|
-| 1h | STX +1.8% (+1h), KCS +1.2% (+1h), VVV +1.1% (+1h), ICP +1.1% (+1h), NIGHT +1.0% (+2h) | ETHFI -1.2% (-1h), M -1.1% (-1h), ZRO -0.9% (-1h), PEPE -0.8% (-1h), PI -0.8% (-1h) |
-| 2h | BDX +1.4% (+4h), PUMP +1.4% (+3h), RENDER +1.2% (+5h), VVV +1.1% (+1h), NIGHT +1.1% (+2h) | PEARL -2.9% (-8h), XDC -1.3% (-2h), ETHFI -0.7% (-1h), TAO -0.6% (+1h), GRAM -0.5% (-1h) |
-| 4h | ARB +5.2% (+5h), RENDER +3.9% (+5h), WLD +3.4% (+5h), INJ +3.4% (+1h), PUMP +3.4% (+3h) | PEARL -4.4% (-8h), GRAM -1.4% (-1h), JST -0.5% (-5h), ASTER -0.4% (+1h), TRX -0.3% (-6h) |
-| 6h | ARB +3.2% (+5h), BDX +1.9% (+4h), RENDER +1.6% (+5h), INJ +1.5% (+1h), PEPE +1.0% (-1h) | PEARL -5.5% (-8h), RAIN -4.8% (-1h), ASTER -4.6% (+1h), ETH -3.6% (+1h), XRP -3.4% (+1h) |
-| 8h | ARB +2.6% (+5h), BDX +1.5% (+4h), INJ +1.0% (+1h), RENDER +1.0% (+5h), PEPE +0.9% (-1h) | PEARL -7.1% (-8h), RAIN -5.5% (-1h), ASTER -4.4% (+1h), GRAM -4.1% (-1h), ETH -4.0% (+1h) |
-| 12h | FIGR_HELOC +4.2% (+1h), RENDER +1.9% (+5h), BDX +1.7% (+4h), ARB +1.5% (+5h), INJ +1.5% (+1h) | RAIN -8.5% (-1h), PEARL -7.8% (-8h), GRAM -4.8% (-1h), ASTER -4.6% (+1h), ETH -4.2% (+1h) |
-| 16h | PEPE +4.1% (-1h), FIGR_HELOC +3.3% (+1h), RENDER +2.0% (+5h), ARB +1.7% (+5h), BDX +1.5% (+4h) | RAIN -9.2% (-1h), PEARL -8.4% (-8h), GRAM -5.3% (-1h), ASTER -4.8% (+1h), PI -4.5% (-1h) |
-| 20h | PEPE +4.9% (-1h), RENDER +3.2% (+5h), ARB +2.6% (+5h), FIGR_HELOC +2.1% (+1h), QNT +1.9% (-1h) | RAIN -11.3% (-1h), PEARL -7.1% (-8h), ASTER -4.9% (+1h), GRAM -4.8% (-1h), PI -4.5% (-1h) |
-| 24h | PEPE +6.1% (-1h), FIGR_HELOC +4.3% (+1h), RENDER +2.9% (+5h), QNT +2.0% (-1h), ARB +1.9% (+5h) | RAIN -11.7% (-1h), PEARL -8.1% (-8h), BTW -6.6% (-2h), ASTER -5.2% (+1h), M -4.7% (-1h) |
+| 1h | PEARL +1.6% (+1h), QNT +1.1% (+2h), ARB +1.0% (+1h), BTW +0.7% (+1h), GT +0.7% (+1h) | BDX -1.2% (-2h), PUMP -1.1% (-2h), STX -0.9% (-2h), PI -0.8% (-3h), PEPE -0.8% (-3h) |
+| 2h | PEARL +1.3% (+1h), QNT +1.2% (+2h), ARB +1.0% (+1h), ETHFI +0.8% (+2h), NIGHT +0.7% (+4h) | BTW -2.7% (+1h), PI -2.4% (-3h), PUMP -2.1% (-2h), BDX -1.9% (-2h), STX -1.6% (-2h) |
+| 4h | ARB +2.0% (+1h), NIGHT +1.8% (+4h), QNT +1.5% (+2h), AAVE +1.3% (+7h), RENDER +1.2% (+1h) | BTW -3.2% (+1h), PI -2.8% (-3h), XDC -2.4% (-4h), PEARL -1.6% (+1h), ASTER -1.2% (+1h) |
+| 6h | ARB +6.2% (+1h), RENDER +4.0% (+1h), QNT +3.8% (+2h), AAVE +3.6% (+7h), DASH +3.5% (-1h) | PEARL -3.1% (+1h), PI -1.9% (-3h), BTW -1.6% (+1h), GRAM -1.3% (+1h), ASTER -1.3% (+1h) |
+| 8h | ARB +4.2% (+1h), RENDER +1.6% (+1h), INJ +1.5% (-2h), AAVE +0.8% (+7h), ETHFI +0.7% (+2h) | ASTER -5.4% (+1h), RAIN -5.1% (-3h), PI -4.8% (-3h), PEARL -4.3% (+1h), XRP -4.2% (-2h) |
+| 12h | FIGR_HELOC +4.2% (+1h), ARB +3.6% (+1h), RENDER +2.5% (+1h), INJ +2.1% (-2h), ETHFI +1.7% (+2h) | RAIN -7.7% (-3h), PI -5.8% (-3h), ASTER -5.5% (+1h), PEARL -5.2% (+1h), XRP -4.3% (-2h) |
+| 16h | FIGR_HELOC +3.3% (+1h), ARB +3.1% (+1h), INJ +1.1% (-2h), RENDER +0.9% (+1h), PEPE +0.8% (-3h) | RAIN -9.4% (-3h), PEARL -7.3% (+1h), PI -6.6% (-3h), ASTER -5.8% (+1h), GRAM -5.1% (+1h) |
+| 20h | QNT +2.7% (+2h), PEPE +2.6% (-3h), RENDER +2.5% (+1h), ARB +2.5% (+1h), FIGR_HELOC +2.1% (+1h) | RAIN -10.7% (-3h), BTW -7.1% (+1h), PI -6.9% (-3h), PEARL -6.3% (+1h), ASTER -5.8% (+1h) |
+| 24h | FIGR_HELOC +4.3% (+1h), ARB +3.7% (+1h), PEPE +3.4% (-3h), RENDER +3.2% (+1h), QNT +3.2% (+2h) | RAIN -12.4% (-3h), PEARL -6.6% (+1h), BTW -6.6% (+1h), PI -6.5% (-3h), ASTER -5.5% (+1h) |
 
 ## Stocks, fixed list
 
