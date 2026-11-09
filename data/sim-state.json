@@ -88,10 +88,26 @@
    "source": "long:CPER",
    "plan": "long:CPER",
    "hold": true,
-   "status": "buying",
+   "status": "open",
    "buy_id": "sim-plan-CPER-202611091430",
    "notional": 75,
    "thesis": "Approved allocation, long:CPER",
+   "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend.",
+   "qty": "1.965764915",
+   "entry": 38.148,
+   "cost": 74.99,
+   "opened": "2026-11-09T14:35:07Z"
+  },
+  {
+   "symbol": "DBC",
+   "market": "stock",
+   "source": "mid:DBC",
+   "plan": "mid:DBC",
+   "hold": true,
+   "status": "buying",
+   "buy_id": "sim-plan-DBC-202611091435",
+   "notional": 75,
+   "thesis": "Approved allocation, mid:DBC",
    "against": "Long slices can fall a lot and stay down for years, with no stop by design. Mid slices lag the trend."
   }
  ],
@@ -110,7 +126,7 @@
   "HYPE/USD",
   "DOGE/USD"
  ],
- "stock_cash": 292.0721625546711,
+ "stock_cash": 217.0821625772511,
  "btc_start": 80189.9,
  "flags": [],
  "plan_spent": {
@@ -121,7 +137,8 @@
   "long:ETH/USD": 200,
   "long:DBC": 250,
   "long:DBA": 75,
-  "long:CPER": 75
+  "long:CPER": 75,
+  "mid:DBC": 75
  },
  "trends": {
   "CPER": false,
