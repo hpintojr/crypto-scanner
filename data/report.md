@@ -1,6 +1,6 @@
 # Research report
 
-454 movers logged, 69 passed the volume check. Research only, no orders.
+455 movers logged, 69 passed the volume check. Research only, no orders.
 
 Follow-through is the return after the signal, net of BTC or SPY, in the direction of
 the original move. Positive means the move kept going. Compare passed against rejected.
