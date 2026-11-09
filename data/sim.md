@@ -21,8 +21,8 @@ Rules: approved allocation. Commodities: long $700 in GLD, DBC, DBA and CPER, mi
 
 | Condition | Met | Now |
 |---|---|---|
-| One plan, unchanged, for 90+ days | no | 1 days since 2026-11-07 |
+| One plan, unchanged, for 90+ days | no | 2 days since 2026-11-07 |
 | Beats the same money in SPY after costs | no | plan -0.72% vs SPY +0.00% |
-| 30+ days without a simulation error or quantity mismatch | no | 1 clean days |
+| 30+ days without a simulation error or quantity mismatch | no | 2 clean days |
 | Worst drop within 25% (Hamilton to confirm the limit) | yes | plan -0.72%, SPY 0.00% |
 | Seen both a 5% rise and a 5% fall in SPY | no | rise no, fall no |
