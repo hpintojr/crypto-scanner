@@ -1,15 +1,15 @@
 # Scanner status
 
-- Last run: 2026-11-09T16:12:03Z
+- Last run: 2026-11-09T16:16:44Z
 - Host: otto-16usdmc576-067297
-- Step seconds: simulation 4, crypto scan 0, buzz 0, watchlist 0, stocks 26, score crypto 0, score stocks 4, form 4 0, wallets 82, holdings 0, backtest 0, movers 0, allocation 0, poc 2, laggards 0
-- Requests this cycle: api.coingecko.com 1, data.alpaca.markets 39, eth.blockscout.com 16, mempool.space 7, paper-api.alpaca.markets 5
+- Step seconds: simulation 4, crypto scan 1, buzz 0, watchlist 0, stocks 28, score crypto 0, score stocks 0, form 4 0, wallets 63, holdings 0, backtest 0, movers 0, allocation 0, poc 2, laggards 1
+- Requests this cycle: api.coingecko.com 1, data.alpaca.markets 29, eth.blockscout.com 14, mempool.space 7, paper-api.alpaca.markets 5, s1.ripple.com 1
 - Skipped for time: none
-- Last scan: 2026-11-09T16:10:10Z: 4 movers >3% 1h, 0 kept after 2x volume check
+- Last scan: 2026-11-09T16:15:12Z: 4 movers >3% 1h, 0 kept after 2x volume check
 - Last flag: 2026-11-09T15:25:12Z PIEVERSE
-- Last stock scan: 2026-11-09T16:10:10Z: 100 stocks, 4 movers over 2.0% 1h, 0 kept after 2x volume check, 1 without enough data
+- Last stock scan: 2026-11-09T16:15:12Z: 100 stocks, 1 movers over 2.0% 1h, 0 kept after 2x volume check, 1 without enough data
 - Laggards watch: none yet
-- Last POC log: 2026-11-09T16:10:37Z: 0 POC touches logged
+- Last POC log: 2026-11-09T16:15:41Z: 0 POC touches logged
 - Last watchlist snapshot: 2026-11-09T15:35:11Z
 - Last pre-market gap check: 2026-11-09T14:25:10Z: 4 of 100 stocks gapped 3%+ pre-market
 - Last Form 4 run: 2026-11-09T13:25:12Z: paused until 2026-11-09T13:30:10Z after SEC said HTTP 403
@@ -18,9 +18,9 @@
 - Graduation checklist: 1 of 5 conditions met (data/sim.md)
 - Strategy test: 2026-11-08: 499 trading days tested, see data/backtest.md
 - Hold test: -15.83% since 2026-11-05, BTC -6.50%
-- Wallet watch: 15 checked this cycle, 63 enabled in rotation, 4 new moves
+- Wallet watch: 15 checked this cycle, 63 enabled in rotation, 0 new moves
 - Measured time between runs: 5 min
-- Next run: ~2026-11-09T16:17:03Z
+- Next run: ~2026-11-09T16:21:44Z
 - Inbox: no pending requests
 - Errors this cycle: 0
 
