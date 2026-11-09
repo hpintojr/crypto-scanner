@@ -10,9 +10,9 @@
  "inbox_hash": "7f9d95d9402f57d8ca4e2efcc4825389ad5a7c320a8cdcf4c91a9942e2ae11dc",
  "answers_hash": "4433d13ee12e546443e456514dc71497b1ddda7690e898314eb6abfc6d4d4bba",
  "pending_request": false,
- "last_scan": "2026-11-09T19:30:14Z: 1 movers >3% 1h, 1 kept after 2x volume check",
+ "last_scan": "2026-11-09T19:35:09Z: 1 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-09T19:30:15Z: 100 stocks, 0 movers over 2.0% 1h, 0 kept after 2x volume check, 1 without enough data",
+ "last_stock_scan": "2026-11-09T19:35:09Z: 100 stocks, 0 movers over 2.0% 1h, 0 kept after 2x volume check, 1 without enough data",
  "form4": {
   "next_day": "2026-11-07",
   "offset": 0,
@@ -21,17 +21,11 @@
   "blocked_until": "2026-11-10T01:30:48Z",
   "last_run": "2026-11-09T17:30:48Z"
  },
- "last_form4": "2026-11-09T19:30:52Z: paused until 2026-11-10T01:30:48Z after SEC said HTTP 403",
- "last_run": "2026-11-09T19:31:36Z",
- "cycle_minutes": 3,
- "last_sim": "value $1,902.23 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09",
+ "last_form4": "2026-11-09T19:35:37Z: paused until 2026-11-10T01:30:48Z after SEC said HTTP 403",
+ "last_run": "2026-11-09T19:37:08Z",
+ "cycle_minutes": 6,
+ "last_sim": "value $1,902.84 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09",
  "signal_seen": {
-  "stocks:PM:move_1h:0": "2026-11-09T15:30:39Z",
-  "stocks:ORCL:move_1h:0": "2026-11-09T15:35:30Z",
-  "stocks:ACN:move_1h:0": "2026-11-09T15:35:31Z",
-  "stocks:AXP:move_1h:0": "2026-11-09T15:35:32Z",
-  "stocks:PANW:move_1h:0": "2026-11-09T15:35:32Z",
-  "stocks:CRWD:move_1h:0": "2026-11-09T15:35:33Z",
   "stocks:SPGI:poc_touch:0": "2026-11-09T15:40:34Z",
   "stocks:INTU:move_1h:0": "2026-11-09T15:45:33Z",
   "stocks:BKNG:poc_touch:0": "2026-11-09T15:45:34Z",
@@ -50,7 +44,8 @@
   "stocks:WMT:poc_touch:1": "2026-11-09T18:50:37Z",
   "stocks:NEE:poc_touch:1": "2026-11-09T19:05:38Z",
   "stocks:INTU:poc_touch:0": "2026-11-09T19:15:45Z",
-  "crypto:PIEVERSE:move_1h:1": "2026-11-09T19:30:14Z"
+  "crypto:PIEVERSE:move_1h:1": "2026-11-09T19:30:14Z",
+  "stocks:KO:poc_touch:1": "2026-11-09T19:35:35Z"
  },
  "wallets_seen": {
   "0xa2Eea193444B16fE2D18CFe977aceeea6Dd9c367": [
@@ -3065,6 +3060,7 @@
    "0x468f8434d2fc3e62509c495569610dbb82516824ceef2e2bc243907e4def9946:336"
   ],
   "1Kr6QSydW9bFQG1mXiPNNu6WpJGmUa9i1g": [
+   "a311ce49606495bfe62bc7c07c8c5de692294a33aa1fe554b2faa6a09776fff2",
    "b0b770d52b75f750ac8ac32557682c6f29c865fddc9bf4f415895cb31246a7bb",
    "6478cf081d10fbed4253b01ffbbf7a190b4a1ff800f29c523d636aa93f189d76",
    "23c3ee791c1aac805b7607c8ab08f7ba27e6f1660a762ab4359907f04a928174",
@@ -3113,8 +3109,7 @@
    "c0aa5f4f2e4bfedf7a76ba4e3ee10f5cc7013760d2baece229a40d864950bc30",
    "70563ca37d9a0475d39ee3c1858cd448e57ae01dce98032dbb16d1e781496669",
    "71875b5c8765610571b8a013ea4a9c56a1a18dfec4c262d0b3056d6eb1904aa3",
-   "04b1c551dce297fb03d1aaab0dde782453111caaea588c47be09bb302cf6382d",
-   "b29046fc059f3119f064dc1ea6ede8165bd4419cb068f7b779c7af2b659b1ad4"
+   "04b1c551dce297fb03d1aaab0dde782453111caaea588c47be09bb302cf6382d"
   ],
   "0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec": [
    "0xadcdf404c11284a40ccc2f26940d8aabbf968a88a8ebc3cebb06875e6a0a128a",
@@ -3169,6 +3164,10 @@
    "0x85c4a625264dfb89b2a0d117237a7e0cf239c0f56f343456a07725bd8e260d36"
   ],
   "0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec#tokens": [
+   "0xfcbb8c17ffe38d3e381fd0e5266f7a65cca76619315fa8cdec298a48ae060460:1330",
+   "0x289f55f8eaa5d11ca2edc3d7a043600bc9a3eef548533df6376987ff1cd4b8df:112",
+   "0x9b7560deea60f4039801dfb9e0ec36d6c0a33e555bb04f5db22fbe7158dfa944:644",
+   "0x0381f6ad76d86d930cf3a030702f6314287cdc2d7d289cdd6333194798893d1f:241",
    "0x356085aee538a1f8a31cc6d01e8f28cd85560e3e2bd9a3c8332da927c9929068:335",
    "0xe4212dd4d2ab2cd2d3b6409d377c93254093e0a4e7ffcce2991820a9f413ecea:810",
    "0x0c2745a1840181f08a5515971827348734640573bf94bceff26a3a83901f48f9:1301",
@@ -3214,11 +3213,7 @@
    "0xf130578b68a335e43fac92f3478f4d82f3abe5bd5e9e0bf17e5657d35db9c114:187",
    "0x49d35615d0bae02fd38adcc6f8163d2dda2304847a79855111629b0b28c79715:45",
    "0x528e9c6c39faef07157a33c5850245899620c3ac3d5c27ca7029fe2198f9c40d:360",
-   "0x067c66c8bf35bf5117c0b9ef51af34d6fe7691a1a71a934ff1785dc6a9d0cbd8:938",
-   "0x29a8ed079d7a0640788e4b4bef6a710e9ab42e1f5f65be2a2723efe3eccc172d:115",
-   "0xf4a30b31e66fc6d04fb4129cfe37679214e7fbf2a3ca8dff178fdf1fa27a7962:167",
-   "0x8aac99f0bf8af82ce5abffea52039476f90d657849b65112b80951c426634ceb:156",
-   "0xa2e4f2bd584c4670a5df6486b2777bcb452206506bd2b27a9991af57bc730a59:149"
+   "0x067c66c8bf35bf5117c0b9ef51af34d6fe7691a1a71a934ff1785dc6a9d0cbd8:938"
   ],
   "0x876EabF441B2EE5B5b0554Fd502a8E0600950cFa": [
    "0x8612b5cef417d59b217c23648c70a375b35869ad29a71e4fc643d83a00e65898",
@@ -3335,11 +3330,11 @@
    "0x2a13d3e63037cb9c142fbf53170958c7c6041eb340f8947302a937181ebbb348:960"
   ]
  },
- "last_wallets": "13 checked this cycle, 63 enabled in rotation, 1 new moves",
+ "last_wallets": "10 checked this cycle, 63 enabled in rotation, 2 new moves",
  "holdings_checked": "2026-11-09T19:02:29Z",
  "last_holdings": "-17.27% since 2026-11-05, BTC -7.16%",
  "preview_checked": "2026-11-05T11:00:28Z",
- "wallets_offset": 15,
+ "wallets_offset": 30,
  "backtest_date": "2026-11-08",
  "last_backtest": "2026-11-08: 499 trading days tested, see data/backtest.md",
  "movers_checked": "2026-11-09T19:02:39Z",
@@ -3348,23 +3343,23 @@
  "allocation_version": 2,
  "last_gap_check": "2026-11-09T14:25:10Z: 4 of 100 stocks gapped 3%+ pre-market",
  "step_seconds": {
-  "simulation": 5,
-  "crypto scan": 4,
-  "buzz": 1,
+  "simulation": 4,
+  "crypto scan": 0,
+  "buzz": 0,
   "watchlist": 0,
-  "stocks": 35,
+  "stocks": 26,
   "score crypto": 0,
   "score stocks": 0,
   "form 4": 0,
-  "wallets": 44,
+  "wallets": 90,
   "holdings": 0,
   "backtest": 0,
   "movers": 0,
   "allocation": 0,
-  "poc": 2,
+  "poc": 3,
   "laggards": 0
  },
  "skipped_steps": [],
  "graduation": "1 of 5 conditions met",
- "last_poc": "2026-11-09T19:30:52Z: 0 POC touches logged"
+ "last_poc": "2026-11-09T19:35:37Z: 1 POC touches logged"
 }
