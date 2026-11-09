@@ -463,3 +463,5 @@ f071d752e71f,2026-11-09T16:05:13Z,crypto,ONDO,ondo-finance,Ondo,0.389363,BTC,753
 ed40e1f08f44,2026-11-09T16:20:34Z,stocks,LIN,LIN,LIN,519.76,SPY,750.21,0.031,106876,0,0,0,,poc_touch,,poc=519.599;vah=521.414;val=516.228;sweep=no;from=below;stop=518.61;target=523.21
 a7c86dacf630,2026-11-09T16:25:28Z,stocks,V,V,V,422.49,SPY,750.07,-0.089,398948,0,0,1,,poc_touch,,poc=422.865;vah=423.921;val=420.542;sweep=no;from=below;stop=423.175;target=420.435
 6bac693fe847,2026-11-09T17:25:31Z,stocks,COST,COST,COST,1053.98,SPY,752.22,-0.05,64285,0,0,1,,poc_touch,,poc=1054.51;vah=1060.33;val=1053.98;sweep=no;from=below;stop=1054.65;target=1051.97
+5ff5e531ce4b,2026-11-09T17:40:32Z,stocks,BA,BA,BA,171.575,SPY,752.32,-0.996,330874,0,0,0,,poc_touch,,poc=173.301;vah=173.56;val=172.35;sweep=no;from=above;stop=174.81;target=161.87
+fda2f4089036,2026-11-09T17:40:34Z,crypto,ETH,ethereum,ETH,2117.5415,BTC,74515.7015,-0.079,12.881947094,0,0,0,,poc_touch,,poc=2119.22;vah=2233.74;val=2115.88;sweep=no;from=above;stop=2125.85;target=2092.61
