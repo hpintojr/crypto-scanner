@@ -1,29 +1,27 @@
 # Scanner status
 
-- Last run: 2026-11-09T09:41:35Z
+- Last run: 2026-11-09T09:46:45Z
 - Host: otto-16usdmc576-067297
-- Step seconds: simulation 3, crypto scan 0, buzz 0, watchlist 0, stocks 0, score crypto 0, score stocks 0, form 4 0, wallets 85, holdings 0, backtest 0, movers 0, allocation 0, poc 1, laggards 1
-- Requests this cycle: api.coingecko.com 1, data.alpaca.markets 9, eth.blockscout.com 18, mempool.space 6, paper-api.alpaca.markets 5
+- Step seconds: simulation 3, crypto scan 0, buzz 0, watchlist 1, stocks 0, score crypto 0, score stocks 0, form 4 0, wallets 91, holdings 0, backtest 0, movers 0, allocation 0, poc 1, laggards 1
+- Requests this cycle: api.coingecko.com 3, data.alpaca.markets 9, eth.blockscout.com 16, mempool.space 7, paper-api.alpaca.markets 5
 - Skipped for time: none
-- Last scan: 2026-11-09T09:40:08Z: 8 movers >3% 1h, 0 kept after 2x volume check
+- Last scan: 2026-11-09T09:45:11Z: 8 movers >3% 1h, 0 kept after 2x volume check
 - Last flag: 2026-11-09T08:05:15Z PI
-- Last stock scan: 2026-11-09T09:40:08Z: market closed
+- Last stock scan: 2026-11-09T09:45:12Z: market closed
 - Laggards watch: none yet
-- Last POC log: 2026-11-09T09:40:09Z: 0 POC touches logged
-- Last watchlist snapshot: 2026-11-09T08:45:10Z
+- Last POC log: 2026-11-09T09:45:13Z: 1 POC touches logged
+- Last watchlist snapshot: 2026-11-09T09:45:12Z
 - Last pre-market gap check: 2026-11-06T14:25:16Z: 7 of 100 stocks gapped 3%+ pre-market
-- Last Form 4 run: 2026-11-09T09:40:09Z: paused until 2026-11-09T13:30:10Z after SEC said HTTP 403
-- $2,000 paper simulation: value $1,901.58 of $2,000, 5 open, crypto cash $341.39, stock cash $367.07
+- Last Form 4 run: 2026-11-09T09:45:13Z: paused until 2026-11-09T13:30:10Z after SEC said HTTP 403
+- $2,000 paper simulation: value $1,900.87 of $2,000, 5 open, crypto cash $341.39, stock cash $367.07
 - Simulation flags: none
 - Graduation checklist: 1 of 5 conditions met (data/sim.md)
 - Strategy test: 2026-11-08: 499 trading days tested, see data/backtest.md
 - Hold test: -16.76% since 2026-11-05, BTC -7.22%
-- Wallet watch: 13 checked this cycle, 63 enabled in rotation, 7 new moves
+- Wallet watch: 15 checked this cycle, 63 enabled in rotation, 0 new moves
 - Measured time between runs: 5 min
-- Next run: ~2026-11-09T09:46:35Z
+- Next run: ~2026-11-09T09:51:45Z
 - Inbox: no pending requests
-- Errors this cycle: 2
-  - wallet Aave: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet ether.fi: HTTPError: HTTP Error 500: Internal Server Error
+- Errors this cycle: 0
 
 Paper only, approved by Hamilton. No real money. No keys in this repo. Create SIM_STOP to stop new orders.
