@@ -1,34 +1,33 @@
 # Scanner status
 
-- Last run: 2026-11-09T01:51:17Z
+- Last run: 2026-11-09T01:58:06Z
 - Host: otto-16usdmc576-067297
-- Step seconds: simulation 3, crypto scan 2, buzz 0, watchlist 0, stocks 0, score crypto 0, score stocks 0, form 4 0, wallets 64, holdings 0, backtest 0, movers 0, allocation 0, poc 1, laggards 1
-- Requests this cycle: api.coingecko.com 1, data.alpaca.markets 9, eth.blockscout.com 18, mempool.space 6, paper-api.alpaca.markets 5
-- Skipped for time: none
-- Last scan: 2026-11-09T01:50:10Z: 0 movers >3% 1h, 0 kept after 2x volume check
+- Step seconds: simulation 3, crypto scan 0, buzz 0, watchlist 0, stocks 0, score crypto 0, score stocks 0, form 4 0, wallets 156, holdings 0, backtest 0, movers 0, allocation 0, poc 1, laggards 1
+- Requests this cycle: api.coingecko.com 2, data.alpaca.markets 8, eth.blockscout.com 14, mempool.space 8, paper-api.alpaca.markets 4
+- Skipped for time: holdings, backtest, movers, allocation, laggards
+- Last scan: 2026-11-09T01:55:29Z: 0 movers >3% 1h, 0 kept after 2x volume check
 - Last flag: 2026-11-06T09:05:20Z CC
-- Last stock scan: 2026-11-09T01:50:11Z: market closed
+- Last stock scan: 2026-11-09T01:55:30Z: market closed
 - Laggards watch: none yet
-- Last POC log: 2026-11-09T01:50:11Z: 0 POC touches logged
-- Last watchlist snapshot: 2026-11-09T01:00:15Z
+- Last POC log: 2026-11-09T01:55:30Z: 0 POC touches logged
+- Last watchlist snapshot: 2026-11-09T01:55:29Z
 - Last pre-market gap check: 2026-11-06T14:25:16Z: 7 of 100 stocks gapped 3%+ pre-market
-- Last Form 4 run: 2026-11-09T01:50:11Z: paused until 2026-11-09T03:25:12Z after SEC said HTTP 403
-- $2,000 paper simulation: value $1,908.49 of $2,000, 5 open, crypto cash $341.39, stock cash $367.07
+- Last Form 4 run: 2026-11-09T01:55:30Z: paused until 2026-11-09T03:25:12Z after SEC said HTTP 403
+- $2,000 paper simulation: value $1,908.46 of $2,000, 5 open, crypto cash $341.39, stock cash $367.07
 - Simulation flags: none
 - Graduation checklist: 1 of 5 conditions met (data/sim.md)
 - Strategy test: 2026-11-08: 499 trading days tested, see data/backtest.md
 - Hold test: -15.09% since 2026-11-05, BTC -6.44%
-- Wallet watch: 10 checked this cycle, 63 enabled in rotation, 1 new moves
-- Measured time between runs: 5 min
-- Next run: ~2026-11-09T01:56:17Z
+- Wallet watch: 11 checked this cycle, 63 enabled in rotation, 4 new moves
+- Measured time between runs: 7 min
+- Next run: ~2026-11-09T02:05:06Z
 - Inbox: no pending requests
-- Errors this cycle: 7
-  - wallet Lido: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet Bitfinex: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet Bitfinex: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet Bitfinex: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet Bitfinex: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet Bitfinex: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet ether.fi: HTTPError: HTTP Error 500: Internal Server Error
+- Errors this cycle: 6
+  - wallet Crypto.com: TimeoutError: The read operation timed out
+  - wallet Curve Finance: HTTPError: HTTP Error 500: Internal Server Error
+  - wallet Curve Finance: HTTPError: HTTP Error 500: Internal Server Error
+  - wallet Curve Finance: HTTPError: HTTP Error 500: Internal Server Error
+  - wallet KuCoin: HTTPError: HTTP Error 500: Internal Server Error
+  - wallet KuCoin: HTTPError: HTTP Error 500: Internal Server Error
 
 Paper only, approved by Hamilton. No real money. No keys in this repo. Create SIM_STOP to stop new orders.
