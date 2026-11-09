@@ -22,7 +22,7 @@ Costs and slippage are not included. Treat any row under 30 signals as noise.
 | stocks | premarket gap | 1d | 10 | 0.39 | 0.11 | 50 |
 | stocks | premarket gap, earnings | 1h | 8 | 0.75 | 0.98 | 75 |
 | stocks | premarket gap, earnings | 1d | 5 | -1.31 | -0.96 | 40 |
-| stocks | rejected | 1h | 116 | 0.42 | 0.24 | 54 |
+| stocks | rejected | 1h | 117 | 0.43 | 0.24 | 55 |
 | stocks | rejected | 1d | 86 | -0.02 | 0.16 | 51 |
 | stocks | rejected, earnings | 1h | 23 | 0.16 | 0.27 | 57 |
 | stocks | rejected, earnings | 1d | 21 | -0.74 | -0.86 | 43 |
