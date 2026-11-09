@@ -471,3 +471,4 @@ a523ecfd4bb0,2026-11-09T18:10:37Z,stocks,CMCSA,CMCSA,CMCSA,24.475,SPY,752.32,-0.
 174d7f49ba79,2026-11-09T18:50:37Z,stocks,WMT,WMT,WMT,125.52,SPY,753.2,-0.007,1165814,0,0,1,,poc_touch,,poc=125.529;vah=126.598;val=125.089;sweep=no;from=below;stop=125.555;target=125.415
 35df74524ee9,2026-11-09T19:05:38Z,stocks,NEE,NEE,NEE,87.42,SPY,752.85,-0.071,886301,0,0,1,,poc_touch,,poc=87.4823;vah=87.7008;val=87.0891;sweep=no;from=below;stop=87.5;target=87.18
 8230ca2e2d42,2026-11-09T19:15:45Z,stocks,INTU,INTU,INTU,341.64,SPY,752.84,0.117,147850,0,0,0,,poc_touch,,poc=341.242;vah=345.512;val=340.73;sweep=no;from=below;stop=341.085;target=343.305
+03e5a0bd434f,2026-11-09T19:30:14Z,crypto,PIEVERSE,pieverse,Pieverse,2.17,BTC,74547,4.186,93860088,11036430.04,8.505,1,,move_1h,,

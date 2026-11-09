@@ -14,3 +14,4 @@ time,coin_id,symbol,name,price,move_1h_pct,volume_24h,avg_daily_volume_7d,volume
 2026-11-06T09:05:20Z,canton-network,cc,Canton,0.098865,-4.362,31309392,13908849.55,2.251
 2026-11-09T08:05:15Z,pi-network,pi,Pi Network,0.062635,-4.994,10062859,4014720.33,2.506
 2026-11-09T15:25:12Z,pieverse,pieverse,Pieverse,1.95,3.905,47679985,11057157.29,4.312
+2026-11-09T19:30:14Z,pieverse,pieverse,Pieverse,2.17,4.186,93860088,11036430.04,8.505
