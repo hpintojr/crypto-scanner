@@ -354,3 +354,4 @@ b1abf41024e9,2026-11-08T22:55:20Z,crypto,ZRO,layerzero,LayerZero,1.55,BTC,74354,
 e92793b3b61b,2026-11-08T23:00:19Z,crypto,ETHFI,ether-fi,Ether.fi,0.577032,BTC,74391,-4.243,25481701,29280856.65,0.87,0,,move_1h,,
 57bfe00b362d,2026-11-09T00:05:13Z,crypto,ETH,ethereum,ETH,2117.735,BTC,74492.198,-0.07,12.881947094,0,0,0,,poc_touch,,poc=2119.22;vah=2233.74;val=2115.88;sweep=no;from=above;stop=2125.62;target=2094.07
 6bf025d79fd2,2026-11-09T04:05:12Z,crypto,BTW,bitway,Bitway,1.11,BTC,74761,-3.368,8459638,6056836.01,1.397,0,,move_1h,,
+aa078e46a683,2026-11-09T05:40:11Z,crypto,BTC,bitcoin,BTC,74264.429,BTC,74264.429,0.031,1.1729214399999999,0,0,1,,poc_touch,,poc=74241.3;vah=75792.7;val=74203.5;sweep=no;from=above;stop=74209.1;target=74430.5
