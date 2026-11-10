@@ -1,26 +1,26 @@
 # Scanner status
 
-- Last run: 2026-11-10T07:36:03Z
+- Last run: 2026-11-10T07:41:27Z
 - Host: otto-16usdmc576-067297
-- Step seconds: simulation 3, crypto scan 0, buzz 0, watchlist 0, stocks 0, score crypto 0, score stocks 0, form 4 0, wallets 54, holdings 0, backtest 0, movers 0, allocation 0, poc 1, laggards 0
-- Requests this cycle: api.coingecko.com 1, data.alpaca.markets 10, eth.blockscout.com 16, mempool.space 6, paper-api.alpaca.markets 5, s1.ripple.com 1
+- Step seconds: simulation 4, crypto scan 0, buzz 0, watchlist 0, stocks 0, score crypto 0, score stocks 0, form 4 0, wallets 76, holdings 0, backtest 0, movers 0, allocation 0, poc 1, laggards 0
+- Requests this cycle: api.coingecko.com 1, data.alpaca.markets 10, eth.blockscout.com 14, mempool.space 8, paper-api.alpaca.markets 5
 - Skipped for time: none
-- Last scan: 2026-11-10T07:35:08Z: 0 movers >3% 1h, 0 kept after 2x volume check
+- Last scan: 2026-11-10T07:40:10Z: 0 movers >3% 1h, 0 kept after 2x volume check
 - Last flag: 2026-11-10T05:10:13Z PIEVERSE
-- Last stock scan: 2026-11-10T07:35:09Z: market closed
+- Last stock scan: 2026-11-10T07:40:11Z: market closed
 - Laggards watch: 2026-11-09: weakening, laggards vs SPY since 2026-11-05 -3.61 pts
-- Last POC log: 2026-11-10T07:35:09Z: 0 POC touches logged
+- Last POC log: 2026-11-10T07:40:11Z: 0 POC touches logged
 - Last watchlist snapshot: 2026-11-10T07:30:15Z
 - Last pre-market gap check: 2026-11-09T14:25:10Z: 4 of 100 stocks gapped 3%+ pre-market
-- Last Form 4 run: 2026-11-10T07:35:09Z: paused until 2026-11-10T09:35:10Z after SEC said HTTP 403
-- $2,000 paper simulation: value $1,906.58 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09
+- Last Form 4 run: 2026-11-10T07:40:11Z: paused until 2026-11-10T09:35:10Z after SEC said HTTP 403
+- $2,000 paper simulation: value $1,906.23 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09
 - Simulation flags: none
 - Graduation checklist: 1 of 5 conditions met (data/sim.md)
 - Strategy test: 2026-11-09: 500 trading days tested, see data/backtest.md
 - Hold test: -16.61% since 2026-11-05, BTC -7.00%
-- Wallet watch: 14 checked this cycle, 63 enabled in rotation, 0 new moves
-- Measured time between runs: 4 min
-- Next run: ~2026-11-10T07:40:03Z
+- Wallet watch: 14 checked this cycle, 63 enabled in rotation, 6 new moves
+- Measured time between runs: 5 min
+- Next run: ~2026-11-10T07:46:27Z
 - Inbox: no pending requests
 - Errors this cycle: 1
   - wallet Binance: HTTPError: HTTP Error 500: Internal Server Error
