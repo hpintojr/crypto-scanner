@@ -5,6 +5,7 @@ One SQLite database where separate jobs read and write, instead of one big bot. 
 - Database: `../data/board.db`, next to the repo and never committed. Schema: `board/schema.sql`.
 - Every table is append-only: updates and deletes are refused. A change is a new row.
 - One exception: `messages.status` (new, read, done) can be updated, so a message can be marked read or done. Every other `messages` column stays locked, and deletes are still refused.
+- No overwrites: an insert whose `id` or other unique key (`source_key`; `client_order_id` + `status` on `orders`) already exists is refused, including `INSERT OR REPLACE`, `REPLACE` and upserts. This holds on every connection; it does not depend on `PRAGMA recursive_triggers`. A plain duplicate still fails as before: an IntegrityError naming the column.
 - Each row has an `id` and `created_at` (`orders` has `updated_at`). Copied rows carry a `source_key`, so the same thing can't be copied twice.
 - Nothing reads from the board yet. No job starts reading it without Hamilton's approval.
 
@@ -37,3 +38,4 @@ When a real job replaces a mirror, it takes over that table and the mirror stops
 - `board/schema.sql` builds a fresh database. `CREATE ... IF NOT EXISTS` does not change an existing trigger, so changes to an existing database go in `board/migrations/` as numbered `.sql` files.
 - `python3 -m board.migrate` applies them to the real board; `python3 -m board.migrate PATH` to a copy. Each is safe to run twice. Test on a copy first.
 - 001_messages_status_only: drops `messages_no_update`, adds `messages_status_only` (status is the one allowed update).
+- 002_no_replace: adds a BEFORE INSERT trigger per unique key on all five tables, so `INSERT OR REPLACE` can't delete and overwrite a row.
