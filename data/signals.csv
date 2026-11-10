@@ -625,3 +625,4 @@ c95a6ce27b1e,2026-11-10T20:15:55Z,stocks,KLAC,KLAC,KLAC,152.425,SPY,748.85,-0.06
 d9b9a8635f82,2026-11-10T20:25:42Z,stocks,UPS,UPS,UPS,110.91,SPY,749.35,-0.034,162871,0,0,0,,poc_touch,,poc=110.948;vah=111.779;val=110.227;sweep=no;from=above;stop=111.085;target=110.385
 009d20f3919c,2026-11-10T20:31:00Z,stocks,MCD,MCD,MCD,281.565,SPY,749.4,-0.048,158976,0,0,0,,poc_touch,,poc=281.701;vah=283.249;val=280.435;sweep=no;from=above;stop=281.8;target=280.86
 1cd2e0c82dd5,2026-11-10T20:31:00Z,stocks,WMT,WMT,WMT,125.56,SPY,749.4,-0.004,1273123,0,0,0,,poc_touch,,poc=125.565;vah=125.877;val=124.378;sweep=no;from=above;stop=125.65;target=125.29
+fc13020c2047,2026-11-10T20:35:50Z,stocks,MS,MS,MS,187.16,SPY,749.36,0.011,373361,0,0,1,,poc_touch,,poc=187.139;vah=189.309;val=187.045;sweep=no;from=above;stop=187.1;target=187.34
