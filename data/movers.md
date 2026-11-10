@@ -1,20 +1,20 @@
 # Biggest movers
 
-As of 2026-11-10T04:31:47Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
+As of 2026-11-10T05:31:02Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
 
 ## Crypto, top 100
 
 | Window | Biggest gainers | Biggest losers |
 |---|---|---|
-| 1h | GRAM +3.9% (+5h), PI +1.2% (+1h), NIGHT +1.0% (+1h), INJ +0.8% (+1h), OKB +0.7% (+3h) | XMR -2.4% (-1h), JST -1.0% (-1h), UNI -0.9% (-2h), DASH -0.8% (-3h), HYPE -0.6% (-4h) |
-| 2h | GRAM +4.9% (+5h), OKB +1.0% (+3h), ONDO +0.9% (+2h), WLFI +0.8% (+2h), ASTER +0.6% (+2h) | XMR -2.0% (-1h), DASH -1.9% (-3h), PIEVERSE -1.8% (-2h), RENDER -1.2% (-2h), LIT -1.1% (+1h) |
-| 4h | GRAM +5.4% (+5h), NIGHT +2.4% (+1h), OKB +0.8% (+3h), ATOM +0.7% (+1h), PIEVERSE +0.5% (-2h) | XMR -3.8% (-1h), LIT -2.2% (+1h), VVV -2.1% (-5h), DASH -2.0% (-3h), FIL -1.9% (-1h) |
-| 6h | GRAM +5.3% (+5h), PIEVERSE +4.2% (-2h), NIGHT +2.4% (+1h), PEARL +1.5% (+2h), GT +1.3% (+1h) | XMR -4.4% (-1h), LIT -3.3% (+1h), M -3.2% (-1h), RENDER -2.9% (-2h), FIL -2.7% (-1h) |
-| 8h | PEARL +6.0% (+2h), GRAM +5.8% (+5h), NIGHT +3.4% (+1h), GT +1.1% (+1h), OKB +0.9% (+3h) | PIEVERSE -8.6% (-2h), BTW -4.5% (+1h), XMR -4.1% (-1h), STX -3.4% (+1h), RENDER -3.0% (-2h) |
-| 12h | PIEVERSE +9.7% (-2h), PEARL +6.6% (+2h), GRAM +4.2% (+5h), JUP +4.1% (-2h), ONDO +3.8% (+2h) | BTW -9.2% (+1h), RAIN -5.9% (-1h), ZEC -5.0% (-2h), XMR -4.9% (-1h), ARB -4.2% (-4h) |
-| 16h | PIEVERSE +23.0% (-2h), JUP +7.9% (-2h), AVAX +7.6% (-2h), ONDO +7.2% (+2h), GRAM +6.5% (+5h) | BTW -11.2% (+1h), XMR -4.3% (-1h), ZEC -3.0% (-2h), QNT -3.0% (-1h), RAIN -2.4% (-1h) |
-| 20h | PIEVERSE +27.3% (-2h), AVAX +8.9% (-2h), JUP +8.6% (-2h), GRAM +8.1% (+5h), ETHFI +7.0% (+1h) | BTW -10.3% (+1h), RAIN -6.3% (-1h), ZEC -4.3% (-2h), XMR -3.7% (-1h), FIGR_HELOC -2.4% (+1h) |
-| 24h | PIEVERSE +37.2% (-2h), GRAM +8.4% (+5h), ETHFI +6.9% (+1h), AVAX +6.7% (-2h), JUP +6.4% (-2h) | BTW -13.2% (+1h), RAIN -8.8% (-1h), ZRO -7.1% (+1h), ZEC -6.1% (-2h), XMR -4.7% (-1h) |
+| 1h | PI +1.4% (+2h), ATOM +1.1% (+2h), RAIN +1.0% (+1h), STX +0.8% (+2h), BDX +0.7% (+1h) | AAVE -2.0% (-3h), ONDO -1.5% (-1h), PIEVERSE -1.2% (-3h), ARB -1.0% (-5h), OKB -1.0% (-1h) |
+| 2h | GRAM +3.3% (-1h), PI +2.6% (+2h), ATOM +1.7% (+2h), NIGHT +1.5% (+2h), STX +1.3% (+2h) | XMR -2.5% (-2h), AAVE -2.3% (-3h), DASH -1.6% (-4h), PIEVERSE -1.4% (-3h), ARB -1.4% (-5h) |
+| 4h | GRAM +4.5% (-1h), PI +2.8% (+2h), ATOM +1.8% (+2h), NIGHT +1.7% (+2h), ALGO +0.6% (+4h) | DASH -2.8% (-4h), LIT -2.4% (-1h), AAVE -2.4% (-3h), XMR -2.3% (-2h), ARB -2.0% (-5h) |
+| 6h | GRAM +5.6% (-1h), NIGHT +3.3% (+2h), ATOM +1.5% (+2h), ALGO +0.8% (+4h), PEPE +0.8% (+2h) | XMR -3.9% (-2h), M -2.8% (-2h), DASH -2.7% (-4h), LIT -2.6% (-1h), AAVE -2.6% (-3h) |
+| 8h | GRAM +5.0% (-1h), NIGHT +3.7% (+2h), PEARL +3.7% (-1h), ATOM +1.2% (+2h), PI +1.0% (+2h) | PIEVERSE -5.4% (-3h), XMR -4.5% (-2h), RENDER -4.0% (-3h), AAVE -3.7% (-3h), ARB -3.3% (-5h) |
+| 12h | GRAM +3.5% (-1h), PI +2.2% (+2h), NIGHT +1.8% (+2h), ASTER +0.6% (-1h), LEO +0.3% (+1h) | BTW -7.9% (+2h), ARB -7.0% (-5h), ZEC -6.1% (-3h), XMR -5.6% (-2h), ONDO -4.9% (-1h) |
+| 16h | PIEVERSE +13.8% (-3h), JUP +7.3% (-3h), AVAX +6.7% (-3h), ETHFI +5.9% (-1h), GRAM +5.1% (-1h) | BTW -7.9% (+2h), QNT -5.3% (-2h), ZEC -4.7% (-3h), XMR -4.4% (-2h), ARB -3.6% (-5h) |
+| 20h | PIEVERSE +25.5% (-3h), JUP +9.5% (-3h), AVAX +9.4% (-3h), NIGHT +8.9% (+2h), ETHFI +8.7% (-1h) | BTW -8.3% (+2h), ZEC -3.5% (-3h), XMR -3.5% (-2h), FIGR_HELOC -2.4% (+2h), RAIN -1.0% (+1h) |
+| 24h | PIEVERSE +36.0% (-3h), GRAM +8.4% (-1h), AVAX +6.8% (-3h), JUP +6.3% (-3h), ETHFI +6.0% (-1h) | BTW -9.8% (+2h), RAIN -7.7% (+1h), ZRO -7.3% (-1h), ZEC -6.6% (-3h), XMR -5.1% (-2h) |
 
 ## Stocks, fixed list
 
