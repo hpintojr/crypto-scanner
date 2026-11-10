@@ -523,3 +523,12 @@ e90c0e79707a,2026-11-10T14:35:55Z,stocks,LMT,LMT,LMT,594.24,SPY,749,1.059,50407,
 7b146900c118,2026-11-10T14:35:55Z,stocks,MRK,MRK,MRK,148.52,SPY,749,-0.054,304272,0,0,0,,poc_touch,,poc=148.601;vah=148.675;val=147.344;sweep=no;from=above;stop=149.1;target=146.78
 9eef40d4597c,2026-11-10T14:35:55Z,stocks,NEE,NEE,NEE,86.855,SPY,749,-0.083,717219,0,0,1,,poc_touch,,poc=86.9273;vah=87.4078;val=86.8837;sweep=no;from=below;stop=86.945;target=86.585
 53eb3829848a,2026-11-10T14:35:55Z,stocks,ORCL,ORCL,ORCL,119.13,SPY,749,0.137,1224866,0,0,1,,poc_touch,,poc=118.967;vah=119.979;val=118.551;sweep=no;from=above;stop=116.63;target=126.63
+1b09858c12bb,2026-11-10T14:40:42Z,stocks,ACN,ACN,ACN,254.505,SPY,749.115,-0.11,254273,0,0,1,,poc_touch,,poc=254.786;vah=256.974;val=254.4;sweep=no;from=below;stop=255.92;target=250.26
+604f85301bd5,2026-11-10T14:40:42Z,stocks,AMAT,AMAT,AMAT,369.87,SPY,749.115,-0.166,361466,0,0,1,,poc_touch,,poc=370.486;vah=374.722;val=366.251;sweep=no;from=below;stop=370.99;target=366.51
+05d186080a3b,2026-11-10T14:40:42Z,stocks,AMGN,AMGN,AMGN,465.16,SPY,749.115,-0.065,95587,0,0,1,,poc_touch,,poc=465.46;vah=465.692;val=458.752;sweep=no;from=below;stop=465.49;target=464.17
+8d9dddbee393,2026-11-10T14:40:42Z,stocks,ANET,ANET,ANET,187.055,SPY,749.115,0.347,568637,0,0,0,,poc_touch,,poc=186.408;vah=187.989;val=184.268;sweep=no;from=below;stop=185.49;target=191.75
+a7c35b247f9c,2026-11-10T14:40:42Z,stocks,BKNG,BKNG,BKNG,163.32,SPY,749.115,-0.219,375044,0,0,0,,poc_touch,,poc=163.678;vah=163.922;val=162.136;sweep=no;from=above;stop=164.47;target=159.87
+77b8f7468f85,2026-11-10T14:40:42Z,stocks,BSX,BSX,BSX,44.07,SPY,749.115,0.105,1517547,0,0,0,,poc_touch,,poc=44.0236;vah=44.3092;val=43.7381;sweep=no;from=below;stop=43.825;target=44.805
+5b81ced1fbc1,2026-11-10T14:40:43Z,stocks,HON,HON,HON,228.605,SPY,749.115,0.174,93607,0,0,1,,poc_touch,,poc=228.208;vah=229.693;val=227.409;sweep=no;from=above;stop=227.86;target=230.84
+bc5bfd9a3aaa,2026-11-10T14:40:43Z,stocks,META,META,META,642.1,SPY,749.115,0.011,839003,0,0,0,,poc_touch,,poc=642.033;vah=642.996;val=638.501;sweep=no;from=below;stop=639.06;target=651.22
+4d41d38f16d5,2026-11-10T14:40:43Z,stocks,MCD,MCD,MCD,281.655,SPY,749.115,-0.016,158976,0,0,0,,poc_touch,,poc=281.701;vah=283.249;val=280.435;sweep=no;from=above;stop=282.44;target=279.3
