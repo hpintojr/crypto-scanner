@@ -18,5 +18,5 @@ Treat any row under 30 signals as noise.
 | stocks | broke | no sweep | 1h | 62 | +0.112 | 50 |
 | stocks | broke | sweep | 1h | 1 | -0.209 | 0 |
 | stocks | held | no sweep | 1d | 27 | -0.229 | 52 |
-| stocks | held | no sweep | 1h | 58 | +0.074 | 52 |
+| stocks | held | no sweep | 1h | 59 | +0.073 | 53 |
 | stocks | held | sweep | 1h | 2 | +0.735 | 100 |
