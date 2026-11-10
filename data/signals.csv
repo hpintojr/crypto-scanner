@@ -589,3 +589,6 @@ c460bd81f63e,2026-11-10T16:05:20Z,crypto,INJ,injective-protocol,Injective,7.74,B
 b9cc1ca58cf5,2026-11-10T16:40:50Z,stocks,SHOP,SHOP,SHOP,145.54,SPY,746.915,-2.191,38608,87339.0,0.442,0,4,move_1h,yes,
 04b01fa3b5cf,2026-11-10T17:00:54Z,stocks,LRCX,LRCX,LRCX,218.555,SPY,746.215,0.144,745246,0,0,1,,poc_touch,,poc=218.24;vah=222.258;val=216.612;sweep=no;from=above;stop=218.23;target=219.53
 a2fd684d481b,2026-11-10T17:00:55Z,stocks,SPGI,SPGI,SPGI,471.51,SPY,746.215,0.011,53497,0,0,1,,poc_touch,,poc=471.457;vah=473.574;val=468.398;sweep=no;from=above;stop=471.45;target=471.69
+242c21bbb0f3,2026-11-10T17:05:14Z,crypto,DASH,dash,Dash,42.78,BTC,72961,-4.518,44382024,47722179.65,0.93,0,,move_1h,,
+f8e63d83d017,2026-11-10T17:05:53Z,stocks,DE,DE,DE,689,SPY,746.86,-0.239,86000,0,0,1,,poc_touch,,poc=690.65;vah=695.148;val=688.92;sweep=no;from=below;stop=691.34;target=681.98
+f52b2c1e411a,2026-11-10T17:05:53Z,stocks,PEP,PEP,PEP,142.98,SPY,746.86,-0.01,418158,0,0,1,,poc_touch,,poc=142.995;vah=143.351;val=142.068;sweep=no;from=below;stop=143.085;target=142.665
