@@ -58,3 +58,14 @@ control there is position size and the drawdown pause. Gaps and slippage can exc
 ## 6. What this does not do
 It does not make the bot profitable on a schedule. The most likely finding is that holding SPY does as well or better.
 If so, the right move is to stop paying costs and complexity for no gain.
+
+## 7. Decision recorded Nov 10, 2026 (pending Hamilton's written yes on the open items)
+Result of data/candidate-test.md (Jul 2020 to Nov 2026): no candidate beat hold_spy on return or Sharpe after costs.
+Rules that cut the worst drop did it by giving up much of the return. Conclusion:
+1. hold_spy is the control and the default answer. Nothing replaces it unless it passes section 3 AND a 90-day forward test.
+2. research/control_sleeves.py keeps two virtual $2,000 sleeves from the freeze date: hold_spy and spy_trend_200. No orders,
+   no change to PLAN or sim.py. Output: data/control-sleeves.md. spy_trend_200 is the "smaller drops" option, in shadow only.
+3. The frozen commodities and crypto plan runs to Feb 5, 2027 and is judged against hold_spy on the graduation checklist.
+4. Old momentum picks stay off.
+5. Insider buys stay log-only until 30+ events are scored against SPY.
+Real-money investing is Hamilton's decision, outside this repo. Nothing here is financial advice.

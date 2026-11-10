@@ -120,3 +120,15 @@ al_d, al_h = ct.align({"A": [("2020-01-01", 1), ("2020-01-02", 2)], "B": [("2020
 check(al_d == ["2020-01-02"] and al_h == {"A": [2], "B": [5]}, "align uses shared dates")
 
 print(f"ALL PASSED {checks} checks")
+
+# 9. Control sleeves: hold tracks SPY from the freeze date, uses no future data, and report states it places no orders.
+from research import control_sleeves as cs  # noqa: E402
+cd = make_dates(500, start=date(2025, 1, 6))
+cp = series(500, lambda i: 0.001)
+fz = cd[400]
+r = cs.sleeves(cd, cp, start=fz)
+exp = cp[-1] / cp[400]
+check(abs(r["hold_spy"][1] - (exp - 1) * 100) < 1e-6, "hold sleeve equals SPY since the freeze date")
+check(abs(r["hold_spy"][0] - 2000 * exp) < 1e-6, "hold sleeve dollars")
+check("NO orders" not in cs.report(r, fz, cd[-1]) and "no orders" in cs.report(r, fz, cd[-1]), "report says no orders")
+print(f"ALL PASSED {checks} checks (with control sleeves)")
