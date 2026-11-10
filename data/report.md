@@ -1,6 +1,6 @@
 # Research report
 
-488 movers logged, 82 passed the volume check. Research only, no orders.
+489 movers logged, 83 passed the volume check. Research only, no orders.
 
 Follow-through is the return after the signal, net of BTC or SPY, in the direction of
 the original move. Positive means the move kept going. Compare passed against rejected.
@@ -13,7 +13,7 @@ Costs and slippage are not included. Treat any row under 30 signals as noise.
 | crypto | passed | 24h | 2 | -11.85 | -11.85 | 0 |
 | crypto | rejected | 1h | 206 | 0.07 | 0.11 | 57 |
 | crypto | rejected | 4h | 209 | -0.80 | -0.65 | 30 |
-| crypto | rejected | 24h | 181 | -1.59 | -1.60 | 24 |
+| crypto | rejected | 24h | 182 | -1.64 | -1.64 | 24 |
 | stocks | passed | 1h | 26 | 0.20 | 0.02 | 50 |
 | stocks | passed | 1d | 26 | -0.69 | -0.51 | 46 |
 | stocks | passed, earnings | 1h | 11 | -0.40 | -0.50 | 45 |
