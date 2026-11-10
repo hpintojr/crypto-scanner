@@ -15,6 +15,12 @@ No strategy here is proven. Nothing guarantees earnings. This is not financial a
 | hold_spy | Hold SPY | The benchmark. Everything else has to beat it. |
 | spy_trend_200 | In SPY while close > 200-day average, checked weekly, else cash | Aims for a smaller worst drop, not more return |
 | rotation_top2 | Monthly: rank SPY, QQQ, IWM, EFA, TLT, GLD, DBC by 12-1 month return, hold top 2 if above zero, else cash | Published, simple, few trades |
+| dual_momentum | Monthly: better of SPY or EFA by 12-month return if above zero, else TLT | Antonacci |
+| faber_5 | Monthly: 20% each in SPY, EFA, TLT, GLD, DBC while above its 210-day average, else cash | Faber 2007 |
+| balanced_60_40 | 60% SPY, 40% TLT | Risk-reduction benchmark |
+| all_weather | 30% SPY, 40% TLT, 15% GLD, 15% DBC | Risk-reduction benchmark |
+
+Evidence and our long-history check are in docs/EVIDENCE.md.
 
 Rejected for now: crypto momentum chasing (negative), intraday SPY rules (all lost), wallet moves and news tone (log only),
 mean reversion (needs a regime test first), insider buys (keep logging, score at 30+ events against SPY).

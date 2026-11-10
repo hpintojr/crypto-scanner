@@ -97,7 +97,23 @@ check(abs(ct.metrics(dd)["drop"] + 50.0) < 1e-9, "drawdown is the drop from the 
 res = ct.evaluate(DATES, crash)
 text = ct.report(res, DATES)
 check("## Limits" in text and "Screen against hold_spy" in text, "report has limits and screen")
-check(set(ct.verdict(res)) == {"spy_trend_200", "rotation_top2"}, "screen covers both candidates")
+check(set(ct.verdict(res)) == set(ct.RULES) - {"hold_spy"}, "screen covers every candidate")
+
+# 7b. New rules: dual momentum picks the stronger of SPY/EFA, goes to TLT when both fall; 60/40 weights; no look-ahead.
+dm = {s: series(N, lambda i: 0.0001) for s in ct.UNIVERSE}
+dm["EFA"] = series(N, lambda i: 0.001)
+check(ct.dual_momentum(dm, 600, DATES, None) == {"EFA": 1.0}, "dual momentum picks the stronger")
+dn = {s: series(N, lambda i: -0.001) for s in ct.UNIVERSE}
+check(ct.dual_momentum(dn, 600, DATES, None) == {"TLT": 1.0}, "dual momentum falls back to TLT")
+check(ct.balanced_60_40(dm, 600, DATES, None) == {"SPY": 0.6, "TLT": 0.4}, "60/40 weights")
+check(abs(sum(ct.all_weather(dm, 600, DATES, None).values()) - 1) < 1e-9, "all weather sums to 1")
+f5 = ct.faber_5(dn, 600, DATES, None)
+check(f5 == {}, "faber goes to cash when everything is below its average")
+for rule in (ct.dual_momentum, ct.faber_5):
+    pa = pb = None
+    for t in range(1, 800):
+        pa, pb = rule(a, t, DATES, pa), rule(b, t, DATES, pb)
+        check(pa == pb, f"{rule.__name__} used future data at {t}")
 
 # 8. Alignment keeps only shared dates.
 al_d, al_h = ct.align({"A": [("2020-01-01", 1), ("2020-01-02", 2)], "B": [("2020-01-02", 5), ("2020-01-03", 6)]})

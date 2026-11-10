@@ -8,6 +8,12 @@ Candidates (stocks and ETFs only, daily closes):
 - spy_trend_200: in SPY while the close is above its 200-close average (checked on the first bar of each week), else cash.
 - rotation_top2: monthly, rank SPY, QQQ, IWM, EFA, TLT, GLD, DBC by return from 12 months ago to 1 month ago.
   Hold the top 2 that are above zero, equal weight, the rest in cash.
+- dual_momentum: monthly, hold whichever of SPY or EFA has the better 12-month return if that return is above zero, else TLT
+  (Antonacci's "dual momentum", with TLT in place of a bond index).
+- faber_5: monthly, 20% each in SPY, EFA, TLT, GLD, DBC while its close is above its 210-day average, else that slice is cash
+  (Faber's tactical allocation, 10-month average).
+- balanced_60_40: 60% SPY, 40% TLT, set monthly. A risk-reduction benchmark, not a hoped-for edge.
+- all_weather: 30% SPY, 40% TLT, 15% GLD, 15% DBC, set monthly (a simple all-weather style mix).
 
 Model:
 - A weight is decided from closes up to day t and traded at the close of day t + LAG (default 1 extra day), so a signal never
@@ -32,6 +38,7 @@ LAG = 1
 UNIVERSE = ["SPY", "QQQ", "IWM", "EFA", "TLT", "GLD", "DBC"]
 TREND_DAYS = 200
 LOOKBACK, SKIP, TOP = 252, 21, 2
+SMA_210 = 210
 
 
 def hold_spy(hist, t, dates, prev):
@@ -59,7 +66,39 @@ def rotation_top2(hist, t, dates, prev):
     return {s: 1.0 / TOP for s in picks}
 
 
-RULES = {"hold_spy": hold_spy, "spy_trend_200": spy_trend_200, "rotation_top2": rotation_top2}
+def _new_month(dates, t, prev):
+    return prev is None or dates[t][:7] != dates[t - 1][:7]
+
+
+def dual_momentum(hist, t, dates, prev):
+    if not _new_month(dates, t, prev):
+        return prev
+    if t < LOOKBACK:
+        return {}
+    ret = {s: hist[s][t] / hist[s][t - LOOKBACK] - 1 for s in ("SPY", "EFA")}
+    best = max(ret, key=ret.get)
+    return {best: 1.0} if ret[best] > 0 else {"TLT": 1.0}
+
+
+def faber_5(hist, t, dates, prev):
+    if not _new_month(dates, t, prev):
+        return prev
+    if t < SMA_210:
+        return {}
+    picks = ("SPY", "EFA", "TLT", "GLD", "DBC")
+    return {s: 0.2 for s in picks if hist[s][t] > sum(hist[s][t - SMA_210 + 1:t + 1]) / SMA_210}
+
+
+def balanced_60_40(hist, t, dates, prev):
+    return {"SPY": 0.6, "TLT": 0.4} if _new_month(dates, t, prev) else prev
+
+
+def all_weather(hist, t, dates, prev):
+    return {"SPY": 0.30, "TLT": 0.40, "GLD": 0.15, "DBC": 0.15} if _new_month(dates, t, prev) else prev
+
+
+RULES = {"hold_spy": hold_spy, "spy_trend_200": spy_trend_200, "rotation_top2": rotation_top2,
+         "dual_momentum": dual_momentum, "faber_5": faber_5, "balanced_60_40": balanced_60_40, "all_weather": all_weather}
 
 
 def align(closes):
@@ -135,7 +174,8 @@ def verdict(res):
         checks = {"beats SPY after costs": m["total"] > bm["total"],
                   "beats SPY in both halves": h1 > b1 and h2 > b2,
                   "smaller worst drop than SPY": m["drop"] > bm["drop"],
-                  "still beats SPY at 5x cost": metrics(stress)["total"] > bm["total"]}
+                  "still beats SPY at 5x cost": metrics(stress)["total"] > bm["total"],
+                  "higher Sharpe than SPY (info)": m["sharpe"] > bm["sharpe"]}
         out[name] = checks
     return out
 
@@ -159,7 +199,7 @@ def report(res, dates):
               "|---|" + "--:|" * len(COST_STEPS)]
     for name in RULES:
         lines.append(f"| {name} | " + " | ".join(f"{metrics(res[name][c][0])['total']:.1f}" for c in COST_STEPS) + " |")
-    lines += ["", "## Screen against hold_spy", "", "A candidate is only worth paper testing if every line is yes.", ""]
+    lines += ["", "## Screen against hold_spy", "", "A candidate is an edge worth paper testing only if the first four lines are yes. One that fails those but wins on Sharpe and worst drop is a way to cut risk, not a way to beat SPY.", ""]
     for name, checks in verdict(res).items():
         lines.append(f"**{name}**: " + "; ".join(f"{k}: {'yes' if v else 'no'}" for k, v in checks.items()))
         lines.append("")
