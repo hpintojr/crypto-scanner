@@ -1,5 +1,5 @@
 -- Shared board for separate jobs. Paper only. The database file lives outside the repo (W/data/board.db).
--- Every table is append-only: updates and deletes are refused. One writer per table, see docs/board.md.
+-- Every table is append-only: updates and deletes are refused. One exception: messages.status (new, read, done) can be updated. One writer per table, see docs/board.md.
 -- source_key is the writer's own id for a row, so copying the same thing twice is refused.
 
 CREATE TABLE IF NOT EXISTS signals (
@@ -79,7 +79,8 @@ CREATE TRIGGER IF NOT EXISTS results_no_update BEFORE UPDATE ON results
 BEGIN SELECT RAISE(ABORT, 'results is append-only'); END;
 CREATE TRIGGER IF NOT EXISTS results_no_delete BEFORE DELETE ON results
 BEGIN SELECT RAISE(ABORT, 'results is append-only'); END;
-CREATE TRIGGER IF NOT EXISTS messages_no_update BEFORE UPDATE ON messages
-BEGIN SELECT RAISE(ABORT, 'messages is append-only'); END;
+-- messages: status is the one allowed update. Any other column, named in an UPDATE, is refused.
+CREATE TRIGGER IF NOT EXISTS messages_status_only BEFORE UPDATE OF id, from_job, to_job, body, created_at ON messages
+BEGIN SELECT RAISE(ABORT, 'messages: only status can be updated'); END;
 CREATE TRIGGER IF NOT EXISTS messages_no_delete BEFORE DELETE ON messages
 BEGIN SELECT RAISE(ABORT, 'messages is append-only'); END;

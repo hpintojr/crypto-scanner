@@ -142,6 +142,9 @@ def main():
             with open(STATE, "w") as f:
                 json.dump(state, f)
         counts = {t: db.execute(f"SELECT COUNT(*) FROM {t}").fetchone()[0] for t in TABLES}
+        trig = {n for (n,) in db.execute("SELECT name FROM sqlite_master WHERE type = 'trigger' AND tbl_name = 'messages'")}
+        if "messages_no_update" in trig:
+            errors.append("messages: old messages_no_update trigger present, run python3 -m board.migrate")
     except Exception as e:
         errors.append(f"board: {type(e).__name__}: {e}")
         counts, state = {}, {}
@@ -151,6 +154,7 @@ def main():
              "- Tables: " + (", ".join(f"{t} {counts[t]}" for t in TABLES) if counts else "not readable"),
              "- Added this run: " + (", ".join(f"{k} {v}" for k, v in added.items()) or "none"),
              f"- Last export: {state.get('exported') or 'none'} (data/board-export.csv)",
+             "- Messages: status (new, read, done) is the one allowed update; other columns and deletes refused",
              f"- Errors: {len(errors)}"] + [f"  - {e}" for e in errors]
     with open(os.path.join(DATA, "board-status.md"), "w") as f:
         f.write("\n".join(lines) + "\n")

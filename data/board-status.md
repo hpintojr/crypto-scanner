@@ -2,8 +2,9 @@
 
 Shared database, copy only. No job reads from it yet. Paper only.
 
-- Last mirror: 2026-11-10T20:53:55Z (0.1s)
-- Tables: signals 628, proposed_orders 53, orders 0, results 1446, messages 0
-- Added this run: signals 628, proposed_orders 53, results 1446
+- Last mirror: 2026-11-10T21:00:27Z (0.0s)
+- Tables: signals 630, proposed_orders 53, orders 0, results 1448, messages 0
+- Added this run: signals 0, proposed_orders 0, results 0
 - Last export: 2026-11-10 (data/board-export.csv)
+- Messages: status (new, read, done) is the one allowed update; other columns and deletes refused
 - Errors: 0
