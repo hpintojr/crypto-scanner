@@ -532,3 +532,7 @@ a7c35b247f9c,2026-11-10T14:40:42Z,stocks,BKNG,BKNG,BKNG,163.32,SPY,749.115,-0.21
 5b81ced1fbc1,2026-11-10T14:40:43Z,stocks,HON,HON,HON,228.605,SPY,749.115,0.174,93607,0,0,1,,poc_touch,,poc=228.208;vah=229.693;val=227.409;sweep=no;from=above;stop=227.86;target=230.84
 bc5bfd9a3aaa,2026-11-10T14:40:43Z,stocks,META,META,META,642.1,SPY,749.115,0.011,839003,0,0,0,,poc_touch,,poc=642.033;vah=642.996;val=638.501;sweep=no;from=below;stop=639.06;target=651.22
 4d41d38f16d5,2026-11-10T14:40:43Z,stocks,MCD,MCD,MCD,281.655,SPY,749.115,-0.016,158976,0,0,0,,poc_touch,,poc=281.701;vah=283.249;val=280.435;sweep=no;from=above;stop=282.44;target=279.3
+dd494b2e0396,2026-11-10T14:45:52Z,stocks,AMZN,AMZN,AMZN,271.07,SPY,749.25,2.102,223484,320658.5,0.697,0,14,move_1h,no,
+c201e7c92d48,2026-11-10T14:45:53Z,stocks,C,C,C,122.53,SPY,749.25,0.256,471424,0,0,1,,poc_touch,,poc=122.217;vah=122.399;val=120.818;sweep=no;from=above;stop=122.15;target=123.67
+4f600272eec6,2026-11-10T14:45:53Z,stocks,INTU,INTU,INTU,338.3,SPY,749.25,-0.099,115258,0,0,1,,poc_touch,,poc=338.635;vah=340.839;val=337.11;sweep=no;from=below;stop=338.7;target=337.1
+7184dcb80aad,2026-11-10T14:45:53Z,stocks,UNP,UNP,UNP,296.31,SPY,749.25,-0.072,114788,0,0,0,,poc_touch,,poc=296.522;vah=297.261;val=295.192;sweep=no;from=above;stop=296.77;target=294.93
