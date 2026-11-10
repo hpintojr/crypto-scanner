@@ -69,3 +69,5 @@ Rules that cut the worst drop did it by giving up much of the return. Conclusion
 4. Old momentum picks stay off.
 5. Insider buys stay log-only until 30+ events are scored against SPY.
 Real-money investing is Hamilton's decision, outside this repo. Nothing here is financial advice.
+
+Approved in writing by Hamilton on 2026-11-10 at 14:24 PT: all five points in this section. The frozen plan's 90-day clock is unchanged.
