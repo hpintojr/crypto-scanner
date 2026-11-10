@@ -7,3 +7,4 @@ Verdict rule: 'holding' when the laggard basket leads SPY by over 1 point since 
 | Date | SPY | SPY day % | RSP day % | RSP-SPY since | VIXY day % | SPY 20d vol | Laggards since % | Lag-SPY since | Sectors since % | Adv/Dec | >2% day | Verdict |
 |---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|---|---|
 | 2026-11-09 | 752.72 | 2.36 | 2.27 | -0.75 | -13.41 | 22.1 | -0.98 | -3.61 | 2.13 | 84/15 | yes | weakening |
+| 2026-11-10 | 749.93 | -0.37 | -0.04 | -0.41 | -0.11 | 22.1 | -1.2 | -3.45 | 2.46 | 53/46 | no | weakening |
