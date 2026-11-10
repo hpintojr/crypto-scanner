@@ -495,3 +495,11 @@ f58356e82311,2026-11-10T12:05:20Z,crypto,VVV,venice-token,Venice Token,20.04,BTC
 3b0c070f838b,2026-11-10T13:35:12Z,crypto,BTC,bitcoin,BTC,73893.85,BTC,73893.85,-0.632,1.346210186,0,0,1,,poc_touch,,poc=74363.5;vah=74923.4;val=74027.5;sweep=no;from=below;stop=74722.2;target=71408.9
 399895a005f0,2026-11-10T13:40:13Z,stocks,INTC,INTC,INTC,57.15,SPY,749.27,-3.739,0,0,0,0,3,premarket_gap,yes,
 f4503580c75d,2026-11-10T14:00:20Z,crypto,BTW,bitway,Bitway,1.004,BTC,73799,4.689,3381654,6714797.39,0.504,0,,move_1h,,
+7d357d16253c,2026-11-10T14:31:48Z,stocks,ABT,ABT,ABT,110.52,SPY,747.41,0.053,396577,0,0,1,,poc_touch,,poc=110.462;vah=111.182;val=109.963;sweep=no;from=above;stop=110.33;target=111.09
+5b299f900078,2026-11-10T14:31:49Z,stocks,CMCSA,CMCSA,CMCSA,24.48,SPY,747.41,-0.013,1855291,0,0,0,,poc_touch,,poc=24.4833;vah=24.692;val=24.4464;sweep=no;from=above;stop=24.56;target=24.24
+cdbee2d1f5dc,2026-11-10T14:31:49Z,stocks,NVDA,NVDA,NVDA,172.8,SPY,747.41,-0.28,25159679,0,0,0,,poc_touch,,poc=173.286;vah=177.981;val=173.197;sweep=no;from=above;stop=174.66;target=167.22
+4f7a99a01236,2026-11-10T14:31:49Z,stocks,PFE,PFE,PFE,29.245,SPY,747.41,-0.122,2487936,0,0,1,,poc_touch,,poc=29.2806;vah=29.3831;val=29.1782;sweep=yes;from=below;stop=29.29;target=29.11
+c2909bc7f11d,2026-11-10T14:31:50Z,stocks,RTX,RTX,RTX,197.18,SPY,747.41,0.43,128573,0,0,0,,poc_touch,,poc=196.335;vah=197.019;val=195.261;sweep=no;from=below;stop=196.025;target=200.645
+c439238ce5d3,2026-11-10T14:31:50Z,stocks,VZ,VZ,VZ,45.88,SPY,747.41,-0.503,1234222,0,0,1,,poc_touch,,poc=46.1118;vah=46.227;val=45.9506;sweep=no;from=below;stop=46.18;target=44.98
+24724cb164eb,2026-11-10T14:31:50Z,stocks,WMT,WMT,WMT,125.24,SPY,747.41,-0.259,1273123,0,0,0,,poc_touch,,poc=125.565;vah=125.877;val=124.378;sweep=no;from=above;stop=125.73;target=123.77
+66ac5cb44963,2026-11-10T14:31:50Z,stocks,V,V,V,422.58,SPY,747.41,-0.21,458283,0,0,1,,poc_touch,,poc=423.467;vah=424.948;val=421.141;sweep=no;from=below;stop=423.64;target=419.4
