@@ -12,7 +12,7 @@ Treat any row under 30 signals as noise.
 | crypto | broke | no sweep | 24h | 3 | -0.131 | 33 |
 | crypto | broke | no sweep | 4h | 6 | -0.063 | 50 |
 | crypto | held | no sweep | 1h | 8 | +0.007 | 25 |
-| crypto | held | no sweep | 24h | 5 | +2.734 | 80 |
+| crypto | held | no sweep | 24h | 6 | +2.397 | 83 |
 | crypto | held | no sweep | 4h | 8 | -0.162 | 0 |
 | stocks | broke | no sweep | 1h | 27 | +0.673 | 67 |
 | stocks | broke | sweep | 1h | 1 | -0.209 | 0 |
