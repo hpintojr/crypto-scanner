@@ -30,7 +30,7 @@ import os
 from datetime import date, timedelta
 from . import backtest, core, stocks
 
-START, END = date(2017, 1, 1)  # asks for 2017; Alpaca's IEX history really starts in July 2020, date.today() - timedelta(days=1)
+START, END = date(2017, 1, 1), date.today() - timedelta(days=1)  # asks for 2017; Alpaca's IEX history really starts in July 2020
 WARMUP_DAYS = 420
 COST_PCT = 0.05
 COST_STEPS = (0.0, COST_PCT, COST_PCT * 2, COST_PCT * 5)
