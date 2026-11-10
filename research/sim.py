@@ -388,7 +388,8 @@ def _update_trends(s, creds, today):
 
 def _sell_position(s, creds, p, reason):
     crypto = p.get("market") == "crypto"
-    sell_id = f"sim-sell-{p['symbol'].replace('/', '')}-{core.now():%Y%m%d%H%M}"
+    lot = "".join(ch for ch in str(p.get("opened", "")) if ch.isdigit())[-14:] or "x"
+    sell_id = f"sim-sell-{p['symbol'].replace('/', '')}-{core.now():%Y%m%d%H%M}-{lot}"  # unique per lot
     qty = p["qty"]
     if crypto:
         held_qty = stocks._get(PAPER_URL, f"/v2/positions/{p['symbol'].replace('/', '')}", creds).get("qty")
