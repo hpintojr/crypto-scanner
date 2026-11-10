@@ -4,17 +4,18 @@ The frozen plan is behind holding SPY since the Nov 7 freeze: plan -1.83% vs SPY
 
 ## Numbers
 
-As of 2026-11-10. Paper money only.
+As of 2026-11-10. Paper money only. Percentages since the 2026-11-07 freeze.
 
-| | Value $ | Since freeze % | Worst drop so far | Source |
-|---|--:|--:|--:|---|
-| Frozen plan | 1,884.73 | -1.83 | -1.83% | data/sim.md |
-| hold_spy | 2,039.52 | +1.98 | not reported | data/control-sleeves.md |
-| spy_trend_200 | 2,039.52 | +1.98 | not reported | data/control-sleeves.md |
+| | Since freeze % | Worst drop so far | Source |
+|---|--:|--:|---|
+| Frozen plan | -1.83 | -1.83% | data/sim.md |
+| hold_spy | +1.98 | not reported | data/control-sleeves.md |
+| spy_trend_200 | +1.98 | not reported | data/control-sleeves.md |
 
-- The frozen plan's $1,884.73 is the whole $2,000 simulation since it started on 2026-11-05, including losses from the older plan before the freeze (data/sim.md). Its since-freeze % and worst drop come from the graduation checklist in data/sim.md.
-- data/control-sleeves.md has no worst-drop column. data/sim.md lists SPY's worst drop since the freeze as -0.37%.
-- The two files give different SPY numbers since the freeze: +1.88% (data/sim.md) and +1.98% (data/control-sleeves.md). I have not checked why; comparing the start price each file uses would settle it.
+- The SPY since-freeze % differs between files: +1.88% (data/sim.md) and +1.98% (data/control-sleeves.md).
+- data/sim.md lists SPY's worst drop since the freeze as -0.37%. data/control-sleeves.md has no worst-drop column.
+- Sleeve values: hold_spy $2,039.52 and spy_trend_200 $2,039.52, each from a $2,000 start on 2026-11-07 (data/control-sleeves.md).
+- Whole simulation: $1,884.73 of $2,000 (-5.76%) since it started on 2026-11-05, including the older plan before the freeze (data/sim.md).
 
 ## Graduation checklist
 
@@ -30,17 +31,17 @@ From data/sim.md: 1 of 5 met. Day 3 of 90 (since 2026-11-07).
 
 ## Problems
 
-No earlier report exists, so this covers the freeze (2026-11-07) to 2026-11-10.
+- Scanner cycles today: 167 started, 166 finished (scanner.log)
+- Skipped for time today: allocation, backtest, holdings, laggards, movers (status.md history)
 
-- Sim errors: none. data/sim.md shows 3 clean days; status.md shows "Simulation flags: none" and "Errors this cycle: 0" for the last run.
+Since the previous report (commit 38689b8):
+
+- Sim errors: none. status.md shows "Simulation flags: none" and "Errors this cycle: 0".
 - Quantity mismatches: none (data/sim.md, 3 clean days).
 - Failed orders: none found in data/sim-trades.csv.
 - Data gaps:
-  - Wallet watch: repeated HTTP 500 and read-timeout errors from the wallet data source across many cycles (status.md history). Log only; the sim does not use it.
-  - Form 4: SEC returned HTTP 403; the step is paused until 2026-11-11T01:40:49Z (status.md).
-  - CoinGecko: HTTP 429 (too many requests) errors in some cycles (status.md history).
-  - Slow cycles: some cycles skipped research steps for time, for example "holdings, backtest, movers, allocation, laggards" (status.md history).
-  - Unfinished cycles: 849 starts and 845 finishes logged since 2026-11-07 (scanner.log). The 2026-11-10T22:00 cycle was stopped at the 290-second limit and not committed.
+  - No scanner cycle has started since 2026-11-10T22:15:06Z (scanner.log, checked at 22:28Z); the 22:20 and 22:25 cycles are missing.
+  - Form 4: paused until 2026-11-11T01:40:49Z after SEC said HTTP 403 (status.md).
 
 ## Next dates
 
