@@ -1,6 +1,6 @@
 # Previous-session POC test
 
-149 touches logged. Research only, no orders. Rules are in research/poc.py.
+150 touches logged. Research only, no orders. Rules are in research/poc.py.
 
 Return is the move after the touch in the direction the closing bar pointed, before costs.
 'Held' means the touch bounced; 'broke' means price closed through the POC. Stock volume is IEX only.
@@ -19,4 +19,4 @@ Treat any row under 30 signals as noise.
 | stocks | broke | sweep | 1h | 1 | -0.209 | 0 |
 | stocks | held | no sweep | 1d | 27 | -0.229 | 52 |
 | stocks | held | no sweep | 1h | 58 | +0.074 | 52 |
-| stocks | held | sweep | 1h | 1 | +0.496 | 100 |
+| stocks | held | sweep | 1h | 2 | +0.735 | 100 |
