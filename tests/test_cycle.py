@@ -209,6 +209,7 @@ def main():
     scanner.research_backtest.cycle = lambda *a: None  # tested on known prices further down
     scanner.research_allocation.cycle = lambda *a: None  # tested on known prices further down
     scanner.research_movers.cycle = lambda *a: None  # tested on known prices further down
+    scanner.research_control_sleeves.cycle = lambda *a: None  # its gate is tested in tests/test_candidates.py
     scanner.git = lambda *a: type("R", (), {"returncode": 0, "stderr": "", "stdout": ""})()
     urllib.request.urlopen = fake_urlopen
 

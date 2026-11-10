@@ -131,4 +131,15 @@ exp = cp[-1] / cp[400]
 check(abs(r["hold_spy"][1] - (exp - 1) * 100) < 1e-6, "hold sleeve equals SPY since the freeze date")
 check(abs(r["hold_spy"][0] - 2000 * exp) < 1e-6, "hold sleeve dollars")
 check("NO orders" not in cs.report(r, fz, cd[-1]) and "no orders" in cs.report(r, fz, cd[-1]), "report says no orders")
+# 10. The once-a-day gate: after the close only, weekdays only, never twice for one day.
+from zoneinfo import ZoneInfo  # noqa: E402
+from datetime import datetime  # noqa: E402
+ET = ZoneInfo("America/New_York")
+tue_eve = datetime(2026, 11, 10, 17, 30, tzinfo=ET)
+check(cs.due_day(tue_eve, False, None) == date(2026, 11, 10), "writes Tuesday after the close")
+check(cs.due_day(tue_eve, True, None) is None, "not while the market is open")
+check(cs.due_day(tue_eve, False, "2026-11-10") is None, "not twice for one day")
+check(cs.due_day(datetime(2026, 11, 11, 9, 0, tzinfo=ET), False, None) == date(2026, 11, 10), "morning after still writes the prior day")
+check(cs.due_day(datetime(2026, 11, 14, 12, 0, tzinfo=ET), False, None) == date(2026, 11, 13), "Saturday writes Friday")
+check(cs.due_day(datetime(2026, 11, 15, 18, 0, tzinfo=ET), False, None) is None, "Sunday has no trading day")
 print(f"ALL PASSED {checks} checks (with control sleeves)")

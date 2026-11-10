@@ -4,7 +4,7 @@ One invocation = one cycle. Run from the Otto schedule, or via run.sh or cron, n
 import csv, fcntl, hashlib, json, os, re, subprocess, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
-from research import allocation as research_allocation, backtest as research_backtest, core as research_core, form4 as research_form4, holdings as research_holdings, laggards as research_laggards, movers as research_movers, poc as research_poc, sim as research_sim, stocks as research_stocks, wallets as research_wallets
+from research import allocation as research_allocation, backtest as research_backtest, control_sleeves as research_control_sleeves, core as research_core, form4 as research_form4, holdings as research_holdings, laggards as research_laggards, movers as research_movers, poc as research_poc, sim as research_sim, stocks as research_stocks, wallets as research_wallets
 
 REPO = os.path.dirname(os.path.abspath(__file__))
 CG = "https://api.coingecko.com/api/v3"
@@ -254,7 +254,8 @@ def research(state, creds):
              ("backtest", lambda: research_backtest.cycle(state, errors, creds)),
              ("movers", lambda: research_movers.cycle(state, errors, creds)),
              ("allocation", lambda: research_allocation.cycle(state, errors, creds)),
-             ("laggards", lambda: research_laggards.cycle(state, errors, creds))]
+             ("laggards", lambda: research_laggards.cycle(state, errors, creds)),
+             ("control sleeves", lambda: research_control_sleeves.cycle(state, errors, creds))]
     skipped = []
     for name, fn in steps:
         if over_budget():
