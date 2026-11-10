@@ -617,3 +617,4 @@ f36e73b584b2,2026-11-10T18:55:39Z,stocks,ABBV,ABBV,ABBV,293.29,SPY,747.83,0.094,
 b6c524487774,2026-11-10T19:30:58Z,stocks,META,META,META,641.85,SPY,748.56,-0.028,839003,0,0,1,,poc_touch,,poc=642.033;vah=642.996;val=638.501;sweep=no;from=below;stop=642.21;target=640.77
 a620e7ab06be,2026-11-10T19:40:43Z,stocks,QCOM,QCOM,QCOM,171.49,SPY,748.33,-0.083,521735,0,0,1,,poc_touch,,poc=171.633;vah=174.673;val=171.373;sweep=no;from=below;stop=171.73;target=170.77
 3366fef4478a,2026-11-10T19:45:49Z,stocks,TSLA,TSLA,TSLA,378.2,SPY,748.67,-0.035,905666,0,0,1,,poc_touch,,poc=378.334;vah=381.169;val=375.121;sweep=no;from=below;stop=378.66;target=376.82
+d4cdd018c46a,2026-11-10T19:55:45Z,stocks,DIS,DIS,DIS,119.06,SPY,749.01,-0.004,333919,0,0,0,,poc_touch,,poc=119.065;vah=119.361;val=117.941;sweep=no;from=above;stop=119.15;target=118.79
