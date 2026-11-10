@@ -1,33 +1,28 @@
 # Scanner status
 
-- Last run: 2026-11-10T08:58:38Z
+- Last run: 2026-11-10T09:01:01Z
 - Host: otto-16usdmc576-067297
-- Step seconds: simulation 4, crypto scan 0, buzz 0, watchlist 0, stocks 0, score crypto 0, score stocks 0, form 4 0, wallets 207, holdings 0, backtest 0, movers 0, allocation 0, poc 1, laggards 0
-- Requests this cycle: api.coingecko.com 1, data.alpaca.markets 10, eth.blockscout.com 20, mempool.space 5, paper-api.alpaca.markets 4
-- Skipped for time: holdings, backtest, movers, allocation, laggards
-- Last scan: 2026-11-10T08:55:10Z: 0 movers >3% 1h, 0 kept after 2x volume check
+- Step seconds: simulation 4, crypto scan 6, buzz 0, watchlist 0, stocks 0, score crypto 0, score stocks 0, form 4 0, wallets 43, holdings 0, backtest 0, movers 0, allocation 0, poc 1, laggards 0
+- Requests this cycle: api.coingecko.com 1, data.alpaca.markets 10, eth.blockscout.com 12, mempool.space 8, paper-api.alpaca.markets 5, s1.ripple.com 1
+- Skipped for time: none
+- Last scan: 2026-11-10T09:00:16Z: 0 movers >3% 1h, 0 kept after 2x volume check
 - Last flag: 2026-11-10T05:10:13Z PIEVERSE
-- Last stock scan: 2026-11-10T08:55:10Z: market closed
+- Last stock scan: 2026-11-10T09:00:16Z: market closed
 - Laggards watch: 2026-11-09: weakening, laggards vs SPY since 2026-11-05 -3.61 pts
-- Last POC log: 2026-11-10T08:55:11Z: 0 POC touches logged
+- Last POC log: 2026-11-10T09:00:17Z: 0 POC touches logged
 - Last watchlist snapshot: 2026-11-10T08:30:13Z
 - Last pre-market gap check: 2026-11-09T14:25:10Z: 4 of 100 stocks gapped 3%+ pre-market
-- Last Form 4 run: 2026-11-10T08:55:11Z: paused until 2026-11-10T09:35:10Z after SEC said HTTP 403
+- Last Form 4 run: 2026-11-10T09:00:17Z: paused until 2026-11-10T09:35:10Z after SEC said HTTP 403
 - $2,000 paper simulation: value $1,904.71 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09
 - Simulation flags: none
 - Graduation checklist: 1 of 5 conditions met (data/sim.md)
 - Strategy test: 2026-11-09: 500 trading days tested, see data/backtest.md
 - Hold test: -17.37% since 2026-11-05, BTC -7.17%
-- Wallet watch: 11 checked this cycle, 63 enabled in rotation, 2 new moves
-- Measured time between runs: 7 min
-- Next run: ~2026-11-10T09:05:38Z
+- Wallet watch: 14 checked this cycle, 63 enabled in rotation, 0 new moves
+- Measured time between runs: 2 min
+- Next run: ~2026-11-10T09:03:01Z
 - Inbox: no pending requests
-- Errors this cycle: 6
-  - wallet Binance: TimeoutError: The read operation timed out
+- Errors this cycle: 1
   - wallet Binance: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet Binance: TimeoutError: The read operation timed out
-  - wallet Binance: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet Deribit: HTTPError: HTTP Error 500: Internal Server Error
-  - wallet Deribit: HTTPError: HTTP Error 500: Internal Server Error
 
 Paper only, approved by Hamilton. No real money. No keys in this repo. Create SIM_STOP to stop new orders.
