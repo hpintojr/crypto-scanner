@@ -615,3 +615,4 @@ f36e73b584b2,2026-11-10T18:55:39Z,stocks,ABBV,ABBV,ABBV,293.29,SPY,747.83,0.094,
 9a02b5cb9375,2026-11-10T19:25:42Z,stocks,GE,GE,GE,335.92,SPY,748.37,-0.003,205520,0,0,1,,poc_touch,,poc=335.931;vah=337.432;val=333.429;sweep=no;from=below;stop=336.33;target=334.69
 48a513617846,2026-11-10T19:25:43Z,stocks,PFE,PFE,PFE,29.25,SPY,748.37,-0.013,2576628,0,0,1,,poc_touch,,poc=29.2538;vah=29.5325;val=29.2098;sweep=no;from=below;stop=29.255;target=29.235
 b6c524487774,2026-11-10T19:30:58Z,stocks,META,META,META,641.85,SPY,748.56,-0.028,839003,0,0,1,,poc_touch,,poc=642.033;vah=642.996;val=638.501;sweep=no;from=below;stop=642.21;target=640.77
+a620e7ab06be,2026-11-10T19:40:43Z,stocks,QCOM,QCOM,QCOM,171.49,SPY,748.33,-0.083,521735,0,0,1,,poc_touch,,poc=171.633;vah=174.673;val=171.373;sweep=no;from=below;stop=171.73;target=170.77
