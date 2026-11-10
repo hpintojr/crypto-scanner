@@ -6,14 +6,14 @@
   "pieverse": "2026-11-10T01:05:16Z",
   "the-open-network": "2026-11-10T03:05:14Z"
  },
- "last_watch": "2026-11-10T02:30:18Z",
+ "last_watch": "2026-11-10T03:30:13Z",
  "last_flag": "2026-11-10T03:05:13Z GRAM",
  "inbox_hash": "7f9d95d9402f57d8ca4e2efcc4825389ad5a7c320a8cdcf4c91a9942e2ae11dc",
  "answers_hash": "4433d13ee12e546443e456514dc71497b1ddda7690e898314eb6abfc6d4d4bba",
  "pending_request": false,
- "last_scan": "2026-11-10T03:25:09Z: 1 movers >3% 1h, 0 kept after 2x volume check",
+ "last_scan": "2026-11-10T03:30:11Z: 1 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-10T03:25:10Z: market closed",
+ "last_stock_scan": "2026-11-10T03:30:14Z: market closed",
  "form4": {
   "next_day": "2026-11-07",
   "offset": 0,
@@ -22,10 +22,10 @@
   "blocked_until": "2026-11-10T09:35:10Z",
   "last_run": "2026-11-10T01:35:10Z"
  },
- "last_form4": "2026-11-10T03:25:10Z: paused until 2026-11-10T09:35:10Z after SEC said HTTP 403",
- "last_run": "2026-11-10T03:26:10Z",
- "cycle_minutes": 5,
- "last_sim": "value $1,906.03 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09",
+ "last_form4": "2026-11-10T03:30:15Z: paused until 2026-11-10T09:35:10Z after SEC said HTTP 403",
+ "last_run": "2026-11-10T03:32:15Z",
+ "cycle_minutes": 6,
+ "last_sim": "value $1,905.19 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09",
  "signal_seen": {
   "crypto:PIEVERSE:move_1h:1": "2026-11-10T01:05:13Z",
   "crypto:STABLE:move_1h:0": "2026-11-10T01:05:16Z",
@@ -1011,6 +1011,8 @@
    "d21eb2bf2588f7248a30c07c88e8215465e8cd5594dac946b8853529480746c0"
   ],
   "bc1qr4dl5wa7kl8yu792dceg9z5knl2gkn220lk7a9": [
+   "54e20f69343e986d8e693c208774b2ec0584b1abec50143453d34abfbe4ffc95",
+   "f062026deacfdb8bf9656b3682fd3c97a11c0964688b7a9de0b9d99efc0d61a4",
    "dd2ed55266c6d394e180764697e4df32fb85a76ec7b13a86a7e10af3835d9a7c",
    "ef4a5219e5bb683def48e6154782a825c011b2c86b5c6fe29f25029d2bea14d9",
    "ab7c03120e5772c5b391018cea808aad0b7c4a5c426c63a193d3d1c4c45e98f1",
@@ -1058,9 +1060,7 @@
    "6e243ea9ed1a6d80a6616abe94872824500b7be7254c99c18debddb441c48b42",
    "34c0e92891696a1ece6958c947b832ce240ad2a2890aec962e2e9ea870643174",
    "cc873f6eb33fdc46d259aa8f11644306f7a13b40f5247be02fa4f4dfc46ed7ea",
-   "7af72cb5b0a2c2d5c96b2adfac950217be97df56c56c4e46d86b81d21de5bda4",
-   "c922d76513f8b09250953f45e2a6161cc9167c8fb67176a21e9feb6a25ebb225",
-   "024c7ec703a12ded9695e4774bf3a7c521350f57e57efd903dd7ea7b31434855"
+   "7af72cb5b0a2c2d5c96b2adfac950217be97df56c56c4e46d86b81d21de5bda4"
   ],
   "bc1q4c8n5t00jmj8temxdgcc3t32nkg2wjwz24lywv": [
    "06af20fcbecf28800200117a8e12ec46431606d0d45ca0e4f94339093a8b70e7",
@@ -3318,14 +3318,14 @@
    "0x2a13d3e63037cb9c142fbf53170958c7c6041eb340f8947302a937181ebbb348:960"
   ]
  },
- "last_wallets": "13 checked this cycle, 63 enabled in rotation, 1 new moves",
- "holdings_checked": "2026-11-10T02:31:48Z",
- "last_holdings": "-17.22% since 2026-11-05, BTC -6.94%",
+ "last_wallets": "11 checked this cycle, 63 enabled in rotation, 1 new moves",
+ "holdings_checked": "2026-11-10T03:32:09Z",
+ "last_holdings": "-17.22% since 2026-11-05, BTC -7.17%",
  "preview_checked": "2026-11-05T11:00:28Z",
- "wallets_offset": 27,
+ "wallets_offset": 42,
  "backtest_date": "2026-11-09",
  "last_backtest": "2026-11-09: 500 trading days tested, see data/backtest.md",
- "movers_checked": "2026-11-10T02:31:54Z",
+ "movers_checked": "2026-11-10T03:32:15Z",
  "last_flags": "none",
  "backtest_version": 2,
  "allocation_version": 2,
@@ -3334,21 +3334,21 @@
   "simulation": 3,
   "crypto scan": 0,
   "buzz": 0,
-  "watchlist": 0,
-  "stocks": 0,
+  "watchlist": 2,
+  "stocks": 1,
   "score crypto": 0,
   "score stocks": 0,
   "form 4": 0,
-  "wallets": 59,
+  "wallets": 115,
   "holdings": 0,
   "backtest": 0,
-  "movers": 0,
+  "movers": 5,
   "allocation": 0,
   "poc": 1,
   "laggards": 0
  },
  "skipped_steps": [],
  "graduation": "1 of 5 conditions met",
- "last_poc": "2026-11-10T03:25:10Z: 0 POC touches logged",
+ "last_poc": "2026-11-10T03:30:15Z: 0 POC touches logged",
  "last_laggards": "2026-11-09: weakening, laggards vs SPY since 2026-11-05 -3.61 pts"
 }
