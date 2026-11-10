@@ -12,7 +12,7 @@ Costs and slippage are not included. Treat any row under 30 signals as noise.
 | crypto | passed | 4h | 8 | 1.32 | 0.78 | 50 |
 | crypto | passed | 24h | 3 | -6.88 | -11.58 | 33 |
 | crypto | rejected | 1h | 222 | 0.14 | 0.14 | 58 |
-| crypto | rejected | 4h | 212 | -0.75 | -0.65 | 31 |
+| crypto | rejected | 4h | 213 | -0.62 | -0.65 | 31 |
 | crypto | rejected | 24h | 192 | -1.72 | -1.70 | 24 |
 | stocks | passed | 1h | 26 | 0.20 | 0.02 | 50 |
 | stocks | passed | 1d | 26 | -0.69 | -0.51 | 46 |
