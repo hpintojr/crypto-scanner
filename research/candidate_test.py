@@ -30,7 +30,7 @@ import os
 from datetime import date, timedelta
 from . import backtest, core, stocks
 
-START, END = date(2017, 1, 1), date.today() - timedelta(days=1)
+START, END = date(2017, 1, 1)  # asks for 2017; Alpaca's IEX history really starts in July 2020, date.today() - timedelta(days=1)
 WARMUP_DAYS = 420
 COST_PCT = 0.05
 COST_STEPS = (0.0, COST_PCT, COST_PCT * 2, COST_PCT * 5)
@@ -204,7 +204,7 @@ def report(res, dates):
         lines.append(f"**{name}**: " + "; ".join(f"{k}: {'yes' if v else 'no'}" for k, v in checks.items()))
         lines.append("")
     lines += ["## Limits", "",
-              "- One backtest is a screen, not proof. A few years can be luck, and the 2017 start has one long bull market in it.",
+              "- One backtest is a screen, not proof. A few years can be luck. The IEX feed only starts in mid 2020, so the window is mostly one bull market plus 2022.",
               "- Survivor ETFs, IEX-only prices, close fills and 0% on cash all flatter the result.",
               "- Rules and lookbacks were fixed before the run. Changing them after seeing this table is how a rule gets overfit.",
               "- No candidate trades. Promotion to paper needs Hamilton's written approval and restarts nothing in the frozen plan."]

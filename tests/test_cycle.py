@@ -199,6 +199,7 @@ def main():
     form4.SALES_LOG = os.path.join(tmp, "form4-sales.csv")
     form4.RUN_EVERY_HOURS = 0  # the full-cycle tests want Form 4 on every run; the 8-hour gap has its own test
     wallets.LIST = os.path.join(tmp, "no-wallets.csv")  # keep real wallets out of the simulated cycles
+    holdings.DIR = tmp  # keep the real private hold list out of the simulated cycles; it has its own test further down
     form4.edgar.CACHE = os.path.join(tmp, "cache")
     form4.edgar.time.sleep = lambda s: None
     state0 = {"buzz": {}, "form4": {"next_day": "2026-11-03", "offset": 0}}
