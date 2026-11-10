@@ -1,26 +1,26 @@
 # Scanner status
 
-- Last run: 2026-11-10T22:16:17Z
+- Last run: 2026-11-10T22:41:44Z
 - Host: otto-16usdmc576-067297
-- Step seconds: simulation 3, crypto scan 0, buzz 0, watchlist 0, stocks 0, score crypto 0, score stocks 0, form 4 0, wallets 51, holdings 0, backtest 0, movers 9, allocation 0, poc 1, laggards 5
-- Requests this cycle: api.coingecko.com 2, data.alpaca.markets 23, eth.blockscout.com 16, mempool.space 7, paper-api.alpaca.markets 5
+- Step seconds: simulation 4, crypto scan 0, buzz 0, watchlist 0, stocks 0, score crypto 0, score stocks 0, form 4 0, wallets 36, holdings 0, backtest 0, movers 0, allocation 0, poc 1, laggards 0
+- Requests this cycle: api.coingecko.com 2, data.alpaca.markets 10, eth.blockscout.com 18, mempool.space 5, paper-api.alpaca.markets 5, s1.ripple.com 1
 - Skipped for time: none
-- Last scan: 2026-11-10T22:15:10Z: 1 movers >3% 1h, 0 kept after 2x volume check
+- Last scan: 2026-11-10T22:41:07Z: 1 movers >3% 1h, 0 kept after 2x volume check
 - Last flag: 2026-11-10T17:10:14Z PIEVERSE
-- Last stock scan: 2026-11-10T22:15:10Z: market closed
+- Last stock scan: 2026-11-10T22:41:07Z: market closed
 - Laggards watch: 2026-11-10: weakening, laggards vs SPY since 2026-11-05 -3.45 pts
-- Last POC log: 2026-11-10T22:15:11Z: 0 POC touches logged
-- Last watchlist snapshot: 2026-11-10T21:30:12Z
+- Last POC log: 2026-11-10T22:41:08Z: 0 POC touches logged
+- Last watchlist snapshot: 2026-11-10T22:41:07Z
 - Last pre-market gap check: 2026-11-10T14:25:09Z: 1 of 100 stocks gapped 3%+ pre-market
-- Last Form 4 run: 2026-11-10T22:15:11Z: paused until 2026-11-11T01:40:49Z after SEC said HTTP 403
-- $2,000 paper simulation: value $1,884.73 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09
+- Last Form 4 run: 2026-11-10T22:41:08Z: paused until 2026-11-11T01:40:49Z after SEC said HTTP 403
+- $2,000 paper simulation: value $1,883.23 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09
 - Simulation flags: none
 - Graduation checklist: 1 of 5 conditions met (data/sim.md)
 - Strategy test: 2026-11-10: 501 trading days tested, see data/backtest.md
 - Hold test: -19.45% since 2026-11-05, BTC -8.07%
-- Wallet watch: 15 checked this cycle, 63 enabled in rotation, 0 new moves
-- Measured time between runs: 3 min
-- Next run: ~2026-11-10T22:19:17Z
+- Wallet watch: 15 checked this cycle, 63 enabled in rotation, 3 new moves
+- Measured time between runs: 25 min
+- Next run: ~2026-11-10T23:06:44Z
 - Inbox: no pending requests
 - Errors this cycle: 0
 
