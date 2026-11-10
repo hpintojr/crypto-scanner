@@ -11,9 +11,9 @@
  "inbox_hash": "7f9d95d9402f57d8ca4e2efcc4825389ad5a7c320a8cdcf4c91a9942e2ae11dc",
  "answers_hash": "4433d13ee12e546443e456514dc71497b1ddda7690e898314eb6abfc6d4d4bba",
  "pending_request": false,
- "last_scan": "2026-11-10T06:15:10Z: 1 movers >3% 1h, 0 kept after 2x volume check",
+ "last_scan": "2026-11-10T06:20:10Z: 1 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-10T06:15:10Z: market closed",
+ "last_stock_scan": "2026-11-10T06:20:10Z: market closed",
  "form4": {
   "next_day": "2026-11-07",
   "offset": 0,
@@ -22,10 +22,10 @@
   "blocked_until": "2026-11-10T09:35:10Z",
   "last_run": "2026-11-10T01:35:10Z"
  },
- "last_form4": "2026-11-10T06:15:11Z: paused until 2026-11-10T09:35:10Z after SEC said HTTP 403",
- "last_run": "2026-11-10T06:16:22Z",
+ "last_form4": "2026-11-10T06:20:11Z: paused until 2026-11-10T09:35:10Z after SEC said HTTP 403",
+ "last_run": "2026-11-10T06:21:41Z",
  "cycle_minutes": 5,
- "last_sim": "value $1,905.28 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09",
+ "last_sim": "value $1,904.78 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09",
  "signal_seen": {
   "crypto:GRAM:move_1h:1": "2026-11-10T03:05:13Z",
   "crypto:BTC:poc_touch:0": "2026-11-10T03:45:11Z",
@@ -1014,6 +1014,8 @@
   ],
   "bc1qr4dl5wa7kl8yu792dceg9z5knl2gkn220lk7a9": [
    "08294e9479a5613ac4fd563283c0392f3002c63ed89264a77706f981e7c273a9",
+   "77be388830847e0eb1e03d440a4fc0c5ef0b6e2778b7c6f2a1215e718eab2827",
+   "dd797be4cfa1bbc584253c24a7f08156b6f36246cc0f99d489a0f0e2f9de2d23",
    "613f01b4b6f679c9627d1a799d5c5674dc5c54020ccabf113e39a87eab9bedcc",
    "a07a4811ed77cec645f5dfe868f4713bae90dfe4674e11d93d40b387addf4d1e",
    "b205f384b91396a9c28624896bdc06d147a2877686e4ec0ee3ec79ddedfddc38",
@@ -1060,9 +1062,7 @@
    "7bd0f1840d78bb2b8ba17c1b2fc6441f55d1a9fbce3599d7045b4adc8deedddf",
    "a73c4595c130c97d1a4a9a4e6df2e3635a812c9ce3e7c578f88804074206dbee",
    "875e09f42b8790aedd8d9358091208d1db15a60c7d7c8a20e67ccdd282a2bfa9",
-   "f9c68be1bd3fbf52927bd32ca740d05e9186e35815b605b674e2084dd9710b33",
-   "e304cad81fea1615f8933a196d5cd31b09c8fe01b2f57a664cfd332298fd6080",
-   "83facb9558d6a4d620f3219685a4dc5424f91df24c7bcf9b2da09eabf334017d"
+   "f9c68be1bd3fbf52927bd32ca740d05e9186e35815b605b674e2084dd9710b33"
   ],
   "bc1q4c8n5t00jmj8temxdgcc3t32nkg2wjwz24lywv": [
    "06af20fcbecf28800200117a8e12ec46431606d0d45ca0e4f94339093a8b70e7",
@@ -3107,6 +3107,8 @@
    "1064bc549f8846d2b37a5966ba78a21ddfdbf8e3d0649444fc6b6dee0fd767b2"
   ],
   "0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec": [
+   "0x08cef7de4c002697e22139be085fd58e6709030a2193eb6c732205d82df0f0f2",
+   "0x251e7b55d04ed80972efbb4e0903c240833fb7cbb9598daf41d06a1fc8e7cce7",
    "0xdacedf989425d58944855c5a2487beba66937bb358b5efd9aa2ad16dfa55068e",
    "0xb46e69d05e96c7479cd51dc3ff3020de8eaf579c84fe8f8e821197575c49a797",
    "0x4851ce44b7ff15c6ed7fe504a35bcdd6dc803f8bf7577f0fd2723003558dec1b",
@@ -3154,11 +3156,13 @@
    "0xddf1366c654806e0405a6335d75fe780380195c05e60ecd16f632e9112b9b21a",
    "0xe1c88a505280042ce841432ffe0330ed33e096ff741c07153d6caeda39b9a0f5",
    "0xd2142bf3f217b48366a56fb65a9af947def4cce0b6121dfb2fdfffc96f676974",
-   "0x2bd6fa753e0a166faebd492645b6675913c87c5520bd08172922cbc495687429",
-   "0x7feb644fe66cfee3e46f63fd26adb7163ab9ef3e2346c36782df788952ce4b95",
-   "0xc7df8a3d54f58e8d3bea0c0acd0856a57206a03e014f7cf6f681d07c4c8a1ac7"
+   "0x2bd6fa753e0a166faebd492645b6675913c87c5520bd08172922cbc495687429"
   ],
   "0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec#tokens": [
+   "0xfcdab6d0b8d922fabb8327863a3264bf5f6a238fabe9ad51bfb522b56c50ce84:2071",
+   "0x1a64a2fbfd81a45bb647583e011ae7a9036f914eed85fad1463d3ff995e01b54:1237",
+   "0x66235594c4dda38a4754a19c8219531d81153c691ffe09e72fb0824db1dc78bb:267",
+   "0x33c6d0bdd96d1e6d0a725e566c0698380a78a8d4fcc746e6bbc071a298ca7d8f:22",
    "0xbddc56a0db9bb4f83b992857d4c1ba0e1627db0d12c00a59f4697df13bd8173a:23",
    "0xd7757e95baebf2546f98aaf94938f0e595fa57cee1cc67db08d9931630e0edbc:208",
    "0x68f291600f8a06f1b4a37ee1e40700fc5a6e49dc9069b12a4428e6ce472c29c0:61",
@@ -3204,11 +3208,7 @@
    "0x4f31237cb110044c3a35d6e6041890c33bbca98425359fe1031c1f1d6cdcddce:177",
    "0x20941056741d9d4072747038a5285c06880439f3d91014648767868966ae6559:89",
    "0x607faa6fc84c41c856f031c467e2883bc7c6dc3a0139d181dec361e9bd84106c:87",
-   "0x2bd6fa753e0a166faebd492645b6675913c87c5520bd08172922cbc495687429:63",
-   "0x7feb644fe66cfee3e46f63fd26adb7163ab9ef3e2346c36782df788952ce4b95:155",
-   "0xc7df8a3d54f58e8d3bea0c0acd0856a57206a03e014f7cf6f681d07c4c8a1ac7:591",
-   "0xc64231973ead1bb31d47240723333b2642c6ddecf4a4b16bb1b0cbaf98af8928:853",
-   "0xddaa957aa8c7c388b8e6b7c0e8fabd6b7cac2b1c39095227dde4feadcb1cd90e:457"
+   "0x2bd6fa753e0a166faebd492645b6675913c87c5520bd08172922cbc495687429:63"
   ],
   "0x876EabF441B2EE5B5b0554Fd502a8E0600950cFa": [
    "0x8612b5cef417d59b217c23648c70a375b35869ad29a71e4fc643d83a00e65898",
@@ -3325,11 +3325,11 @@
    "0x2a13d3e63037cb9c142fbf53170958c7c6041eb340f8947302a937181ebbb348:960"
   ]
  },
- "last_wallets": "15 checked this cycle, 63 enabled in rotation, 0 new moves",
+ "last_wallets": "13 checked this cycle, 63 enabled in rotation, 2 new moves",
  "holdings_checked": "2026-11-10T05:31:02Z",
  "last_holdings": "-16.99% since 2026-11-05, BTC -7.02%",
  "preview_checked": "2026-11-05T11:00:28Z",
- "wallets_offset": 18,
+ "wallets_offset": 33,
  "backtest_date": "2026-11-09",
  "last_backtest": "2026-11-09: 500 trading days tested, see data/backtest.md",
  "movers_checked": "2026-11-10T05:31:07Z",
@@ -3338,7 +3338,7 @@
  "allocation_version": 2,
  "last_gap_check": "2026-11-09T14:25:10Z: 4 of 100 stocks gapped 3%+ pre-market",
  "step_seconds": {
-  "simulation": 4,
+  "simulation": 3,
   "crypto scan": 0,
   "buzz": 0,
   "watchlist": 0,
@@ -3346,7 +3346,7 @@
   "score crypto": 0,
   "score stocks": 0,
   "form 4": 0,
-  "wallets": 70,
+  "wallets": 90,
   "holdings": 0,
   "backtest": 0,
   "movers": 0,
@@ -3356,6 +3356,6 @@
  },
  "skipped_steps": [],
  "graduation": "1 of 5 conditions met",
- "last_poc": "2026-11-10T06:15:11Z: 0 POC touches logged",
+ "last_poc": "2026-11-10T06:20:11Z: 0 POC touches logged",
  "last_laggards": "2026-11-09: weakening, laggards vs SPY since 2026-11-05 -3.61 pts"
 }
