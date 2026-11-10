@@ -3,10 +3,10 @@
 Paper money with simulated fills. No real money, no real fills.
 
 - Started: 2026-11-05
-- Total value: $1,885.17 of $2,000 (-5.74%)
-- Crypto budget: $905.99 (-9.40%), cash $341.39
-- Stock budget: $979.19 (-2.08%), cash $217.09
-- Same $1,000 in SPY: $979.03
+- Total value: $1,888.77 of $2,000 (-5.56%)
+- Crypto budget: $908.84 (-9.12%), cash $341.39
+- Stock budget: $979.93 (-2.01%), cash $217.09
+- Same $1,000 in SPY: $980.12
 - Open positions: 7
 - Closed trades: 23, 0 winners
 
@@ -22,7 +22,7 @@ Rules: approved allocation. Commodities: long $700 in GLD, DBC, DBA and CPER, mi
 | Condition | Met | Now |
 |---|---|---|
 | One plan, unchanged, for 90+ days | no | 3 days since 2026-11-07 |
-| Beats the same money in SPY after costs | no | plan -1.81% vs SPY +2.00% |
+| Beats the same money in SPY after costs | no | plan -1.62% vs SPY +2.12% |
 | 30+ days without a simulation error or quantity mismatch | no | 3 clean days |
-| Worst drop within 25% (Hamilton to confirm the limit) | yes | plan -1.81%, SPY -0.25% |
+| Worst drop within 25% (Hamilton to confirm the limit) | yes | plan -1.62%, SPY -0.14% |
 | Seen both a 5% rise and a 5% fall in SPY | no | rise no, fall no |
