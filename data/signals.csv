@@ -538,3 +538,17 @@ c201e7c92d48,2026-11-10T14:45:53Z,stocks,C,C,C,122.53,SPY,749.25,0.256,471424,0,
 7184dcb80aad,2026-11-10T14:45:53Z,stocks,UNP,UNP,UNP,296.31,SPY,749.25,-0.072,114788,0,0,0,,poc_touch,,poc=296.522;vah=297.261;val=295.192;sweep=no;from=above;stop=296.77;target=294.93
 05b3240adc62,2026-11-10T14:50:43Z,stocks,MS,MS,MS,187.13,SPY,748.49,-0.005,373361,0,0,0,,poc_touch,,poc=187.139;vah=189.309;val=187.045;sweep=no;from=above;stop=187.57;target=185.81
 74d5f3c50f1a,2026-11-10T14:50:43Z,stocks,PG,PG,PG,168.05,SPY,748.49,-0.104,465003,0,0,0,,poc_touch,,poc=168.226;vah=168.644;val=166.468;sweep=no;from=above;stop=168.45;target=166.85
+6614d7c5abe0,2026-11-10T14:55:36Z,stocks,AVGO,AVGO,AVGO,329.09,SPY,748.27,5.228,177762,131726.5,1.349,0,14,move_1h,no,
+d83080826797,2026-11-10T14:55:37Z,stocks,AMAT,AMAT,AMAT,375.91,SPY,748.27,4.078,23013,38354.17,0.6,0,1,move_1h,no,
+128279002d99,2026-11-10T14:55:38Z,stocks,MU,MU,MU,728.96,SPY,748.27,2.642,129813,158233.67,0.82,0,5,move_1h,no,
+061482a0952a,2026-11-10T14:55:39Z,stocks,ANET,ANET,ANET,189.2,SPY,748.27,2.116,28883,127259.5,0.227,0,1,move_1h,no,
+37c46e7d83be,2026-11-10T14:55:39Z,stocks,NKE,NKE,NKE,38.565,SPY,748.27,-2.687,127412,169012.0,0.754,0,5,move_1h,no,
+6bae61c0a31d,2026-11-10T14:55:40Z,stocks,INTC,INTC,INTC,59.49,SPY,748.27,3.804,251621,817944.83,0.308,0,4,move_1h,yes,
+960edfa550d7,2026-11-10T14:55:40Z,stocks,AXP,AXP,AXP,324.57,SPY,748.27,-0.19,96668,0,0,0,,poc_touch,,poc=325.188;vah=325.676;val=324.051;sweep=no;from=above;stop=325.91;target=320.55
+73ec2fcb6b08,2026-11-10T14:55:40Z,stocks,COP,COP,COP,134.74,SPY,748.27,-0.029,368898,0,0,1,,poc_touch,,poc=134.779;vah=135.792;val=134.17;sweep=no;from=below;stop=135.035;target=133.855
+1cb62fcc5239,2026-11-10T14:55:40Z,stocks,CRWD,CRWD,CRWD,229.05,SPY,748.27,0.156,278221,0,0,0,,poc_touch,,poc=228.693;vah=230.827;val=222.291;sweep=no;from=below;stop=226.8;target=235.8
+75caf5dfebf4,2026-11-10T14:55:40Z,stocks,GS,GS,GS,907.68,SPY,748.27,0.268,87014,0,0,1,,poc_touch,,poc=905.257;vah=912.047;val=904.805;sweep=no;from=above;stop=905.05;target=915.57
+6bae61c0a31d,2026-11-10T14:55:40Z,stocks,INTC,INTC,INTC,59.49,SPY,748.27,0.31,4289815,0,0,0,,poc_touch,,poc=59.306;vah=59.9201;val=58.341;sweep=no;from=below;stop=58.65;target=62.01
+06fee2fdf468,2026-11-10T14:55:41Z,stocks,KO,KO,KO,95.935,SPY,748.27,-0.025,1073471,0,0,0,,poc_touch,,poc=95.9589;vah=96.0067;val=95.5284;sweep=no;from=above;stop=96.35;target=94.69
+26af4dc229ed,2026-11-10T14:55:41Z,stocks,SCHW,SCHW,SCHW,93.035,SPY,748.27,-0.129,298067,0,0,0,,poc_touch,,poc=93.1551;vah=93.2947;val=92.7363;sweep=no;from=above;stop=93.385;target=91.985
+0a1a45ee223e,2026-11-10T14:55:41Z,stocks,T,T,T,21.705,SPY,748.27,0.082,2783221,0,0,1,,poc_touch,,poc=21.6872;vah=21.698;val=21.6113;sweep=no;from=above;stop=21.68;target=21.78
