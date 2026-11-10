@@ -12,9 +12,9 @@
  "inbox_hash": "3be158371c3ab90ad85979b6de3fa3c327ad4bd36191909e9feb62fa41a51214",
  "answers_hash": "4e6bc4db913165b23bc0101276bca205404d3527f8adb6d5a966105688bda7e4",
  "pending_request": false,
- "last_scan": "2026-11-10T20:50:10Z: 1 movers >3% 1h, 0 kept after 2x volume check",
+ "last_scan": "2026-11-10T20:55:10Z: 1 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-10T20:50:10Z: 100 stocks, 0 movers over 2.0% 1h, 0 kept after 2x volume check, 1 without enough data",
+ "last_stock_scan": "2026-11-10T20:55:10Z: 100 stocks, 0 movers over 2.0% 1h, 0 kept after 2x volume check, 1 without enough data",
  "form4": {
   "next_day": "2026-11-07",
   "offset": 0,
@@ -23,10 +23,10 @@
   "blocked_until": "2026-11-11T01:40:49Z",
   "last_run": "2026-11-10T17:40:48Z"
  },
- "last_form4": "2026-11-10T20:50:47Z: paused until 2026-11-11T01:40:49Z after SEC said HTTP 403",
- "last_run": "2026-11-10T20:51:29Z",
- "cycle_minutes": 4,
- "last_sim": "value $1,882.98 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09",
+ "last_form4": "2026-11-10T20:55:45Z: paused until 2026-11-11T01:40:49Z after SEC said HTTP 403",
+ "last_run": "2026-11-10T20:56:32Z",
+ "cycle_minutes": 5,
+ "last_sim": "value $1,884.01 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09",
  "signal_seen": {
   "stocks:LRCX:poc_touch:1": "2026-11-10T17:00:54Z",
   "stocks:SPGI:poc_touch:1": "2026-11-10T17:00:55Z",
@@ -68,7 +68,9 @@
   "stocks:WMT:poc_touch:0": "2026-11-10T20:31:00Z",
   "stocks:MS:poc_touch:1": "2026-11-10T20:35:50Z",
   "stocks:ABT:poc_touch:1": "2026-11-10T20:50:42Z",
-  "stocks:INTU:poc_touch:0": "2026-11-10T20:50:43Z"
+  "stocks:INTU:poc_touch:0": "2026-11-10T20:50:43Z",
+  "stocks:AMGN:poc_touch:1": "2026-11-10T20:55:42Z",
+  "stocks:HON:poc_touch:0": "2026-11-10T20:55:42Z"
  },
  "wallets_seen": {
   "0xa2Eea193444B16fE2D18CFe977aceeea6Dd9c367": [
@@ -2149,6 +2151,8 @@
    "0xd7332237b40e9ddcb70233db953f9c43282307798248ba03d6c62ddebccf2732:718"
   ],
   "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De": [
+   "0BE3390F8DED62B88952DF85461E17B8A2E02A77E7EA51A64F2F9649A91304F2",
+   "3E6B523DCB9C7FB50A16B3A8DD516D3D75A21CFF0CB35D733927AA2C0E3949A6",
    "E54A94667A8550CBD1A1F4AEFD2DC60C3D4B173CE5C80D9FD31207F0DCB69B2F",
    "4B4395FA42DC0FC0D270CFD8E5BC810926FC083FDE32A02FBFB272475152B473",
    "007418DAC9DB935146A071068DC7437EC05B3E96B52736B2045B5F890A4DBB0C",
@@ -2196,9 +2200,7 @@
    "5C3D210CBD9912879128333096F27653B4FACCC6CE827A7133E872559900F1EC",
    "A403CC9414F6D5BC3A7DFC9667AE3607204D869D578ABCDE6D6D6C30D13026BA",
    "1C4B8FFF894AFCE04A279240250369C76F1CFEBB339E5120FE323BE05C452857",
-   "C8F24C4ACE980373EF6AA205793333CEB767157C4E8E9C8AE967060C81E6DFDD",
-   "E800F3611F06D16195AA00D4A6BBC52871E57D9A36A02171D8FBD297A5E574E1",
-   "671978E0782C14E59D81D0B467E530957D43DA607FE1D8FB29B06DB3516D226E"
+   "C8F24C4ACE980373EF6AA205793333CEB767157C4E8E9C8AE967060C81E6DFDD"
   ],
   "0xbe0eb53f46cd790cd13851d5eff43d12404d33e8#tokens": [
    "0xa3296baf09fc07bbe278efb11a787b1fff0978b835fc81bad7316698fc2a569b:143"
@@ -3380,11 +3382,11 @@
    "0x2a13d3e63037cb9c142fbf53170958c7c6041eb340f8947302a937181ebbb348:960"
   ]
  },
- "last_wallets": "15 checked this cycle, 63 enabled in rotation, 0 new moves",
+ "last_wallets": "15 checked this cycle, 63 enabled in rotation, 2 new moves",
  "holdings_checked": "2026-11-10T20:16:37Z",
  "last_holdings": "-19.28% since 2026-11-05, BTC -8.56%",
  "preview_checked": "2026-11-05T11:00:28Z",
- "wallets_offset": 63,
+ "wallets_offset": 15,
  "backtest_date": "2026-11-09",
  "last_backtest": "2026-11-09: 500 trading days tested, see data/backtest.md",
  "movers_checked": "2026-11-10T20:21:55Z",
@@ -3397,20 +3399,20 @@
   "crypto scan": 0,
   "buzz": 0,
   "watchlist": 0,
-  "stocks": 33,
+  "stocks": 32,
   "score crypto": 0,
-  "score stocks": 2,
+  "score stocks": 1,
   "form 4": 0,
-  "wallets": 42,
+  "wallets": 46,
   "holdings": 0,
   "backtest": 0,
   "movers": 0,
   "allocation": 0,
-  "poc": 3,
+  "poc": 2,
   "laggards": 0
  },
  "skipped_steps": [],
  "graduation": "1 of 5 conditions met",
- "last_poc": "2026-11-10T20:50:45Z: 2 POC touches logged",
+ "last_poc": "2026-11-10T20:55:44Z: 2 POC touches logged",
  "last_laggards": "2026-11-09: weakening, laggards vs SPY since 2026-11-05 -3.61 pts"
 }
