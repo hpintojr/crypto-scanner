@@ -1,20 +1,20 @@
 # Biggest movers
 
-As of 2026-11-10T23:16:12Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
+As of 2026-11-11T00:16:04Z. In brackets: the hourly streak, so (+3h) means three up hours in a row, and (-2h) two down hours. Research only, no orders. Past moves don't predict the next one.
 
 ## Crypto, top 100
 
 | Window | Biggest gainers | Biggest losers |
 |---|---|---|
-| 1h | PEARL +4.7% (+2h), LIT +2.8% (+2h), GRAM +2.5% (+2h), ZRO +2.4% (+1h), OKB +1.8% (+5h) | JUP -2.5% (-1h), KAS -1.4% (-1h), BDX -0.8% (-1h), CRO -0.8% (-1h), XMR -0.6% (-1h) |
-| 2h | PEARL +5.4% (+2h), GRAM +4.6% (+2h), LIT +3.8% (+2h), BTW +3.2% (+2h), ZEC +2.7% (+2h) | RAIN -1.5% (+1h), JUP -1.0% (-1h), LEO -0.7% (+1h), KAS -0.6% (-1h), XRP -0.4% (+1h) |
-| 4h | VVV +4.8% (+2h), INJ +4.4% (+1h), ZRO +3.6% (+1h), GRAM +3.5% (+2h), OKB +3.3% (+5h) | BTW -7.5% (+2h), JUP -1.4% (-1h), DASH -1.0% (+1h), CC -0.7% (-1h), RAIN -0.6% (+1h) |
-| 6h | GRAM +4.9% (+2h), INJ +4.4% (+1h), LIT +3.9% (+2h), ICP +3.2% (+5h), RAIN +3.1% (+1h) | DASH -4.3% (+1h), ZEC -3.3% (+2h), MNT -3.3% (+3h), BTW -2.7% (+2h), M -2.0% (-1h) |
-| 8h | BTW +15.8% (+2h), LIT +6.5% (+2h), GRAM +5.1% (+2h), ICP +2.1% (+5h), ETHFI +1.9% (+2h) | ZEC -9.0% (+2h), PEARL -7.8% (+2h), DASH -6.5% (+1h), RAIN -4.8% (+1h), MNT -4.6% (+3h) |
-| 12h | BTW +16.6% (+2h), LIT +7.6% (+2h), GRAM +6.2% (+2h), M +5.0% (-1h), INJ +1.7% (+1h) | RAIN -13.5% (+1h), PEARL -10.8% (+2h), VVV -9.4% (+2h), ZEC -7.3% (+2h), DASH -6.3% (+1h) |
-| 16h | BTW +16.2% (+2h), LIT +10.0% (+2h), GRAM +4.8% (+2h), M +4.6% (-1h), PI +2.3% (-1h) | RAIN -15.3% (+1h), PEARL -11.3% (+2h), VVV -9.7% (+2h), ZEC -8.3% (+2h), ARB -7.3% (+2h) |
-| 20h | BTW +16.9% (+2h), GRAM +9.9% (+2h), LIT +9.6% (+2h), PI +7.7% (-1h), NIGHT +2.9% (+2h) | RAIN -14.4% (+1h), PEARL -9.4% (+2h), VVV -9.1% (+2h), ZEC -9.0% (+2h), ARB -7.9% (+2h) |
-| 24h | BTW +14.6% (+2h), GRAM +12.3% (+2h), LIT +7.1% (+2h), PI +5.3% (-1h), NIGHT +4.8% (+2h) | RAIN -14.9% (+1h), VVV -10.9% (+2h), ZEC -9.8% (+2h), PEARL -9.0% (+2h), ARB -8.3% (+2h) |
+| 1h | ICP +3.4% (+6h), ZRO +1.1% (+2h), ARB +0.8% (+3h), GT +0.8% (+1h), RENDER +0.6% (+3h) | ZEC -2.1% (-1h), BTW -1.8% (-1h), GRAM -1.4% (-1h), DASH -1.3% (-1h), UNI -1.2% (-1h) |
+| 2h | PEARL +5.2% (+3h), ICP +3.9% (+6h), ZRO +3.5% (+2h), LIT +2.3% (-1h), RENDER +2.2% (+3h) | JUP -2.7% (-2h), KAS -1.9% (-2h), BTW -1.5% (-1h), BDX -1.3% (-2h), ZEC -1.3% (-1h) |
+| 4h | ICP +4.9% (+6h), LIT +2.7% (-1h), PEARL +2.7% (+3h), ZRO +2.6% (+2h), GRAM +2.3% (-1h) | BTW -9.5% (-1h), JUP -2.1% (-2h), DASH -1.9% (-1h), KAS -1.3% (-2h), XRP -1.3% (-1h) |
+| 6h | ICP +7.2% (+6h), PEARL +6.1% (+3h), ZRO +4.5% (+2h), RENDER +4.2% (+3h), LIT +3.7% (-1h) | BTW -3.6% (-1h), MNT -1.9% (-1h), BDX -1.4% (-2h), RAIN -1.4% (+2h), DASH -0.8% (-1h) |
+| 8h | ICP +4.6% (+6h), GRAM +4.0% (-1h), LIT +1.7% (-1h), JST +1.1% (+1h), XMR +1.0% (+1h) | ZEC -12.4% (-1h), DASH -8.3% (-1h), UNI -5.9% (-1h), PEARL -5.3% (+3h), MNT -5.0% (-1h) |
+| 12h | BTW +14.0% (-1h), LIT +8.5% (-1h), ICP +4.7% (+6h), GRAM +4.2% (-1h), XMR +2.2% (+1h) | RAIN -11.2% (+2h), PEARL -9.3% (+3h), ZEC -9.2% (-1h), VVV -8.7% (-1h), DASH -6.4% (-1h) |
+| 16h | BTW +13.2% (-1h), LIT +10.0% (-1h), M +4.9% (-2h), GRAM +4.6% (-1h), ICP +4.5% (+6h) | RAIN -14.9% (+2h), PEARL -12.0% (+3h), VVV -10.0% (-1h), ZEC -9.8% (-1h), DASH -6.7% (-1h) |
+| 20h | BTW +14.5% (-1h), LIT +9.0% (-1h), PI +5.9% (-2h), ICP +5.8% (+6h), GRAM +4.3% (-1h) | RAIN -14.1% (+2h), ZEC -10.4% (-1h), PEARL -9.4% (+3h), VVV -9.4% (-1h), DASH -7.6% (-1h) |
+| 24h | BTW +12.4% (-1h), GRAM +9.9% (-1h), LIT +6.6% (-1h), ICP +5.5% (+6h), PI +5.2% (-2h) | RAIN -14.9% (+2h), ZEC -11.4% (-1h), VVV -11.3% (-1h), DASH -9.5% (-1h), PEARL -9.1% (+3h) |
 
 ## Stocks, fixed list
 
