@@ -7,14 +7,14 @@
   "the-open-network": "2026-11-10T03:05:14Z",
   "gatechain-token": "2026-11-10T11:05:13Z"
  },
- "last_watch": "2026-11-11T04:30:13Z",
+ "last_watch": "2026-11-11T05:30:14Z",
  "last_flag": "2026-11-10T17:10:14Z PIEVERSE",
  "inbox_hash": "3be158371c3ab90ad85979b6de3fa3c327ad4bd36191909e9feb62fa41a51214",
  "answers_hash": "4e6bc4db913165b23bc0101276bca205404d3527f8adb6d5a966105688bda7e4",
  "pending_request": false,
- "last_scan": "2026-11-11T05:25:09Z: 1 movers >3% 1h, 0 kept after 2x volume check",
+ "last_scan": "2026-11-11T05:30:10Z: 1 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-11T05:25:10Z: market closed",
+ "last_stock_scan": "2026-11-11T05:30:15Z: market closed",
  "form4": {
   "next_day": "2026-11-07",
   "offset": 0,
@@ -23,10 +23,10 @@
   "blocked_until": "2026-11-11T09:45:12Z",
   "last_run": "2026-11-11T01:45:11Z"
  },
- "last_form4": "2026-11-11T05:25:10Z: paused until 2026-11-11T09:45:12Z after SEC said HTTP 403",
- "last_run": "2026-11-11T05:25:30Z",
+ "last_form4": "2026-11-11T05:30:15Z: paused until 2026-11-11T09:45:12Z after SEC said HTTP 403",
+ "last_run": "2026-11-11T05:30:52Z",
  "cycle_minutes": 5,
- "last_sim": "value $1,884.94 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09",
+ "last_sim": "value $1,884.93 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09",
  "signal_seen": {
   "crypto:PEARL:move_1h:0": "2026-11-11T02:05:12Z",
   "crypto:BTW:move_1h:0": "2026-11-11T04:05:12Z"
@@ -3128,6 +3128,8 @@
    "25cbc795131a294b908658b4c460d7d9b98a811a5fb108a6310c96bc66a80c0e"
   ],
   "0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec": [
+   "0xb8fd131b03106eb3f5170ebf5c4dc370fd85f44e60b7a83be0744d714abd5b07",
+   "0x07d34b26aa541a402f130bc32bde4ddeb30e4d725affe1b9887faece29a47474",
    "0x63e0e8e5d5c1c334a47afaac22bc60d34c91322ea2e28b2b7f50e15ec7f29b5a",
    "0x1de6d48b7395aaf76646604c4dce08fada56a201ee6ced54d2b58a45ee0891d5",
    "0x7918cfb8cf599174a0218662d78d53c1bd006217fcfb72c40f817d82e6b09b42",
@@ -3175,9 +3177,7 @@
    "0x458fe84fac1738677a09c05946cbabf6fc47734fb19964fe1996b4a925f51ae6",
    "0x8856727e3446a75c208297de534753e9f837367f8e2efdb84203416abc5e6156",
    "0x59d218ce5ba7d1d7b5e28b98f667a719d5c45a9d0b5b8d245d3f39034678a16b",
-   "0x154d0117a5f727d3844adf39e6fc9217a51518cb1c149fb00196b1ef15cdb33e",
-   "0xf13c3bc42ea272817a806a323d2fda1510ef45c9a403e4e392f64c2afaa786a4",
-   "0x8ccf52bc360760cfcdda5be1ac8d216a8b220f942d4670b4f86b8cf014becd67"
+   "0x154d0117a5f727d3844adf39e6fc9217a51518cb1c149fb00196b1ef15cdb33e"
   ],
   "0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec#tokens": [
    "0xa51c75e8398beb393183019b93c1ab24ab16e5a38b49896b334bf0a5076fdf60:1095",
@@ -3346,11 +3346,11 @@
    "0x2a13d3e63037cb9c142fbf53170958c7c6041eb340f8947302a937181ebbb348:960"
   ]
  },
- "last_wallets": "15 checked this cycle, 63 enabled in rotation, 1 new moves",
+ "last_wallets": "15 checked this cycle, 63 enabled in rotation, 2 new moves",
  "holdings_checked": "2026-11-11T05:01:19Z",
  "last_holdings": "-20.05% since 2026-11-05, BTC -8.35%",
  "preview_checked": "2026-11-05T11:00:28Z",
- "wallets_offset": 69,
+ "wallets_offset": 21,
  "backtest_date": "2026-11-10",
  "last_backtest": "2026-11-10: 501 trading days tested, see data/backtest.md",
  "movers_checked": "2026-11-11T05:15:58Z",
@@ -3359,15 +3359,15 @@
  "allocation_version": 2,
  "last_gap_check": "2026-11-10T14:25:09Z: 1 of 100 stocks gapped 3%+ pre-market",
  "step_seconds": {
-  "simulation": 3,
+  "simulation": 4,
   "crypto scan": 0,
   "buzz": 0,
-  "watchlist": 0,
+  "watchlist": 4,
   "stocks": 0,
   "score crypto": 0,
   "score stocks": 0,
   "form 4": 0,
-  "wallets": 19,
+  "wallets": 36,
   "holdings": 0,
   "backtest": 0,
   "movers": 0,
@@ -3378,7 +3378,7 @@
  },
  "skipped_steps": [],
  "graduation": "1 of 5 conditions met",
- "last_poc": "2026-11-11T05:25:10Z: 0 POC touches logged",
+ "last_poc": "2026-11-11T05:30:15Z: 0 POC touches logged",
  "last_laggards": "2026-11-10: weakening, laggards vs SPY since 2026-11-05 -3.45 pts",
  "control_sleeves_day": "2026-11-10",
  "last_control_sleeves": "2026-11-10: written"
