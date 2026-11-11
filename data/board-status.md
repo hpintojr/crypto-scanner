@@ -2,7 +2,7 @@
 
 Shared database, copy only. No job reads from it yet. Paper only.
 
-- Last mirror: 2026-11-11T10:35:39Z (0.0s)
+- Last mirror: 2026-11-11T10:40:35Z (0.0s)
 - Tables: signals 642, proposed_orders 53, orders 0, results 1491, messages 0
 - Added this run: signals 0, proposed_orders 0, results 0
 - Last export: 2026-11-11 (data/board-export.csv)
