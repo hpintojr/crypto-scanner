@@ -9,7 +9,7 @@ Treat any row under 30 signals as noise.
 | Market | Touch | Sweep | Horizon | Signals | Avg return % | Went that way % |
 |---|---|---|---|--:|--:|--:|
 | crypto | broke | no sweep | 1h | 7 | -0.182 | 29 |
-| crypto | broke | no sweep | 24h | 6 | +0.461 | 50 |
+| crypto | broke | no sweep | 24h | 7 | +0.520 | 57 |
 | crypto | broke | no sweep | 4h | 7 | -0.144 | 43 |
 | crypto | held | no sweep | 1h | 10 | -0.005 | 20 |
 | crypto | held | no sweep | 24h | 8 | +1.682 | 62 |
