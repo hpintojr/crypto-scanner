@@ -1,6 +1,6 @@
 # Research report
 
-647 movers logged, 133 passed the volume check. Research only, no orders.
+648 movers logged, 133 passed the volume check. Research only, no orders.
 
 Follow-through is the return after the signal, net of BTC or SPY, in the direction of
 the original move. Positive means the move kept going. Compare passed against rejected.
@@ -12,7 +12,7 @@ Costs and slippage are not included. Treat any row under 30 signals as noise.
 | crypto | passed | 4h | 9 | 1.67 | 1.58 | 56 |
 | crypto | passed | 24h | 8 | -6.22 | -9.48 | 25 |
 | crypto | rejected | 1h | 237 | 0.10 | 0.12 | 57 |
-| crypto | rejected | 4h | 237 | -0.59 | -0.60 | 34 |
+| crypto | rejected | 4h | 238 | -0.60 | -0.60 | 34 |
 | crypto | rejected | 24h | 198 | -1.61 | -1.70 | 25 |
 | stocks | passed | 1h | 28 | 0.14 | -0.17 | 46 |
 | stocks | passed | 1d | 26 | -0.69 | -0.51 | 46 |
@@ -22,7 +22,7 @@ Costs and slippage are not included. Treat any row under 30 signals as noise.
 | stocks | passed, earnings | 5d | 10 | -2.89 | -1.72 | 50 |
 | stocks | premarket gap | 1h | 13 | 0.46 | 0.02 | 62 |
 | stocks | premarket gap | 1d | 12 | 0.54 | 0.58 | 50 |
-| stocks | premarket gap | 5d | 6 | -2.21 | -3.54 | 50 |
+| stocks | premarket gap | 5d | 7 | -1.05 | 0.07 | 57 |
 | stocks | premarket gap, earnings | 1h | 9 | 0.43 | 0.67 | 67 |
 | stocks | premarket gap, earnings | 1d | 8 | 0.23 | 1.29 | 62 |
 | stocks | premarket gap, earnings | 5d | 2 | -12.18 | -12.18 | 0 |
