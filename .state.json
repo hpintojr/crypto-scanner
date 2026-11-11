@@ -12,9 +12,9 @@
  "inbox_hash": "3be158371c3ab90ad85979b6de3fa3c327ad4bd36191909e9feb62fa41a51214",
  "answers_hash": "4e6bc4db913165b23bc0101276bca205404d3527f8adb6d5a966105688bda7e4",
  "pending_request": false,
- "last_scan": "2026-11-11T09:15:10Z: 3 movers >3% 1h, 0 kept after 2x volume check",
+ "last_scan": "2026-11-11T09:20:12Z: 3 movers >3% 1h, 0 kept after 2x volume check",
  "last_push_error": null,
- "last_stock_scan": "2026-11-11T09:15:10Z: market closed",
+ "last_stock_scan": "2026-11-11T09:20:12Z: market closed",
  "form4": {
   "next_day": "2026-11-07",
   "offset": 0,
@@ -23,10 +23,10 @@
   "blocked_until": "2026-11-11T09:45:12Z",
   "last_run": "2026-11-11T01:45:11Z"
  },
- "last_form4": "2026-11-11T09:15:11Z: paused until 2026-11-11T09:45:12Z after SEC said HTTP 403",
- "last_run": "2026-11-11T09:15:46Z",
+ "last_form4": "2026-11-11T09:20:13Z: paused until 2026-11-11T09:45:12Z after SEC said HTTP 403",
+ "last_run": "2026-11-11T09:20:37Z",
  "cycle_minutes": 5,
- "last_sim": "value $1,883.78 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09",
+ "last_sim": "value $1,882.84 of $2,000, 7 open, crypto cash $341.39, stock cash $217.09",
  "signal_seen": {
   "crypto:RAIN:move_1h:0": "2026-11-11T06:05:13Z",
   "crypto:ZEC:move_1h:0": "2026-11-11T07:05:13Z",
@@ -2185,6 +2185,7 @@
    "0x290c48adbbc23f8d0f90679c224ab612be9f90907372516919f478e69e9fddf6:316"
   ],
   "0x3e40D73EB977Dc6a537aF587D48316feE66E9C8c#tokens": [
+   "0xab61e7a69d82af07774bd06592cfad6fd3b630bf5410480b3f05790867b92c93:1186",
    "0x2e70bbb34e714dba018da5e9e813b314de0366d2992a7637935b1e85703d91e4:13",
    "0xaa5cdcf4db3c6a183c8fb1fc79e041a8b2f765139046d350cd41331d8293c92d:101",
    "0x070bf8482a40f5e9a53939650eaeedf32293bad6d90abc4a4ac73847c958bb21:85"
@@ -3080,6 +3081,7 @@
    "0x468f8434d2fc3e62509c495569610dbb82516824ceef2e2bc243907e4def9946:336"
   ],
   "1Kr6QSydW9bFQG1mXiPNNu6WpJGmUa9i1g": [
+   "dd62aaf32bd54a820b74ebca89d67ba9aef44d2e6754cfd6f4678f36c3f83d6c",
    "d08eace38aa09f0117a0e53a598488a569ed5c2e7d03b36d6d6b09ce728c05d8",
    "7b4e9bcf972297198b6252ff0454c38893a557c133e3bf280c85eb0f0b43258a",
    "1e687e30caad951243bb36fb9a004fe62b214c6a9ef5c2d11e3ec8dd1e49d5de",
@@ -3128,8 +3130,7 @@
    "c0a12069f3807791fbf9e2b7e66f7206e27bc221dbe26e9d7fa5deade83d4a0c",
    "c00a7b1e53852df395f708cf886f51acf59b8ce1a90f94a08dd535fd96d7650a",
    "2f6d070edb716ac58f2b1d98e612cd7d642c12e87b74aebca76c9979bba45270",
-   "6c95e56923bab3d70fdc5ca70573004305915b4fae6ff128e98cbf619719589b",
-   "907cc47fccb5448c9d8f6b3cce8b08bdd1f58a65dd5e4041dc5b27caba7398b7"
+   "6c95e56923bab3d70fdc5ca70573004305915b4fae6ff128e98cbf619719589b"
   ],
   "0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec": [
    "0x59797a51c5a332b92334fcfded4c16e3905362977e598933a65ec2c80677abe2",
@@ -3350,11 +3351,11 @@
    "0x2a13d3e63037cb9c142fbf53170958c7c6041eb340f8947302a937181ebbb348:960"
   ]
  },
- "last_wallets": "15 checked this cycle, 63 enabled in rotation, 0 new moves",
+ "last_wallets": "15 checked this cycle, 63 enabled in rotation, 2 new moves",
  "holdings_checked": "2026-11-11T09:01:00Z",
  "last_holdings": "-19.81% since 2026-11-05, BTC -8.34%",
  "preview_checked": "2026-11-05T11:00:28Z",
- "wallets_offset": 66,
+ "wallets_offset": 18,
  "backtest_date": "2026-11-10",
  "last_backtest": "2026-11-10: 501 trading days tested, see data/backtest.md",
  "movers_checked": "2026-11-11T09:15:45Z",
@@ -3364,17 +3365,17 @@
  "last_gap_check": "2026-11-10T14:25:09Z: 1 of 100 stocks gapped 3%+ pre-market",
  "step_seconds": {
   "simulation": 4,
-  "crypto scan": 0,
+  "crypto scan": 3,
   "buzz": 0,
   "watchlist": 0,
   "stocks": 0,
   "score crypto": 0,
   "score stocks": 0,
   "form 4": 0,
-  "wallets": 28,
+  "wallets": 23,
   "holdings": 0,
   "backtest": 0,
-  "movers": 6,
+  "movers": 0,
   "allocation": 0,
   "poc": 1,
   "laggards": 0,
@@ -3382,7 +3383,7 @@
  },
  "skipped_steps": [],
  "graduation": "1 of 5 conditions met",
- "last_poc": "2026-11-11T09:15:11Z: 0 POC touches logged",
+ "last_poc": "2026-11-11T09:20:13Z: 0 POC touches logged",
  "last_laggards": "2026-11-10: weakening, laggards vs SPY since 2026-11-05 -3.45 pts",
  "control_sleeves_day": "2026-11-10",
  "last_control_sleeves": "2026-11-10: written"
