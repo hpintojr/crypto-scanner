@@ -21,3 +21,4 @@ time,coin_id,symbol,name,price,move_1h_pct,volume_24h,avg_daily_volume_7d,volume
 2026-11-10T11:05:13Z,gatechain-token,gt,Gate,9.96,3.346,21052523,9452978.25,2.227
 2026-11-10T17:10:14Z,pieverse,pieverse,Pieverse,1.89,-8.638,116875420,14094118.33,8.292
 2026-11-11T10:05:12Z,bitway,btw,Bitway,1.094,-3.52,12784066,6202550.68,2.061
+2026-11-11T13:05:11Z,the-open-network,gram,Gram (prev. Toncoin),1.23,5.109,150640330,40945279.56,3.679
